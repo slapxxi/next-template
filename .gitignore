@@ -32,3 +32,4 @@ yarn-error.log*
 
 # vercel
 .vercel
+.vscode/vscode-chrome-debug-userdatadir
