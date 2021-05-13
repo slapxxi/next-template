@@ -1,3 +1,7 @@
-export default function Home() {
-  return <div>Hello, World!</div>;
-}
+import type { NextPage } from 'next';
+
+let Home: NextPage = () => {
+  return <div>Home</div>;
+};
+
+export default Home;
