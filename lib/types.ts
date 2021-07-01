@@ -1,1 +1,3 @@
-export type Theme = any;
+import { defaultTheme } from './styles/theme';
+
+export type Theme = typeof defaultTheme;
