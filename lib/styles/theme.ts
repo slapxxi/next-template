@@ -1,10 +1,8 @@
 export let defaultTheme = {
-  colors: {
-    text: 'hsl(200, 10%, 20%)',
-    bg: 'hsl(200, 20%, 75%)',
-    link: 'hsl(250, 90%, 50%)',
-  },
-  sidebar: {
-    text: 'hsl(50, 100%, 20%)',
-  },
+  fg: 'hsl(230, 20%, 15%)',
+  bg: 'hsl(190, 20%, 75%)',
+  fgLink: 'hsl(220, 90%, 50%)',
+  em: 'hsl(220, 100%, 58%)',
+  //colors
+  pink: 'hsl(350, 100%, 88%)',
 };

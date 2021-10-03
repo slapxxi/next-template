@@ -28,12 +28,12 @@ export default NextAuth({
       async authorize(credentials: Credentials, req) {
         let { username, password } = credentials;
         let { db } = await connectToDatabase();
-        let matchingUser = await db
-          .collection('users')
-          .findOne(
-            { name: username },
-            { projection: { _id: 0, id: '$_id', name: 1, password: 1, email: 1, image: 1 } },
-          );
+        let matchingUser = await db.collection('users').findOne(
+          { name: username },
+          {
+            projection: { _id: 0, id: '$_id' as any, name: 1, password: 1, email: 1, image: 1 },
+          },
+        );
         matchingUser.role = 'admin';
 
         if (matchingUser) {
