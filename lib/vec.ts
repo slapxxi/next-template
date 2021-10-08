@@ -24,6 +24,10 @@ export function vecLen(vector: Vec2): number {
   return Math.hypot(...vector);
 }
 
+export function vecDot(v1: Vec2, v2: Vec2): number {
+  return v1[0] * v2[0] + v1[1] * v2[1];
+}
+
 export function vecMatrixTransform(vector: Vec2, matrix: Matrix): Vec2 {
   return vecSum(
     vecMul(matrix.slice(0, 2) as Vec2, vector[0]),
