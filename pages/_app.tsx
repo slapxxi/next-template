@@ -1,7 +1,8 @@
-import { ThemeProvider } from '@emotion/react';
+import { css, Global, ThemeProvider } from '@emotion/react';
 import { Provider as AuthProvider } from 'next-auth/client';
 import type { AppType } from 'next/dist/shared/lib/utils';
 import Head from 'next/head';
+import React from 'react';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { defaultTheme } from '../lib/styles/theme';
 import '../styles/globals.css';
@@ -15,7 +16,7 @@ let App: AppType = (props) => {
     <>
       <Head>
         <meta name="viewport" content="initial-scale=1.0, minimum-scale=1.0, width=device-width" />
-        <meta name="theme-color" content="#4285f4" />
+        <meta name="theme-color" content={defaultTheme.bg} />
 
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="true" />
@@ -28,6 +29,16 @@ let App: AppType = (props) => {
       <QueryClientProvider client={client}>
         <AuthProvider session={pageProps.session}>
           <ThemeProvider theme={defaultTheme}>
+            <Global
+              styles={(theme) => {
+                return css`
+                  body {
+                    background-color: ${theme.bg};
+                    color: ${theme.fg};
+                  }
+                `;
+              }}
+            />
             <Component {...pageProps} />
           </ThemeProvider>
         </AuthProvider>
