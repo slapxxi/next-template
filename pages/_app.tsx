@@ -2,7 +2,6 @@ import { css, Global, ThemeProvider } from '@emotion/react';
 import { Provider as AuthProvider } from 'next-auth/client';
 import type { AppType } from 'next/dist/shared/lib/utils';
 import Head from 'next/head';
-import React from 'react';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { defaultTheme } from '../lib/styles/theme';
 import '../styles/globals.css';
@@ -21,7 +20,7 @@ let App: AppType = (props) => {
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="true" />
         <link
-          href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Pacifico&family=Rubik:wght@300;400;600&display=swap"
           rel="stylesheet"
         />
       </Head>

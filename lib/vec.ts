@@ -12,6 +12,10 @@ export function vecDiff(v1: Vec2, v2: Vec2): Vec2 {
   return [v1[0] - v2[0], v1[1] - v2[1]];
 }
 
+export function vecAdd(vector: Vec2, scalar: number): Vec2 {
+  return [vector[0] + scalar, vector[1] + scalar];
+}
+
 export function vecMul(vector: Vec2, scalar: number): Vec2 {
   return [vector[0] * scalar, vector[1] * scalar];
 }

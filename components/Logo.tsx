@@ -1,7 +1,6 @@
-import { ReactNode } from 'react';
+import { useTheme } from '@emotion/react';
 
 export interface LogoProps {
-  children?: ReactNode;
   size?: number;
 }
 
@@ -10,21 +9,22 @@ const ANIM_ID = 'md1dtdo35_Vj6WLkAx1FJ';
 
 export let Logo: React.FC<LogoProps> = (props) => {
   let { size = 60 } = props;
+  let theme = useTheme();
 
   return (
     <svg viewBox="0 0 60 60" width={size}>
       <defs>
         <linearGradient id={GRAD_ID}>
-          <stop offset="0" stopColor="#ee0979" />
-          <stop offset="1" stopColor="#ff6a00" />
+          <stop offset="0" stopColor={theme.hotpink} />
+          <stop offset="1" stopColor={theme.orange} />
         </linearGradient>
       </defs>
 
       <g fill={`url(#${GRAD_ID})`}>
-        <path d="M30 30a.8.8 90 015.44 8l-4.64 4q-.8.8-1.6 0l-4.56-3.92a.8.8 90 015.36-8.08">
+        <path d="M30 11a.8.8 90 015.44 8l-4.64 4q-.8.8-1.6 0l-4.56-3.92a.8.8 90 015.36-8.08">
           <animateMotion
             id={ANIM_ID}
-            path="M0-5c5-7 5-15.4 0-21s-5-14 0-19.6"
+            path="M0 10c5-7 5-15.4 0-21s-5-14 0-19.6"
             dur="1.3s"
             begin={`0s;${ANIM_ID}.end+0.8s`}
             fill="freeze"
