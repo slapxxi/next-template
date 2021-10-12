@@ -1,19 +1,43 @@
 import { Mail } from 'lucide-react';
 import type { NextPage } from 'next';
+import { signIn, useSession } from 'next-auth/client';
 import Link from 'next/link';
+import { useEffect, useReducer } from 'react';
 import tw from 'twin.macro';
 import { Blob } from '../components/Blob';
 import { Button } from '../components/Button';
 import { Input } from '../components/Input';
 import { Layout } from '../components/Layout';
 import { PasswordInput } from '../components/PasswordInput';
+import { Spinner } from '../components/Spinner';
 import { Text } from '../components/Text';
 import { Title } from '../components/Title';
 
 let Home: NextPage = () => {
+  let [session, loading] = useSession();
+  let [state, dispatch] = useReducer(homeReducer, { email: '', password: '', status: 'idle' });
+
+  function handleChangeEmail(e) {
+    dispatch({ type: 'SET_EMAIL', payload: e.target.value });
+  }
+
+  function handleChangePassword(e) {
+    dispatch({ type: 'SET_PASSWORD', payload: e.target.value });
+  }
+
   function handleSubmit(e) {
+    dispatch({ type: 'SUBMIT' });
+
     e.preventDefault();
   }
+
+  useEffect(() => {
+    if (state.status === 'submitting') {
+      signIn('credentials', { email: state.email, password: state.password, redirect: false })
+        .then(console.log)
+        .catch(console.log);
+    }
+  }, [state.status]);
 
   return (
     <Layout>
@@ -38,24 +62,51 @@ let Home: NextPage = () => {
           </Text>
 
           <form css={[tw`flex flex-col items-center w-full gap-6`]} onSubmit={handleSubmit}>
-            <Input placeholder="Your email" icon={<Mail size={20} />} css={[tw`w-full`]} />
-            <PasswordInput placeholder="Your password" css={[tw`w-full`]} />
+            <Input
+              name="email"
+              value={state.email}
+              placeholder="Your email"
+              onChange={handleChangeEmail}
+              icon={<Mail size={20} />}
+              disabled={state.status !== 'idle'}
+              css={[tw`w-full`]}
+            />
+            <PasswordInput
+              name="password"
+              value={state.password}
+              placeholder="Your password"
+              onChange={handleChangePassword}
+              disabled={state.status !== 'idle'}
+              css={[tw`w-full`]}
+            />
 
-            <Link href="/login" passHref>
-              <Button variant="fill" css={[tw`justify-center w-full`]} as="a">
-                Login
-              </Button>
-            </Link>
-            <Link href="/login" passHref>
-              <Button as="a" css={(theme) => [tw`p-0`, { color: theme.fgAccent }]}>
-                Can't remember password?
-              </Button>
-            </Link>
+            <Button variant="fill" css={[tw`justify-center w-full`]} type="submit">
+              {state.status === 'submitting' ? <Spinner /> : 'Login'}
+            </Button>
           </form>
+
+          <Link href="/restore-password" passHref>
+            <Button as="a" css={(theme) => [tw`p-0`, { color: theme.fgAccent }]}>
+              Can't remember password?
+            </Button>
+          </Link>
         </div>
       </div>
     </Layout>
   );
 };
+
+function homeReducer(state, action) {
+  switch (action.type) {
+    case 'SET_EMAIL':
+      return { ...state, email: action.payload };
+    case 'SET_PASSWORD':
+      return { ...state, password: action.payload };
+    case 'SUBMIT':
+      return { ...state, status: 'submitting' };
+    default:
+      return state;
+  }
+}
 
 export default Home;

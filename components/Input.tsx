@@ -9,13 +9,14 @@ export interface InputProps extends Omit<HTMLProps<HTMLInputElement>, 'as'> {
 }
 
 export let Input: React.FC<InputProps> = (props) => {
-  let { icon, iconRight, className, ...rest } = props;
+  let { icon, iconRight, className, disabled, ...rest } = props;
 
   return (
     <div
       css={(theme) => [
         tw`relative`,
         { color: theme.fgAccent, ':focus-within': { color: theme.fg } },
+        disabled && { opacity: 0.8 },
       ]}
       className={className}
     >
@@ -25,7 +26,7 @@ export let Input: React.FC<InputProps> = (props) => {
         {icon}
       </div>
 
-      <StyledInput {...rest} />
+      <StyledInput disabled={disabled} {...rest} />
 
       <div
         css={[tw`absolute right-0 top-1/2`, { transform: 'translate(-18px, -50%)', lineHeight: 0 }]}

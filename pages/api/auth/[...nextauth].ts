@@ -4,7 +4,7 @@ import Providers from 'next-auth/providers';
 import { connectToDatabase } from '../../../lib/connectToDatabase';
 
 interface Credentials {
-  username: string;
+  email: string;
   password: string;
 }
 
@@ -15,21 +15,17 @@ export default NextAuth({
     signIn: '/auth/signin',
   },
   providers: [
-    Providers.GitHub({
-      clientId: process.env.GITHUB_CLIENT_ID,
-      clientSecret: process.env.GITHUB_CLIENT_SECRET,
-    }),
     Providers.Credentials({
       name: 'Credentials',
       credentials: {
-        username: { label: 'Username', type: 'text', placeholder: 'Username' },
+        email: { label: 'Email', type: 'text', placeholder: 'Email' },
         password: { label: 'Password', type: 'password', placeholder: 'Password' },
       },
       async authorize(credentials: Credentials) {
-        let { username, password } = credentials;
+        let { email, password } = credentials;
         let { db } = await connectToDatabase();
         let matchingUser = await db.collection('users').findOne(
-          { name: username },
+          { email },
           {
             projection: { _id: 0, id: '$_id' as any, name: 1, password: 1, email: 1, image: 1 },
           },
