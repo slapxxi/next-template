@@ -3,6 +3,7 @@ export let defaultTheme = {
   bg: 'hsl(283, 50%, 11%)',
   em: 'hsl(270, 100%, 58%)',
   border: '#492258',
+  fgAccent: '#8B5D9A',
   bgAccent: 'hsla(285, 48%, 19%, 1)',
   // components
   linkFg: 'hsl(270, 90%, 50%)',

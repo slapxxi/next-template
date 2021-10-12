@@ -1,5 +1,6 @@
 import { useTheme } from '@emotion/react';
 import { SVGProps, useEffect, useMemo, useRef } from 'react';
+import { lerp } from '../lib/lerp';
 import { SimplexNoise } from '../lib/simplexNoise';
 import { spline } from '../lib/spline';
 import { Vec2, vecAdd, vecMul, vecSum } from '../lib/vec';
@@ -134,10 +135,6 @@ function noisePoints(points, progress, radius = 75): PointData[] {
     ];
     return { point: newPoint, origin, noiseOffset };
   });
-}
-
-function lerp(n, start1, end1, start2, end2) {
-  return ((n - start1) / (end1 - start1)) * (end2 - start2) + start2;
 }
 
 function noise(x, y) {
