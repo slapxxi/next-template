@@ -31,7 +31,7 @@ let NotFoundPage: NextPage = () => {
         </svg>
 
         <div css={[tw`relative flex flex-col items-center gap-4`]}>
-          <Title css={[{ fontSize: 100, fontFamily: 'Rubik' }]}>404</Title>
+          <Title css={[tw`text-8xl`]}>404</Title>
 
           <Text>You are lost.</Text>
           <Text>Don't worry though. Here's the right way:</Text>

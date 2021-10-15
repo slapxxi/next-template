@@ -2,25 +2,26 @@ import { useTheme } from '@emotion/react';
 
 export interface LogoProps {
   size?: number;
+  className?: string;
 }
 
-const GRAD_ID = 'Qjpo7DPP7zLSPSRX6rDdF';
+export const LOGO_GRAD_ID = 'Qjpo7DPP7zLSPSRX6rDdF';
 const ANIM_ID = 'md1dtdo35_Vj6WLkAx1FJ';
 
 export let Logo: React.FC<LogoProps> = (props) => {
-  let { size = 60 } = props;
+  let { size = 60, ...rest } = props;
   let theme = useTheme();
 
   return (
-    <svg viewBox="0 0 60 60" width={size}>
+    <svg viewBox="0 0 60 60" width={size} {...rest}>
       <defs>
-        <linearGradient id={GRAD_ID}>
+        <linearGradient id={LOGO_GRAD_ID}>
           <stop offset="0" stopColor={theme.hotpink} />
           <stop offset="1" stopColor={theme.orange} />
         </linearGradient>
       </defs>
 
-      <g fill={`url(#${GRAD_ID})`}>
+      <g fill={`url(#${LOGO_GRAD_ID})`}>
         <path d="M30 11a.8.8 90 015.44 8l-4.64 4q-.8.8-1.6 0l-4.56-3.92a.8.8 90 015.36-8.08">
           <animateMotion
             id={ANIM_ID}

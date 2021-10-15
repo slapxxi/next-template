@@ -15,11 +15,11 @@ export let PasswordInput: React.FC<PasswordInputProps> = (props) => {
       icon={<Lock size={20} />}
       iconRight={
         showPassword ? (
-          <StyledButton onClick={() => setShowPassword(false)}>
+          <StyledButton onClick={() => setShowPassword(false)} type="button">
             <EyeOff size={20} />
           </StyledButton>
         ) : (
-          <StyledButton onClick={() => setShowPassword(true)}>
+          <StyledButton onClick={() => setShowPassword(true)} type="button">
             <Eye size={20} />
           </StyledButton>
         )

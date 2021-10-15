@@ -6,6 +6,7 @@ import { spline } from '../lib/spline';
 import { Vec2, vecAdd, vecMul, vecSum } from '../lib/vec';
 
 export interface BlobProps extends SVGProps<SVGSVGElement> {
+  numPoints?: number;
   radius?: number;
   speed?: number;
   canvasSize?: number;
@@ -36,6 +37,7 @@ const variants = [
 
 export let Blob: React.FC<BlobProps> = (props) => {
   let {
+    numPoints = 6,
     variant = 0,
     animate = false,
     radius = 75,
@@ -45,11 +47,14 @@ export let Blob: React.FC<BlobProps> = (props) => {
   } = props;
 
   let theme = useTheme();
-  let points = useMemo(() => createPoints(6, radius, canvasSize), [radius, canvasSize]);
+  let points = useMemo(
+    () => createPoints(numPoints, radius, canvasSize),
+    [radius, canvasSize, numPoints],
+  );
   let ref = useRef(null);
 
   useEffect(() => {
-    let id;
+    let id: number;
     let path = ref.current;
     let progress = 0;
 
@@ -69,7 +74,7 @@ export let Blob: React.FC<BlobProps> = (props) => {
       id = requestAnimationFrame(animation);
       return () => cancelAnimationFrame(id);
     }
-  }, [radius, speed, animate, canvasSize]);
+  }, [radius, speed, animate, canvasSize, numPoints]);
 
   return (
     <svg
@@ -81,6 +86,16 @@ export let Blob: React.FC<BlobProps> = (props) => {
         <linearGradient id={GRAD_ID}>
           <stop offset="0" stopColor={theme.hotpink} />
           <stop offset="1" stopColor={theme.orange} />
+
+          {animate && (
+            <animateTransform
+              attributeName="gradientTransform"
+              type="rotate"
+              to="360 0.5 0.5"
+              dur="4s"
+              repeatCount="indefinite"
+            />
+          )}
         </linearGradient>
       </defs>
 

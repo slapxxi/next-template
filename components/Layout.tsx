@@ -1,9 +1,16 @@
+import styled from '@emotion/styled';
+import { animated, useSpring } from '@react-spring/web';
+import { Bell, Search, XCircle } from 'lucide-react';
+import { useSession } from 'next-auth/client';
 import Link from 'next/link';
-import React from 'react';
+import React, { useRef, useState } from 'react';
 import tw from 'twin.macro';
+import { useOnClickOutside } from '../lib/hooks/useOnClickOutside';
+import { Avatar } from './Avatar';
 import { Copy } from './Copy';
 import { List, ListItem } from './List';
-import { Logo } from './Logo';
+import { Logo, LOGO_GRAD_ID } from './Logo';
+import { Select, SelectOption } from './Select';
 import { Text } from './Text';
 import { Title } from './Title';
 
@@ -11,6 +18,13 @@ export interface LayoutProps {}
 
 export let Layout: React.FC<LayoutProps> = (props) => {
   let { children } = props;
+
+  let [session] = useSession();
+  let [showMenu, setShowMenu] = useState(false);
+  let menuSpring = useSpring({ y: showMenu ? '100%' : '0%' });
+  let ref = useRef(null);
+
+  useOnClickOutside(ref, () => setShowMenu(false));
 
   return (
     <div
@@ -30,16 +44,91 @@ export let Layout: React.FC<LayoutProps> = (props) => {
         },
       ]}
     >
-      <header css={[tw`relative z-10 flex justify-center gap-4 mb-4`]}>
-        <Link href="/">
-          <a css={[tw`flex items-end gap-4`]}>
-            <Logo />
-            <Title variant="fancy" css={[tw`text-2xl`]}>
-              lovebirds
-            </Title>
-          </a>
-        </Link>
-      </header>
+      {session ? (
+        <header css={(theme) => [tw`relative z-10`, { background: theme.bgAccent }]}>
+          <nav css={[tw`flex items-center justify-between px-2`]}>
+            <Link href="/" passHref>
+              <StyledNavItem>
+                <Logo size={36} css={[{ transform: 'translate(0, -20%)' }]} />
+              </StyledNavItem>
+            </Link>
+            <Link href="/search" passHref>
+              <StyledNavItem>
+                <Search size={26} />
+              </StyledNavItem>
+            </Link>
+            <Link href="/notifications" passHref>
+              <StyledNavItem>
+                <Bell size={26} />
+              </StyledNavItem>
+            </Link>
+            <Link href="/profile" passHref>
+              <StyledNavItem>
+                <Avatar href={session.user.image} size={28} />
+              </StyledNavItem>
+            </Link>
+            <StyledNavItem>
+              <button onClick={() => setShowMenu((sm) => !sm)}>
+                <svg
+                  viewBox="0 0 20 20"
+                  css={[{ width: 24, strokeWidth: 2, strokeLinecap: 'round' }]}
+                >
+                  <path d="M1 3h18M1 10h18M1 17h18" stroke={`url(#${LOGO_GRAD_ID})`} />
+                </svg>
+              </button>
+            </StyledNavItem>
+          </nav>
+
+          <animated.div
+            ref={ref}
+            css={(theme) => [
+              tw`absolute z-0 flex flex-col w-full gap-4 p-4 shadow-xl bottom-full`,
+              { background: theme.bg },
+            ]}
+            style={{ y: menuSpring.y }}
+          >
+            <header
+              css={(theme) => [tw`flex items-center justify-between`, { color: theme.fgAccent }]}
+            >
+              <span>Menu</span>
+              <button css={[tw`p-2`]} onClick={() => setShowMenu((sm) => !sm)}>
+                <XCircle />
+              </button>
+            </header>
+
+            <section>
+              <ul css={[tw`flex flex-col gap-8 p-0 list-none`]}>
+                <li>
+                  <Link href="/browse">
+                    <a>Browse</a>
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/favorites">
+                    <a>Favorites</a>
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/balance">
+                    <a>Balance</a>
+                  </Link>
+                </li>
+              </ul>
+            </section>
+          </animated.div>
+        </header>
+      ) : (
+        <header css={[tw`relative z-10 flex justify-center gap-4 mb-4`]}>
+          <Link href="/">
+            <a css={[tw`flex items-end gap-4`]}>
+              <Logo />
+              <Title variant="fancy" css={[tw`text-2xl`]}>
+                lovebirds
+              </Title>
+            </a>
+          </Link>
+        </header>
+      )}
 
       <section css={[tw`relative flex-1 p-4`]}>{children}</section>
 
@@ -72,6 +161,12 @@ export let Layout: React.FC<LayoutProps> = (props) => {
           </ListItem>
         </List>
         <Text>Personal Data Politics</Text>
+
+        <Select variant="none">
+          <SelectOption>EN</SelectOption>
+          <SelectOption>RU</SelectOption>
+        </Select>
+
         <Copy>
           <Title variant="fancy" css={[tw`text-sm font-thin`]}>
             lovebirds
@@ -81,3 +176,5 @@ export let Layout: React.FC<LayoutProps> = (props) => {
     </div>
   );
 };
+
+let StyledNavItem = styled.a(({ theme }) => [tw`p-3`, { color: theme.fgAccent }]);
