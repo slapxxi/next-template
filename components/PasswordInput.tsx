@@ -11,6 +11,7 @@ export let PasswordInput: React.FC<PasswordInputProps> = (props) => {
 
   return (
     <Input
+      autoComplete="current-password"
       type={showPassword ? 'text' : 'password'}
       icon={<Lock size={20} />}
       iconRight={

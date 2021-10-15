@@ -11,6 +11,7 @@ export let Button = styled.button<ButtonProps>(({ theme, center, variant = 'none
   tw`relative flex items-center gap-2 p-4 px-10 rounded-full cursor-pointer`,
   { color: theme.fg, transition: 'background-position 0.2s linear' },
   center && tw`justify-center`,
+  variant === 'none' && { padding: 0, color: 'inherit' },
   variant === 'outline' && { border: `1px solid ${theme.fg}` },
   variant === 'outline-fill' && [
     {

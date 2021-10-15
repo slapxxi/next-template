@@ -19,6 +19,8 @@ type Sex = 'male' | 'female';
 
 interface State {
   name: string;
+  email: string;
+  password: string;
   sex: Sex;
   birth: {
     day: number;
@@ -26,6 +28,8 @@ interface State {
     year: number;
   };
   setName: (name: string) => void;
+  setEmail: (email: string) => void;
+  setPassword: (password: string) => void;
   setSex: (sex: Sex) => void;
   setDay: (day: number) => void;
   setMonth: (month: string) => void;
@@ -35,6 +39,8 @@ interface State {
 let useRegisterForm = create<State>((set, get) => {
   return {
     name: '',
+    email: '',
+    password: '',
     sex: 'female',
     birth: {
       day: 1,
@@ -42,6 +48,8 @@ let useRegisterForm = create<State>((set, get) => {
       year: 2000,
     },
     setName: (name) => set({ name }),
+    setEmail: (email) => set({ email }),
+    setPassword: (password) => set({ password }),
     setSex: (sex) => set({ sex }),
     setDay: (day) => set({ birth: { ...get().birth, day } }),
     setMonth: (month) => set({ birth: { ...get().birth, month } }),
@@ -72,6 +80,14 @@ let RegisterPage: NextPage = () => {
     state.setSex(e.target.value);
   }
 
+  function handleChangeEmail(e) {
+    state.setEmail(e.target.value);
+  }
+
+  function handleChangePassword(e) {
+    state.setPassword(e.target.value);
+  }
+
   return (
     <Layout>
       <div css={[tw`flex flex-col gap-8`]}>
@@ -92,6 +108,7 @@ let RegisterPage: NextPage = () => {
 
           <form css={[tw`flex flex-col gap-8`]}>
             <Input
+              autoComplete="username"
               placeholder="Your Name"
               icon={<User />}
               value={state.name}
@@ -108,6 +125,7 @@ let RegisterPage: NextPage = () => {
                     </SelectOption>
                   ))}
                 </Select>
+
                 <Select value={state.birth.month} onChange={handleChangeMonth}>
                   <SelectOption value="jan">January</SelectOption>
                   <SelectOption value="feb">February</SelectOption>
@@ -122,6 +140,7 @@ let RegisterPage: NextPage = () => {
                   <SelectOption value="nov">November</SelectOption>
                   <SelectOption value="dec">December</SelectOption>
                 </Select>
+
                 <Select value={state.birth.year} onChange={handleChangeYear}>
                   {new Array(30).fill(null).map((_, i) => (
                     <SelectOption key={i} value={1990 + i}>
@@ -182,8 +201,19 @@ let RegisterPage: NextPage = () => {
               </div>
             </div>
 
-            <Input type="email" placeholder="Your Email" icon={<Mail size={20} />} />
-            <PasswordInput placeholder="Your Password" />
+            <Input
+              autoComplete="email"
+              type="email"
+              value={state.email}
+              placeholder="Your Email"
+              icon={<Mail size={20} />}
+              onChange={handleChangeEmail}
+            />
+            <PasswordInput
+              placeholder="Your Password"
+              value={state.password}
+              onChange={handleChangePassword}
+            />
 
             <Button variant="fill" center type="submit">
               Create Account

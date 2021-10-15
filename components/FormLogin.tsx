@@ -79,6 +79,7 @@ export let FormLogin: React.FC<FormLoginProps> = () => {
     <form css={[tw`flex flex-col w-full gap-6`]} onSubmit={handleSubmit}>
       <Input
         name="email"
+        autoComplete="email"
         value={state.email}
         placeholder="Your email"
         onChange={handleChangeEmail}
@@ -95,12 +96,12 @@ export let FormLogin: React.FC<FormLoginProps> = () => {
 
       {state.error && <div css={(theme) => [{ color: theme.fgAccent }]}>{state.error}</div>}
 
-      <Button variant="fill" css={[tw`justify-center`]} type="submit">
+      <Button variant="fill" type="submit" center>
         {state.status === 'submitting' ? <Spinner /> : 'Login'}
       </Button>
 
       <Link href="/restore-password" passHref>
-        <Button as="a" css={(theme) => [tw`justify-center p-0`, { color: theme.fgAccent }]}>
+        <Button as="a" center variant="none" css={(theme) => [{ color: theme.fgAccent }]}>
           Can't remember password?
         </Button>
       </Link>

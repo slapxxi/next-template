@@ -83,7 +83,7 @@ export let Blob: React.FC<BlobProps> = (props) => {
       {...rest}
     >
       <defs>
-        <linearGradient id={GRAD_ID}>
+        <linearGradient id={GRAD_ID} gradientTransform="rotate(0)">
           <stop offset="0" stopColor={theme.hotpink} />
           <stop offset="1" stopColor={theme.orange} />
 
@@ -91,6 +91,7 @@ export let Blob: React.FC<BlobProps> = (props) => {
             <animateTransform
               attributeName="gradientTransform"
               type="rotate"
+              from="0 0.5 0.5"
               to="360 0.5 0.5"
               dur="4s"
               repeatCount="indefinite"
