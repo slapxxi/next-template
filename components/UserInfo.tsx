@@ -17,7 +17,6 @@ export interface UserPageProps {
 export let UserInfo: React.FC<UserPageProps> = (props) => {
   let { user } = props;
   let djs = dayjs(new Date(user.createdAt));
-  console.log(djs);
 
   return (
     <div css={[tw`flex flex-col gap-4`]}>

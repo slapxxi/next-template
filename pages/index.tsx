@@ -8,6 +8,7 @@ import { useSession } from 'next-auth/client';
 import { useRouter } from 'next/dist/client/router';
 import Link from 'next/link';
 import React from 'react';
+import ReactDOM from 'react-dom';
 import { useQuery } from 'react-query';
 import tw from 'twin.macro';
 import { Blob } from '../components/Blob';
@@ -50,28 +51,27 @@ export let IndexPage: React.FC<IndexPageProps> = () => {
       let { movement, dragging, swipe } = gesture;
 
       if (!isZeroVec(swipe)) {
-        animateSwipeSpring.start({ x: `${swipe[0] * 100}%`, opacity: 0, scale: 0.3 });
+        animateSwipeSpring.start({ x: `${swipe[0] * 100}%`, scale: 0.3 });
       } else {
         if (dragging) {
           animateSwipeSpring.start({
             progress: clamp(movement[0] / window.innerWidth, -0.5, 0.5),
             x: `${(movement[0] / window.innerWidth) * 100}%`,
             scale: 1 - Math.abs(movement[0]) / window.innerWidth / 1.7,
-            opacity: 1 - (Math.abs(movement[0]) / window.innerWidth) * 1.3,
           });
         } else {
-          animateSwipeSpring.start({ x: '0%', scale: 1, opacity: 1, progress: 0 });
+          animateSwipeSpring.start({ x: '0%', scale: 1, progress: 0 });
         }
       }
     },
     {
       axis: 'x',
       pointer: { touch: true },
-      swipe: { distance: 160 },
+      swipe: { distance: 130 },
     },
   );
   let [swipeSpring, animateSwipeSpring] = useSpring(
-    { x: '0%', scale: 1, opacity: 1, progress: 0, config: { tension: 400 }, immediate: !query.id },
+    { x: '0%', scale: 1, progress: 0, config: { tension: 400 }, immediate: !query.id },
     [query.id],
   );
 
@@ -142,45 +142,55 @@ export let IndexPage: React.FC<IndexPageProps> = () => {
           <div {...bindDrag()} style={{ position: 'relative', touchAction: 'pan-y' }}>
             <animated.div
               css={[{ transformOrigin: 'top center' }]}
-              style={{ x: swipeSpring.x, scale: swipeSpring.scale }}
+              style={{
+                x: swipeSpring.x,
+                scale: swipeSpring.scale,
+                opacity: swipeSpring.progress.to([-0.5, 0, 0.5], [0, 1, 1]),
+              }}
             >
               <UserInfoPicture user={userQuery.data} />
             </animated.div>
-            <animated.div
-              style={{
-                scale: swipeSpring.progress.to([0.1, 0.5], [0, 1], 'clamp'),
-                x: '-50%',
-                y: '-50%',
-                transformOrigin: 'center',
-              }}
-              css={[tw`absolute left-1/2 top-1/2`]}
-            >
-              <Heart
-                size={128}
-                stroke="none"
-                fill={`url(#${LOGO_GRAD_ID})`}
-                css={[{ filter: 'drop-shadow(3px 3px 2px #0004)' }]}
-              />
-            </animated.div>
-            <animated.div
-              style={{
-                scale: swipeSpring.progress.to([-0.5, -0.1], [1, 0], 'clamp'),
-                x: '-50%',
-                y: '-50%',
-                transformOrigin: 'center',
-              }}
-              css={[tw`absolute z-10 top-1/2 left-1/2`, { color: 'crimson' }]}
-            >
-              <Slash
-                size={96}
-                stroke={`url(#${LOGO_GRAD_ID})`}
-                css={[{ filter: 'drop-shadow(3px 3px 2px #0004)' }]}
-              />
-            </animated.div>
+
+            <Modal>
+              <animated.div
+                style={{
+                  scale: swipeSpring.progress.to([0.1, 0.5], [0, 1], 'clamp'),
+                  x: '-50%',
+                  y: '-50%',
+                  transformOrigin: 'center',
+                }}
+                css={[tw`fixed left-1/2 top-1/2`]}
+              >
+                <Heart
+                  size={128}
+                  stroke="none"
+                  fill={`url(#${LOGO_GRAD_ID})`}
+                  css={[{ filter: 'drop-shadow(3px 3px 2px #0004)' }]}
+                />
+              </animated.div>
+              <animated.div
+                style={{
+                  scale: swipeSpring.progress.to([-0.5, -0.1], [1, 0], 'clamp'),
+                  x: '-50%',
+                  y: '-50%',
+                  transformOrigin: 'center',
+                }}
+                css={[tw`fixed z-10 top-1/2 left-1/2`, { color: 'crimson' }]}
+              >
+                <Slash
+                  size={96}
+                  stroke={`url(#${LOGO_GRAD_ID})`}
+                  css={[{ filter: 'drop-shadow(3px 3px 2px #0004)' }]}
+                />
+              </animated.div>
+            </Modal>
           </div>
           <animated.div
             css={[{ transformOrigin: 'top center' }]}
-            style={{ x: swipeSpring.x, opacity: swipeSpring.opacity.to([0, 0.8, 1], [0, 0.1, 1]) }}
+            style={{
+              x: swipeSpring.x,
+              opacity: swipeSpring.progress.to([-0.5, 0, 0.5], [0, 1, 0]),
+            }}
           >
             <UserInfo user={userQuery.data} />
           </animated.div>
@@ -219,5 +229,10 @@ let OnboardingPage: React.FC<OnboardingPageProps> = () => {
     </div>
   );
 };
+
+function Modal(props) {
+  let { children } = props;
+  return ReactDOM.createPortal(children, document.getElementById('__next'));
+}
 
 export default Home;
