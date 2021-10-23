@@ -14,22 +14,30 @@ import { Select, SelectOption } from './Select';
 import { Text } from './Text';
 import { Title } from './Title';
 
-export interface LayoutProps {}
+export interface LayoutProps {
+  indent?: boolean;
+}
 
 export let Layout: React.FC<LayoutProps> = (props) => {
-  let { children } = props;
+  let { children, indent = false } = props;
 
-  let [session] = useSession();
+  let [session, loading] = useSession();
   let [showMenu, setShowMenu] = useState(false);
   let menuSpring = useSpring({ y: showMenu ? '100%' : '0%' });
   let ref = useRef(null);
 
   useOnClickOutside(ref, () => setShowMenu(false));
 
+  if (loading) {
+    // todo: return skeleton
+    return null;
+  }
+
   return (
     <div
       css={(theme) => [
-        tw`relative flex flex-col min-h-screen gap-8`,
+        tw`relative flex flex-col min-h-screen`,
+        indent && tw`gap-8`,
         {
           ':before': {
             content: '""',
@@ -130,7 +138,7 @@ export let Layout: React.FC<LayoutProps> = (props) => {
         </header>
       )}
 
-      <section css={[tw`relative flex-1 p-4`]}>{children}</section>
+      <section css={[tw`relative flex-1`, indent && tw`p-4`]}>{children}</section>
 
       <footer css={[tw`z-10 flex flex-col items-center justify-center gap-8 p-4`]}>
         <List>

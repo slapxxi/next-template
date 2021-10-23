@@ -1,17 +1,28 @@
+import { useSpring } from '@react-spring/core';
+import { animated } from '@react-spring/web';
+import { useDrag } from '@use-gesture/react';
 import type { NextPage } from 'next';
 import { useSession } from 'next-auth/client';
+import { useRouter } from 'next/dist/client/router';
 import Link from 'next/link';
-import React, { ReactNode } from 'react';
+import React from 'react';
+import { useQuery } from 'react-query';
 import tw from 'twin.macro';
 import { Blob } from '../components/Blob';
 import { Button } from '../components/Button';
 import { FormLogin } from '../components/FormLogin';
+import { Image } from '../components/Image';
 import { Layout } from '../components/Layout';
 import { Skeleton } from '../components/Skeleton';
 import { Text } from '../components/Text';
 import { Title } from '../components/Title';
+import { getHot } from '../lib/services/getHot';
+import { getUser } from '../lib/services/getUser';
+import { isZeroVec } from '../lib/vec';
 
-let Home: NextPage = () => {
+interface HomePageProps {}
+
+let Home: NextPage<HomePageProps> = () => {
   let [session, loading] = useSession();
 
   return (
@@ -21,13 +32,122 @@ let Home: NextPage = () => {
   );
 };
 
-export interface IndexPageProps {
-  children?: ReactNode;
-}
+export interface IndexPageProps {}
 
-export let IndexPage: React.FC<IndexPageProps> = (props) => {
-  let { children } = props;
-  return <div>{children}</div>;
+export let IndexPage: React.FC<IndexPageProps> = () => {
+  let { query } = useRouter();
+  let hotQuery = useQuery('hot', getHot);
+  let userQuery = useQuery(`user-${query.id}`, () => getUser(query.id as string), {
+    enabled: !!query.id,
+    initialData: hotQuery.data?.find((p) => p.id === query.id),
+  });
+  let bindDrag = useDrag(
+    (gesture) => {
+      let { movement, dragging, swipe } = gesture;
+
+      if (!isZeroVec(swipe)) {
+        animateSwipeSpring.start({ x: `${swipe[0] * 100}%`, opacity: 0, scale: 0.3 });
+      } else {
+        if (dragging) {
+          animateSwipeSpring.start({
+            x: `${(movement[0] / window.innerWidth) * 100}%`,
+            scale: 1 - Math.abs(movement[0]) / window.innerWidth / 1.7,
+            opacity: 1 - (Math.abs(movement[0]) / window.innerWidth) * 1.3,
+          });
+        } else {
+          animateSwipeSpring.start({ x: '0%', scale: 1, opacity: 1 });
+        }
+      }
+    },
+    {
+      axis: 'x',
+      pointer: { touch: true },
+      swipe: { distance: typeof window !== 'undefined' ? window.innerWidth / 2 : 150 },
+    },
+  );
+  let [swipeSpring, animateSwipeSpring] = useSpring(
+    { x: '0%', scale: 1, opacity: 1, config: { tension: 400 }, immediate: !query.id },
+    [query.id],
+  );
+
+  return (
+    <div css={[tw`mb-8`]}>
+      <div css={[query.id && tw`hidden`, tw`p-4`]}>
+        <div css={[tw`flex flex-col gap-8`]}>
+          <Title>Hot</Title>
+          <div css={[tw`flex gap-8 overflow-scroll`, { scrollSnapType: 'x mandatory' }]}>
+            {hotQuery.status === 'success' &&
+              hotQuery.data.map((p) => (
+                <div
+                  css={[{ width: 220, flex: '1 0 220px', scrollSnapAlign: 'center' }]}
+                  key={p.id}
+                >
+                  <Title size="md">{p.name}</Title>
+                  <Link href={`?id=${p.id}`} as={`/user/${p.id}`}>
+                    <a>
+                      <Image src={p.image} width={220} height={350} css={[tw`rounded-xl`]} />
+                    </a>
+                  </Link>
+                </div>
+              ))}
+          </div>
+          <Title>Male</Title>
+          <div css={[tw`flex gap-8 overflow-scroll`, { scrollSnapType: 'x mandatory' }]}>
+            {hotQuery.status === 'success' &&
+              hotQuery.data
+                .filter((p) => p.gender === 'male')
+                .map((p) => (
+                  <div
+                    css={[{ width: 220, flex: '1 0 220px', scrollSnapAlign: 'center' }]}
+                    key={p.id}
+                  >
+                    <Title size="md">{p.name}</Title>
+                    <Link href={`?id=${p.id}`} as={`/user/${p.id}`}>
+                      <a>
+                        <Image src={p.image} width={220} height={350} css={[tw`rounded-xl`]} />
+                      </a>
+                    </Link>
+                  </div>
+                ))}
+          </div>
+          <Title>Female</Title>
+          <div css={[tw`flex gap-8 overflow-scroll`, { scrollSnapType: 'x mandatory' }]}>
+            {hotQuery.status === 'success' &&
+              hotQuery.data
+                .filter((p) => p.gender === 'female')
+                .map((p) => (
+                  <div
+                    css={[{ width: 220, flex: '1 0 220px', scrollSnapAlign: 'center' }]}
+                    key={p.id}
+                  >
+                    <Title size="md">{p.name}</Title>
+                    <Link href={`?id=${p.id}`} as={`/user/${p.id}`}>
+                      <a>
+                        <Image src={p.image} width={220} height={350} css={[tw`rounded-xl`]} />
+                      </a>
+                    </Link>
+                  </div>
+                ))}
+          </div>
+        </div>
+      </div>
+
+      {query.id && (
+        <div {...bindDrag()} style={{ touchAction: 'pan-y' }}>
+          <animated.div css={[tw`relative`, { transformOrigin: 'top center' }]} style={swipeSpring}>
+            <Image
+              src={userQuery.data.image}
+              css={[tw`shadow-xl rounded-b-3xl`]}
+              draggable={false}
+            />
+            <div css={[tw`p-4`]}>
+              <Title>{userQuery.data.name}</Title>
+            </div>
+          </animated.div>
+        </div>
+      )}
+    </div>
+  );
 };
 
 interface OnboardingPageProps {}

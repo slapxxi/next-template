@@ -39,6 +39,10 @@ export function vecMatrixTransform(vector: Vec2, matrix: Matrix): Vec2 {
   );
 }
 
+export function isZeroVec(vector: Vec2): boolean {
+  return vector[0] === 0 && vector[1] === 0;
+}
+
 export function vecToString(vector: Vec2): string {
   return `${vector[0]} ${vector[1]}`;
 }

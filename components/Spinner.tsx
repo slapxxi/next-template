@@ -2,13 +2,19 @@ import tw from 'twin.macro';
 
 export interface SpinnerProps {
   size?: number;
+  className?: string;
 }
 
 export let Spinner: React.FC<SpinnerProps> = (props) => {
-  let { size = 24 } = props;
+  let { size = 24, ...rest } = props;
 
   return (
-    <svg viewBox="0 0 20 20" width={size} css={[tw`overflow-visible`, { stroke: '#fff' }]}>
+    <svg
+      viewBox="0 0 20 20"
+      width={size}
+      css={[tw`overflow-visible`, { stroke: '#fff' }]}
+      {...rest}
+    >
       <defs>
         <linearGradient id="grad">
           <stop offset="0" stopColor="gold" />
