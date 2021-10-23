@@ -11,6 +11,7 @@ import { Copy } from './Copy';
 import { List, ListItem } from './List';
 import { Logo, LOGO_GRAD_ID } from './Logo';
 import { Select, SelectOption } from './Select';
+import { Skeleton } from './Skeleton';
 import { Text } from './Text';
 import { Title } from './Title';
 
@@ -27,11 +28,6 @@ export let Layout: React.FC<LayoutProps> = (props) => {
   let ref = useRef(null);
 
   useOnClickOutside(ref, () => setShowMenu(false));
-
-  if (loading) {
-    // todo: return skeleton
-    return null;
-  }
 
   return (
     <div
@@ -126,19 +122,23 @@ export let Layout: React.FC<LayoutProps> = (props) => {
           </animated.div>
         </header>
       ) : (
-        <header css={[tw`relative z-10 flex justify-center gap-4 mb-4`]}>
-          <Link href="/">
-            <a css={[tw`flex items-end gap-4`]}>
-              <Logo />
-              <Title variant="fancy" css={[tw`text-2xl`]}>
-                lovebirds
-              </Title>
-            </a>
-          </Link>
-        </header>
+        <Skeleton loading={loading}>
+          <header css={[tw`relative z-10 flex justify-center gap-4 mb-4`]}>
+            <Link href="/">
+              <a css={[tw`flex items-end gap-4`]}>
+                <Logo />
+                <Title variant="fancy" css={[tw`text-2xl`]}>
+                  lovebirds
+                </Title>
+              </a>
+            </Link>
+          </header>
+        </Skeleton>
       )}
 
-      <section css={[tw`relative flex-1`, indent && tw`p-4`]}>{children}</section>
+      <section css={[tw`relative flex-1`, indent && tw`p-4`]}>
+        <Skeleton loading={loading}>{children}</Skeleton>
+      </section>
 
       <footer css={[tw`z-10 flex flex-col items-center justify-center gap-8 p-4`]}>
         <List>

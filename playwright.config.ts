@@ -5,7 +5,7 @@ let config: PlaywrightTestConfig = {
     baseURL: 'http://localhost:3000',
     viewport: { width: 1920, height: 1080 },
     ignoreHTTPSErrors: true,
-    screenshot: 'only-on-failure',
+    screenshot: 'on',
     video: 'on-first-retry',
   },
   projects: [

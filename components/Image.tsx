@@ -9,7 +9,7 @@ export interface Props extends ImageProps {
 }
 
 export let Image: React.FC<Props> = (props) => {
-  let { width = 220, height = 350, ...rest } = props;
+  let { width, height, ...rest } = props;
   let theme = useTheme();
 
   return (
@@ -17,7 +17,7 @@ export let Image: React.FC<Props> = (props) => {
       width={width}
       height={height}
       placeholder="blur"
-      blurDataURL={toDataURL(toBase64(shimmer(width, height, theme)))}
+      blurDataURL={toDataURL(toBase64(shimmer(width ?? 220, height ?? 350, theme)))}
       layout="responsive"
       {...rest}
     />

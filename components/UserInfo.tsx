@@ -3,10 +3,12 @@ import dayjs from 'dayjs';
 import Flag from 'react-world-flags';
 import tw from 'twin.macro';
 import { getCountryName } from '../lib/getCountryName';
+import { lorem } from '../lib/lorem';
 import { User } from '../lib/types';
 import { Button } from './Button';
 import { WaveIcon } from './Icons';
 import { Image } from './Image';
+import { Skeleton } from './Skeleton';
 import { Text } from './Text';
 import { Title } from './Title';
 
@@ -16,38 +18,78 @@ export interface UserPageProps {
 
 export let UserInfo: React.FC<UserPageProps> = (props) => {
   let { user } = props;
-  let djs = dayjs(new Date(user.createdAt));
 
   return (
     <div css={[tw`flex flex-col gap-4`]}>
       <div css={[tw`flex flex-col gap-8 p-4`]}>
-        <Text>{user.about}</Text>
+        <Skeleton loading={!user.about}>
+          <Text>{user.about ?? lorem()}</Text>
+        </Skeleton>
+
         <Button variant="fill" center>
           Say Hi
           <WaveIcon />
         </Button>
-        <div css={[tw`flex gap-8 overflow-scroll`]}>
+
+        <div css={[tw`flex gap-8 overflow-scroll`, { scrollSnapType: 'x mandatory' }]}>
           <div
-            css={[tw`overflow-hidden rounded-lg`, { flex: '0 0 120px', width: 120, height: 120 }]}
+            css={[
+              tw`overflow-hidden rounded-lg`,
+              { flex: '0 0 120px', width: 120, height: 120, scrollSnapAlign: 'center' },
+            ]}
           >
-            <Image src={user.image} width={220} height={350} layout="responsive" />
+            <Image
+              src={user.image}
+              width={220}
+              height={350}
+              layout="responsive"
+              objectFit="cover"
+            />
           </div>
           <div
-            css={[tw`overflow-hidden rounded-lg`, { flex: '0 0 120px', width: 120, height: 120 }]}
+            css={[
+              tw`overflow-hidden rounded-lg`,
+              { flex: '0 0 120px', width: 120, height: 120, scrollSnapAlign: 'center' },
+            ]}
           >
-            <Image src={user.image} width={220} height={350} layout="responsive" />
+            <Image
+              src={user.image}
+              width={220}
+              height={350}
+              layout="responsive"
+              objectFit="cover"
+            />
           </div>
           <div
-            css={[tw`overflow-hidden rounded-lg`, { flex: '0 0 120px', width: 120, height: 120 }]}
+            css={[
+              tw`overflow-hidden rounded-lg`,
+              { flex: '0 0 120px', width: 120, height: 120, scrollSnapAlign: 'center' },
+            ]}
           >
-            <Image src={user.image} width={220} height={350} layout="responsive" />
+            <Image
+              src={user.image}
+              width={220}
+              height={350}
+              layout="responsive"
+              objectFit="cover"
+            />
           </div>
           <div
-            css={[tw`overflow-hidden rounded-lg`, { flex: '0 0 120px', width: 120, height: 120 }]}
+            css={[
+              tw`overflow-hidden rounded-lg`,
+              { flex: '0 0 120px', width: 120, height: 120, scrollSnapAlign: 'center' },
+            ]}
           >
-            <Image src={user.image} width={220} height={350} layout="responsive" />
+            <Image
+              src={user.image}
+              width={220}
+              height={350}
+              layout="responsive"
+              objectFit="cover"
+            />
           </div>
         </div>
+
         <div css={[tw`flex flex-col w-full gap-4`]}>
           <div css={[tw`flex`]}>
             <div>Bid</div>
@@ -72,7 +114,9 @@ export let UserInfo: React.FC<UserPageProps> = (props) => {
           <div css={[tw`flex`]}>
             <div>Hair Color</div>
             <Divider />
-            <div>{user.hairColor}</div>
+            <Skeleton loading={!user.hairColor}>
+              <div>{user.hairColor ?? 'neutral'}</div>
+            </Skeleton>
           </div>
         </div>
 
@@ -90,17 +134,28 @@ export interface UserInfoPictureProps {
 
 export let UserInfoPicture: React.FC<UserInfoPictureProps> = (props) => {
   let { user } = props;
+
   return (
     <div css={[tw`relative`]}>
-      <Image src={user.image} css={[tw`shadow-xl rounded-b-3xl`]} draggable={false} />
+      <div css={[tw`relative`, { width: '100%', paddingBottom: '159%' }]}>
+        <Image
+          src={user.image}
+          css={[tw`shadow-xl rounded-b-3xl`]}
+          layout="fill"
+          draggable={false}
+          objectFit="cover"
+        />
+      </div>
 
       <div css={[tw`absolute flex flex-col gap-2 bottom-4 left-4`]}>
         <Title size="lg">
           {user.name} {user.age}
         </Title>
         <div css={[tw`flex items-center gap-2`]}>
-          <Flag code={user.country} width={30} />
-          {getCountryName(user.country)}
+          <Skeleton loading={!user.country}>
+            <Flag code={user.country ?? 'RU'} width={30} />
+            {getCountryName(user.country ?? 'RU')}
+          </Skeleton>
         </div>
         <svg
           viewBox="0 0 10 10"

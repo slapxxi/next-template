@@ -23,18 +23,14 @@ import { Title } from '../components/Title';
 import { UserInfo, UserInfoPicture } from '../components/UserInfo';
 import { getHot } from '../lib/services/getHot';
 import { getUser } from '../lib/services/getUser';
+import { User } from '../lib/types';
 import { isZeroVec } from '../lib/vec';
 
 interface HomePageProps {}
 
-let Home: NextPage<HomePageProps> = () => {
-  let [session, loading] = useSession();
-
-  return (
-    <Layout>
-      <Skeleton loading={loading}>{session ? <IndexPage /> : <OnboardingPage />}</Skeleton>
-    </Layout>
-  );
+let HomePage: NextPage<HomePageProps> = () => {
+  let [session] = useSession();
+  return <Layout>{session ? <IndexPage /> : <OnboardingPage />}</Layout>;
 };
 
 export interface IndexPageProps {}
@@ -46,6 +42,7 @@ export let IndexPage: React.FC<IndexPageProps> = () => {
     enabled: !!query.id,
     initialData: hotQuery.data?.find((p) => p.id === query.id),
   });
+  console.log(userQuery);
   let bindDrag = useDrag(
     (gesture) => {
       let { movement, dragging, swipe } = gesture;
@@ -80,60 +77,19 @@ export let IndexPage: React.FC<IndexPageProps> = () => {
       <div css={[query.id && tw`hidden`, tw`p-4`]}>
         <div css={[tw`flex flex-col gap-8`]}>
           <Title>Hot</Title>
-          <div css={[tw`flex gap-8 overflow-scroll`, { scrollSnapType: 'x mandatory' }]}>
-            {hotQuery.status === 'success' &&
-              hotQuery.data.map((p) => (
-                <div
-                  css={[{ width: 220, flex: '1 0 220px', scrollSnapAlign: 'center' }]}
-                  key={p.id}
-                >
-                  <Title size="md">{p.name}</Title>
-                  <Link href={`?id=${p.id}`} as={`/user/${p.id}`}>
-                    <a>
-                      <Image src={p.image} width={220} height={350} css={[tw`rounded-xl`]} />
-                    </a>
-                  </Link>
-                </div>
-              ))}
-          </div>
+          <UserCards users={hotQuery.data} loading={hotQuery.status === 'loading'} />
+
           <Title>Male</Title>
-          <div css={[tw`flex gap-8 overflow-scroll`, { scrollSnapType: 'x mandatory' }]}>
-            {hotQuery.status === 'success' &&
-              hotQuery.data
-                .filter((p) => p.gender === 'male')
-                .map((p) => (
-                  <div
-                    css={[{ width: 220, flex: '1 0 220px', scrollSnapAlign: 'center' }]}
-                    key={p.id}
-                  >
-                    <Title size="md">{p.name}</Title>
-                    <Link href={`?id=${p.id}`} as={`/user/${p.id}`}>
-                      <a>
-                        <Image src={p.image} width={220} height={350} css={[tw`rounded-xl`]} />
-                      </a>
-                    </Link>
-                  </div>
-                ))}
-          </div>
+          <UserCards
+            users={hotQuery.data?.filter((p) => p.gender === 'male')}
+            loading={hotQuery.status === 'loading'}
+          />
+
           <Title>Female</Title>
-          <div css={[tw`flex gap-8 overflow-scroll`, { scrollSnapType: 'x mandatory' }]}>
-            {hotQuery.status === 'success' &&
-              hotQuery.data
-                .filter((p) => p.gender === 'female')
-                .map((p) => (
-                  <div
-                    css={[{ width: 220, flex: '1 0 220px', scrollSnapAlign: 'center' }]}
-                    key={p.id}
-                  >
-                    <Title size="md">{p.name}</Title>
-                    <Link href={`?id=${p.id}`} as={`/user/${p.id}`}>
-                      <a>
-                        <Image src={p.image} width={220} height={350} css={[tw`rounded-xl`]} />
-                      </a>
-                    </Link>
-                  </div>
-                ))}
-          </div>
+          <UserCards
+            users={hotQuery.data?.filter((p) => p.gender === 'female')}
+            loading={hotQuery.status === 'loading'}
+          />
         </div>
       </div>
 
@@ -200,11 +156,59 @@ export let IndexPage: React.FC<IndexPageProps> = () => {
   );
 };
 
+export interface UserCardsProps {
+  users: User[];
+  loading?: boolean;
+}
+
+export let UserCards: React.FC<UserCardsProps> = (props) => {
+  let { users, loading = false } = props;
+
+  return (
+    <div css={[tw`flex gap-8 overflow-scroll`, { scrollSnapType: 'x mandatory' }]}>
+      {(loading
+        ? new Array(3)
+            .fill(null)
+            .map((_, i) => ({ name: 'loading', id: i, image: '/img/placeholder.svg' }))
+        : users
+      ).map((p) => (
+        <div
+          css={[
+            tw`relative`,
+            { width: 220, height: 350, flex: '1 0 220px', scrollSnapAlign: 'center' },
+          ]}
+          key={p.id}
+        >
+          {loading ? (
+            <Skeleton loading>
+              <Title size="md">{p.name}</Title>
+              <Link href={`?id=${p.id}`} as={`/user/${p.id}`}>
+                <a>
+                  <Image src={p.image} width={220} height={350} css={[tw`rounded-xl`]} />
+                </a>
+              </Link>
+            </Skeleton>
+          ) : (
+            <>
+              <Title size="md">{p.name}</Title>
+              <Link href={`?id=${p.id}`} as={`/user/${p.id}`}>
+                <a>
+                  <Image src={p.image} css={[tw`rounded-xl`]} layout="fill" objectFit="cover" />
+                </a>
+              </Link>
+            </>
+          )}
+        </div>
+      ))}
+    </div>
+  );
+};
+
 interface OnboardingPageProps {}
 
 let OnboardingPage: React.FC<OnboardingPageProps> = () => {
   return (
-    <div css={[tw`relative`]}>
+    <div css={[tw`relative p-4`]}>
       <Blob animate css={[tw`absolute top-0`, { transform: 'translate(-65%)' }]} />
       <Blob animate css={[tw`absolute top-0`, { transform: 'translate(70%, 50%)' }]} />
 
@@ -235,4 +239,4 @@ function Modal(props) {
   return ReactDOM.createPortal(children, document.getElementById('__next'));
 }
 
-export default Home;
+export default HomePage;
