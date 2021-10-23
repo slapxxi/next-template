@@ -1,6 +1,8 @@
 import { useSpring } from '@react-spring/core';
 import { animated } from '@react-spring/web';
 import { useDrag } from '@use-gesture/react';
+import { clamp } from 'lodash';
+import { Heart, Slash } from 'lucide-react';
 import type { NextPage } from 'next';
 import { useSession } from 'next-auth/client';
 import { useRouter } from 'next/dist/client/router';
@@ -13,9 +15,11 @@ import { Button } from '../components/Button';
 import { FormLogin } from '../components/FormLogin';
 import { Image } from '../components/Image';
 import { Layout } from '../components/Layout';
+import { LOGO_GRAD_ID } from '../components/Logo';
 import { Skeleton } from '../components/Skeleton';
 import { Text } from '../components/Text';
 import { Title } from '../components/Title';
+import { UserInfo, UserInfoPicture } from '../components/UserInfo';
 import { getHot } from '../lib/services/getHot';
 import { getUser } from '../lib/services/getUser';
 import { isZeroVec } from '../lib/vec';
@@ -50,23 +54,24 @@ export let IndexPage: React.FC<IndexPageProps> = () => {
       } else {
         if (dragging) {
           animateSwipeSpring.start({
+            progress: clamp(movement[0] / window.innerWidth, -0.5, 0.5),
             x: `${(movement[0] / window.innerWidth) * 100}%`,
             scale: 1 - Math.abs(movement[0]) / window.innerWidth / 1.7,
             opacity: 1 - (Math.abs(movement[0]) / window.innerWidth) * 1.3,
           });
         } else {
-          animateSwipeSpring.start({ x: '0%', scale: 1, opacity: 1 });
+          animateSwipeSpring.start({ x: '0%', scale: 1, opacity: 1, progress: 0 });
         }
       }
     },
     {
       axis: 'x',
       pointer: { touch: true },
-      swipe: { distance: typeof window !== 'undefined' ? window.innerWidth / 2 : 150 },
+      swipe: { distance: 160 },
     },
   );
   let [swipeSpring, animateSwipeSpring] = useSpring(
-    { x: '0%', scale: 1, opacity: 1, config: { tension: 400 }, immediate: !query.id },
+    { x: '0%', scale: 1, opacity: 1, progress: 0, config: { tension: 400 }, immediate: !query.id },
     [query.id],
   );
 
@@ -133,16 +138,51 @@ export let IndexPage: React.FC<IndexPageProps> = () => {
       </div>
 
       {query.id && (
-        <div {...bindDrag()} style={{ touchAction: 'pan-y' }}>
-          <animated.div css={[tw`relative`, { transformOrigin: 'top center' }]} style={swipeSpring}>
-            <Image
-              src={userQuery.data.image}
-              css={[tw`shadow-xl rounded-b-3xl`]}
-              draggable={false}
-            />
-            <div css={[tw`p-4`]}>
-              <Title>{userQuery.data.name}</Title>
-            </div>
+        <div>
+          <div {...bindDrag()} style={{ position: 'relative', touchAction: 'pan-y' }}>
+            <animated.div
+              css={[{ transformOrigin: 'top center' }]}
+              style={{ x: swipeSpring.x, scale: swipeSpring.scale }}
+            >
+              <UserInfoPicture user={userQuery.data} />
+            </animated.div>
+            <animated.div
+              style={{
+                scale: swipeSpring.progress.to([0.1, 0.5], [0, 1], 'clamp'),
+                x: '-50%',
+                y: '-50%',
+                transformOrigin: 'center',
+              }}
+              css={[tw`absolute left-1/2 top-1/2`]}
+            >
+              <Heart
+                size={128}
+                stroke="none"
+                fill={`url(#${LOGO_GRAD_ID})`}
+                css={[{ filter: 'drop-shadow(3px 3px 2px #0004)' }]}
+              />
+            </animated.div>
+            <animated.div
+              style={{
+                scale: swipeSpring.progress.to([-0.5, -0.1], [1, 0], 'clamp'),
+                x: '-50%',
+                y: '-50%',
+                transformOrigin: 'center',
+              }}
+              css={[tw`absolute z-10 top-1/2 left-1/2`, { color: 'crimson' }]}
+            >
+              <Slash
+                size={96}
+                stroke={`url(#${LOGO_GRAD_ID})`}
+                css={[{ filter: 'drop-shadow(3px 3px 2px #0004)' }]}
+              />
+            </animated.div>
+          </div>
+          <animated.div
+            css={[{ transformOrigin: 'top center' }]}
+            style={{ x: swipeSpring.x, opacity: swipeSpring.opacity.to([0, 0.8, 1], [0, 0.1, 1]) }}
+          >
+            <UserInfo user={userQuery.data} />
           </animated.div>
         </div>
       )}
