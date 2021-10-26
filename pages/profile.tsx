@@ -23,7 +23,7 @@ let ProfilePage: NextPage = () => {
 
           <button
             css={(theme) => [tw`flex items-center gap-4`, { color: theme.fgAccent }]}
-            onClick={() => signOut()}
+            onClick={() => signOut({ redirect: false })}
           >
             <LogOut />
             Sign Out

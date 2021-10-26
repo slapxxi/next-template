@@ -1,5 +1,9 @@
 import styled from '@emotion/styled';
 import dayjs from 'dayjs';
+import { XCircle } from 'lucide-react';
+import Link from 'next/link';
+import React, { useEffect, useState } from 'react';
+import ReactDOM from 'react-dom';
 import Flag from 'react-world-flags';
 import tw from 'twin.macro';
 import { getCountryName } from '../lib/getCountryName';
@@ -18,20 +22,33 @@ export interface UserPageProps {
 
 export let UserInfo: React.FC<UserPageProps> = (props) => {
   let { user } = props;
+  let [showLightbox, setShowLightbox] = useState(false);
 
   return (
     <div css={[tw`flex flex-col gap-4`]}>
+      <LightBox open={showLightbox} onToggle={(open) => setShowLightbox(open)}>
+        <div css={[tw`relative flex flex-col gap-8 mt-8`]}>
+          <Image src="/img/male-5.png" width={220} height={350} objectFit="cover" />
+          <Image src="/img/female-5.png" width={220} height={350} objectFit="cover" />
+        </div>
+      </LightBox>
+
       <div css={[tw`flex flex-col gap-8 p-4`]}>
         <Skeleton loading={!user.about}>
           <Text>{user.about ?? lorem()}</Text>
         </Skeleton>
 
-        <Button variant="fill" center>
-          Say Hi
-          <WaveIcon />
-        </Button>
+        <Link href={`/chats/${user.id}`}>
+          <Button variant="fill" center>
+            Say Hi
+            <WaveIcon />
+          </Button>
+        </Link>
 
-        <div css={[tw`flex gap-8 overflow-scroll`, { scrollSnapType: 'x mandatory' }]}>
+        <div
+          css={[tw`flex gap-8 overflow-scroll`, { scrollSnapType: 'x mandatory' }]}
+          onClick={() => setShowLightbox(true)}
+        >
           <div
             css={[
               tw`overflow-hidden rounded-lg`,
@@ -128,6 +145,49 @@ export let UserInfo: React.FC<UserPageProps> = (props) => {
   );
 };
 
+export interface LightBoxProps {
+  open?: boolean;
+  onToggle?: (open: boolean) => void;
+}
+
+export let LightBox: React.FC<LightBoxProps> = (props) => {
+  let { children, open = false, onToggle } = props;
+
+  useEffect(() => {
+    if (open) {
+      document.documentElement.style.height = '100%';
+      document.documentElement.style.overflow = 'hidden';
+    }
+    return () => {
+      document.documentElement.style.height = null;
+      document.documentElement.style.overflow = null;
+    };
+  }, [open]);
+
+  if (!open) {
+    return null;
+  }
+
+  function handleToggle() {
+    onToggle?.(!open);
+  }
+
+  return ReactDOM.createPortal(
+    <div
+      css={[tw`fixed top-0 z-20 w-full h-screen p-4`, { background: '#000d', overflow: 'scroll' }]}
+    >
+      <div css={[tw`sticky top-0 z-10 flex justify-end`]}>
+        <Button onClick={handleToggle}>
+          <XCircle />
+        </Button>
+      </div>
+
+      {children}
+    </div>,
+    document.querySelector('#__next'),
+  );
+};
+
 export interface UserInfoPictureProps {
   user: User;
 }
@@ -157,21 +217,34 @@ export let UserInfoPicture: React.FC<UserInfoPictureProps> = (props) => {
             {getCountryName(user.country ?? 'RU')}
           </Skeleton>
         </div>
-        <svg
-          viewBox="0 0 10 10"
-          css={[
-            tw`absolute bottom-full left-full`,
-            {
-              width: 10,
-              fill: user.isOnline ? '#33e159' : 'tomato',
-              transform: 'translateY(50%)',
-            },
-          ]}
-        >
-          <path d="m0 5a1 1 0 0110 0a1 1 0 01-10 0" />
-        </svg>
+
+        <OnlineIndicator online={user.isOnline} css={[tw`absolute bottom-full left-full`]} />
       </div>
     </div>
+  );
+};
+
+export interface OnlineIndicatorProps {
+  online?: boolean;
+  className?: string;
+}
+
+export let OnlineIndicator: React.FC<OnlineIndicatorProps> = (props) => {
+  let { online = false, ...rest } = props;
+
+  return (
+    <svg
+      viewBox="0 0 10 10"
+      css={[
+        {
+          width: 10,
+          fill: online ? '#33e159' : 'tomato',
+        },
+      ]}
+      {...rest}
+    >
+      <path d="m0 5a1 1 0 0110 0a1 1 0 01-10 0" />
+    </svg>
   );
 };
 

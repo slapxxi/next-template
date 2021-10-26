@@ -6,6 +6,7 @@ export let defaultTheme = {
   fgAccent: '#8B5D9A',
   bgAccent: 'hsla(285, 48%, 19%, 1)',
   bgAccentActive: 'hsla(285, 50%, 24%, 1)',
+  backdropAlpha: 'hsl(283, 50%, 5%, var(--bg-alpha, 1))',
   // components
   skeletonBg: 'hsla(285, 50%, 20%, 1)',
   skeletonEm: 'hsla(285, 50%, 24%, 1)',

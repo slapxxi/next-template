@@ -42,23 +42,22 @@ export let IndexPage: React.FC<IndexPageProps> = () => {
     enabled: !!query.id,
     initialData: hotQuery.data?.find((p) => p.id === query.id),
   });
-  console.log(userQuery);
   let bindDrag = useDrag(
     (gesture) => {
       let { movement, dragging, swipe } = gesture;
 
-      if (!isZeroVec(swipe)) {
-        animateSwipeSpring.start({ x: `${swipe[0] * 100}%`, scale: 0.3 });
-      } else {
+      if (isZeroVec(swipe)) {
         if (dragging) {
           animateSwipeSpring.start({
-            progress: clamp(movement[0] / window.innerWidth, -0.5, 0.5),
+            progress: clamp(movement[0] / Math.min(window.innerWidth, 400), -0.5, 0.5),
             x: `${(movement[0] / window.innerWidth) * 100}%`,
-            scale: 1 - Math.abs(movement[0]) / window.innerWidth / 1.7,
+            scale: 1 - Math.abs(movement[0]) / window.innerWidth / 3,
           });
         } else {
           animateSwipeSpring.start({ x: '0%', scale: 1, progress: 0 });
         }
+      } else {
+        animateSwipeSpring.start({ x: `${swipe[0] * 100}%`, progress: swipe[0] * 0.5, scale: 0.3 });
       }
     },
     {
@@ -108,6 +107,10 @@ export let IndexPage: React.FC<IndexPageProps> = () => {
             </animated.div>
 
             <Modal>
+              <div css={[tw`p-4 text-red-300`]}>Greetings</div>
+            </Modal>
+
+            <Modal>
               <animated.div
                 style={{
                   scale: swipeSpring.progress.to([0.1, 0.5], [0, 1], 'clamp'),
@@ -131,7 +134,7 @@ export let IndexPage: React.FC<IndexPageProps> = () => {
                   y: '-50%',
                   transformOrigin: 'center',
                 }}
-                css={[tw`fixed z-10 top-1/2 left-1/2`, { color: 'crimson' }]}
+                css={[tw`fixed top-1/2 left-1/2`]}
               >
                 <Slash
                   size={96}
@@ -172,13 +175,7 @@ export let UserCards: React.FC<UserCardsProps> = (props) => {
             .map((_, i) => ({ name: 'loading', id: i, image: '/img/placeholder.svg' }))
         : users
       ).map((p) => (
-        <div
-          css={[
-            tw`relative`,
-            { width: 220, height: 350, flex: '1 0 220px', scrollSnapAlign: 'center' },
-          ]}
-          key={p.id}
-        >
+        <div css={[tw`relative`, { flex: '1 0 220px', scrollSnapAlign: 'center' }]} key={p.id}>
           {loading ? (
             <Skeleton loading>
               <Title size="md">{p.name}</Title>
@@ -193,7 +190,13 @@ export let UserCards: React.FC<UserCardsProps> = (props) => {
               <Title size="md">{p.name}</Title>
               <Link href={`?id=${p.id}`} as={`/user/${p.id}`}>
                 <a>
-                  <Image src={p.image} css={[tw`rounded-xl`]} layout="fill" objectFit="cover" />
+                  <Image
+                    src={p.image}
+                    css={[tw`rounded-xl`]}
+                    width={220}
+                    height={350}
+                    objectFit="cover"
+                  />
                 </a>
               </Link>
             </>

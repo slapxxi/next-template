@@ -17,15 +17,30 @@ import { Title } from './Title';
 
 export interface LayoutProps {
   indent?: boolean;
+  hideHeader?: boolean;
+  hideFooter?: boolean;
 }
 
 export let Layout: React.FC<LayoutProps> = (props) => {
-  let { children, indent = false } = props;
+  let { children, indent = false, hideFooter = false, hideHeader = false } = props;
 
   let [session, loading] = useSession();
   let [showMenu, setShowMenu] = useState(false);
-  let menuSpring = useSpring({ y: showMenu ? '100%' : '0%' });
+  let menuSpring = useSpring({
+    y: showMenu ? '100%' : '0%',
+    onRest: () => {
+      if (!showMenu) {
+        backdropRef.current.style.display = 'none';
+      }
+    },
+    onStart: () => {
+      if (showMenu) {
+        backdropRef.current.style.display = 'block';
+      }
+    },
+  });
   let ref = useRef(null);
+  let backdropRef = useRef(null);
 
   useOnClickOutside(ref, () => setShowMenu(false));
 
@@ -48,7 +63,16 @@ export let Layout: React.FC<LayoutProps> = (props) => {
         },
       ]}
     >
-      {session ? (
+      <animated.div
+        ref={backdropRef}
+        css={(theme) => [
+          tw`absolute top-0 bottom-0 left-0 right-0 z-10 hidden`,
+          { '--bg-alpha': 0.8, background: theme.backdropAlpha },
+        ]}
+        style={{ opacity: menuSpring.y }}
+      />
+
+      {hideHeader ? null : session ? (
         <header css={(theme) => [tw`relative z-10`, { background: theme.bgAccent }]}>
           <nav css={[tw`flex items-center justify-between px-2`]}>
             <Link href="/" passHref>
@@ -86,7 +110,8 @@ export let Layout: React.FC<LayoutProps> = (props) => {
           <animated.div
             ref={ref}
             css={(theme) => [
-              tw`absolute z-0 flex flex-col w-full gap-4 p-4 shadow-xl bottom-full`,
+              tw`absolute z-0 flex flex-col w-full gap-4 p-4 bottom-full`,
+              showMenu && tw`fixed shadow-xl`,
               { background: theme.bg },
             ]}
             style={{ y: menuSpring.y }}
@@ -103,8 +128,8 @@ export let Layout: React.FC<LayoutProps> = (props) => {
             <section>
               <ul css={[tw`flex flex-col gap-8 p-0 list-none`]}>
                 <li>
-                  <Link href="/browse">
-                    <a>Browse</a>
+                  <Link href="/chats">
+                    <a>Chats</a>
                   </Link>
                 </li>
                 <li>
@@ -140,47 +165,49 @@ export let Layout: React.FC<LayoutProps> = (props) => {
         <Skeleton loading={loading}>{children}</Skeleton>
       </section>
 
-      <footer css={[tw`z-10 flex flex-col items-center justify-center gap-8 p-4`]}>
-        <List>
-          <ListItem>
-            <Link href="/about">
-              <a>About</a>
-            </Link>
-          </ListItem>
-          <ListItem>
-            <Link href="/support">
-              <a>Support</a>
-            </Link>
-          </ListItem>
-          <ListItem>
-            <Link href="/contacts">
-              <a>Contacts</a>
-            </Link>
-          </ListItem>
-          <ListItem>
-            <Link href="/tips">
-              <a>Tips</a>
-            </Link>
-          </ListItem>
-          <ListItem>
-            <Link href="/payment">
-              <a>Payment</a>
-            </Link>
-          </ListItem>
-        </List>
-        <Text>Personal Data Politics</Text>
+      {hideFooter ? null : (
+        <footer css={[tw`z-10 flex flex-col items-center justify-center gap-8 p-4`]}>
+          <List>
+            <ListItem>
+              <Link href="/about">
+                <a>About</a>
+              </Link>
+            </ListItem>
+            <ListItem>
+              <Link href="/support">
+                <a>Support</a>
+              </Link>
+            </ListItem>
+            <ListItem>
+              <Link href="/contacts">
+                <a>Contacts</a>
+              </Link>
+            </ListItem>
+            <ListItem>
+              <Link href="/tips">
+                <a>Tips</a>
+              </Link>
+            </ListItem>
+            <ListItem>
+              <Link href="/payment">
+                <a>Payment</a>
+              </Link>
+            </ListItem>
+          </List>
+          <Text>Personal Data Politics</Text>
 
-        <Select variant="none">
-          <SelectOption>EN</SelectOption>
-          <SelectOption>RU</SelectOption>
-        </Select>
+          <Select variant="none">
+            <SelectOption>EN</SelectOption>
+            <SelectOption>RU</SelectOption>
+          </Select>
 
-        <Copy>
-          <Title variant="fancy" css={[tw`text-sm font-thin`]}>
-            lovebirds
-          </Title>
-        </Copy>
-      </footer>
+          <Copy>
+            <Title variant="fancy" css={[tw`text-sm font-thin`]}>
+              lovebirds
+            </Title>
+          </Copy>
+        </footer>
+      )}
     </div>
   );
 };

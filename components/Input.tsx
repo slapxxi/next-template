@@ -26,7 +26,7 @@ export let Input: React.FC<InputProps> = (props) => {
         {icon}
       </div>
 
-      <StyledInput disabled={disabled} {...rest} />
+      <StyledInput disabled={disabled} icon={icon} iconRight={iconRight} {...rest} />
 
       <div
         css={[tw`absolute right-0 top-1/2`, { transform: 'translate(-18px, -50%)', lineHeight: 0 }]}
@@ -37,7 +37,9 @@ export let Input: React.FC<InputProps> = (props) => {
   );
 };
 
-let StyledInput = styled.input<InputProps>(({ theme }) => [
-  tw`w-full p-4 px-12 border-0 rounded-full`,
+let StyledInput = styled.input<InputProps>(({ theme, icon, iconRight }) => [
+  tw`w-full p-4 px-5 border-0 rounded-full`,
   { background: theme.bgAccent, color: theme.fg, '::placeholder': { color: theme.fgAccent } },
+  icon && tw`pl-12`,
+  iconRight && tw`pr-12`,
 ]);
