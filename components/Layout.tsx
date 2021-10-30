@@ -77,12 +77,18 @@ export let Layout: React.FC<LayoutProps> = (props) => {
       />
 
       {hideHeader ? null : session ? (
-        <header css={(theme) => [tw`relative z-10`, { background: theme.bgAccent }]}>
+        <header
+          css={(theme) => [
+            tw`relative z-10`,
+            { background: theme.bgAccent },
+            md({ boxShadow: '2px 2px 10px rgba(0,0,0,0.05)' }),
+          ]}
+        >
           <nav css={[tw`flex items-center justify-between px-2`, md(tw`gap-8 p-3 px-4`)]}>
             <Link href="/" passHref>
               <StyledNavItem>
                 <Logo size={36} css={[{ transform: 'translate(0, -20%)' }]} />
-                <Title variant="fancy" size="md" css={[tw`hidden text-white`, md([tw`block`])]}>
+                <Title variant="fancy" size="lg" css={[tw`hidden text-white`, md([tw`block`])]}>
                   lovebirds
                 </Title>
               </StyledNavItem>
@@ -280,7 +286,7 @@ let StyledNavItem = styled.a<{ active?: boolean }>(({ theme, active }) => [
       '::after': {
         ...tw`absolute w-full h-0.5 bg-gradient-to-r top-full from-pink-600 to-orange-600`,
         content: '""',
-        transform: 'translateY(24px)',
+        transform: 'translateY(18px)',
       },
     },
   ),

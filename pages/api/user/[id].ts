@@ -1,6 +1,5 @@
 import { NextApiHandler } from 'next';
 import { connectToDatabase } from '../../../lib/connectToDatabase';
-import { User } from '../../../lib/types';
 
 let userHandler: NextApiHandler = async (req, res) => {
   let { query } = req;
@@ -23,11 +22,12 @@ let userHandler: NextApiHandler = async (req, res) => {
         bid: 1,
         eyeColor: 1,
         hairColor: 1,
+        photos: 1,
         createdAt: 1,
       },
     },
   );
-  res.json(user as User);
+  res.json({ ...user, photos: user.photos ?? [] });
 };
 
 export default userHandler;

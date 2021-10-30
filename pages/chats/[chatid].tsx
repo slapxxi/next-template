@@ -12,32 +12,14 @@ import { Input } from '../../components/Input';
 import { Layout } from '../../components/Layout';
 import { Title } from '../../components/Title';
 import { OnlineIndicator } from '../../components/UserInfo';
+import { useMediaQuery } from '../../lib/hooks/useMediaQuery';
 
 interface ChatPageProps {}
-
-function chatReducer(state, action) {
-  if (state.status === 'sending') {
-    switch (action.type) {
-      case 'FINISH':
-        return { ...state, status: 'idle' };
-      default:
-        return state;
-    }
-  }
-
-  switch (action.type) {
-    case 'SET_MESSAGE':
-      return { ...state, message: action.payload };
-    case 'SEND':
-      return { ...state, status: 'sending' };
-    default:
-      return state;
-  }
-}
 
 let ChatPage: React.FC<ChatPageProps> = () => {
   let { query } = useRouter();
   let chatQuery = useQuery(`chat-${query.chatid}`, () => null, { refetchInterval: 2000 });
+  let isMobile = useMediaQuery('(max-width: 680px)');
   let [messageSpring, animateMessage] = useSpring({ x: 0, y: 0, avatarY: 0, opacity: 1 }, []);
   let [state, dispatch] = useReducer(chatReducer, { status: 'idle', message: '' });
   let chatRef = useRef(null);
@@ -191,5 +173,25 @@ let StyledMessageBubble = styled.p([
 ]);
 
 let StyledAvatar = styled(Avatar)([tw`flex-shrink-0 order-1`]);
+
+function chatReducer(state, action) {
+  if (state.status === 'sending') {
+    switch (action.type) {
+      case 'FINISH':
+        return { ...state, status: 'idle' };
+      default:
+        return state;
+    }
+  }
+
+  switch (action.type) {
+    case 'SET_MESSAGE':
+      return { ...state, message: action.payload };
+    case 'SEND':
+      return { ...state, status: 'sending' };
+    default:
+      return state;
+  }
+}
 
 export default ChatPage;

@@ -15,6 +15,7 @@ export interface User {
   weight: number;
   eyeColor: string;
   hairColor: string;
+  photos?: string[];
 }
 
 export type Theme = typeof defaultTheme & { data?: any };

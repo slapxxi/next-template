@@ -1,37 +1,21 @@
-import { useSpring } from '@react-spring/core';
-import { animated } from '@react-spring/web';
-import { useDrag } from '@use-gesture/react';
-import { clamp } from 'lodash';
-import { Heart, Slash } from 'lucide-react';
 import type { NextPage } from 'next';
 import { useSession } from 'next-auth/client';
 import { useRouter } from 'next/dist/client/router';
-import Link from 'next/link';
-import ReactDOM from 'react-dom';
+import React from 'react';
 import { useQuery } from 'react-query';
 import tw from 'twin.macro';
-import { Blob } from '../components/Blob';
-import { Button } from '../components/Button';
-import { FormLogin } from '../components/FormLogin';
-import { Image } from '../components/Image';
 import { Layout } from '../components/Layout';
-import { LOGO_GRAD_ID } from '../components/Logo';
-import { Skeleton } from '../components/Skeleton';
-import { Text } from '../components/Text';
+import { OnboardingView } from '../components/OnboardingView';
 import { Title } from '../components/Title';
-import { UserInfo, UserInfoPicture } from '../components/UserInfo';
-import { useMediaQuery } from '../lib/hooks/useMediaQuery';
+import { UserCards } from '../components/UserCards';
+import { UserView } from '../components/UserView';
 import { getHot } from '../lib/services/getHot';
-import { getUser } from '../lib/services/getUser';
-import { md } from '../lib/styles/mq';
-import { User } from '../lib/types';
-import { isZeroVec } from '../lib/vec';
 
 interface HomePageProps {}
 
 let HomePage: NextPage<HomePageProps> = () => {
   let [session] = useSession();
-  return <Layout>{session ? <IndexPage /> : <OnboardingPage />}</Layout>;
+  return <Layout>{session ? <IndexPage /> : <OnboardingView />}</Layout>;
 };
 
 export interface IndexPageProps {}
@@ -39,39 +23,6 @@ export interface IndexPageProps {}
 export let IndexPage: React.FC<IndexPageProps> = () => {
   let { query } = useRouter();
   let hotQuery = useQuery('hot', getHot);
-  let userQuery = useQuery(`user-${query.id}`, () => getUser(query.id as string), {
-    enabled: !!query.id,
-    initialData: hotQuery.data?.find((p) => p.id === query.id),
-  });
-  let bindDrag = useDrag(
-    (gesture) => {
-      let { movement, dragging, swipe } = gesture;
-
-      if (isZeroVec(swipe)) {
-        if (dragging) {
-          animateSwipeSpring.start({
-            progress: clamp(movement[0] / Math.min(window.innerWidth, 400), -0.5, 0.5),
-            x: `${(movement[0] / window.innerWidth) * 100}%`,
-            scale: isMobile ? 0.8 : 1 - Math.abs(movement[0]) / window.innerWidth / 3,
-          });
-        } else {
-          animateSwipeSpring.start({ x: '0%', scale: 1, progress: 0 });
-        }
-      } else {
-        animateSwipeSpring.start({ x: `${swipe[0] * 100}%`, progress: swipe[0] * 0.5, scale: 0.3 });
-      }
-    },
-    {
-      axis: 'x',
-      pointer: { touch: true },
-      swipe: { distance: 130 },
-    },
-  );
-  let [swipeSpring, animateSwipeSpring] = useSpring(
-    { x: '0%', scale: 1, progress: 0, config: { tension: 400 }, immediate: !query.id },
-    [query.id],
-  );
-  let isMobile = useMediaQuery('(max-width: 680px)');
 
   return (
     <div css={[tw`mx-auto mb-8`, { maxWidth: 1180 }]}>
@@ -94,153 +45,9 @@ export let IndexPage: React.FC<IndexPageProps> = () => {
         </div>
       </div>
 
-      {query.id && (
-        <>
-          <div css={[md(tw`flex gap-6 p-8 px-12`)]}>
-            <div
-              {...bindDrag()}
-              style={{ position: 'relative', touchAction: 'pan-y' }}
-              css={md({ flex: '0 0 40%' })}
-            >
-              <animated.div
-                css={[{ transformOrigin: 'top center' }]}
-                style={{
-                  x: swipeSpring.x,
-                  scale: swipeSpring.scale,
-                  opacity: swipeSpring.progress.to([-0.5, 0, 0.5], [0, 1, 0]),
-                }}
-              >
-                <UserInfoPicture user={userQuery.data} profileView showInfo={isMobile} />
-              </animated.div>
-            </div>
-
-            <animated.div
-              css={[{ transformOrigin: 'top center' }]}
-              style={{
-                x: swipeSpring.x,
-                opacity: swipeSpring.progress.to([-0.5, 0, 0.5], [0, 1, 0]),
-              }}
-            >
-              <UserInfo user={userQuery.data} />
-            </animated.div>
-          </div>
-
-          <Modal>
-            <animated.div
-              style={{
-                scale: swipeSpring.progress.to([0.1, 0.5], [0, 1], 'clamp'),
-                x: '-50%',
-                y: '-50%',
-                transformOrigin: 'center',
-              }}
-              css={[tw`fixed top-1/2 left-1/2`]}
-            >
-              <Heart
-                size={128}
-                stroke="none"
-                fill={`url(#${LOGO_GRAD_ID})`}
-                css={[{ filter: 'drop-shadow(3px 3px 2px #0004)' }]}
-              />
-            </animated.div>
-            <animated.div
-              style={{
-                scale: swipeSpring.progress.to([-0.5, -0.1], [1, 0], 'clamp'),
-                x: '-50%',
-                y: '-50%',
-                transformOrigin: 'center',
-              }}
-              css={[tw`fixed top-1/2 left-1/2`]}
-            >
-              <Slash
-                size={96}
-                stroke={`url(#${LOGO_GRAD_ID})`}
-                css={[{ filter: 'drop-shadow(3px 3px 2px #0004)' }]}
-              />
-            </animated.div>
-          </Modal>
-        </>
-      )}
+      {query.id && <UserView userId={query.id as string} />}
     </div>
   );
 };
-
-export interface UserCardsProps {
-  users: User[];
-  loading?: boolean;
-}
-
-export let UserCards: React.FC<UserCardsProps> = (props) => {
-  let { users, loading = false } = props;
-
-  return (
-    <div
-      css={[
-        tw`flex gap-8 overflow-scroll`,
-        { scrollSnapType: 'x mandatory' },
-        md(tw`grid gap-4 overflow-hidden`, {
-          gridTemplateColumns: 'repeat(4, 1fr)',
-        }),
-      ]}
-    >
-      {(loading
-        ? new Array(4)
-            .fill(null)
-            .map((_, i) => ({ name: 'loading', id: i, image: '/img/placeholder.svg' }))
-        : users
-      ).map((p) => (
-        <div css={[tw`relative`, { flex: '1 0 220px', scrollSnapAlign: 'center' }]} key={p.id}>
-          {loading ? (
-            <Skeleton loading>
-              <Image src={p.image} width={220} height={350} css={[tw`rounded-xl`]} />
-            </Skeleton>
-          ) : (
-            <>
-              <Link href={`?id=${p.id}`} as={`/user/${p.id}`}>
-                <a>
-                  <UserInfoPicture user={p} showInfo />
-                </a>
-              </Link>
-            </>
-          )}
-        </div>
-      ))}
-    </div>
-  );
-};
-
-interface OnboardingPageProps {}
-
-let OnboardingPage: React.FC<OnboardingPageProps> = () => {
-  return (
-    <div css={[tw`relative p-4`]}>
-      <Blob animate css={[tw`absolute top-0`, { transform: 'translate(-65%)' }]} />
-      <Blob animate css={[tw`absolute top-0`, { transform: 'translate(70%, 50%)' }]} />
-
-      <div css={[tw`relative flex flex-col items-center justify-center gap-4 mb-10`]}>
-        <Text>First time?</Text>
-        <Link href="/register" passHref>
-          <Button variant="outline-fill" as="a">
-            Register
-          </Button>
-        </Link>
-      </div>
-
-      <div css={[tw`relative flex flex-col items-center justify-center h-full gap-10`]}>
-        <Title center>Знакомства без преград</Title>
-        <Text center>
-          Для современного мира сплочённость команды профессионалов однозначно фиксирует
-          необходимость системы обучения кадров, соответствующей насущным потребностям.
-        </Text>
-
-        <FormLogin />
-      </div>
-    </div>
-  );
-};
-
-function Modal(props) {
-  let { children } = props;
-  return ReactDOM.createPortal(children, document.getElementById('__next'));
-}
 
 export default HomePage;
