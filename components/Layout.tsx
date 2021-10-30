@@ -1,11 +1,14 @@
+import type { Theme } from '@emotion/react';
 import styled from '@emotion/styled';
 import { animated, useSpring } from '@react-spring/web';
 import { Bell, Search, XCircle } from 'lucide-react';
 import { useSession } from 'next-auth/client';
+import { useRouter } from 'next/dist/client/router';
 import Link from 'next/link';
 import React, { useRef, useState } from 'react';
 import tw from 'twin.macro';
 import { useOnClickOutside } from '../lib/hooks/useOnClickOutside';
+import { md } from '../lib/styles/mq';
 import { Avatar } from './Avatar';
 import { Copy } from './Copy';
 import { List, ListItem } from './List';
@@ -25,6 +28,7 @@ export let Layout: React.FC<LayoutProps> = (props) => {
   let { children, indent = false, hideFooter = false, hideHeader = false } = props;
 
   let [session, loading] = useSession();
+  let router = useRouter();
   let [showMenu, setShowMenu] = useState(false);
   let menuSpring = useSpring({
     y: showMenu ? '100%' : '0%',
@@ -74,28 +78,78 @@ export let Layout: React.FC<LayoutProps> = (props) => {
 
       {hideHeader ? null : session ? (
         <header css={(theme) => [tw`relative z-10`, { background: theme.bgAccent }]}>
-          <nav css={[tw`flex items-center justify-between px-2`]}>
+          <nav css={[tw`flex items-center justify-between px-2`, md(tw`gap-8 p-3 px-4`)]}>
             <Link href="/" passHref>
               <StyledNavItem>
                 <Logo size={36} css={[{ transform: 'translate(0, -20%)' }]} />
+                <Title variant="fancy" size="md" css={[tw`hidden text-white`, md([tw`block`])]}>
+                  lovebirds
+                </Title>
               </StyledNavItem>
             </Link>
+
+            <div css={[tw`hidden`, md(tw`flex justify-center flex-1 gap-8`)]}>
+              <Link href="/" passHref>
+                <StyledNavItem active={router.pathname === '/'} css={[tw`hidden`, md(tw`flex`)]}>
+                  Browse
+                </StyledNavItem>
+              </Link>
+              <Link href="/chats" passHref>
+                <StyledNavItem
+                  active={router.pathname === '/chats'}
+                  css={[tw`hidden`, md(tw`flex`)]}
+                >
+                  Chats
+                </StyledNavItem>
+              </Link>
+              <Link href="/subscription" passHref>
+                <StyledNavItem
+                  active={router.pathname === '/subscription'}
+                  css={[tw`hidden`, md(tw`flex`)]}
+                >
+                  Subscription
+                </StyledNavItem>
+              </Link>
+            </div>
+
+            <Select variant="none" css={[tw`hidden`, md(tw`flex`)]}>
+              <SelectOption>English</SelectOption>
+              <SelectOption>Russian</SelectOption>
+            </Select>
+
             <Link href="/search" passHref>
-              <StyledNavItem>
+              <StyledNavItem css={md(tw`hidden`)}>
                 <Search size={26} />
               </StyledNavItem>
             </Link>
             <Link href="/notifications" passHref>
-              <StyledNavItem>
+              <StyledNavItem css={md(tw`hidden`)}>
                 <Bell size={26} />
               </StyledNavItem>
             </Link>
+
+            <div css={[tw`hidden`, md(tw`flex gap-4`)]}>
+              <Link href="/search" passHref>
+                <StyledNavItem>
+                  <Search size={24} css={(theme) => [{ stroke: theme.fgAccent }]} />
+                </StyledNavItem>
+              </Link>
+              <Link href="/notifications" passHref>
+                <StyledNavItem>
+                  <Bell size={24} css={(theme) => [{ stroke: theme.fgAccent }]} />
+                </StyledNavItem>
+              </Link>
+            </div>
+
             <Link href="/profile" passHref>
               <StyledNavItem>
                 <Avatar href={session.user.image} size={28} />
+                <span css={(theme) => [tw`hidden`, md(tw`block`, { color: theme.fg })]}>
+                  {session.user.name}
+                </span>
               </StyledNavItem>
             </Link>
-            <StyledNavItem>
+            <StyledNavItem css={[md([tw`hidden`])]}>
               <button onClick={() => setShowMenu((sm) => !sm)}>
                 <svg
                   viewBox="0 0 20 20"
@@ -109,9 +163,9 @@ export let Layout: React.FC<LayoutProps> = (props) => {
 
           <animated.div
             ref={ref}
-            css={(theme) => [
-              tw`absolute z-0 flex flex-col w-full gap-4 p-4 bottom-full`,
-              showMenu && tw`fixed shadow-xl`,
+            css={(theme: Theme) => [
+              tw`fixed z-0 flex flex-col w-full gap-4 p-4 bottom-full`,
+              showMenu && tw`shadow-xl`,
               { background: theme.bg },
             ]}
             style={{ y: menuSpring.y }}
@@ -166,7 +220,9 @@ export let Layout: React.FC<LayoutProps> = (props) => {
       </section>
 
       {hideFooter ? null : (
-        <footer css={[tw`z-10 flex flex-col items-center justify-center gap-8 p-4`]}>
+        <footer
+          css={[tw`z-10 flex flex-col items-center justify-center gap-8 p-4`, md(tw`flex-row`)]}
+        >
           <List>
             <ListItem>
               <Link href="/about">
@@ -194,6 +250,7 @@ export let Layout: React.FC<LayoutProps> = (props) => {
               </Link>
             </ListItem>
           </List>
+
           <Text>Personal Data Politics</Text>
 
           <Select variant="none">
@@ -212,4 +269,19 @@ export let Layout: React.FC<LayoutProps> = (props) => {
   );
 };
 
-let StyledNavItem = styled.a(({ theme }) => [tw`p-3`, { color: theme.fgAccent }]);
+let StyledNavItem = styled.a<{ active?: boolean }>(({ theme, active }) => [
+  tw`relative flex items-center gap-2 p-3`,
+  { color: theme.fgAccent },
+  md(
+    tw`p-0`,
+    { color: theme.fg },
+    active && {
+      color: theme.fgActive,
+      '::after': {
+        ...tw`absolute w-full h-0.5 bg-gradient-to-r top-full from-pink-600 to-orange-600`,
+        content: '""',
+        transform: 'translateY(24px)',
+      },
+    },
+  ),
+]);

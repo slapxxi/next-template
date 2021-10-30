@@ -4,6 +4,7 @@ export let defaultTheme = {
   em: 'hsl(270, 100%, 58%)',
   border: '#492258',
   fgAccent: '#8B5D9A',
+  fgActive: '#fe6703',
   bgAccent: 'hsla(285, 48%, 19%, 1)',
   bgAccentActive: 'hsla(285, 50%, 24%, 1)',
   backdropAlpha: 'hsl(283, 50%, 5%, var(--bg-alpha, 1))',

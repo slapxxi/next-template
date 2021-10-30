@@ -7,7 +7,6 @@ import type { NextPage } from 'next';
 import { useSession } from 'next-auth/client';
 import { useRouter } from 'next/dist/client/router';
 import Link from 'next/link';
-import React from 'react';
 import ReactDOM from 'react-dom';
 import { useQuery } from 'react-query';
 import tw from 'twin.macro';
@@ -21,8 +20,10 @@ import { Skeleton } from '../components/Skeleton';
 import { Text } from '../components/Text';
 import { Title } from '../components/Title';
 import { UserInfo, UserInfoPicture } from '../components/UserInfo';
+import { useMediaQuery } from '../lib/hooks/useMediaQuery';
 import { getHot } from '../lib/services/getHot';
 import { getUser } from '../lib/services/getUser';
+import { md } from '../lib/styles/mq';
 import { User } from '../lib/types';
 import { isZeroVec } from '../lib/vec';
 
@@ -51,7 +52,7 @@ export let IndexPage: React.FC<IndexPageProps> = () => {
           animateSwipeSpring.start({
             progress: clamp(movement[0] / Math.min(window.innerWidth, 400), -0.5, 0.5),
             x: `${(movement[0] / window.innerWidth) * 100}%`,
-            scale: 1 - Math.abs(movement[0]) / window.innerWidth / 3,
+            scale: isMobile ? 0.8 : 1 - Math.abs(movement[0]) / window.innerWidth / 3,
           });
         } else {
           animateSwipeSpring.start({ x: '0%', scale: 1, progress: 0 });
@@ -70,9 +71,10 @@ export let IndexPage: React.FC<IndexPageProps> = () => {
     { x: '0%', scale: 1, progress: 0, config: { tension: 400 }, immediate: !query.id },
     [query.id],
   );
+  let isMobile = useMediaQuery('(max-width: 680px)');
 
   return (
-    <div css={[tw`mb-8`]}>
+    <div css={[tw`mx-auto mb-8`, { maxWidth: 1180 }]}>
       <div css={[query.id && tw`hidden`, tw`p-4`]}>
         <div css={[tw`flex flex-col gap-8`]}>
           <Title>Hot</Title>
@@ -93,67 +95,70 @@ export let IndexPage: React.FC<IndexPageProps> = () => {
       </div>
 
       {query.id && (
-        <div>
-          <div {...bindDrag()} style={{ position: 'relative', touchAction: 'pan-y' }}>
+        <>
+          <div css={[md(tw`flex gap-6 p-8 px-12`)]}>
+            <div
+              {...bindDrag()}
+              style={{ position: 'relative', touchAction: 'pan-y' }}
+              css={md({ flex: '0 0 40%' })}
+            >
+              <animated.div
+                css={[{ transformOrigin: 'top center' }]}
+                style={{
+                  x: swipeSpring.x,
+                  scale: swipeSpring.scale,
+                  opacity: swipeSpring.progress.to([-0.5, 0, 0.5], [0, 1, 0]),
+                }}
+              >
+                <UserInfoPicture user={userQuery.data} profileView showInfo={isMobile} />
+              </animated.div>
+            </div>
+
             <animated.div
               css={[{ transformOrigin: 'top center' }]}
               style={{
                 x: swipeSpring.x,
-                scale: swipeSpring.scale,
-                opacity: swipeSpring.progress.to([-0.5, 0, 0.5], [0, 1, 1]),
+                opacity: swipeSpring.progress.to([-0.5, 0, 0.5], [0, 1, 0]),
               }}
             >
-              <UserInfoPicture user={userQuery.data} />
+              <UserInfo user={userQuery.data} />
             </animated.div>
-
-            <Modal>
-              <div css={[tw`p-4 text-red-300`]}>Greetings</div>
-            </Modal>
-
-            <Modal>
-              <animated.div
-                style={{
-                  scale: swipeSpring.progress.to([0.1, 0.5], [0, 1], 'clamp'),
-                  x: '-50%',
-                  y: '-50%',
-                  transformOrigin: 'center',
-                }}
-                css={[tw`fixed left-1/2 top-1/2`]}
-              >
-                <Heart
-                  size={128}
-                  stroke="none"
-                  fill={`url(#${LOGO_GRAD_ID})`}
-                  css={[{ filter: 'drop-shadow(3px 3px 2px #0004)' }]}
-                />
-              </animated.div>
-              <animated.div
-                style={{
-                  scale: swipeSpring.progress.to([-0.5, -0.1], [1, 0], 'clamp'),
-                  x: '-50%',
-                  y: '-50%',
-                  transformOrigin: 'center',
-                }}
-                css={[tw`fixed top-1/2 left-1/2`]}
-              >
-                <Slash
-                  size={96}
-                  stroke={`url(#${LOGO_GRAD_ID})`}
-                  css={[{ filter: 'drop-shadow(3px 3px 2px #0004)' }]}
-                />
-              </animated.div>
-            </Modal>
           </div>
-          <animated.div
-            css={[{ transformOrigin: 'top center' }]}
-            style={{
-              x: swipeSpring.x,
-              opacity: swipeSpring.progress.to([-0.5, 0, 0.5], [0, 1, 0]),
-            }}
-          >
-            <UserInfo user={userQuery.data} />
-          </animated.div>
-        </div>
+
+          <Modal>
+            <animated.div
+              style={{
+                scale: swipeSpring.progress.to([0.1, 0.5], [0, 1], 'clamp'),
+                x: '-50%',
+                y: '-50%',
+                transformOrigin: 'center',
+              }}
+              css={[tw`fixed top-1/2 left-1/2`]}
+            >
+              <Heart
+                size={128}
+                stroke="none"
+                fill={`url(#${LOGO_GRAD_ID})`}
+                css={[{ filter: 'drop-shadow(3px 3px 2px #0004)' }]}
+              />
+            </animated.div>
+            <animated.div
+              style={{
+                scale: swipeSpring.progress.to([-0.5, -0.1], [1, 0], 'clamp'),
+                x: '-50%',
+                y: '-50%',
+                transformOrigin: 'center',
+              }}
+              css={[tw`fixed top-1/2 left-1/2`]}
+            >
+              <Slash
+                size={96}
+                stroke={`url(#${LOGO_GRAD_ID})`}
+                css={[{ filter: 'drop-shadow(3px 3px 2px #0004)' }]}
+              />
+            </animated.div>
+          </Modal>
+        </>
       )}
     </div>
   );
@@ -168,9 +173,17 @@ export let UserCards: React.FC<UserCardsProps> = (props) => {
   let { users, loading = false } = props;
 
   return (
-    <div css={[tw`flex gap-8 overflow-scroll`, { scrollSnapType: 'x mandatory' }]}>
+    <div
+      css={[
+        tw`flex gap-8 overflow-scroll`,
+        { scrollSnapType: 'x mandatory' },
+        md(tw`grid gap-4 overflow-hidden`, {
+          gridTemplateColumns: 'repeat(4, 1fr)',
+        }),
+      ]}
+    >
       {(loading
-        ? new Array(3)
+        ? new Array(4)
             .fill(null)
             .map((_, i) => ({ name: 'loading', id: i, image: '/img/placeholder.svg' }))
         : users
@@ -178,25 +191,13 @@ export let UserCards: React.FC<UserCardsProps> = (props) => {
         <div css={[tw`relative`, { flex: '1 0 220px', scrollSnapAlign: 'center' }]} key={p.id}>
           {loading ? (
             <Skeleton loading>
-              <Title size="md">{p.name}</Title>
-              <Link href={`?id=${p.id}`} as={`/user/${p.id}`}>
-                <a>
-                  <Image src={p.image} width={220} height={350} css={[tw`rounded-xl`]} />
-                </a>
-              </Link>
+              <Image src={p.image} width={220} height={350} css={[tw`rounded-xl`]} />
             </Skeleton>
           ) : (
             <>
-              <Title size="md">{p.name}</Title>
               <Link href={`?id=${p.id}`} as={`/user/${p.id}`}>
                 <a>
-                  <Image
-                    src={p.image}
-                    css={[tw`rounded-xl`]}
-                    width={220}
-                    height={350}
-                    objectFit="cover"
-                  />
+                  <UserInfoPicture user={p} showInfo />
                 </a>
               </Link>
             </>

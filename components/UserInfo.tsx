@@ -8,6 +8,7 @@ import Flag from 'react-world-flags';
 import tw from 'twin.macro';
 import { getCountryName } from '../lib/getCountryName';
 import { lorem } from '../lib/lorem';
+import { md } from '../lib/styles/mq';
 import { User } from '../lib/types';
 import { Button } from './Button';
 import { WaveIcon } from './Icons';
@@ -25,7 +26,7 @@ export let UserInfo: React.FC<UserPageProps> = (props) => {
   let [showLightbox, setShowLightbox] = useState(false);
 
   return (
-    <div css={[tw`flex flex-col gap-4`]}>
+    <>
       <LightBox open={showLightbox} onToggle={(open) => setShowLightbox(open)}>
         <div css={[tw`relative flex flex-col gap-8 mt-8`]}>
           <Image src="/img/male-5.png" width={220} height={350} objectFit="cover" />
@@ -33,20 +34,25 @@ export let UserInfo: React.FC<UserPageProps> = (props) => {
         </div>
       </LightBox>
 
-      <div css={[tw`flex flex-col gap-8 p-4`]}>
+      <div css={[tw`flex flex-col gap-8 p-4`, md(tw`p-0`)]}>
+        <Title css={[tw`relative hidden`, { width: 'fit-content' }, md(tw`flex`)]}>
+          {user.name} {user.age}
+          <OnlineIndicator online={user.isOnline} css={[tw`absolute -top-2 -right-2`]} />
+        </Title>
+
         <Skeleton loading={!user.about}>
-          <Text>{user.about ?? lorem()}</Text>
+          <Text css={[md(tw`hidden`)]}>{user.about ?? lorem()}</Text>
         </Skeleton>
 
         <Link href={`/chats/${user.id}`}>
-          <Button variant="fill" center>
+          <Button variant="fill" center css={md({ width: 'fit-content' })}>
             Say Hi
             <WaveIcon />
           </Button>
         </Link>
 
         <div
-          css={[tw`flex gap-8 overflow-scroll`, { scrollSnapType: 'x mandatory' }]}
+          css={[tw`flex gap-8 overflow-scroll`, { scrollSnapType: 'x mandatory' }, md(tw`hidden`)]}
           onClick={() => setShowLightbox(true)}
         >
           <div
@@ -109,7 +115,7 @@ export let UserInfo: React.FC<UserPageProps> = (props) => {
 
         <div css={[tw`flex flex-col w-full gap-4`]}>
           <div css={[tw`flex`]}>
-            <div>Bid</div>
+            <Title size="lg">Bid</Title>
             <Divider />
             <div>{user.bid} RUB</div>
           </div>
@@ -137,11 +143,15 @@ export let UserInfo: React.FC<UserPageProps> = (props) => {
           </div>
         </div>
 
+        <Skeleton loading={!user.about}>
+          <Text css={[tw`hidden`, md(tw`block`)]}>{user.about ?? lorem()}</Text>
+        </Skeleton>
+
         <div css={(theme) => [{ color: theme.fgAccent }]}>
           Registered {dayjs(new Date(user.createdAt)).format('DD MMMM YYYY')}
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
@@ -190,30 +200,36 @@ export let LightBox: React.FC<LightBoxProps> = (props) => {
 
 export interface UserInfoPictureProps {
   user: User;
+  profileView?: boolean;
+  showInfo?: boolean;
 }
 
 export let UserInfoPicture: React.FC<UserInfoPictureProps> = (props) => {
-  let { user } = props;
+  let { user, profileView = false, showInfo = false } = props;
 
   return (
     <div css={[tw`relative`]}>
       <div css={[tw`relative`, { width: '100%', paddingBottom: '159%' }]}>
         <Image
           src={user.image}
-          css={[tw`shadow-xl rounded-b-3xl`]}
+          css={[
+            tw`shadow-xl rounded-xl`,
+            profileView && [tw`rounded-none rounded-b-3xl`, md([tw`rounded-3xl`])],
+          ]}
           layout="fill"
           draggable={false}
           objectFit="cover"
         />
       </div>
 
-      <div css={[tw`absolute flex flex-col gap-2 bottom-4 left-4`]}>
+      <div css={[tw`absolute flex flex-col hidden gap-2 bottom-4 left-4`, showInfo && tw`flex`]}>
         <Title size="lg">
           {user.name} {user.age}
         </Title>
+
         <div css={[tw`flex items-center gap-2`]}>
           <Skeleton loading={!user.country}>
-            <Flag code={user.country ?? 'RU'} width={30} />
+            <Flag code={user.country ?? 'RU'} width={16} />
             {getCountryName(user.country ?? 'RU')}
           </Skeleton>
         </div>
@@ -239,6 +255,7 @@ export let OnlineIndicator: React.FC<OnlineIndicatorProps> = (props) => {
         {
           width: 10,
           fill: online ? '#33e159' : 'tomato',
+          transform: 'translateY(50%)',
         },
       ]}
       {...rest}

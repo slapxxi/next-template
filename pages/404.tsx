@@ -7,6 +7,7 @@ import { Button } from '../components/Button';
 import { Layout } from '../components/Layout';
 import { Text } from '../components/Text';
 import { Title } from '../components/Title';
+import { md } from '../lib/styles/mq';
 
 let NotFoundPage: NextPage = () => {
   return (
@@ -16,7 +17,11 @@ let NotFoundPage: NextPage = () => {
       >
         <svg
           viewBox="0 0 10 10"
-          css={[tw`absolute overflow-visible`, { width: '160%', '--fill': 'none' }]}
+          css={[
+            tw`absolute overflow-visible`,
+            { width: '160%', '--fill': 'none' },
+            md({ width: '110%' }),
+          ]}
         >
           <Blob animate id="blob" />
 

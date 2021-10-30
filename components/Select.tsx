@@ -30,6 +30,7 @@ export let Select: React.FC<SelectProps> = (props) => {
           },
         },
       ]}
+      {...rest}
     >
       <select
         id={id}
@@ -41,7 +42,6 @@ export let Select: React.FC<SelectProps> = (props) => {
             color: 'inherit',
           },
         ]}
-        {...rest}
       >
         {children}
       </select>
