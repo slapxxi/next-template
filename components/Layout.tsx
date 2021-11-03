@@ -22,10 +22,11 @@ export interface LayoutProps {
   indent?: boolean;
   hideHeader?: boolean;
   hideFooter?: boolean;
+  center?: boolean;
 }
 
 export let Layout: React.FC<LayoutProps> = (props) => {
-  let { children, indent = false, hideFooter = false, hideHeader = false } = props;
+  let { children, center = false, indent = false, hideFooter = false, hideHeader = false } = props;
 
   let [session, loading] = useSession();
   let router = useRouter();
@@ -65,6 +66,17 @@ export let Layout: React.FC<LayoutProps> = (props) => {
             background: `radial-gradient(${theme.bgAccent} 0, ${theme.bg} 70%)`,
           },
         },
+        md(tw`overflow-hidden`, {
+          ':before': {
+            content: '""',
+            position: 'absolute',
+            top: '100%',
+            left: '30%',
+            width: '100%',
+            paddingTop: '100%',
+            background: `radial-gradient(${theme.bgAccent} 0, ${theme.bg} 70%)`,
+          },
+        }),
       ]}
     >
       <animated.div
@@ -221,7 +233,7 @@ export let Layout: React.FC<LayoutProps> = (props) => {
         </Skeleton>
       )}
 
-      <section css={[tw`relative flex-1`, indent && tw`p-4`]}>
+      <section css={[tw`relative flex-1`, indent && tw`p-4`, center && tw`mx-auto`]}>
         <Skeleton loading={loading}>{children}</Skeleton>
       </section>
 

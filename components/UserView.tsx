@@ -22,7 +22,9 @@ interface UserViewProps {
 
 export let UserView: React.FC<UserViewProps> = (props) => {
   let { userId } = props;
-  let { data } = useQuery(`user-${userId}`, () => getUser(userId));
+  let { data } = useQuery(`user-${userId}`, () => getUser(userId), {
+    onSuccess: (data) => setActiveImage(data.image),
+  });
   let bindDrag = useDrag(
     (gesture) => {
       let { movement, dragging, swipe } = gesture;
@@ -65,7 +67,7 @@ export let UserView: React.FC<UserViewProps> = (props) => {
 
   return (
     <>
-      <LightBox>
+      <LightBox css={[!isMobile && tw`flex flex-col justify-center`]}>
         {isMobile ? (
           <div css={[tw`flex flex-col gap-2 pt-2`]}>
             {data.photos.map((p) => (
@@ -73,7 +75,7 @@ export let UserView: React.FC<UserViewProps> = (props) => {
             ))}
           </div>
         ) : (
-          <div css={[tw`flex items-center justify-center h-full`]}>
+          <div css={[tw`flex justify-center`]}>
             <img src={activeImage} />
           </div>
         )}
@@ -97,9 +99,10 @@ export let UserView: React.FC<UserViewProps> = (props) => {
 
             <div css={[tw`hidden`, md(tw`flex flex-col gap-2`)]}>
               <img
+                draggable={false}
                 src={activeImage ?? data.image}
                 css={[tw`w-full rounded-xl`, { aspectRatio: '1/1.59', objectFit: 'cover' }]}
-                onClick={() => lb.toggle()}
+                onDoubleClick={() => lb.toggle()}
               />
 
               <div css={[tw`flex flex-wrap justify-between gap-2`]}>

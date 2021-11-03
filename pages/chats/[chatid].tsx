@@ -10,20 +10,25 @@ import { Avatar } from '../../components/Avatar';
 import { Button } from '../../components/Button';
 import { Input } from '../../components/Input';
 import { Layout } from '../../components/Layout';
+import { OnlineIndicator } from '../../components/OnlineIndicator';
 import { Title } from '../../components/Title';
-import { OnlineIndicator } from '../../components/UserInfo';
 import { useMediaQuery } from '../../lib/hooks/useMediaQuery';
+import { getChat } from '../../lib/services/getChat';
+import { ChatMessage } from '../../lib/types';
 
 interface ChatPageProps {}
 
 let ChatPage: React.FC<ChatPageProps> = () => {
   let { query } = useRouter();
-  let chatQuery = useQuery(`chat-${query.chatid}`, () => null, { refetchInterval: 2000 });
+  let chatQuery = useQuery(`chat-${query.chatid}`, () => getChat(query.chatid as string), {
+    // refetchInterval: 2000,
+  });
   let isMobile = useMediaQuery('(max-width: 680px)');
   let [messageSpring, animateMessage] = useSpring({ x: 0, y: 0, avatarY: 0, opacity: 1 }, []);
   let [state, dispatch] = useReducer(chatReducer, { status: 'idle', message: '' });
   let chatRef = useRef(null);
   let messageRef = useRef(null);
+  console.log(chatQuery.data);
 
   useLayoutEffect(() => {
     if (state.status === 'sending') {
@@ -82,55 +87,37 @@ let ChatPage: React.FC<ChatPageProps> = () => {
           <OnlineIndicator online />
         </header>
 
-        <section
-          ref={chatRef}
-          css={(theme) => [
-            tw`flex flex-col flex-1 max-h-screen gap-6 p-4 overflow-scroll`,
-            { background: theme.bg, paddingBottom: 80 },
-          ]}
-        >
-          <StyledMessage>
-            <StyledAvatar href="/img/female-4.png" size={40} />
-            <StyledMessageBubble>How are you doin ma buddha?</StyledMessageBubble>
-          </StyledMessage>
+        {chatQuery.status === 'success' && (
+          <section
+            ref={chatRef}
+            css={(theme) => [
+              tw`flex flex-col flex-1 max-h-screen gap-6 p-4 overflow-scroll`,
+              { background: theme.bg, paddingBottom: 80 },
+            ]}
+          >
+            {chatQuery.data.messages.map((m: ChatMessage) => (
+              <StyledMessage key={m.id}>
+                <StyledAvatar
+                  href={chatQuery.data.participants.find((p) => p._id === m.author)?.image}
+                  size={40}
+                />
+                <StyledMessageBubble>{m.text}</StyledMessageBubble>
+              </StyledMessage>
+            ))}
 
-          <StyledMessage recipient>
-            <StyledAvatar href="/img/female-1.png" size={40} />
-            <StyledMessageBubble>Im fine u?</StyledMessageBubble>
-          </StyledMessage>
+            {state.status === 'sending' && (
+              <StyledMessage recipient css={[tw`relative z-10`]}>
+                <animated.div style={messageSpring}>
+                  <StyledMessageBubble ref={messageRef}>{state.message}</StyledMessageBubble>
+                </animated.div>
 
-          <StyledMessage recipient>
-            <StyledAvatar href="/img/female-1.png" size={40} />
-            <StyledMessageBubble>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur maiores saepe quos
-              expedita cupiditate tempore minima ducimus ab nisi corporis voluptatem officia quaerat
-              voluptas recusandae libero, similique non dicta vero.
-            </StyledMessageBubble>
-          </StyledMessage>
-
-          {/* todo: delete */}
-          {new Array(20).fill(null).map((_, i) => (
-            <StyledMessage recipient={i % 2 === 1} key={i}>
-              <StyledAvatar
-                href={i % 2 === 1 ? '/img/female-1.png' : '/img/female-4.png'}
-                size={40}
-              />
-              <StyledMessageBubble>Message #{i + 1}</StyledMessageBubble>
-            </StyledMessage>
-          ))}
-
-          {state.status === 'sending' && (
-            <StyledMessage recipient css={[tw`relative z-10`]}>
-              <animated.div style={messageSpring}>
-                <StyledMessageBubble ref={messageRef}>{state.message}</StyledMessageBubble>
-              </animated.div>
-
-              <animated.div style={{ y: messageSpring.y, opacity: messageSpring.opacity }}>
-                <StyledAvatar href="/img/female-1.png" size={40} />
-              </animated.div>
-            </StyledMessage>
-          )}
-        </section>
+                <animated.div style={{ y: messageSpring.y, opacity: messageSpring.opacity }}>
+                  <StyledAvatar href="/img/female-1.png" size={40} />
+                </animated.div>
+              </StyledMessage>
+            )}
+          </section>
+        )}
 
         <div css={(theme) => [tw`absolute bottom-0 w-full p-2`, { background: theme.bg }]}>
           <Input

@@ -18,4 +18,19 @@ export interface User {
   photos?: string[];
 }
 
+export interface Chat {
+  id: string;
+  owner: string;
+  participants: string[];
+  messages: ChatMessage[];
+}
+
+export interface ChatMessage {
+  id: string;
+  text: string;
+  author: User;
+  createdAt: Date;
+  status: 'read' | 'unread';
+}
+
 export type Theme = typeof defaultTheme & { data?: any };
