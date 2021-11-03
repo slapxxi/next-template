@@ -37,7 +37,7 @@ let ChatsPage: React.FC<ChatsPageProps> = () => {
               <StyledListItem>
                 <Avatar href="/img/female-1.png" size={72} />
                 <StyledTextBlock>
-                  <Title size="md">{c.name}</Title>
+                  <Title size="md">{c.participants.map((p) => p.name).join(' ')}</Title>
                   <Text variant="subtle">{lastMessage.text}</Text>
                 </StyledTextBlock>
 
@@ -56,7 +56,7 @@ function filterUnread(message: ChatMessage) {
 }
 
 let StyledList = styled.ul([tw`flex flex-col gap-6 p-2 m-0 list-none`]);
-let StyledListItem = styled.li([tw`flex items-center gap-2`]);
+let StyledListItem = styled.li([tw`flex items-center gap-2 cursor-pointer hover:opacity-75`]);
 let StyledBadge = styled.div([
   tw`flex items-center justify-center w-6 h-6 p-2 text-sm bg-red-500 rounded-full`,
 ]);
