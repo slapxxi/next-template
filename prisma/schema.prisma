@@ -9,13 +9,14 @@ datasource db {
 }
 
 model ShoppingCartItem {
-  id    String @id @default(value: uuid()) @map("_id")
-  count Int
-  item  Item   @relation(fields: [id], references: [id])
+  id     String @id @default(dbgenerated()) @map("_id") @db.ObjectId
+  count  Int
+  item   Item   @relation(fields: [itemId], references: [id])
+  itemId String @db.ObjectId
 }
 
 model Item {
-  id               String             @id @map("_id")
+  id               String             @id @default(dbgenerated()) @map("_id") @db.ObjectId
   name             String
   price            Float
   prevPrice        Float

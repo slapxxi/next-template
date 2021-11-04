@@ -4,10 +4,7 @@ import { prisma } from '../../lib/prisma';
 let cartHandler: NextApiHandler = async (req, res) => {
   if (req.method === 'POST') {
     let body = JSON.parse(req.body);
-    for (const item of body.items) {
-      await prisma.shoppingCartItem.create({
-        data: { count: 1, item: { connect: { id: item.id } } },
-      });
+    for (let item of body.items) {
     }
     res.json({ status: 'success' });
   } else {

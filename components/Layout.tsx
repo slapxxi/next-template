@@ -1,6 +1,5 @@
 import styled from '@emotion/styled';
 import { Facebook, Heart, Linkedin, ShoppingBag, Twitter } from 'lucide-react';
-import React from 'react';
 import tw from 'twin.macro';
 import { useFavorites } from '../lib/hooks/useFavorites';
 import { useShoppingCart } from '../lib/hooks/useShoppingCart';
@@ -49,7 +48,7 @@ export let LayoutHeader: React.FC<LayoutHeaderProps> = (props) => {
             />
           </div>
 
-          <Dropdown css={[tw`flex items-center`]}>
+          <Dropdown css={[tw`flex items-center`]} disabled={shoppingCart.count === 0}>
             <DropdownTrigger css={[tw`flex`]}>
               <ShoppingBag />
               <Badge
@@ -60,8 +59,15 @@ export let LayoutHeader: React.FC<LayoutHeaderProps> = (props) => {
             <DropdownContent css={[tw`flex flex-col gap-2 p-4 bg-white rounded shadow w-max`]}>
               {shoppingCart.items.map((i, index) => (
                 <div css={[tw`flex items-center gap-2`]} key={index}>
-                  <img src={i.item.image} css={[{ width: 20, height: 20 }]} />
+                  {i.item.image ? (
+                    <img src={i.item.image} css={[{ width: 20, height: 20 }]} />
+                  ) : (
+                    <svg viewBox="0 0 20 20" width={20}>
+                      <path d="m0 10a1 1 0 0120 0a1 1 0 01-20 0" fill="#3333" />
+                    </svg>
+                  )}
                   {i.item.name}
+                  <strong>{i.count}</strong>
                 </div>
               ))}
             </DropdownContent>
