@@ -1,19 +1,19 @@
 import { useMutation, useQuery, useQueryClient } from 'react-query';
 import { addItemToShoppingCart } from '../services/addItemToShoppingCart';
 import { getShoppingCart } from '../services/getShoppingCart';
-import { Item } from '../types';
+import { CartItem } from '../types';
 
 interface ShoppingCart {
   count: number;
-  items: any[];
-  addItem: (item: Item) => void;
+  items: CartItem[];
+  addItem: (item: any) => void;
 }
 
 export function useShoppingCart(): ShoppingCart {
   let queryClient = useQueryClient();
   let { status, data } = useQuery('shopping-cart', () => getShoppingCart());
   let mutation = useMutation(
-    async (item: Item) => {
+    async (item: any) => {
       return addItemToShoppingCart([item]);
     },
     {
@@ -22,9 +22,10 @@ export function useShoppingCart(): ShoppingCart {
       },
     },
   );
-  let count = status === 'loading' ? 0 : data.items.length;
+  let count =
+    status === 'loading' ? 0 : data.items.reduce((prev, current) => prev + (current.count || 1), 0);
   let items = status === 'loading' ? [] : data.items;
-  let addItem = (item: Item) => {
+  let addItem = (item: any) => {
     mutation.mutate(item);
   };
   return { count, items, addItem };

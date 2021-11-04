@@ -1,18 +1,18 @@
+import { Item } from '.prisma/client';
 import type { NextPage } from 'next';
 import React from 'react';
 import tw from 'twin.macro';
 import { ItemCard } from '../components/ItemCard';
 import { Layout, LayoutFooter, LayoutHeader } from '../components/Layout';
 import { Title } from '../components/Title';
-import { Item } from '../lib/types';
 
 let Home: NextPage = () => {
   let item: Item = {
     id: 'dogfood',
     name: 'Dog Food',
     image: '/img/food.png',
-    price: '860',
-    prevPrice: '1200',
+    price: 860,
+    prevPrice: 1200,
     description: 'Dog Food Ya Know',
   };
 

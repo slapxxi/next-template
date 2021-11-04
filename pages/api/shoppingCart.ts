@@ -1,29 +1,18 @@
 import { NextApiHandler } from 'next';
-import { connectToDatabase } from '../../lib/connectToDatabase';
+import { prisma } from '../../lib/prisma';
 
 let cartHandler: NextApiHandler = async (req, res) => {
-  let { db } = await connectToDatabase();
-
   if (req.method === 'POST') {
     let body = JSON.parse(req.body);
-    await db.collection('shoppingCart').insertMany(body.items.map((i) => ({ ...i, itemId: i.id })));
+    for (const item of body.items) {
+      await prisma.shoppingCartItem.create({
+        data: { count: 1, item: { connect: { id: item.id } } },
+      });
+    }
     res.json({ status: 'success' });
   } else {
-    let items = await db
-      .collection('shoppingCart')
-      .aggregate([
-        {
-          $lookup: {
-            from: 'items',
-            localField: 'itemId',
-            foreignField: 'id',
-            as: 'item',
-          },
-        },
-      ])
-      .map((doc) => ({ ...doc, item: doc.item[0] }))
-      .toArray();
-    res.json({ items });
+    let cart = await prisma.shoppingCartItem.findMany({ include: { item: true } });
+    res.json({ items: cart });
   }
 };
 

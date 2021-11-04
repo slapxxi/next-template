@@ -1,0 +1,25 @@
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["mongoDb"]
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model ShoppingCartItem {
+  id    String @id @default(value: uuid()) @map("_id")
+  count Int
+  item  Item   @relation(fields: [id], references: [id])
+}
+
+model Item {
+  id               String             @id @map("_id")
+  name             String
+  price            Float
+  prevPrice        Float
+  description      String
+  image            String
+  ShoppingCartItem ShoppingCartItem[]
+}

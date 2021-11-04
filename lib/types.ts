@@ -1,12 +1,8 @@
+import { Item, ShoppingCartItem } from '.prisma/client';
 import { defaultTheme } from './styles/theme';
 
-export interface Item {
-  id: string;
-  name: string;
-  price: string;
-  description: string;
-  image: string;
-  prevPrice?: string;
+export interface CartItem extends ShoppingCartItem {
+  item: Item;
 }
 
 export type Theme = typeof defaultTheme & { data?: any };

@@ -60,8 +60,8 @@ export let LayoutHeader: React.FC<LayoutHeaderProps> = (props) => {
             <DropdownContent css={[tw`flex flex-col gap-2 p-4 bg-white rounded shadow w-max`]}>
               {shoppingCart.items.map((i, index) => (
                 <div css={[tw`flex items-center gap-2`]} key={index}>
-                  <img src={i.image} css={[{ width: 20, height: 20 }]} />
-                  {i.name}
+                  <img src={i.item.image} css={[{ width: 20, height: 20 }]} />
+                  {i.item.name}
                 </div>
               ))}
             </DropdownContent>

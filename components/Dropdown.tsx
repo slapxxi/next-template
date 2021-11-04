@@ -12,10 +12,15 @@ export interface DropdownProps {
 export let Dropdown: React.FC<DropdownProps> = (props) => {
   let { children, ...rest } = props;
   let [isOpen, setIsOpen] = useState(false);
+  let ref = useRef(null);
+
+  useOnClickOutside(ref, () => {
+    setIsOpen(false);
+  });
 
   return (
     <DropdownContext.Provider value={{ isOpen, setIsOpen }}>
-      <div css={[tw`relative`]} {...rest}>
+      <div css={[tw`relative`]} ref={ref} {...rest}>
         {children}
       </div>
     </DropdownContext.Provider>
@@ -52,20 +57,14 @@ export interface DropdownContentProps {
 
 export let DropdownContent: React.FC<DropdownContentProps> = (props) => {
   let { children, ...rest } = props;
-  let { isOpen, setIsOpen } = useContext(DropdownContext);
-  let ref = useRef(null);
+  let { isOpen } = useContext(DropdownContext);
   let spring = useSpring({
     y: isOpen ? '0' : '-20%',
     opacity: isOpen ? 1 : 0,
   });
 
-  useOnClickOutside(ref, () => {
-    setIsOpen(false);
-  });
-
   return (
     <animated.div
-      ref={ref}
       css={[tw`absolute right-0 z-10 top-full`, { transformOrigin: 'top right' }]}
       style={spring}
       onClick={(e) => e.stopPropagation()}
