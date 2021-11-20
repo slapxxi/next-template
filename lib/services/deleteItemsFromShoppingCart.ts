@@ -1,8 +1,8 @@
 import { Item } from '.prisma/client';
 
-export async function addItemToShoppingCart(items: Item[]) {
+export async function deleteItemsFromShoppingCart(items: Item[]) {
   let response = await fetch('/api/shoppingCart', {
-    method: 'POST',
+    method: 'DELETE',
     body: JSON.stringify({ items: items }),
   });
   let data = await response.json();

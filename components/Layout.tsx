@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
-import { Facebook, Heart, Linkedin, ShoppingBag, Twitter } from 'lucide-react';
+import { Facebook, Heart, Linkedin, ShoppingBag, Trash, Twitter } from 'lucide-react';
+import React from 'react';
 import tw from 'twin.macro';
 import { useFavorites } from '../lib/hooks/useFavorites';
 import { useShoppingCart } from '../lib/hooks/useShoppingCart';
@@ -10,11 +11,17 @@ import { FaceIcon } from './Icons';
 import { Logo } from './Logo';
 import { Title } from './Title';
 
-export interface LayoutProps {}
+export interface LayoutProps {
+  className?: string;
+}
 
 export let Layout: React.FC<LayoutProps> = (props) => {
-  let { children } = props;
-  return <div>{children}</div>;
+  let { children, ...rest } = props;
+  return (
+    <div css={[tw`flex flex-col min-h-screen`]} {...rest}>
+      {children}
+    </div>
+  );
 };
 
 export interface LayoutHeaderProps {
@@ -24,6 +31,7 @@ export interface LayoutHeaderProps {
 export let LayoutHeader: React.FC<LayoutHeaderProps> = (props) => {
   let favorites = useFavorites();
   let shoppingCart = useShoppingCart();
+  console.log(shoppingCart);
 
   return (
     <header css={(theme) => [tw`p-2`, { background: theme.bg, '--stroke': theme.bg }]} {...props}>
@@ -52,6 +60,7 @@ export let LayoutHeader: React.FC<LayoutHeaderProps> = (props) => {
             <DropdownTrigger css={[tw`flex`]}>
               <ShoppingBag />
               <Badge
+                loading={shoppingCart.status === 'loading'}
                 count={shoppingCart.count}
                 css={[tw`absolute`, { transform: 'translate(75%, -50%)' }]}
               />
@@ -68,6 +77,9 @@ export let LayoutHeader: React.FC<LayoutHeaderProps> = (props) => {
                   )}
                   {i.item.name}
                   <strong>{i.count}</strong>
+                  <button css={[tw`text-red-600`]} onClick={() => shoppingCart.deleteItem(i.item)}>
+                    <Trash size={18} />
+                  </button>
                 </div>
               ))}
             </DropdownContent>
