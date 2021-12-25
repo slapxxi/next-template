@@ -18,7 +18,7 @@ export interface SigninPageProps {
   providers?: ClientSafeProvider[];
 }
 
-let SignInPage: React.FC<SigninPageProps> = (props, context) => {
+let SignInPage: React.FC<SigninPageProps> = (props) => {
   let { session, csrfToken, errors, providers } = props;
 
   if (session) {

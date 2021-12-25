@@ -25,7 +25,7 @@ export default NextAuth({
         username: { label: 'Username', type: 'text', placeholder: 'Username' },
         password: { label: 'Password', type: 'password', placeholder: 'Password' },
       },
-      async authorize(credentials: Credentials, req) {
+      async authorize(credentials: Credentials) {
         let { username, password } = credentials;
         let { db } = await connectToDatabase();
         let matchingUser = await db.collection('users').findOne(
