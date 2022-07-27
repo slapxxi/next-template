@@ -1,8 +1,8 @@
 import { ThemeProvider } from '@emotion/react';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { Provider as AuthProvider } from 'next-auth/client';
 import type { AppType } from 'next/dist/shared/lib/utils';
 import Head from 'next/head';
-import { QueryClient, QueryClientProvider } from 'react-query';
 import { defaultTheme } from '../lib/styles/theme';
 import '../styles/globals.css';
 
