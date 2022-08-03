@@ -21,6 +21,12 @@
       "name": "Next: Node",
       "request": "attach",
       "port": 9229
+    },
+    {
+      "name": "Launch Microsoft Edge and open the Edge DevTools",
+      "request": "launch",
+      "type": "vscode-edge-devtools.debug",
+      "url": ""
     }
   ],
   "compounds": [
