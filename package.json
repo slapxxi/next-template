@@ -21,6 +21,7 @@
     "@emotion/jest": "^11.10.0",
     "@emotion/react": "^11.10.0",
     "@emotion/styled": "^11.10.0",
+    "@mui/material": "^5.9.3",
     "@playwright/test": "^1.24.2",
     "@react-spring/web": "^9.5.2",
     "@react-three/fiber": "^8.2.2",

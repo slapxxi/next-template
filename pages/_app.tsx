@@ -1,4 +1,5 @@
 import { ThemeProvider } from '@emotion/react';
+import { createTheme, ThemeProvider as MuiThemeProvider } from '@mui/material';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { Provider as AuthProvider } from 'next-auth/client';
 import type { AppType } from 'next/dist/shared/lib/utils';
@@ -7,6 +8,7 @@ import { defaultTheme } from '../lib/styles/theme';
 import '../styles/globals.css';
 
 let client = new QueryClient();
+let muiTheme = createTheme();
 
 let App: AppType = (props) => {
   let { Component, pageProps } = props;
@@ -21,7 +23,9 @@ let App: AppType = (props) => {
       <QueryClientProvider client={client}>
         <AuthProvider session={pageProps.session}>
           <ThemeProvider theme={defaultTheme}>
-            <Component {...pageProps} />
+            <MuiThemeProvider theme={muiTheme}>
+              <Component {...pageProps} />
+            </MuiThemeProvider>
           </ThemeProvider>
         </AuthProvider>
       </QueryClientProvider>
