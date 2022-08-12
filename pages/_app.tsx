@@ -1,6 +1,6 @@
 import { ThemeProvider } from '@emotion/react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { Provider as AuthProvider } from 'next-auth/client';
+import { SessionProvider } from 'next-auth/react';
 import type { AppType } from 'next/dist/shared/lib/utils';
 import Head from 'next/head';
 import { defaultTheme } from '../lib/styles/theme';
@@ -19,11 +19,11 @@ let App: AppType = (props) => {
       </Head>
 
       <QueryClientProvider client={client}>
-        <AuthProvider session={pageProps.session}>
+        <SessionProvider session={pageProps.session}>
           <ThemeProvider theme={defaultTheme}>
             <Component {...pageProps} />
           </ThemeProvider>
-        </AuthProvider>
+        </SessionProvider>
       </QueryClientProvider>
     </>
   );
