@@ -2,7 +2,9 @@
  * 2-dimensional vector
  */
 export type Vec2 = [number, number];
-export type Matrix = [number, number, number, number, number?, number?];
+export type Matrix =
+  | [number, number, number, number, number?, number?]
+  | { a: number; b: number; c: number; d: number; e: number; f: number };
 
 export function vecSum(v1: Vec2, v2: Vec2): Vec2 {
   return [v1[0] + v2[0], v1[1] + v2[1]];
@@ -29,10 +31,14 @@ export function vecDot(v1: Vec2, v2: Vec2): number {
 }
 
 export function vecMatrixTransform(vector: Vec2, matrix: Matrix): Vec2 {
-  return vecSum(
-    vecMul(matrix.slice(0, 2) as Vec2, vector[0]),
-    vecMul(matrix.slice(2, 4) as Vec2, vector[1]),
-  );
+  if (Array.isArray(matrix)) {
+    return vecSum(
+      vecMul(matrix.slice(0, 2) as Vec2, vector[0]),
+      vecMul(matrix.slice(2, 4) as Vec2, vector[1]),
+    );
+  }
+
+  return vecSum(vecMul([matrix.a, matrix.b], vector[0]), vecMul([matrix.c, matrix.d], vector[1]));
 }
 
 export function vecToString(vector: Vec2): string {
