@@ -1,12 +1,12 @@
 import { ThemeProvider } from '@emotion/react';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { SessionProvider } from 'next-auth/react';
+// import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+// import { SessionProvider } from 'next-auth/react';
 import type { AppType } from 'next/dist/shared/lib/utils';
 import Head from 'next/head';
 import { defaultTheme } from '../lib/styles/theme';
 import '../styles/globals.css';
 
-let client = new QueryClient();
+// let client = new QueryClient();
 
 let App: AppType = (props) => {
   let { Component, pageProps } = props;
@@ -18,13 +18,13 @@ let App: AppType = (props) => {
         <meta name="theme-color" content="#0b0b16" />
       </Head>
 
-      <QueryClientProvider client={client}>
-        <SessionProvider session={pageProps.session}>
-          <ThemeProvider theme={defaultTheme}>
-            <Component {...pageProps} />
-          </ThemeProvider>
-        </SessionProvider>
-      </QueryClientProvider>
+      {/* <QueryClientProvider client={client}> */}
+      {/* <SessionProvider session={pageProps.session}> */}
+      <ThemeProvider theme={defaultTheme}>
+        <Component {...pageProps} />
+      </ThemeProvider>
+      {/* </SessionProvider> */}
+      {/* </QueryClientProvider> */}
     </>
   );
 };
