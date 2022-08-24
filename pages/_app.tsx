@@ -1,10 +1,10 @@
 import { ThemeProvider } from '@emotion/react';
 // import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 // import { SessionProvider } from 'next-auth/react';
+import { defaultTheme } from 'lib/styles/theme';
 import type { AppType } from 'next/dist/shared/lib/utils';
 import Head from 'next/head';
-import { defaultTheme } from '../lib/styles/theme';
-import '../styles/globals.css';
+import 'styles/globals.css';
 
 // let client = new QueryClient();
 
