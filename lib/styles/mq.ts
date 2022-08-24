@@ -5,11 +5,11 @@ export let sm = (...styles: Array<CSSInterpolation>) => ({
 });
 
 export let md = (...styles: Array<CSSInterpolation>) => ({
-  '@media screen and (min-width: 680px)': styles,
+  '@media screen and (min-width: 768px)': styles,
 });
 
 export let lg = (...styles: Array<CSSInterpolation>) => ({
-  '@media screen and (min-width: 960px)': styles,
+  '@media screen and (min-width: 1024px)': styles,
 });
 
 export let xl = (...styles: Array<CSSInterpolation>) => ({
