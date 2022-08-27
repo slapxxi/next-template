@@ -7,13 +7,15 @@
     "debug": "NODE_OPTIONS=\"--inspect\" next dev -H 0.0.0.0",
     "build": "next build",
     "test": "jest",
+    "test-hook": "jest --bail --passWithNoTests",
     "pw": "npx playwright",
     "pwt": "npx playwright test",
     "pwt:debug": "PWDEBUG=1 npx playwright test",
     "pwt:watch": "nodemon -e ts,tsx --watch specs --watch lib --watch pages --exec npx playwright test",
     "type-check": "tsc",
     "test:debug": "node --inspect-brk node_modules/.bin/jest --runInBand",
-    "start": "next start"
+    "start": "next start",
+    "prepare": "husky install"
   },
   "dependencies": {
     "@babel/plugin-proposal-pipeline-operator": "^7.15.0",
@@ -91,6 +93,7 @@
     "@types/testing-library__jest-dom": "^5.14.5",
     "@types/testing-library__user-event": "^4.2.0",
     "@types/victory": "^35.0.0",
-    "babel-loader": "^8.2.5"
+    "babel-loader": "^8.2.5",
+    "husky": "^8.0.0"
   }
 }
