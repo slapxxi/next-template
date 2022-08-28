@@ -24,7 +24,6 @@
     "prepare": "husky install"
   },
   "dependencies": {
-    "@babel/plugin-proposal-pipeline-operator": "^7.15.0",
     "@emotion/babel-plugin": "^11.10.2",
     "@emotion/jest": "^11.10.0",
     "@emotion/react": "^11.10.0",
@@ -100,7 +99,7 @@
     "@types/testing-library__user-event": "^4.2.0",
     "@types/victory": "^35.0.0",
     "babel-loader": "^8.2.5",
-    "husky": "^8.0.0",
+    "husky": "^8.0.1",
     "lint-staged": "^13.0.3"
   }
 }
