@@ -39,3 +39,5 @@ remote-profile
 test-results
 
 specs/**/*.png
+
+*.tsbuildinfo
