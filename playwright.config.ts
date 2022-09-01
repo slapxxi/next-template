@@ -25,6 +25,7 @@ let config: PlaywrightTestConfig = {
     },
   ],
   testDir: 'specs',
+  reporter: [['html', { open: 'never' }]],
 };
 
 export default config;
