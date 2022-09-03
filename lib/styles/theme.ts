@@ -1,8 +1,29 @@
-export let defaultTheme = {
-  fg: 'hsl(230, 20%, 15%)',
-  bg: 'hsl(190, 20%, 75%)',
-  fgLink: 'hsl(220, 90%, 50%)',
-  em: 'hsl(220, 100%, 58%)',
-  //colors
+let colors = {
+  black: 'black',
+  white: 'ghostwhite',
   pink: 'hsl(350, 100%, 88%)',
+  offwhite: 'floralwhite',
+  transparent: 'transparent',
+} as const;
+
+let components = {
+  Button: {
+    bg: colors.black,
+    fg: colors.offwhite,
+  },
+  Link: {
+    fg: colors.black,
+  },
+};
+
+let general = {
+  fg: colors.black,
+  bg: colors.offwhite,
+  em: colors.pink,
+};
+
+export let defaultTheme = {
+  ...general,
+  ...colors,
+  ...components,
 };
