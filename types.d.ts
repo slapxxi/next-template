@@ -17,3 +17,7 @@ declare module 'react-spring' {
 declare module '@react-spring/web' {
   export const animated: any;
 }
+
+declare global {
+  var mongo: any;
+}
