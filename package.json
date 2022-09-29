@@ -52,6 +52,7 @@
     "jest-axe": "^6.0.0",
     "jest-environment-jsdom": "^29.1.1",
     "jest-watch-typeahead": "^2.2.0",
+    "leva": "^0.9.31",
     "lodash": "^4.17.21",
     "lucide-react": "^0.90.0",
     "mongodb": "^4.10.0",
