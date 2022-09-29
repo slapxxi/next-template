@@ -1936,17 +1936,17 @@
   dependencies:
     tslib "^2.4.0"
 
-"@tanstack/query-core@4.7.1":
-  version "4.7.1"
-  resolved "https://registry.yarnpkg.com/@tanstack/query-core/-/query-core-4.7.1.tgz#e732da7d0a4f31b4caa806099fc599617753d451"
-  integrity sha512-BzFI4KdiklxfUUgNiO6E4XsSwaX5NscuIhP7aqWbS8Hqik1KohfvO+SXpftSZHOyzm0+XpycRsip/QEs3Hx3AA==
+"@tanstack/query-core@4.7.2":
+  version "4.7.2"
+  resolved "https://registry.yarnpkg.com/@tanstack/query-core/-/query-core-4.7.2.tgz#5e8f0bc632b9c5423e5c5ca6d147c386b64dfec7"
+  integrity sha512-1zQuFsKShMhLY6rQYBEmkYiK9Zcb3lQcCVOTIgQcvliKIxPyZFaE/8LMtaITEEfgGF5qwYqHdm61+BUtpyNsrg==
 
-"@tanstack/react-query@^4.7.1":
-  version "4.7.1"
-  resolved "https://registry.yarnpkg.com/@tanstack/react-query/-/react-query-4.7.1.tgz#ff7d58e113b735c231138f9b9be828e1730923c4"
-  integrity sha512-/3PBXuvdlvUbSv5eqgkda4VAN14t+rpDop9LnZmEmIMW8ARrbW7Rt6PYTya33JGaeo6XoztRzEH8TaY5S+neNQ==
+"@tanstack/react-query@^4.7.2":
+  version "4.7.2"
+  resolved "https://registry.yarnpkg.com/@tanstack/react-query/-/react-query-4.7.2.tgz#ce020c4e0261e16b99d24322d1598ffc28974472"
+  integrity sha512-4nJ0HxU2kxkaHZ/swJw39io3Bb3liiggJBsCCdFOydZOl8AJDRCor1E3GsOBrtn53HT01R9EIP4PY/6fyYdKsw==
   dependencies:
-    "@tanstack/query-core" "4.7.1"
+    "@tanstack/query-core" "4.7.2"
     use-sync-external-store "^1.2.0"
 
 "@testing-library/dom@^8.5.0":
@@ -2145,10 +2145,10 @@
     jest-diff "^26.0.0"
     pretty-format "^26.0.0"
 
-"@types/jest@^29.0.3":
-  version "29.0.3"
-  resolved "https://registry.yarnpkg.com/@types/jest/-/jest-29.0.3.tgz#b61a5ed100850686b8d3c5e28e3a1926b2001b59"
-  integrity sha512-F6ukyCTwbfsEX5F2YmVYmM5TcTHy1q9P5rWlRbrk56KyMh3v9xRGUO3aa8+SkvMi0SHXtASJv1283enXimC0Og==
+"@types/jest@^29.1.0":
+  version "29.1.0"
+  resolved "https://registry.yarnpkg.com/@types/jest/-/jest-29.1.0.tgz#9cfbe1b0d4408f9732aaf37447460f10f2c71ce6"
+  integrity sha512-CqlKkMNaUhFSRvqVKniNhbcy9fc/Rj2cmFD5t8Jtu4HlHzSit27h7XKfP5kkxBeROQ8WAvQQmy93FIz9or8jKg==
   dependencies:
     expect "^29.0.0"
     pretty-format "^29.0.0"
@@ -2172,10 +2172,10 @@
   resolved "https://registry.npmjs.org/@types/json-schema/-/json-schema-7.0.7.tgz"
   integrity sha512-cxWFQVseBm6O9Gbw1IWb8r6OS4OhSt3hPZLkFApLjM8TEXROBuQGLAH2i2gZpcXdLBIrpXuTDhH7Vbm1iXmNGA==
 
-"@types/lodash@^4.14.185":
-  version "4.14.185"
-  resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.185.tgz#c9843f5a40703a8f5edfd53358a58ae729816908"
-  integrity sha512-evMDG1bC4rgQg4ku9tKpuMh5iBNEwNa3tf9zRHdP1qlv+1WUg44xat4IxCE14gIpZRGUUWAx2VhItCZc25NfMA==
+"@types/lodash@^4.14.186":
+  version "4.14.186"
+  resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.186.tgz#862e5514dd7bd66ada6c70ee5fce844b06c8ee97"
+  integrity sha512-eHcVlLXP0c2FlMPm56ITode2AgLMSa6aJ05JTTbYbI+7EMkCEE5qk2E41d5g2lCVTqRe0GnnRFurmlCsDODrPw==
 
 "@types/mongodb@^4.0.7":
   version "4.0.7"
@@ -5588,10 +5588,10 @@ natural-compare@^1.4.0:
   resolved "https://registry.npmjs.org/natural-compare/-/natural-compare-1.4.0.tgz"
   integrity sha1-Sr6/7tdUHywnrPspvbvRXI1bpPc=
 
-next-auth@^4.12.1:
-  version "4.12.1"
-  resolved "https://registry.yarnpkg.com/next-auth/-/next-auth-4.12.1.tgz#ffd2066e98717388bfb85a76160e76e9658fdc69"
-  integrity sha512-T0By19RqT4TeStY65OUOaeiwJnGtkgY84GlxbsL9CSEIvu5QvaQlbKh48PwPjtEkaIOxKA3FVaJL6Lsz37Ju5g==
+next-auth@^4.12.2:
+  version "4.12.2"
+  resolved "https://registry.yarnpkg.com/next-auth/-/next-auth-4.12.2.tgz#fc665dfde1b53783e4f275fb218bd6ccce935245"
+  integrity sha512-B25iFUIKYa2pRMWRFPIQWv84WJydqIsv6EbriNuzqNSZnxnlmpsrmJrTeMMLf+9a3qf9FG8enxDmDntmwnBkDQ==
   dependencies:
     "@babel/runtime" "^7.16.3"
     "@panva/hkdf" "^1.0.1"
