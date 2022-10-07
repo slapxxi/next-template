@@ -1,7 +1,7 @@
 /**
  * 2-dimensional vector
  */
-export type Vec2 = [number, number];
+export type Vec2<T = number> = [T, T];
 
 export type Matrix =
   | [number, number, number, number, number?, number?]
@@ -26,6 +26,10 @@ export function vecDiv(vector: Vec2, scalar: number): Vec2 {
 export function vecLen(vector: Vec2): number {
   // Math.sqrt is much faster than Math.hypot in some browsers for some reason
   return Math.sqrt(vector[0] ** 2 + vector[1] ** 2);
+}
+
+export function vecDist(v1: Vec2, v2: Vec2): number {
+  return vecLen(vecDiff(v1, v2));
 }
 
 export function vecDot(v1: Vec2, v2: Vec2): number {
