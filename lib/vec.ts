@@ -1,3 +1,9 @@
+export type Vector<
+  TLen extends number,
+  T = number,
+  TResult extends unknown[] = [],
+> = TResult['length'] extends TLen ? TResult : Vector<TLen, T, [T, ...TResult]>;
+
 /**
  * 2-dimensional vector
  */
