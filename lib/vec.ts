@@ -49,8 +49,11 @@ export function vecMatrixTransform(vector: Vec2, matrix: Matrix): Vec2 {
       vecMul(matrix.slice(2, 4) as Vec2, vector[1]),
     );
   }
-
   return vecSum(vecMul([matrix.a, matrix.b], vector[0]), vecMul([matrix.c, matrix.d], vector[1]));
+}
+
+export function vecAngle(v1: Vec2, v2: Vec2): number {
+  return Math.acos(vecDot(v1, v2) / (vecLen(v1) * vecLen(v2)));
 }
 
 export function vecToString(vector: Vec2): string {
