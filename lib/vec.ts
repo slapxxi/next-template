@@ -53,7 +53,7 @@ export function vecMatrixTransform(vector: Vec2, matrix: Matrix): Vec2 {
 }
 
 export function vecAngle(v1: Vec2, v2: Vec2): number {
-  return Math.acos(vecDot(v1, v2) / (vecLen(v1) * vecLen(v2)));
+  return Math.atan2(v2[1], v2[0]) - Math.atan2(v1[1], v1[0]);
 }
 
 export function vecToString(vector: Vec2): string {
