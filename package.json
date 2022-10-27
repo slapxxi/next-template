@@ -2,11 +2,6 @@
   "name": "next-template",
   "version": "0.1.0",
   "private": true,
-  "babelMacros": {
-    "twin": {
-      "allowStyleProp": true
-    }
-  },
   "lint-staged": {
     "**/*.{js,jsx,ts,tsx}": [
       "prettier --write"
