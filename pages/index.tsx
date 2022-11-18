@@ -1,8 +1,5 @@
-import type { NextPage } from 'next';
-import { indexStyle } from 'styles/index.css';
-
-let Home: NextPage = () => {
-  return <div className={indexStyle}>Home</div>;
+let IndexPage = () => {
+  return <div>home</div>;
 };
 
-export default Home;
+export default IndexPage;
