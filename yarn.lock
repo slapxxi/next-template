@@ -6557,10 +6557,10 @@ ms@^2.0.0, ms@^2.1.1:
   resolved "https://registry.npmjs.org/ms/-/ms-2.1.3.tgz"
   integrity sha512-6FlzubTLZG3J2a/NVCAleEhjzq5oxgHyaCU9yYXvcLsvoVaHJq/s5xXI6/XXP6tz7R9xAOtHnSO/tXtF3WRTlA==
 
-msw@^0.48.3:
-  version "0.48.3"
-  resolved "https://registry.yarnpkg.com/msw/-/msw-0.48.3.tgz#e8328533ce4843e747371ffd57207d509b8cb3a6"
-  integrity sha512-8ENBcX7JVWPA5v9WTeOnCWCMOVtyBiXZyD/0+AKlhOysJRB1ZdBAcMGLIiQ2/VpQ2lC0Yd7SFKg9aviAQSVeaw==
+msw@^0.49.0:
+  version "0.49.0"
+  resolved "https://registry.yarnpkg.com/msw/-/msw-0.49.0.tgz#49c0464353c474c66f548eaddd4773d224f5acf9"
+  integrity sha512-xX5RMSMjN58j8G/V26Uaf5LP464VltuWyd66TQimLueVYfG47RKydGsd4JW165Jb/gjoaQxh5Tdvv31wdZAOlA==
   dependencies:
     "@mswjs/cookies" "^0.2.2"
     "@mswjs/interceptors" "^0.17.5"
@@ -6602,10 +6602,10 @@ natural-compare@^1.4.0:
   resolved "https://registry.npmjs.org/natural-compare/-/natural-compare-1.4.0.tgz"
   integrity sha1-Sr6/7tdUHywnrPspvbvRXI1bpPc=
 
-next-auth@^4.16.4:
-  version "4.16.4"
-  resolved "https://registry.yarnpkg.com/next-auth/-/next-auth-4.16.4.tgz#3ab796a0979ac05a6ebc1fbf343983ef5bc965c9"
-  integrity sha512-KXW578+ER1u5RcWLwCHMdb/RIBIO6JM8r6xlf9RIPSKzkvDcX9FHiZfJS2vOq/SurHXPJZc4J3OS4IDJpF74Dw==
+next-auth@^4.17.0:
+  version "4.17.0"
+  resolved "https://registry.yarnpkg.com/next-auth/-/next-auth-4.17.0.tgz#776d2a0999d4e2eb56968cad282c1ecd37516a2c"
+  integrity sha512-aN2tdnjS0MDeUpB2tBDOaWnegkgeMWrsccujbXRGMJ607b+EwRcy63MFGSr0OAboDJEe0902piXQkt94GqF8Qw==
   dependencies:
     "@babel/runtime" "^7.16.3"
     "@panva/hkdf" "^1.0.1"
@@ -8109,10 +8109,10 @@ tslib@~2.1.0:
   resolved "https://registry.npmjs.org/tslib/-/tslib-2.1.0.tgz"
   integrity sha512-hcVC3wYEziELGGmEEXue7D75zbwIIVUMWAVbHItGPx0ziyXxrOMQx4rQEVEV45Ut/1IotuEvwqPopzIOkDMf0A==
 
-twin.macro@^3.0.0:
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/twin.macro/-/twin.macro-3.0.0.tgz#f36a77c0fe8dbb3b18e2fa4895d0046cf238cf77"
-  integrity sha512-NZHhRmMaDDgJL3QDqDKGQkCMHd1gd9q2wFXYUz4nyRcGPhvOaxbR3SaQS2bi+oc6NZGqjlDjCtjRryafgaszHA==
+twin.macro@^3.0.1:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/twin.macro/-/twin.macro-3.0.1.tgz#21fe8577d566838ddca532747ef5993fa19c1cfd"
+  integrity sha512-0mpdfQYpfCyPYa37MC/WKHCLQrwlqe6b2bM+uKaku5Iwe6bxHvEhcfXp8E8TyAdTupenYTvI6nHZvrh7msSFkQ==
   dependencies:
     "@babel/template" "^7.18.10"
     babel-plugin-macros "^3.1.0"
