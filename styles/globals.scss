@@ -32,15 +32,4 @@
 }
 
 @layer utilities {
-  .pre3d {
-    transform-style: preserve-3d;
-  }
-
-  .line-round {
-    stroke-linejoin: round;
-  }
-
-  .cap-round {
-    stroke-linecap: round;
-  }
 }

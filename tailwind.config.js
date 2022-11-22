@@ -1,3 +1,5 @@
+const plugin = require('tailwindcss/plugin');
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   darkMode: 'class',
@@ -16,5 +18,39 @@ module.exports = {
       },
     },
   },
-  plugins: [require('@tailwindcss/container-queries')],
+  plugins: [
+    require('@tailwindcss/container-queries'),
+    plugin(({ addUtilities }) => {
+      addUtilities({
+        '.pre-3d': {
+          'transform-style': 'preserve-3d',
+        },
+        '.cap-round': {
+          'stroke-linecap': 'round',
+        },
+        '.line-round': {
+          'stroke-linejoin': 'round',
+        },
+        '.content-auto': {
+          'content-visibility': 'auto',
+        },
+        '.content-hidden': {
+          'content-visibility': 'hidden',
+        },
+        '.content-visible': {
+          'content-visibility': 'visible',
+        },
+      });
+    }),
+    // plugin(({ matchUtilities, theme }) => {
+    //   matchUtilities(
+    //     {
+    //       tab: (value) => ({
+    //         tabSize: value,
+    //       }),
+    //     },
+    //     { values: theme('tabSize') },
+    //   );
+    // }),
+  ],
 };
