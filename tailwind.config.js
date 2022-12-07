@@ -9,6 +9,11 @@ module.exports = {
     './components/**/*.{js,ts,jsx,tsx}',
   ],
   theme: {
+    data: {
+      checked: 'checked',
+      vertical: 'vertical',
+      horizontal: 'horizontal',
+    },
     extend: {
       colors: {
         primary: 'hsl(var(--primary, 0 0% 0%) / <alpha-value>)',
