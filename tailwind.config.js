@@ -27,6 +27,9 @@ module.exports = {
     require('@tailwindcss/container-queries'),
     plugin(({ addUtilities }) => {
       addUtilities({
+        '.perspective': {
+          perspective: '800px',
+        },
         '.pre-3d': {
           'transform-style': 'preserve-3d',
         },
