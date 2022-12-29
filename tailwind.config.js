@@ -14,6 +14,15 @@ module.exports = {
       vertical: 'vertical',
       horizontal: 'horizontal',
     },
+    container: {
+      padding: {
+        DEFAULT: '2rem',
+        sm: '2rem',
+        lg: '2rem',
+        xl: '2rem',
+        '2xl': '2rem',
+      },
+    },
     extend: {
       colors: {
         primary: 'hsl(var(--primary, 0 0% 0%) / <alpha-value>)',
