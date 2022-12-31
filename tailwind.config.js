@@ -36,6 +36,15 @@ module.exports = {
     require('@tailwindcss/container-queries'),
     plugin(({ addUtilities }) => {
       addUtilities({
+        '.writing-v-rl': {
+          writingMode: 'vertical-rl',
+        },
+        '.writing-v-lr': {
+          writingMode: 'vertical-lr',
+        },
+        '.writing-h-tb': {
+          writingMode: 'horizontal-tb',
+        },
         '.perspective': {
           perspective: '800px',
         },
