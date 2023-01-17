@@ -2375,17 +2375,17 @@
     "@radix-ui/react-use-callback-ref" "1.0.0"
     "@radix-ui/react-use-escape-keydown" "1.0.2"
 
-"@radix-ui/react-dropdown-menu@^2.0.1":
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/@radix-ui/react-dropdown-menu/-/react-dropdown-menu-2.0.1.tgz#dbc90676df7fb313d6b1eb204fdb434dbb724d15"
-  integrity sha512-WDZqmwsNuxdBMkvgB85UeSPAT0wSBd+ojxtzX7lU7uYYh47gacCj6Spo0l9+X4TMe3JA1BBMN9c7OhIMaQeKbg==
+"@radix-ui/react-dropdown-menu@^2.0.2":
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/@radix-ui/react-dropdown-menu/-/react-dropdown-menu-2.0.2.tgz#758ca7733dc79b3a6523d2d5a8d33970ec7ece1b"
+  integrity sha512-r0kN0fstrSi+uAdK2GkLxnnbhqVBy/9Q4o4PvGOYipW0BldQlYBMSmZprvCNj2i2mAATx16kvzIn12GnaGjbMw==
   dependencies:
     "@babel/runtime" "^7.13.10"
     "@radix-ui/primitive" "1.0.0"
     "@radix-ui/react-compose-refs" "1.0.0"
     "@radix-ui/react-context" "1.0.0"
     "@radix-ui/react-id" "1.0.0"
-    "@radix-ui/react-menu" "2.0.1"
+    "@radix-ui/react-menu" "2.0.2"
     "@radix-ui/react-primitive" "1.0.1"
     "@radix-ui/react-use-controllable-state" "1.0.0"
 
@@ -2422,10 +2422,10 @@
     "@babel/runtime" "^7.13.10"
     "@radix-ui/react-use-layout-effect" "1.0.0"
 
-"@radix-ui/react-menu@2.0.1":
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/@radix-ui/react-menu/-/react-menu-2.0.1.tgz#44ebfd45d8482db678b935c0b9d1102d683372d8"
-  integrity sha512-I5FFZQxCl2fHoJ7R0m5/oWA9EX8/ttH4AbgneoCH7DAXQioFeb0XMAYnOVSp1GgJZ1Nx/mohxNQSeTMcaF1YPw==
+"@radix-ui/react-menu@2.0.2":
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/@radix-ui/react-menu/-/react-menu-2.0.2.tgz#54d4e040407962af95ff3c66612749661a504de7"
+  integrity sha512-H5dtBi/k3tc45IMd2Pu+Q2PyONFlsYJ5sWUlflSs8BQRghh5GhJHLRuB1yb88VOywuzzvGkaR/HUJJ65Jf2POA==
   dependencies:
     "@babel/runtime" "^7.13.10"
     "@radix-ui/primitive" "1.0.0"
@@ -2437,20 +2437,20 @@
     "@radix-ui/react-focus-guards" "1.0.0"
     "@radix-ui/react-focus-scope" "1.0.1"
     "@radix-ui/react-id" "1.0.0"
-    "@radix-ui/react-popper" "1.0.1"
+    "@radix-ui/react-popper" "1.1.0"
     "@radix-ui/react-portal" "1.0.1"
     "@radix-ui/react-presence" "1.0.0"
     "@radix-ui/react-primitive" "1.0.1"
-    "@radix-ui/react-roving-focus" "1.0.1"
+    "@radix-ui/react-roving-focus" "1.0.2"
     "@radix-ui/react-slot" "1.0.1"
     "@radix-ui/react-use-callback-ref" "1.0.0"
     aria-hidden "^1.1.1"
     react-remove-scroll "2.5.5"
 
-"@radix-ui/react-popover@^1.0.2":
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/@radix-ui/react-popover/-/react-popover-1.0.2.tgz#f761c8aafb61519522b8e80501c589e619073a2c"
-  integrity sha512-4tqZEl9w95R5mlZ/sFdgBnfhCBOEPepLIurBA5kt/qaAhldJ1tNQd0ngr0ET0AHbPotT4mwxMPr7a+MA/wbK0g==
+"@radix-ui/react-popover@^1.0.3":
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/@radix-ui/react-popover/-/react-popover-1.0.3.tgz#65ae2ee1fca2d7fd750308549eb8e0857c6160fe"
+  integrity sha512-YwedSukfWsyJs3/yP3yXUq44k4/JBe3jqU63Z8v2i19qZZ3dsx32oma17ztgclWPNuqp3A+Xa9UiDlZHyVX8Vg==
   dependencies:
     "@babel/runtime" "^7.13.10"
     "@radix-ui/primitive" "1.0.0"
@@ -2460,7 +2460,7 @@
     "@radix-ui/react-focus-guards" "1.0.0"
     "@radix-ui/react-focus-scope" "1.0.1"
     "@radix-ui/react-id" "1.0.0"
-    "@radix-ui/react-popper" "1.0.1"
+    "@radix-ui/react-popper" "1.1.0"
     "@radix-ui/react-portal" "1.0.1"
     "@radix-ui/react-presence" "1.0.0"
     "@radix-ui/react-primitive" "1.0.1"
@@ -2484,10 +2484,10 @@
     "@radix-ui/react-use-size" "0.1.0"
     "@radix-ui/rect" "0.1.1"
 
-"@radix-ui/react-popper@1.0.1":
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/@radix-ui/react-popper/-/react-popper-1.0.1.tgz#9fa8a6a493404afa225866a5cd75af23d141baa0"
-  integrity sha512-J4Vj7k3k+EHNWgcKrE+BLlQfpewxA7Zd76h5I0bIa+/EqaIZ3DuwrbPj49O3wqN+STnXsBuxiHLiF0iU3yfovw==
+"@radix-ui/react-popper@1.1.0":
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/@radix-ui/react-popper/-/react-popper-1.1.0.tgz#2be7e4c0cd4581f54277ca33a981c9037d2a8e60"
+  integrity sha512-07U7jpI0dZcLRAxT7L9qs6HecSoPhDSJybF7mEGHJDBDv+ZoGCvIlva0s+WxMXwJEav+ckX3hAlXBtnHmuvlCQ==
   dependencies:
     "@babel/runtime" "^7.13.10"
     "@floating-ui/react-dom" "0.7.2"
@@ -2495,6 +2495,7 @@
     "@radix-ui/react-compose-refs" "1.0.0"
     "@radix-ui/react-context" "1.0.0"
     "@radix-ui/react-primitive" "1.0.1"
+    "@radix-ui/react-use-callback-ref" "1.0.0"
     "@radix-ui/react-use-layout-effect" "1.0.0"
     "@radix-ui/react-use-rect" "1.0.0"
     "@radix-ui/react-use-size" "1.0.0"
@@ -2568,10 +2569,10 @@
     "@babel/runtime" "^7.13.10"
     "@radix-ui/react-slot" "1.0.1"
 
-"@radix-ui/react-roving-focus@1.0.1":
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/@radix-ui/react-roving-focus/-/react-roving-focus-1.0.1.tgz#475621f63aee43faa183a5270f35d49e530de3d7"
-  integrity sha512-TB76u5TIxKpqMpUAuYH2VqMhHYKa+4Vs1NHygo/llLvlffN6mLVsFhz0AnSFlSBAvTBYVHYAkHAyEt7x1gPJOA==
+"@radix-ui/react-roving-focus@1.0.2":
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/@radix-ui/react-roving-focus/-/react-roving-focus-1.0.2.tgz#d8ac2e3b8006697bdfc2b0eb06bef7e15b6245de"
+  integrity sha512-HLK+CqD/8pN6GfJm3U+cqpqhSKYAWiOJDe+A+8MfxBnOue39QEeMa43csUn2CXCHQT0/mewh1LrrG4tfkM9DMA==
   dependencies:
     "@babel/runtime" "^7.13.10"
     "@radix-ui/primitive" "1.0.0"
@@ -6429,10 +6430,10 @@ lru-cache@^6.0.0:
   dependencies:
     yallist "^4.0.0"
 
-lucide-react@^0.104.1:
-  version "0.104.1"
-  resolved "https://registry.yarnpkg.com/lucide-react/-/lucide-react-0.104.1.tgz#859ba154569413f4181e2db8d5680993aafb4417"
-  integrity sha512-BKvhulnLKmBj+6pqUN5ViYk4a5fabMgc4B0a4ZLUnbRqkDDWH3h7Iet6U4WbesJzjWauQrXUlEvQCe5XpFuRnw==
+lucide-react@^0.105.0:
+  version "0.105.0"
+  resolved "https://registry.yarnpkg.com/lucide-react/-/lucide-react-0.105.0.tgz#545bf09598d47dc6018136088d705f0fc054ce5a"
+  integrity sha512-iHaIkd4Wq6aNIVrFMXt3If8E/+2lnJd4WlCyntoJNIzZ8nWhdSSHWpsw7XM4rlw2319LZ2t4WLdnM8Z0ECDTOQ==
 
 lz-string@^1.4.4:
   version "1.4.4"
@@ -7354,10 +7355,10 @@ react-fast-compare@^2.0.0:
   resolved "https://registry.yarnpkg.com/react-fast-compare/-/react-fast-compare-2.0.4.tgz#e84b4d455b0fec113e0402c329352715196f81f9"
   integrity sha512-suNP+J1VU1MWFKcyt7RtjiSWUjvidmQSlqu+eHslq+342xCbGTYmC0mEhPCOHxlW0CywylOC1u2DFAT+bv4dBw==
 
-react-hook-form@^7.42.0:
-  version "7.42.0"
-  resolved "https://registry.yarnpkg.com/react-hook-form/-/react-hook-form-7.42.0.tgz#91817cccd44e12af8fbf26c45e756634e76cbd23"
-  integrity sha512-XDEjSUZmT68FOSv2FaD3XlN1sa2HB9vIQ9SVKsogGrHUY43o2aANQDC9LgHa4zusqCMKLG3qitpTcEhpYWHBFw==
+react-hook-form@^7.42.1:
+  version "7.42.1"
+  resolved "https://registry.yarnpkg.com/react-hook-form/-/react-hook-form-7.42.1.tgz#c6396ca684716d89abc1c7e64343badfd30c56c6"
+  integrity sha512-2UIGqwMZksd5HS55crTT1ATLTr0rAI4jS7yVuqTaoRVDhY2Qc4IyjskCmpnmdYqUNOYFy04vW253tb2JRVh+IQ==
 
 react-intersection-observer@^9.4.1:
   version "9.4.1"
