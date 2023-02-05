@@ -130,8 +130,9 @@ let App: AppType = (props) => {
         <small className="mb-2 text-xs font-bold">&copy; 2023, XLombard</small>
         <p className="text-xs">Конфиденциальность и обработка персональных данных</p>
       </footer>
+
       {menuOpen && (
-        <div className="fixed inset-0 overflow-y-scroll bg-blue text-sm font-medium text-white">
+        <div className="fixed inset-0 z-10 overflow-y-scroll bg-blue text-sm font-medium text-white">
           <header className="flex gap-3 px-5 py-3 pb-8">
             <Button onClick={() => setMenuOpen((o) => !o)}>
               <CloseIcon />
