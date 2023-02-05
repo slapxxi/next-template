@@ -3,13 +3,31 @@
 @tailwind utilities;
 
 @layer base {
+  @font-face {
+    font-family: 'Onest';
+    src: url(/fonts/OnestMedium1602-hint.woff) format('woff');
+    font-weight: 500;
+  }
+
+  @font-face {
+    font-family: 'Onest';
+    src: url(/fonts/OnestBold1602-hint.woff) format('woff');
+    font-weight: 700;
+  }
+
+  @font-face {
+    font-family: 'Onest';
+    src: url(/fonts/OnestRegular1602-hint.woff) format('woff');
+    font-weight: 400;
+  }
+
   html,
   body,
   #__next {
     height: 100%;
     padding: 0;
     margin: 0;
-    font-family: Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue,
+    font-family: Onest, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue,
       sans-serif;
   }
 
@@ -21,9 +39,53 @@
   * {
     box-sizing: border-box;
   }
+
+  em {
+    @apply not-italic text-blue;
+  }
 }
 
 @layer components {
+  .decorate {
+    @apply relative z-0;
+
+    &::before {
+      @apply absolute right-0 top-0 -z-10 translate-x-1 -translate-y-1 bg-violet-light;
+      content: '';
+      width: 26px;
+      height: 50px;
+    }
+  }
+
+  .decorate-center {
+    @apply relative z-0;
+
+    &::before {
+      @apply absolute left-1/2 top-0 -z-10 -translate-x-1/2 bg-violet-light;
+      content: '';
+      width: 30%;
+      height: 100%;
+    }
+  }
+
+  .card-fade-8 {
+    @apply relative;
+
+    &::before {
+      @apply absolute inset-0 -z-10 rounded-lg bg-white/20;
+      content: '';
+      transform: rotate(8deg);
+    }
+  }
+  .-card-fade-8 {
+    @apply relative;
+
+    &::before {
+      @apply absolute inset-0 -z-10 rounded-lg bg-white/20;
+      content: '';
+      transform: rotate(-8deg);
+    }
+  }
 }
 
 @layer utilities {

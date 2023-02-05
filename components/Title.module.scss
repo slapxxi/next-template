@@ -1,0 +1,24 @@
+.decorated {
+  @apply relative;
+
+  &::before {
+    @apply absolute -z-10;
+    content: '';
+    top: 0;
+    left: -7.5px;
+    width: 30px;
+    height: 30px;
+    background: var(--decoration-color, hsl(213, 100%, 91%));
+  }
+}
+
+.stroke {
+  @apply relative translate-y-0.5 pt-1.5;
+
+  &::before {
+    @apply absolute bottom-full rounded-full bg-blue;
+    content: '';
+    width: 16px;
+    height: 3px;
+  }
+}

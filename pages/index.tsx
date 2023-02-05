@@ -1,5 +1,897 @@
+import styles from 'styles/index.module.scss';
+import { Button } from '../components/Button';
+import { Card, CardContainer } from '../components/Card';
+import { AttachmentIcon } from '../components/icons/AttachmentIcon';
+import { BackdropIcon } from '../components/icons/BackdropIcon';
+import { MailIcon } from '../components/icons/MailIcon';
+import { MenuIcon } from '../components/icons/MenuIcon';
+import { PhoneIcon } from '../components/icons/PhoneIcon';
+import { SendIcon } from '../components/icons/SendIcon';
+import { StopIcon } from '../components/icons/StopIcon';
+import { TelegramIcon } from '../components/icons/TelegramIcon';
+import { WhatsappIcon } from '../components/icons/WhatsappIcon';
+import { Input } from '../components/Input';
+import { List, ListItem } from '../components/List';
+import { Strong } from '../components/Strong';
+import { TextBadge } from '../components/TextBadge';
+import { Title } from '../components/Title';
+
 let IndexPage = () => {
-  return <div className="">home</div>;
+  return (
+    <main className={`mt-8 pt-2 text-sm font-medium ${styles.main}`}>
+      <div className="px-5">
+        <Title size="2xl" variant="decorated" className="mb-5 leading-snug">
+          Лучшая программа для автоматизации <em>автоломбарда</em>
+        </Title>
+        <p className="mb-3">Начните работать в XLombard бесплатно уже сегодня</p>
+        <Button variant="fill" className="mb-2 px-3" radius="md">
+          Хочу попробовать!
+        </Button>
+        <p className="mb-2 text-xs text-gray-500">Подберем пакет документов и сделаем базовые настройки</p>
+
+        <svg fill="none" viewBox="0 0 320 337" className="relative z-10">
+          <g filter="url(#a)">
+            <rect
+              width="100"
+              height="100"
+              rx="8"
+              transform="rotate(45.02 -136.94 284.13)"
+              className="fill-navy"
+            />
+          </g>
+          <path
+            className="stroke-white stroke-2 cap-round line-round"
+            d="M160.95 266.74a17.7 17.7 0 0 0 12.52-30.24 17.7 17.7 0 1 0-25.03 25.05 17.7 17.7 0 0 0 12.51 5.19v0Z"
+          />
+          <path
+            stroke="#fff"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2.49"
+            d="M160.95 253.45a4.42 4.42 0 1 0 0-8.84 4.42 4.42 0 0 0 0 8.84ZM160.95 226.9v4.42M160.95 271.16v-4.43M172.01 268.2l-2.2-3.83M158.74 245.2l-8.85-15.34M180.11 260.1l-3.83-2.22M141.8 237.96l3.82 2.21M165.38 249.03h17.7M138.83 249.03h4.42M180.11 237.96l-3.83 2.21M141.8 260.1l3.82-2.22M172.01 229.86l-2.2 3.83M158.74 252.86l-8.85 15.34"
+          />
+          <rect
+            width="99.57"
+            height="99.6"
+            fill="#CAD2FF"
+            rx="8.3"
+            transform="rotate(30.01 66.76 266.92) skewX(.03)"
+          />
+          <rect
+            width="97.92"
+            height="97.92"
+            y="1.17"
+            fill="#fff"
+            stroke="#0862EE"
+            stroke-width="1.66"
+            rx="7.47"
+            transform="rotate(45.02 80.34 195.06)"
+          />
+          <path
+            stroke="#CFE5FF"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2.49"
+            d="M172.41 54.65a12.45 12.45 0 1 1-16.44-16.26"
+          />
+          <path
+            stroke="#CFE5FF"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2.49"
+            d="M173.4 49.8a12.46 12.46 0 0 0-12.45-12.45v12.46h12.45Z"
+          />
+          <text fill="#0862EE" font-family="Onest" font-size="14" letter-spacing="0em">
+            <tspan x="120.45" y="86.2">
+              Экспертиза
+            </tspan>
+          </text>
+          <rect
+            width="99.57"
+            height="99.6"
+            fill="#CAD2FF"
+            rx="8.3"
+            transform="rotate(30.01 -57.54 478) skewX(.03)"
+          />
+          <rect
+            width="97.92"
+            height="97.92"
+            y="1.17"
+            fill="#fff"
+            stroke="#0862EE"
+            stroke-width="1.66"
+            rx="7.47"
+            transform="rotate(45.02 15.62 347.6)"
+          />
+          <path
+            stroke="#CFE5FF"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2.49"
+            d="M261.07 139.66a10.59 10.59 0 0 1-15.3 9.46l-7.1 2.37 2.37-7.1a10.59 10.59 0 0 1 9.46-15.31h.62a10.55 10.55 0 0 1 9.95 9.96v.62Z"
+          />
+          <text fill="#0862EE" font-family="Onest" font-size="14" letter-spacing="0em">
+            <tspan x="209.36" y="176.68">
+              Поддержка
+            </tspan>
+          </text>
+          <rect
+            width="99.57"
+            height="99.6"
+            fill="#CAD2FF"
+            rx="8.3"
+            transform="rotate(30.01 -147.15 143.76) skewX(.03)"
+          />
+          <rect
+            width="97.92"
+            height="97.92"
+            y="1.17"
+            fill="#fff"
+            stroke="#0862EE"
+            stroke-width="1.66"
+            rx="7.47"
+            transform="rotate(45.02 -73.98 131.36)"
+          />
+          <path
+            stroke="#CFE5FF"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2.49"
+            d="m78.13 145.27 4.98-4.99-4.98-4.98M63.2 135.3l-4.98 4.98 4.98 4.99M73.78 130.32l-6.22 19.93"
+          />
+          <text fill="#0862EE" font-family="Onest" font-size="14" letter-spacing="0em">
+            <tspan x="33.18" y="176.68">
+              Доработки
+            </tspan>
+          </text>
+          <path
+            stroke="#CAD2FF"
+            stroke-linecap="round"
+            d="M.5-.5h293.58"
+            transform="rotate(45.02 -41.25 96.46)"
+          />
+          <path
+            stroke="#CAD2FF"
+            stroke-linecap="round"
+            d="M.5-.5h293.58"
+            transform="rotate(-45.02 348.6 65.07)"
+          />
+          <path fill="#0862EE" d="M144.36 145.27h31.53v31.54h-31.53z" />
+          <path
+            stroke="#fff"
+            stroke-linecap="square"
+            stroke-width="4.98"
+            d="M151.6 151.9v.61l17.04 17.05v.6"
+          />
+          <path
+            stroke="#fff"
+            stroke-linecap="square"
+            stroke-width="4.98"
+            d="M168.64 151.9v.61l-17.04 17.05v.6"
+          />
+          <defs>
+            <filter id="a" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse">
+              <feFlood flood-opacity="0" result="BackgroundImageFix" />
+              <feColorMatrix
+                in="SourceAlpha"
+                result="hardAlpha"
+                values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+              />
+              <feMorphology in="SourceAlpha" radius="12" result="effect1_dropShadow_725_73" />
+              <feOffset dx="18.26" dy="18.26" />
+              <feGaussianBlur stdDeviation="6.64" />
+              <feComposite in2="hardAlpha" operator="out" />
+              <feColorMatrix values="0 0 0 0 0 0 0 0 0 0.265761 0 0 0 0 0.679167 0 0 0 0.29 0" />
+              <feBlend in2="BackgroundImageFix" result="effect1_dropShadow_725_73" />
+              <feBlend in="SourceGraphic" in2="effect1_dropShadow_725_73" result="shape" />
+            </filter>
+          </defs>
+        </svg>
+
+        <div className="relative z-0 -mt-8 mb-8 overflow-hidden rounded-lg bg-gray-light px-8 pt-12 pb-4">
+          <Title variant="decorated" size="xl" decorationColor="hsl(231,100%,90%)" className="mb-4">
+            Функционал
+          </Title>
+          <List className="ml-5  text-xs font-normal" variant="disc">
+            <ListItem>18 модулей</ListItem>
+            <ListItem>Полный цикл управления портфелем</ListItem>
+            <ListItem>Безопасность</ListItem>
+            <ListItem>CRM</ListItem>
+          </List>
+        </div>
+      </div>
+
+      <div className="relative z-0 mb-8 bg-gray-light px-6 pt-8 pb-12">
+        <Title variant="decorated" decorationColor="hsl(141,60%,78%)" size="2xl" className="mb-4">
+          Идеально для любого автоломбарда
+        </Title>
+
+        <div className="mb-12 flex flex-col gap-3">
+          <Card
+            title="Обратный лизинг"
+            description="Описание типа ломбарда на две строки"
+            footer={
+              <div className="flex items-center gap-2">
+                <AttachmentIcon strokeOpacity=".9" />
+                <strong>ДКП + ДФА</strong>
+              </div>
+            }
+          />
+          <Card
+            title="Ломбард Classic"
+            description="Описание типа ломбарда на две строки"
+            footer={
+              <div className="flex items-center gap-2">
+                <AttachmentIcon strokeOpacity=".9" />
+                <strong>Залоговый билет</strong>
+              </div>
+            }
+          />
+          <Card
+            title="МФО или КПК"
+            description="Описание типа ломбарда на две строки"
+            footer={
+              <div className="flex items-center gap-2">
+                <AttachmentIcon strokeOpacity=".9" />
+                <strong>ЗАЙМ+ЗАЛОГ</strong>
+              </div>
+            }
+          />
+        </div>
+
+        <div className="flex">
+          <svg
+            width="120"
+            fill="none"
+            className="overflow-visible"
+            viewBox="20 15 127 157"
+            preserveAspectRatio="xMidYMin"
+          >
+            <rect
+              width="95.18"
+              height="95.18"
+              x="50.97"
+              y="1.4"
+              fill="#E0E1F9"
+              opacity=".6"
+              rx="4.67"
+              transform="rotate(45 50.97 1.4)"
+            />
+            <g filter="url(#a)">
+              <rect
+                width="95.18"
+                height="95.18"
+                x="26.33"
+                y="6.08"
+                fill="#fff"
+                rx="9.35"
+                transform="rotate(23.52 26.33 6.08)"
+              />
+            </g>
+            <path
+              fill="#0862EE"
+              fill-rule="evenodd"
+              d="M47.74 45.34h-7.37a2.46 2.46 0 0 0-2.46 2.46v13.45H27.26a2.46 2.46 0 0 0-2.46 2.45v29.5c0 1.35 1.1 2.45 2.46 2.45h38.38v-1.64h-16.4c.09-.25.14-.53.14-.82v-.81h20.68a1.31 1.31 0 0 0 1.32-1.32V49.93a1.31 1.31 0 0 0-1.32-1.31h-5.38c.1-.26.14-.54.14-.82v-.82h7.37c.46 0 .82.36.82.82v45.4c0 .45-.36.81-.82.81h-6.55v1.64h6.55c1.36 0 2.46-1.1 2.46-2.46V47.8c0-1.35-1.1-2.45-2.46-2.45h-7.37v-.82c0-1.36-1.1-2.46-2.46-2.46H50.2a2.46 2.46 0 0 0-2.46 2.46v.82ZM27.26 62.88h19.66c.45 0 .82.37.82.82v29.5c0 .45-.37.81-.82.81H27.26a.82.82 0 0 1-.82-.82V63.7c0-.45.37-.82.82-.82Zm15.56-1.64h4.1c1.36 0 2.46 1.1 2.46 2.46v27.04h20.36V50.25H42.82v11Zm4.92-14.26h-7.37a.82.82 0 0 0-.82.82v13.45h1.64V49.92a1.31 1.31 0 0 1 1.3-1.31h5.39c-.1-.26-.14-.54-.14-.82v-.82Zm15.44-2.46v3.28c0 .45-.36.82-.82.82H50.2a.82.82 0 0 1-.82-.82v-3.28c0-.45.36-.82.82-.82h12.16c.46 0 .82.37.82.82Z"
+              clip-rule="evenodd"
+            />
+            <path
+              fill="#0862EE"
+              fill-rule="evenodd"
+              d="M46.1 66.32a1.8 1.8 0 0 0-1.8-1.8H29.88a1.8 1.8 0 0 0-1.8 1.8v4.6a1.8 1.8 0 0 0 1.8 1.8H44.3a1.8 1.8 0 0 0 1.8-1.8v-4.6Zm-1.64 0v4.6c0 .04-.02.08-.05.1a.16.16 0 0 1-.11.06H29.88a.16.16 0 0 1-.12-.05.16.16 0 0 1-.04-.12v-4.59c0-.04.01-.08.04-.11a.16.16 0 0 1 .12-.05H44.3c.04 0 .08.02.11.05.03.03.05.07.05.11ZM33 77.96v-2.3c0-.72-.6-1.3-1.32-1.3h-2.3c-.72 0-1.3.58-1.3 1.3v2.3c0 .72.58 1.3 1.3 1.3h2.3c.73 0 1.31-.58 1.31-1.3Zm-3.28-.33h1.63v-1.64h-1.63v1.64ZM33 84.51v-2.3c0-.72-.6-1.3-1.32-1.3h-2.3c-.72 0-1.3.58-1.3 1.3v2.3c0 .72.58 1.31 1.3 1.31h2.3c.73 0 1.31-.59 1.31-1.31Zm-3.28-.33h1.63v-1.64h-1.63v1.64ZM33 91.06v-2.29c0-.72-.6-1.31-1.32-1.31h-2.3c-.72 0-1.3.59-1.3 1.31v2.3c0 .72.58 1.3 1.3 1.3h2.3c.73 0 1.31-.58 1.31-1.3Zm-3.28-.32h1.63V89.1h-1.63v1.64ZM39.55 77.96v-2.3c0-.72-.59-1.3-1.31-1.3h-2.3c-.72 0-1.3.58-1.3 1.3v2.3c0 .72.58 1.3 1.3 1.3h2.3c.72 0 1.3-.58 1.3-1.3Zm-3.28-.33h1.64v-1.64h-1.64v1.64ZM39.55 84.51v-2.3c0-.72-.59-1.3-1.31-1.3h-2.3c-.72 0-1.3.58-1.3 1.3v2.3c0 .72.58 1.31 1.3 1.31h2.3c.72 0 1.3-.59 1.3-1.31Zm-3.28-.33h1.64v-1.64h-1.64v1.64ZM39.55 91.06v-2.29c0-.72-.59-1.31-1.31-1.31h-2.3c-.72 0-1.3.59-1.3 1.31v2.3c0 .72.58 1.3 1.3 1.3h2.3c.72 0 1.3-.58 1.3-1.3Zm-3.28-.32h1.64V89.1h-1.64v1.64ZM46.1 77.96v-2.3c0-.72-.59-1.3-1.31-1.3h-2.3c-.72 0-1.3.58-1.3 1.3v2.3c0 .72.58 1.3 1.3 1.3h2.3c.72 0 1.31-.58 1.31-1.3Zm-3.28-.33h1.64v-1.64h-1.64v1.64ZM46.1 84.51v-2.3c0-.72-.59-1.3-1.31-1.3h-2.3c-.72 0-1.3.58-1.3 1.3v2.3c0 .72.58 1.31 1.3 1.31h2.3c.72 0 1.31-.59 1.31-1.31Zm-3.28-.33h1.64v-1.64h-1.64v1.64ZM46.1 91.06v-2.29c0-.72-.59-1.31-1.31-1.31h-2.3c-.72 0-1.3.59-1.3 1.31v2.3c0 .72.58 1.3 1.3 1.3h2.3c.72 0 1.31-.58 1.31-1.3Zm-3.28-.32h1.64V89.1h-1.64v1.64ZM53.47 72.69h9.83a.82.82 0 0 0 0-1.64h-9.83a.82.82 0 0 0 0 1.64ZM53.47 82.5h9.83a.82.82 0 0 0 0-1.65h-9.83a.82.82 0 0 0 0 1.64ZM53.47 75.95h9.83a.82.82 0 0 0 0-1.64h-9.83a.82.82 0 0 0 0 1.64ZM53.47 85.75h9.83a.82.82 0 0 0 0-1.64h-9.83a.82.82 0 0 0 0 1.64ZM53.47 69.44h9.83a.82.82 0 0 0 0-1.64h-9.83a.82.82 0 0 0 0 1.64ZM53.47 66.13h4.92a.82.82 0 0 0 0-1.64h-4.92a.82.82 0 0 0 0 1.64ZM53.47 79.22h4.92a.82.82 0 0 0 0-1.64h-4.92a.82.82 0 0 0 0 1.64Z"
+              clip-rule="evenodd"
+            />
+            <path
+              stroke="#0862EE"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="1.87"
+              d="M48.64 59.6v-6.06h3.74v6.06M54.71 53.54h2.57m0 0v6.06m0-6.06h2.57M65 55.18c0-2.15-3.28-2.16-3.28-.21v3.1c0 2.02 3.27 2.03 3.27.1"
+            />
+            <circle cx="99.58" cy="21.5" r="2.8" fill="#0862EE" />
+            <circle cx="4.71" cy="130.39" r="3.74" fill="#0862EE" />
+            <defs>
+              <filter
+                id="a"
+                width="151.13"
+                height="151.13"
+                x="-24.59"
+                y="5.29"
+                color-interpolation-filters="sRGB"
+                filterUnits="userSpaceOnUse"
+              >
+                <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                <feColorMatrix
+                  in="SourceAlpha"
+                  result="hardAlpha"
+                  values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+                />
+                <feMorphology in="SourceAlpha" radius="4.67" result="effect1_dropShadow_587_4769" />
+                <feOffset dy="12.15" />
+                <feGaussianBlur stdDeviation="10.28" />
+                <feComposite in2="hardAlpha" operator="out" />
+                <feColorMatrix values="0 0 0 0 0.222247 0 0 0 0 0.31766 0 0 0 0 0.858333 0 0 0 0.27 0" />
+                <feBlend in2="BackgroundImageFix" result="effect1_dropShadow_587_4769" />
+                <feBlend in="SourceGraphic" in2="effect1_dropShadow_587_4769" result="shape" />
+              </filter>
+            </defs>
+          </svg>
+          <div className="flex flex-col gap-4">
+            <Title variant="decorated">Создали специальную конфигурацию для обратного лизинга</Title>
+            <p className="font-normal">Учли все тонкости бизнеса и подключили необходимые сервисы</p>
+            <Button variant="fill" radius="md" className="self-start px-3">
+              Сел и поехал
+            </Button>
+          </div>
+        </div>
+      </div>
+
+      <section className="px-5">
+        <Title variant="decorated" size="2xl" className="mb-4">
+          Возможности <em>XLombard BPM System</em>
+        </Title>
+        <h2 className="relative z-10 ml-2 rounded-md bg-navy p-4 px-5 py-3 text-white">
+          Лидогенерация и обработка заявок
+        </h2>
+
+        <div className="-mt-2 rounded-md bg-gray-light px-2 pt-8 pb-7">
+          <ul className="flex flex-col gap-7">
+            <li className="flex gap-4">
+              <BackdropIcon className="shrink-0 text-blue" size={64}>
+                <MenuIcon />
+              </BackdropIcon>
+              <div>
+                <Title className="mb-3" variant="stroke">
+                  Агрегатор заявок
+                </Title>
+                <p className="font-normal">
+                  Агрегатор заявок на займ из различных источников (веб-сайтов, партнеров компании и т.д.),
+                  позволяет более качественно управлять входящими обращениями клиентов
+                </p>
+              </div>
+            </li>
+            <li className="flex gap-4">
+              <BackdropIcon className="shrink-0 text-blue" size={64}>
+                <SendIcon />
+              </BackdropIcon>
+              <div>
+                <Title className="mb-3" variant="stroke">
+                  Уведомления
+                </Title>
+                <p className="font-normal">
+                  Sms и Email-уведомления обо всех операциях в компании. Также используется для уведомлений
+                  клиентам компании о текущем состоянии договора, акциях и скидках
+                </p>
+              </div>
+            </li>
+            <li className="flex gap-4">
+              <BackdropIcon className="shrink-0 text-blue" size={64}>
+                <StopIcon />
+              </BackdropIcon>
+              <div>
+                <Title className="mb-3 leading-5" variant="stroke">
+                  Исключаем человеческий фактор
+                </Title>
+                <p className="font-normal">
+                  XLombard MOD - дополнительные модули позволяют существенно оптимизировать ежедневную работу
+                  сотрудников. XLombard делает невозможными ошибки, связанные с человеческим фактором при
+                  оформлении договоров.
+                </p>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <section className="mb-8 px-7 text-xs">
+        <ul className="mt-2 mb-4 flex flex-col gap-1 text-blue">
+          <li>
+            <Button radius="md" className="w-full">
+              Скоринг и комплексная проверка заёмщика
+            </Button>
+          </li>
+          <li>
+            <Button radius="md" className="w-full">
+              Оформление договора и выдача ДС заёмщику
+            </Button>
+          </li>
+          <li>
+            <Button radius="md" className="w-full">
+              Операционный учёт текущих договоров
+            </Button>
+          </li>
+          <li>
+            <Button radius="md" className="w-full">
+              Полный контроль общения с клиентом
+            </Button>
+          </li>
+          <li>
+            <Button radius="md" className="w-full">
+              Управленческие отчёты, аналитика и виджеты
+            </Button>
+          </li>
+          <li>
+            <Button radius="md" className="w-full">
+              Учёт всех расходов и доходов
+            </Button>
+          </li>
+          <li>
+            <Button radius="md" className="w-full">
+              Реализация залогового имущества
+            </Button>
+          </li>
+        </ul>
+        <Button variant="fill" radius="md">
+          Попробовать бесплатно
+        </Button>
+      </section>
+
+      <section className="px-7">
+        <Title size="2xl" variant="decorated" decorationColor="hsl(231,100%,90%)">
+          Интеграции с различными системами{' '}
+        </Title>
+      </section>
+
+      <section className={`relative z-0 px-7 pt-8 pb-8 ${styles.section}`}>
+        <Title variant="decorated" size="2xl" decorationColor="hsl(141,60%,78%)" className="mb-3">
+          Ни у кого нет — а у нас есть!
+        </Title>
+        <Button variant="fill" radius="md" className="mb-6">
+          Заказать презентацию системы
+        </Button>
+
+        <ul className="flex flex-col gap-3 font-normal">
+          <li>
+            <CardContainer className="p-4">
+              <Title variant="stroke" className="mb-2 leading-5">
+                Электронный акт осмотра ТС
+              </Title>
+              <p className="text-gray-500">
+                Позволяет фиксировать все повреждения ТС в электронном виде на планшете
+              </p>
+            </CardContainer>
+          </li>
+          <li>
+            <CardContainer className="p-4">
+              <Title variant="stroke" className="mb-2 leading-5">
+                Регулярная проверка портфеля по ГИБДД
+              </Title>
+              <p className="text-gray-500">
+                Позволяет оперативно узнавать о новых ограничениях, изменениях регистрационных данных и т.д.
+              </p>
+            </CardContainer>
+          </li>
+          <li>
+            <CardContainer className="p-4">
+              <Title variant="stroke" className="mb-2 leading-5">
+                Корсар — куда уходят ваши клиент
+              </Title>
+              <p className="text-gray-500">
+                Позволяет узнать, куда ушёл клиент при отказе от сделки или где перезаложился, если уже был
+                залог
+              </p>
+            </CardContainer>
+          </li>
+          <li>
+            <CardContainer className="p-4">
+              <Title variant="stroke" className="mb-2 leading-5">
+                GPS-мониторинг текущего портфеля
+              </Title>
+              <p className="text-gray-500">Узнаем статусы маяков ТС непосредственно из сервисов телематики</p>
+            </CardContainer>
+          </li>
+          <li>
+            <CardContainer className="p-4">
+              <Title variant="stroke" className="mb-2 leading-5">
+                Личный кабинет инвестора
+              </Title>
+              <p className="text-gray-500">
+                Сделали удобный кабинет, где можно наблюдать все начисленные и выплаченные проценты
+              </p>
+            </CardContainer>
+          </li>
+        </ul>
+      </section>
+
+      <section className="mb-8 px-5">
+        <Title variant="decorated" size="2xl" className="mb-6">
+          Подводим итоги 2022 года
+        </Title>
+        <div className="mb-6 flex justify-between gap-4">
+          <div>
+            <div className="mb-3">
+              <span className="decorate text-4xl font-bold">+28</span>
+            </div>
+            <p className="font-normal">городов присутствия нашей программы</p>
+          </div>
+          <div>
+            <div className="mb-3">
+              <span className="decorate text-4xl font-bold">+6</span>
+            </div>
+            <p className="font-normal">новых модулей разработано </p>
+          </div>
+          <div>
+            <div className="mb-3">
+              <span className="decorate text-4xl font-bold">+9</span>
+            </div>
+            <p className="font-normal">новых интеграций добавлено </p>
+          </div>
+        </div>
+
+        <div className="grid grid-cols-2 grid-rows-2 gap-3">
+          <div className="flex flex-col justify-between rounded-lg bg-violet-light p-5 text-xs">
+            <p>Сделано больших и маленьких доработок уже существующих модулей</p>
+            <div className="flex items-center gap-2">
+              <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="none">
+                <path
+                  stroke="#CAD2FF"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M19.93 8.43c-.05.32.06.65.3.88l1.56 1.57a2.4 2.4 0 0 1 0 3.4l-1.61 1.62a.98.98 0 0 1-.84.27c-.47-.07-.8-.48-.97-.92a2.5 2.5 0 1 0-3.21 3.21c.44.17.85.5.92.97a.98.98 0 0 1-.27.84l-1.61 1.6a2.4 2.4 0 0 1-3.41 0l-1.57-1.56a1.03 1.03 0 0 0-.88-.3c-.49.08-.84.51-1.02.98a2.5 2.5 0 1 1-3.23-3.24c.46-.18.9-.53.96-1.02a1.03 1.03 0 0 0-.29-.88L3.2 14.28a2.4 2.4 0 0 1 0-3.4l1.52-1.53c.24-.24.58-.35.92-.3.51.07.88.53 1.07 1A2.5 2.5 0 1 0 9.97 6.8c-.48-.2-.93-.56-1-1.07-.06-.34.05-.68.3-.92l1.52-1.53a2.4 2.4 0 0 1 3.4 0l1.57 1.57c.23.23.56.34.88.3.5-.08.84-.51 1.02-.98a2.5 2.5 0 1 1 3.24 3.24c-.47.18-.9.53-.97 1.02v0Z"
+                />
+              </svg>
+              <span className="text-2xl font-bold">240</span>
+            </div>
+          </div>
+          <div className="flex flex-col justify-between rounded-lg bg-violet-light p-5 text-xs">
+            <p>Исправлено недочетов в программе</p>
+            <div className="flex items-center gap-2">
+              <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M12.9661 22.0537C18.4891 22.0537 22.9661 17.5767 22.9661 12.0537C22.9661 6.53071 18.4891 2.05371 12.9661 2.05371C7.44306 2.05371 2.96606 6.53071 2.96606 12.0537C2.96606 17.5767 7.44306 22.0537 12.9661 22.0537Z"
+                  stroke="#CAD2FF"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M9.96606 12.0537L11.9661 14.0537L15.9661 10.0537"
+                  stroke="#CAD2FF"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+              <span className="text-2xl font-bold">210</span>
+            </div>
+          </div>
+          <div className="flex flex-col justify-between rounded-lg bg-violet-light p-5 text-xs">
+            <p>Обработано обращений клиентов в техническую поддержку</p>
+            <div className="flex items-center gap-2">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M20 4H4C2.89543 4 2 4.89543 2 6V18C2 19.1046 2.89543 20 4 20H20C21.1046 20 22 19.1046 22 18V6C22 4.89543 21.1046 4 20 4Z"
+                  stroke="#CAD2FF"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M22 7L13.03 12.7C12.7213 12.8934 12.3643 12.996 12 12.996C11.6357 12.996 11.2787 12.8934 10.97 12.7L2 7"
+                  stroke="#CAD2FF"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+              <span className="text-2xl font-bold">2 109</span>
+            </div>
+          </div>
+          <div className="flex flex-col justify-between rounded-lg bg-violet-light p-5 text-xs">
+            <p>Пришло новых людей в коллектив XLombard </p>
+            <div className="flex items-center gap-2">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z"
+                  stroke="#CAD2FF"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M18.3337 18.8571C18.171 18.269 17.8423 17.7266 17.3744 17.2899C16.6855 16.6469 15.7511 16.2856 14.7768 16.2856H9.26664C8.29237 16.2856 7.35801 16.6469 6.6691 17.2899C6.26283 17.669 5.96154 18.1279 5.78271 18.6271"
+                  stroke="#CAD2FF"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M12.0217 12.8569C13.6786 12.8569 15.0217 11.5138 15.0217 9.85693C15.0217 8.20008 13.6786 6.85693 12.0217 6.85693C10.3649 6.85693 9.02173 8.20008 9.02173 9.85693C9.02173 11.5138 10.3649 12.8569 12.0217 12.8569Z"
+                  stroke="#CAD2FF"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+              <span className="text-2xl font-bold">4</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className={`relative z-0 bg-violet-light ${styles.section2}`}>
+        <div className="px-7 pt-8">
+          <Title size="2xl" variant="decorated" decorationColor="hsl(231,100%,90%)" className="mb-3">
+            Кто нас может порекомендовать
+          </Title>
+          <Button variant="fill" radius="md" className="mb-8">
+            Хочу попробовать!
+          </Button>
+        </div>
+        <div className="flex snap-x gap-3 overflow-x-scroll px-7 pb-8">
+          <CardContainer className="flex min-h-[280px] w-[234px] shrink-0 snap-center flex-col px-6 py-7">
+            <img src="leasing.jpg" alt="" width={140} className="self-center" />
+            <p className="mb-2 font-normal">
+              Полностью подходит под нашу специфику деятельности. Лучший продукт на рынке...
+            </p>
+            <a href="#" className="text-blue-base">
+              Читать полностью
+            </a>
+            <p className="mt-auto">Исполнительный директор Владимир Иванов</p>
+          </CardContainer>
+          <CardContainer className="flex min-h-[280px] w-[234px] shrink-0 snap-center flex-col px-6 py-7">
+            <img src="leasing.jpg" alt="" width={140} className="self-center" />
+            <p className="mb-2 font-normal">
+              Полностью подходит под нашу специфику деятельности. Лучший продукт на рынке...
+            </p>
+            <a href="#" className="text-blue-base">
+              Читать полностью
+            </a>
+            <p className="mt-auto">Исполнительный директор Владимир Иванов</p>
+          </CardContainer>
+          <CardContainer className="flex min-h-[280px] w-[234px] shrink-0 snap-center flex-col px-6 py-7">
+            <img src="leasing.jpg" alt="" width={140} className="self-center" />
+            <p className="mb-2 font-normal">
+              Полностью подходит под нашу специфику деятельности. Лучший продукт на рынке...
+            </p>
+            <a href="#" className="text-blue-base">
+              Читать полностью
+            </a>
+            <p className="mt-auto">Исполнительный директор Владимир Иванов</p>
+          </CardContainer>
+        </div>
+      </section>
+
+      <section className="relative z-0 bg-blue-base px-6 pb-7 pt-8 font-normal text-white">
+        <Title variant="decorated" decorationColor="hsl(217,88%,55%)" size="2xl" className="mb-8">
+          Техническая поддержка онлайн всегда
+        </Title>
+
+        <div className="mb-3 flex gap-3">
+          <div className="card card-fade-8 flex gap-2 rounded-lg bg-white p-3 text-xs font-medium text-black">
+            <svg width="14" height="14" fill="none" className="shrink-0 translate-y-1">
+              <g stroke="#9DA7E0" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.13">
+                <path d="M7.03 12.75a5.63 5.63 0 1 0 0-11.26 5.63 5.63 0 0 0 0 11.26Z" />
+                <path d="M7.03 3.75v3.37L9.28 6" />
+              </g>
+            </svg>
+            <div className="flex flex-col gap-2">
+              Время реакции менее
+              <div className="mt-auto flex gap-1.5">
+                <Strong>5</Strong>
+                <span className="text-gray-500">минут (в раб. время)</span>
+              </div>
+            </div>
+          </div>
+          <div className="card -card-fade-8 flex gap-2 rounded-lg bg-white p-3 text-xs font-medium text-black">
+            <svg width="14" height="14" fill="none" className="shrink-0 translate-y-1">
+              <g stroke="#9DA7E0" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.13">
+                <path d="M7.03 12.75a5.63 5.63 0 1 0 0-11.26 5.63 5.63 0 0 0 0 11.26Z" />
+                <path d="M7.03 3.75v3.37L9.28 6" />
+              </g>
+            </svg>
+            <div className="flex flex-col gap-2">
+              На линии всегда не менее
+              <div className="mt-auto flex gap-1.5">
+                <Strong>3</Strong>
+                <span className="text-gray-500">сотрудника онлайн</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <p className="mb-5">
+          Если возникла какая-либо сложность с программой, то всегда можно написать в месенджеры или позвонить
+          по телефону в квалифицированную техническую поддержку.
+        </p>
+
+        <div className="mb-8 flex gap-2.5">
+          <a href="#" className="flex h-[50px] w-[50px] items-center justify-center bg-blue-light">
+            <PhoneIcon />
+          </a>
+          <a href="#" className="flex h-[50px] w-[50px] items-center justify-center bg-blue-light">
+            <TelegramIcon />
+          </a>
+          <a href="#" className="flex h-[50px] w-[50px] items-center justify-center bg-blue-light">
+            <WhatsappIcon />
+          </a>
+        </div>
+
+        <div className="rounded-lg bg-white py-5 px-4 text-black">
+          <Title className="mb-5 text-center">
+            Статистика за <em>октябрь 2022</em>
+          </Title>
+
+          <div className="flex text-xs">
+            <div className="decorate-center flex flex-col items-center justify-center">
+              <span className="text-blue-base">
+                <MailIcon />
+              </span>
+              <Strong>408</Strong>
+              <p className="text-center font-medium">обращений клиентов обработано</p>
+            </div>
+
+            <div className="w-[189px] shrink-0 bg-violet-light p-4">
+              <p className="mb-4 font-bold">Сколько раз за месяц нам сказали</p>
+              <div className="grid grid-cols-[auto_1fr] gap-2 font-medium">
+                <div className="flex items-start justify-end">
+                  <TextBadge>133</TextBadge>
+                  &nbsp;&#8211;
+                </div>
+                <div> Большое спасибо</div>
+                <div className="flex items-start justify-end">
+                  <TextBadge>23</TextBadge>
+                  &nbsp;&#8211;
+                </div>
+                <div> Отлично</div>
+                <div className="flex items-start justify-end">
+                  <TextBadge>4</TextBadge>
+                  &nbsp;&#8211;
+                </div>
+                <div> Супер</div>
+                <div className="flex items-start justify-end">
+                  <TextBadge>2</TextBadge>
+                  &nbsp;&#8211;
+                </div>
+                <div> Ох?уенно</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="px-7">
+        <Title variant="decorated" size="2xl" className="mb-3">
+          Обновления программы
+        </Title>
+        <p className="mb-8">Мы постоянно работаем над улучшением системы XLombard</p>
+
+        <div className="mb-8 flex snap-x gap-4 overflow-x-scroll">
+          <div className="flex w-3/4 shrink-0 snap-center flex-col gap-3 rounded-lg bg-gray-light px-5 py-7">
+            <Title variant="stroke">18.01.2023</Title>
+            <p className="font-normal">
+              Реализовано доработок: 11 <br /> Исправлено ошибок: 2
+            </p>
+            <div className="flex items-center gap-1">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="15" fill="none">
+                <path
+                  stroke="#0862EE"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="1.17"
+                  d="M10.5 7.82v3.5a1.17 1.17 0 0 1-1.17 1.17H2.92a1.17 1.17 0 0 1-1.17-1.17V4.9a1.17 1.17 0 0 1 1.17-1.16h3.5M8.75 1.99h3.5v3.5M5.83 8.4 12.25 2"
+                />
+              </svg>
+              <a href="#" className="text-blue-base">
+                Релиз 3.48.0.0
+              </a>
+            </div>
+          </div>
+          <div className="flex w-3/4 shrink-0 snap-center flex-col gap-3 rounded-lg bg-gray-light px-5 py-7">
+            <Title variant="stroke">18.01.2023</Title>
+            <p className="font-normal">
+              Реализовано доработок: 11 <br /> Исправлено ошибок: 2
+            </p>
+            <div className="flex items-center gap-1">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="15" fill="none">
+                <path
+                  stroke="#0862EE"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="1.17"
+                  d="M10.5 7.82v3.5a1.17 1.17 0 0 1-1.17 1.17H2.92a1.17 1.17 0 0 1-1.17-1.17V4.9a1.17 1.17 0 0 1 1.17-1.16h3.5M8.75 1.99h3.5v3.5M5.83 8.4 12.25 2"
+                />
+              </svg>
+              <a href="#" className="text-blue-base">
+                Релиз 3.48.0.0
+              </a>
+            </div>
+          </div>
+          <div className="flex w-3/4 shrink-0 snap-center flex-col gap-3 rounded-lg bg-gray-light px-5 py-7">
+            <Title variant="stroke">18.01.2023</Title>
+            <p className="font-normal">
+              Реализовано доработок: 11 <br /> Исправлено ошибок: 2
+            </p>
+            <div className="flex items-center gap-1">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="15" fill="none">
+                <path
+                  stroke="#0862EE"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="1.17"
+                  d="M10.5 7.82v3.5a1.17 1.17 0 0 1-1.17 1.17H2.92a1.17 1.17 0 0 1-1.17-1.17V4.9a1.17 1.17 0 0 1 1.17-1.16h3.5M8.75 1.99h3.5v3.5M5.83 8.4 12.25 2"
+                />
+              </svg>
+              <a href="#" className="text-blue-base">
+                Релиз 3.48.0.0
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className={`bg-gray-light py-8 px-5 ${styles.section3}`}>
+        <Title variant="decorated" size="2xl" className="mb-5">
+          Открыты для общения
+        </Title>
+        <ul className="flex flex-col gap-4">
+          <li className="flex gap-4">
+            <BackdropIcon className="text-blue-base" size={72}>
+              <PhoneIcon />
+            </BackdropIcon>
+            <div className="flex flex-col gap-2">
+              <Title>Пишите нам</Title>
+              <p className="font-normal text-gray-500">в мессенджеры на +7 (968) 096-59-40</p>
+              <div className="flex gap-2">
+                <a
+                  href="#"
+                  className="flex h-[50px] w-[50px] items-center justify-center bg-sky-500 text-white"
+                >
+                  <TelegramIcon />
+                </a>
+                <a
+                  href="#"
+                  className="flex h-[50px] w-[50px] items-center justify-center bg-green-500 text-white"
+                >
+                  <WhatsappIcon />
+                </a>
+              </div>
+            </div>
+          </li>
+          <li className="flex gap-4">
+            <BackdropIcon className="text-blue-base" size={72}>
+              <PhoneIcon />
+            </BackdropIcon>
+            <div className="flex flex-col gap-2">
+              <Title>Пишите нам</Title>
+              <p className="font-normal text-gray-500">с 10-00 до 18-00 по Мск</p>
+              <span className="text-xl">+7 (495) 677-95-51</span>
+            </div>
+          </li>
+          <li className="flex gap-4">
+            <BackdropIcon className="text-blue-base" size={72}>
+              <PhoneIcon />
+            </BackdropIcon>
+            <div className="flex flex-col gap-2">
+              <Title>Приезжайте</Title>
+              <p className="font-normal text-gray-500">Москва, ул. 3-я Северная линия, д. 14, оф. 2</p>
+              <a href="" className="text-blue-base">
+                Мы на Яндекс.Картах
+              </a>
+            </div>
+          </li>
+        </ul>
+      </section>
+
+      <section className="bg-gray-light px-5 py-8">
+        <CardContainer className="flex flex-col px-8 py-6">
+          <Title size={16} className="mb-2.5">
+            Ответим на любые вопросы: <br /> <em>расскажем, покажем и дадим попробовать</em>
+          </Title>
+          <p className="font-normal">Проведём онлайн демонстрацию по Zoom!</p>
+
+          <div className="my-4 flex flex-col gap-2">
+            <Input placeholder="Как к вам обращаться (ваше имя)" value="" />
+            <Input placeholder="Телефон, чтобы мы могли перезвонить" value="" />
+            <Input placeholder="Электронная почта для отправки ответа" value="" />
+            <textarea name="" id="" placeholder="Ваш вопрос" className="rounded-lg border p-2" />
+          </div>
+          <Button variant="fill" radius="md">
+            Отправить сообщение
+          </Button>
+        </CardContainer>
+      </section>
+    </main>
+  );
 };
 
 export default IndexPage;
