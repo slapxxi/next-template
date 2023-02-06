@@ -378,7 +378,7 @@ let IndexPage = () => {
             Хочу попробовать!
           </Button>
         </div>
-        <div className="flex snap-x gap-3 overflow-x-scroll px-7 pb-8">
+        <div className="flex snap-x snap-mandatory gap-3 overflow-x-scroll px-7 pb-8">
           <CardContainer className="flex min-h-[280px] w-[234px] shrink-0 snap-center flex-col px-6 py-7">
             <img src="leasing.jpg" alt="" width={140} className="self-center" />
             <p className="mb-2 font-normal">
@@ -515,7 +515,7 @@ let IndexPage = () => {
         </Title>
         <p className="mb-8">Мы постоянно работаем над улучшением системы XLombard</p>
 
-        <div className="mb-8 flex snap-x gap-4 overflow-x-scroll">
+        <div className="mb-8 flex snap-x snap-mandatory gap-4 overflow-x-scroll">
           <div className="flex w-3/4 shrink-0 snap-center flex-col gap-3 rounded-lg bg-gray-light px-5 py-7">
             <Title variant="stroke">18.01.2023</Title>
             <p className="font-normal">
