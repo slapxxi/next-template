@@ -1,5 +1,6 @@
 import styles from 'styles/index.module.scss';
 import { Button } from '../components/Button';
+import { CalculatorPic } from '../components/CalculatorPic';
 import { Card, CardContainer } from '../components/Card';
 import { AttachmentIcon } from '../components/icons/AttachmentIcon';
 import { BackdropIcon } from '../components/icons/BackdropIcon';
@@ -11,6 +12,7 @@ import { StopIcon } from '../components/icons/StopIcon';
 import { TelegramIcon } from '../components/icons/TelegramIcon';
 import { WhatsappIcon } from '../components/icons/WhatsappIcon';
 import { Input } from '../components/Input';
+import { Integrations } from '../components/Integrations';
 import { Scheme } from '../components/Scheme';
 import { Strong } from '../components/Strong';
 import { TextBadge } from '../components/TextBadge';
@@ -70,81 +72,7 @@ let IndexPage = () => {
         </div>
 
         <div className="flex">
-          <svg
-            width="120"
-            fill="none"
-            className="overflow-visible"
-            viewBox="20 15 127 157"
-            preserveAspectRatio="xMidYMin"
-          >
-            <rect
-              width="95.18"
-              height="95.18"
-              x="50.97"
-              y="1.4"
-              fill="#E0E1F9"
-              opacity=".6"
-              rx="4.67"
-              transform="rotate(45 50.97 1.4)"
-            />
-            <g filter="url(#a)">
-              <rect
-                width="95.18"
-                height="95.18"
-                x="26.33"
-                y="6.08"
-                fill="#fff"
-                rx="9.35"
-                transform="rotate(23.52 26.33 6.08)"
-              />
-            </g>
-            <path
-              fill="#0862EE"
-              fill-rule="evenodd"
-              d="M47.74 45.34h-7.37a2.46 2.46 0 0 0-2.46 2.46v13.45H27.26a2.46 2.46 0 0 0-2.46 2.45v29.5c0 1.35 1.1 2.45 2.46 2.45h38.38v-1.64h-16.4c.09-.25.14-.53.14-.82v-.81h20.68a1.31 1.31 0 0 0 1.32-1.32V49.93a1.31 1.31 0 0 0-1.32-1.31h-5.38c.1-.26.14-.54.14-.82v-.82h7.37c.46 0 .82.36.82.82v45.4c0 .45-.36.81-.82.81h-6.55v1.64h6.55c1.36 0 2.46-1.1 2.46-2.46V47.8c0-1.35-1.1-2.45-2.46-2.45h-7.37v-.82c0-1.36-1.1-2.46-2.46-2.46H50.2a2.46 2.46 0 0 0-2.46 2.46v.82ZM27.26 62.88h19.66c.45 0 .82.37.82.82v29.5c0 .45-.37.81-.82.81H27.26a.82.82 0 0 1-.82-.82V63.7c0-.45.37-.82.82-.82Zm15.56-1.64h4.1c1.36 0 2.46 1.1 2.46 2.46v27.04h20.36V50.25H42.82v11Zm4.92-14.26h-7.37a.82.82 0 0 0-.82.82v13.45h1.64V49.92a1.31 1.31 0 0 1 1.3-1.31h5.39c-.1-.26-.14-.54-.14-.82v-.82Zm15.44-2.46v3.28c0 .45-.36.82-.82.82H50.2a.82.82 0 0 1-.82-.82v-3.28c0-.45.36-.82.82-.82h12.16c.46 0 .82.37.82.82Z"
-              clip-rule="evenodd"
-            />
-            <path
-              fill="#0862EE"
-              fill-rule="evenodd"
-              d="M46.1 66.32a1.8 1.8 0 0 0-1.8-1.8H29.88a1.8 1.8 0 0 0-1.8 1.8v4.6a1.8 1.8 0 0 0 1.8 1.8H44.3a1.8 1.8 0 0 0 1.8-1.8v-4.6Zm-1.64 0v4.6c0 .04-.02.08-.05.1a.16.16 0 0 1-.11.06H29.88a.16.16 0 0 1-.12-.05.16.16 0 0 1-.04-.12v-4.59c0-.04.01-.08.04-.11a.16.16 0 0 1 .12-.05H44.3c.04 0 .08.02.11.05.03.03.05.07.05.11ZM33 77.96v-2.3c0-.72-.6-1.3-1.32-1.3h-2.3c-.72 0-1.3.58-1.3 1.3v2.3c0 .72.58 1.3 1.3 1.3h2.3c.73 0 1.31-.58 1.31-1.3Zm-3.28-.33h1.63v-1.64h-1.63v1.64ZM33 84.51v-2.3c0-.72-.6-1.3-1.32-1.3h-2.3c-.72 0-1.3.58-1.3 1.3v2.3c0 .72.58 1.31 1.3 1.31h2.3c.73 0 1.31-.59 1.31-1.31Zm-3.28-.33h1.63v-1.64h-1.63v1.64ZM33 91.06v-2.29c0-.72-.6-1.31-1.32-1.31h-2.3c-.72 0-1.3.59-1.3 1.31v2.3c0 .72.58 1.3 1.3 1.3h2.3c.73 0 1.31-.58 1.31-1.3Zm-3.28-.32h1.63V89.1h-1.63v1.64ZM39.55 77.96v-2.3c0-.72-.59-1.3-1.31-1.3h-2.3c-.72 0-1.3.58-1.3 1.3v2.3c0 .72.58 1.3 1.3 1.3h2.3c.72 0 1.3-.58 1.3-1.3Zm-3.28-.33h1.64v-1.64h-1.64v1.64ZM39.55 84.51v-2.3c0-.72-.59-1.3-1.31-1.3h-2.3c-.72 0-1.3.58-1.3 1.3v2.3c0 .72.58 1.31 1.3 1.31h2.3c.72 0 1.3-.59 1.3-1.31Zm-3.28-.33h1.64v-1.64h-1.64v1.64ZM39.55 91.06v-2.29c0-.72-.59-1.31-1.31-1.31h-2.3c-.72 0-1.3.59-1.3 1.31v2.3c0 .72.58 1.3 1.3 1.3h2.3c.72 0 1.3-.58 1.3-1.3Zm-3.28-.32h1.64V89.1h-1.64v1.64ZM46.1 77.96v-2.3c0-.72-.59-1.3-1.31-1.3h-2.3c-.72 0-1.3.58-1.3 1.3v2.3c0 .72.58 1.3 1.3 1.3h2.3c.72 0 1.31-.58 1.31-1.3Zm-3.28-.33h1.64v-1.64h-1.64v1.64ZM46.1 84.51v-2.3c0-.72-.59-1.3-1.31-1.3h-2.3c-.72 0-1.3.58-1.3 1.3v2.3c0 .72.58 1.31 1.3 1.31h2.3c.72 0 1.31-.59 1.31-1.31Zm-3.28-.33h1.64v-1.64h-1.64v1.64ZM46.1 91.06v-2.29c0-.72-.59-1.31-1.31-1.31h-2.3c-.72 0-1.3.59-1.3 1.31v2.3c0 .72.58 1.3 1.3 1.3h2.3c.72 0 1.31-.58 1.31-1.3Zm-3.28-.32h1.64V89.1h-1.64v1.64ZM53.47 72.69h9.83a.82.82 0 0 0 0-1.64h-9.83a.82.82 0 0 0 0 1.64ZM53.47 82.5h9.83a.82.82 0 0 0 0-1.65h-9.83a.82.82 0 0 0 0 1.64ZM53.47 75.95h9.83a.82.82 0 0 0 0-1.64h-9.83a.82.82 0 0 0 0 1.64ZM53.47 85.75h9.83a.82.82 0 0 0 0-1.64h-9.83a.82.82 0 0 0 0 1.64ZM53.47 69.44h9.83a.82.82 0 0 0 0-1.64h-9.83a.82.82 0 0 0 0 1.64ZM53.47 66.13h4.92a.82.82 0 0 0 0-1.64h-4.92a.82.82 0 0 0 0 1.64ZM53.47 79.22h4.92a.82.82 0 0 0 0-1.64h-4.92a.82.82 0 0 0 0 1.64Z"
-              clip-rule="evenodd"
-            />
-            <path
-              stroke="#0862EE"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="1.87"
-              d="M48.64 59.6v-6.06h3.74v6.06M54.71 53.54h2.57m0 0v6.06m0-6.06h2.57M65 55.18c0-2.15-3.28-2.16-3.28-.21v3.1c0 2.02 3.27 2.03 3.27.1"
-            />
-            <circle cx="99.58" cy="21.5" r="2.8" fill="#0862EE" />
-            <circle cx="4.71" cy="130.39" r="3.74" fill="#0862EE" />
-            <defs>
-              <filter
-                id="a"
-                width="151.13"
-                height="151.13"
-                x="-24.59"
-                y="5.29"
-                color-interpolation-filters="sRGB"
-                filterUnits="userSpaceOnUse"
-              >
-                <feFlood flood-opacity="0" result="BackgroundImageFix" />
-                <feColorMatrix
-                  in="SourceAlpha"
-                  result="hardAlpha"
-                  values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
-                />
-                <feMorphology in="SourceAlpha" radius="4.67" result="effect1_dropShadow_587_4769" />
-                <feOffset dy="12.15" />
-                <feGaussianBlur stdDeviation="10.28" />
-                <feComposite in2="hardAlpha" operator="out" />
-                <feColorMatrix values="0 0 0 0 0.222247 0 0 0 0 0.31766 0 0 0 0 0.858333 0 0 0 0.27 0" />
-                <feBlend in2="BackgroundImageFix" result="effect1_dropShadow_587_4769" />
-                <feBlend in="SourceGraphic" in2="effect1_dropShadow_587_4769" result="shape" />
-              </filter>
-            </defs>
-          </svg>
+          <CalculatorPic />
           <div className="flex flex-col gap-4">
             <Title variant="decorated">Создали специальную конфигурацию для обратного лизинга</Title>
             <p className="font-normal">Учли все тонкости бизнеса и подключили необходимые сервисы</p>
@@ -255,10 +183,12 @@ let IndexPage = () => {
         </Button>
       </section>
 
-      <section className="px-7">
-        <Title size="2xl" variant="decorated" decorationColor="hsl(231,100%,90%)">
+      {/* integrations */}
+      <section className="px-7 pb-11">
+        <Title size="2xl" variant="decorated" decorationColor="hsl(231,100%,90%)" className="mb-9">
           Интеграции с различными системами{' '}
         </Title>
+        <Integrations />
       </section>
 
       <section className={`relative z-0 px-7 pt-8 pb-8 ${styles.section}`}>

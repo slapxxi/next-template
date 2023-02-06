@@ -8,10 +8,7 @@ export let CloseIcon = (props: CloseIconProps) => {
   return (
     <svg className={`${className} fill-none`} viewBox="0 0 24 24" width={size} height={size} {...rest}>
       <path
-        stroke="#fff"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        stroke-width="2"
+        className="stroke-current stroke-2 cap-round line-round"
         d="M6 17.31 17.31 6M6.34 6l11.32 11.31"
       />
     </svg>

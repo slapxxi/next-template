@@ -8,22 +8,17 @@ import { Title } from 'components/Title';
 import type { AppType } from 'next/dist/shared/lib/utils';
 import Head from 'next/head';
 import Link from 'next/link';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import 'styles/globals.scss';
 import { CloseIcon } from '../components/icons/CloseIcon';
 import { TelegramIcon } from '../components/icons/TelegramIcon';
+import { useNoScroll } from '../lib/hooks/useNoScroll';
 
 let App: AppType = (props) => {
   let { Component, pageProps } = props;
   let [menuOpen, setMenuOpen] = useState(false);
 
-  useEffect(() => {
-    if (menuOpen) {
-      document.body.classList.add('no-scroll');
-    } else {
-      document.body.classList.remove('no-scroll');
-    }
-  }, [menuOpen]);
+  useNoScroll(menuOpen);
 
   return (
     <>

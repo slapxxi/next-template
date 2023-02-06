@@ -4,15 +4,16 @@ export type ListProps = {
   children?: React.ReactNode;
   className?: string;
   variant?: 'disc' | 'empty';
+  gap?: number;
 };
 
 export let List = (props: ListProps) => {
-  let { children, className = '', variant = 'empty', ...rest } = props;
+  let { children, className = '', variant = 'empty', gap = variant === 'disc' ? 1.5 : 4, ...rest } = props;
   return (
     <ul
       className={`${className} flex flex-col 
-      ${variant === 'disc' ? `${styles.disc} gap-1.5` : ''}
-      ${variant === 'empty' ? 'gap-4' : ''}
+      ${variant === 'disc' ? `${styles.disc}` : ''}
+      gap-${gap}
     `}
       {...rest}
     >
