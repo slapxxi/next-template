@@ -11,7 +11,7 @@ module.exports = {
   ],
   theme: {
     data: {
-      checked: 'checked',
+      checked: 'checked="true"',
       vertical: 'vertical',
       horizontal: 'horizontal',
     },
