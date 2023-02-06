@@ -1,6 +1,5 @@
 import { useRef } from 'react';
 import { createPortal } from 'react-dom';
-import { useNoScroll } from '../lib/hooks/useNoScroll';
 import useOutsideClick from '../lib/hooks/useOutsideClick';
 import { CloseIcon } from './icons/CloseIcon';
 
@@ -15,7 +14,6 @@ export let Modal = (props: ModalProps) => {
   let { open = false, children, onClose } = props;
   let ref = useRef(null);
 
-  useNoScroll(open);
   useOutsideClick(ref, () => {
     onClose?.();
   });

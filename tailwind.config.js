@@ -48,9 +48,6 @@ module.exports = {
     require('@tailwindcss/container-queries'),
     plugin(({ addUtilities }) => {
       addUtilities({
-        '.no-scroll': {
-          overflow: 'hidden',
-        },
         '.writing-v-rl': {
           writingMode: 'vertical-rl',
         },
