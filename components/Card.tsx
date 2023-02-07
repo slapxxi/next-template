@@ -36,7 +36,7 @@ export type CardContainerProps = {
 export let CardContainer = (props: CardContainerProps) => {
   let { children, className = '', ...rest } = props;
   return (
-    <div className={`${className} rounded-lg bg-white text-sm [filter:url(#drop-shadow)]`} {...rest}>
+    <div className={`${className} big-shadow rounded-lg bg-white text-sm`} {...rest}>
       {children}
     </div>
   );

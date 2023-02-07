@@ -100,6 +100,9 @@
 }
 
 @layer utilities {
+  .big-shadow {
+    box-shadow: 0px 9.34831px 15.8202px -3.59551px rgba(57, 81, 219, 0.27);
+  }
 }
 
 html.no-scroll {
