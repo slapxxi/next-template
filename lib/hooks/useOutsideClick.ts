@@ -14,10 +14,10 @@ export default function useOutsideClick<T extends Element, E extends MouseEvent 
   );
   useEffect(() => {
     document.addEventListener('mousedown', handleClick);
-    document.addEventListener('touchstart', handleClick);
+    document.addEventListener('touchend', handleClick);
     return () => {
       document.removeEventListener('mousedown', handleClick);
-      document.removeEventListener('touchstart', handleClick);
+      document.removeEventListener('touchend', handleClick);
     };
   }, []);
 }
