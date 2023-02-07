@@ -12,6 +12,7 @@ import { useState } from 'react';
 import 'styles/globals.scss';
 import { CloseIcon } from '../components/icons/CloseIcon';
 import { TelegramIcon } from '../components/icons/TelegramIcon';
+import { SquareIcon } from '../components/SquareIcon';
 import { useNoScroll } from '../lib/hooks/useNoScroll';
 
 let App: AppType = (props) => {
@@ -114,16 +115,25 @@ let App: AppType = (props) => {
         <button className="mb-5 text-left font-normal">Заказать обратный звонок</button>
 
         <div className="mb-12 flex gap-2.5">
-          <a href="" className="inline-flex  h-[50px] w-[50px] items-center justify-center bg-navy-light">
-            <TelegramIcon />
+          <a href="">
+            <SquareIcon className="fill-navy-light text-white">
+              <TelegramIcon />
+            </SquareIcon>
           </a>
-          <a href="" className="inline-flex  h-[50px] w-[50px] items-center justify-center bg-navy-light">
-            <WhatsappIcon />
+          <a href="#">
+            <SquareIcon className="fill-navy-light text-white">
+              <WhatsappIcon />
+            </SquareIcon>
+          </a>
+          <a href="#">
+            <SquareIcon className="fill-navy-light text-white">
+              <TelegramIcon />
+            </SquareIcon>
           </a>
         </div>
 
         <small className="mb-2 text-xs font-bold">&copy; 2023, XLombard</small>
-        <p className="text-xs">Конфиденциальность и обработка персональных данных</p>
+        <p className="text-xs font-normal">Конфиденциальность и обработка персональных данных</p>
       </footer>
 
       {menuOpen && (
@@ -171,17 +181,15 @@ let App: AppType = (props) => {
               </a>
               <button className="mb-5 text-left font-normal">Заказать обратный звонок</button>
               <div className="mb-12 flex gap-2.5">
-                <a
-                  href=""
-                  className="inline-flex  h-[50px] w-[50px] items-center justify-center bg-blue-light"
-                >
-                  <TelegramIcon />
+                <a href="#">
+                  <SquareIcon className="fill-blue-light">
+                    <TelegramIcon />
+                  </SquareIcon>
                 </a>
-                <a
-                  href=""
-                  className="inline-flex  h-[50px] w-[50px] items-center justify-center bg-blue-light"
-                >
-                  <WhatsappIcon />
+                <a href="#">
+                  <SquareIcon className="fill-blue-light">
+                    <WhatsappIcon />
+                  </SquareIcon>
                 </a>
               </div>
             </div>

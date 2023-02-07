@@ -24,7 +24,7 @@ export let Modal = (props: ModalProps) => {
 
   if (open) {
     return createPortal(
-      <div className="fixed inset-0 z-20 bg-black/20 backdrop-blur-sm">
+      <div className="fixed inset-0 z-20 bg-backdrop/60 backdrop-blur-sm">
         <div
           ref={ref}
           className="fixed top-1/2 left-1/2 w-10/12 max-w-[583px] -translate-y-1/2 -translate-x-1/2

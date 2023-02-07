@@ -1,12 +1,20 @@
 export type StrongProps = {
   children?: React.ReactNode;
   className?: string;
+  size?: 'sm' | 'md' | 'lg';
 };
 
 export let Strong = (props: StrongProps) => {
-  let { children, className = '', ...rest } = props;
+  let { children, className = '', size = 'md', ...rest } = props;
   return (
-    <span className={`${className} text-3xl font-bold`} {...rest}>
+    <span
+      className={`${className} font-bold
+      ${size === 'sm' ? 'text-xl' : ''}
+      ${size === 'md' ? 'text-2xl' : ''}
+      ${size === 'lg' ? 'text-3xl' : ''}
+    `}
+      {...rest}
+    >
       {children}
     </span>
   );

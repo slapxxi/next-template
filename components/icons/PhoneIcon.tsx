@@ -1,7 +1,9 @@
+import { SVGProps } from 'react';
+
 export type PhoneIconProps = {
   className?: string;
   size?: number;
-};
+} & SVGProps<SVGSVGElement>;
 
 export let PhoneIcon = (props: PhoneIconProps) => {
   let { className = '', size = 24, ...rest } = props;

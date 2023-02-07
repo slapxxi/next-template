@@ -4,16 +4,24 @@ import { CalculatorPic } from '../components/CalculatorPic';
 import { Card, CardContainer } from '../components/Card';
 import { AttachmentIcon } from '../components/icons/AttachmentIcon';
 import { BackdropIcon } from '../components/icons/BackdropIcon';
+import { CheckmarkIcon } from '../components/icons/CheckmarkIcon';
+import { ClockIcon } from '../components/icons/ClockIcon';
+import { ExternalIcon } from '../components/icons/ExternalIcon';
+import { LocationIcon } from '../components/icons/LocationIcon';
 import { MailIcon } from '../components/icons/MailIcon';
 import { MenuIcon } from '../components/icons/MenuIcon';
+import { MessageIcon } from '../components/icons/MessageIcon';
 import { PhoneIcon } from '../components/icons/PhoneIcon';
+import { PuzzleIcon } from '../components/icons/PuzzleIcon';
 import { SendIcon } from '../components/icons/SendIcon';
 import { StopIcon } from '../components/icons/StopIcon';
 import { TelegramIcon } from '../components/icons/TelegramIcon';
+import { UserIcon } from '../components/icons/UserIcon';
 import { WhatsappIcon } from '../components/icons/WhatsappIcon';
 import { Input } from '../components/Input';
 import { Integrations } from '../components/Integrations';
 import { Scheme } from '../components/Scheme';
+import { SquareIcon } from '../components/SquareIcon';
 import { Strong } from '../components/Strong';
 import { TextBadge } from '../components/TextBadge';
 import { Title } from '../components/Title';
@@ -252,7 +260,7 @@ let IndexPage = () => {
         </ul>
       </section>
 
-      <section className="mb-8 px-5">
+      <section className="mb-8 px-5" id="summary">
         <Title variant="decorated" size="2xl" className="mb-6">
           Подводим итоги 2022 года
         </Title>
@@ -281,89 +289,29 @@ let IndexPage = () => {
           <div className="flex flex-col justify-between rounded-lg bg-violet-light p-5 text-xs">
             <p>Сделано больших и маленьких доработок уже существующих модулей</p>
             <div className="flex items-center gap-2">
-              <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="none">
-                <path
-                  stroke="#CAD2FF"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M19.93 8.43c-.05.32.06.65.3.88l1.56 1.57a2.4 2.4 0 0 1 0 3.4l-1.61 1.62a.98.98 0 0 1-.84.27c-.47-.07-.8-.48-.97-.92a2.5 2.5 0 1 0-3.21 3.21c.44.17.85.5.92.97a.98.98 0 0 1-.27.84l-1.61 1.6a2.4 2.4 0 0 1-3.41 0l-1.57-1.56a1.03 1.03 0 0 0-.88-.3c-.49.08-.84.51-1.02.98a2.5 2.5 0 1 1-3.23-3.24c.46-.18.9-.53.96-1.02a1.03 1.03 0 0 0-.29-.88L3.2 14.28a2.4 2.4 0 0 1 0-3.4l1.52-1.53c.24-.24.58-.35.92-.3.51.07.88.53 1.07 1A2.5 2.5 0 1 0 9.97 6.8c-.48-.2-.93-.56-1-1.07-.06-.34.05-.68.3-.92l1.52-1.53a2.4 2.4 0 0 1 3.4 0l1.57 1.57c.23.23.56.34.88.3.5-.08.84-.51 1.02-.98a2.5 2.5 0 1 1 3.24 3.24c-.47.18-.9.53-.97 1.02v0Z"
-                />
-              </svg>
-              <span className="text-2xl font-bold">240</span>
+              <PuzzleIcon className="text-violet" />
+              <Strong>240</Strong>
             </div>
           </div>
           <div className="flex flex-col justify-between rounded-lg bg-violet-light p-5 text-xs">
-            <p>Исправлено недочетов в программе</p>
+            <p>Исправлено недочетов в программе</p>
             <div className="flex items-center gap-2">
-              <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path
-                  d="M12.9661 22.0537C18.4891 22.0537 22.9661 17.5767 22.9661 12.0537C22.9661 6.53071 18.4891 2.05371 12.9661 2.05371C7.44306 2.05371 2.96606 6.53071 2.96606 12.0537C2.96606 17.5767 7.44306 22.0537 12.9661 22.0537Z"
-                  stroke="#CAD2FF"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-                <path
-                  d="M9.96606 12.0537L11.9661 14.0537L15.9661 10.0537"
-                  stroke="#CAD2FF"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-              </svg>
-              <span className="text-2xl font-bold">210</span>
+              <CheckmarkIcon className="text-violet" />
+              <Strong>210</Strong>
             </div>
           </div>
           <div className="flex flex-col justify-between rounded-lg bg-violet-light p-5 text-xs">
-            <p>Обработано обращений клиентов в техническую поддержку</p>
+            <p>Обработано обращений клиентов в техническую поддержку</p>
             <div className="flex items-center gap-2">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path
-                  d="M20 4H4C2.89543 4 2 4.89543 2 6V18C2 19.1046 2.89543 20 4 20H20C21.1046 20 22 19.1046 22 18V6C22 4.89543 21.1046 4 20 4Z"
-                  stroke="#CAD2FF"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-                <path
-                  d="M22 7L13.03 12.7C12.7213 12.8934 12.3643 12.996 12 12.996C11.6357 12.996 11.2787 12.8934 10.97 12.7L2 7"
-                  stroke="#CAD2FF"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-              </svg>
-              <span className="text-2xl font-bold">2 109</span>
+              <MailIcon className="text-violet" />
+              <Strong>2 109</Strong>
             </div>
           </div>
           <div className="flex flex-col justify-between rounded-lg bg-violet-light p-5 text-xs">
-            <p>Пришло новых людей в коллектив XLombard </p>
+            <p>Пришло новых людей в коллектив XLombard </p>
             <div className="flex items-center gap-2">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path
-                  d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z"
-                  stroke="#CAD2FF"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-                <path
-                  d="M18.3337 18.8571C18.171 18.269 17.8423 17.7266 17.3744 17.2899C16.6855 16.6469 15.7511 16.2856 14.7768 16.2856H9.26664C8.29237 16.2856 7.35801 16.6469 6.6691 17.2899C6.26283 17.669 5.96154 18.1279 5.78271 18.6271"
-                  stroke="#CAD2FF"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-                <path
-                  d="M12.0217 12.8569C13.6786 12.8569 15.0217 11.5138 15.0217 9.85693C15.0217 8.20008 13.6786 6.85693 12.0217 6.85693C10.3649 6.85693 9.02173 8.20008 9.02173 9.85693C9.02173 11.5138 10.3649 12.8569 12.0217 12.8569Z"
-                  stroke="#CAD2FF"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-              </svg>
-              <span className="text-2xl font-bold">4</span>
+              <UserIcon className="text-violet" />
+              <Strong>4</Strong>
             </div>
           </div>
         </div>
@@ -412,57 +360,53 @@ let IndexPage = () => {
         </div>
       </section>
 
-      <section className="relative z-0 bg-blue-base px-6 pb-7 pt-8 font-normal text-white">
+      <section className="relative z-0 bg-blue-base px-6 pb-7 pt-8 font-normal text-white" id="tech-support">
         <Title variant="decorated" decorationColor="hsl(217,88%,55%)" size="2xl" className="mb-8">
           Техническая поддержка онлайн всегда
         </Title>
 
         <div className="mb-3 flex gap-3">
           <div className="card card-fade-8 flex gap-2 rounded-lg bg-white p-3 text-xs font-medium text-black">
-            <svg width="14" height="14" fill="none" className="shrink-0 translate-y-1">
-              <g stroke="#9DA7E0" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.13">
-                <path d="M7.03 12.75a5.63 5.63 0 1 0 0-11.26 5.63 5.63 0 0 0 0 11.26Z" />
-                <path d="M7.03 3.75v3.37L9.28 6" />
-              </g>
-            </svg>
+            <ClockIcon className="shrink-0 translate-y-0.5" size={14} />
             <div className="flex flex-col gap-2">
               Время реакции менее
               <div className="mt-auto flex gap-1.5">
-                <Strong>5</Strong>
+                <Strong size="lg">5</Strong>
                 <span className="text-gray-500">минут (в раб. время)</span>
               </div>
             </div>
           </div>
           <div className="card -card-fade-8 flex gap-2 rounded-lg bg-white p-3 text-xs font-medium text-black">
-            <svg width="14" height="14" fill="none" className="shrink-0 translate-y-1">
-              <g stroke="#9DA7E0" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.13">
-                <path d="M7.03 12.75a5.63 5.63 0 1 0 0-11.26 5.63 5.63 0 0 0 0 11.26Z" />
-                <path d="M7.03 3.75v3.37L9.28 6" />
-              </g>
-            </svg>
+            <ClockIcon className="shrink-0 translate-y-0.5" size={14} />
             <div className="flex flex-col gap-2">
               На линии всегда не менее
               <div className="mt-auto flex gap-1.5">
-                <Strong>3</Strong>
+                <Strong size="lg">3</Strong>
                 <span className="text-gray-500">сотрудника онлайн</span>
               </div>
             </div>
           </div>
         </div>
         <p className="mb-5">
-          Если возникла какая-либо сложность с программой, то всегда можно написать в месенджеры или позвонить
-          по телефону в квалифицированную техническую поддержку.
+          Если возникла какая-либо сложность с программой, то всегда можно написать в месенджеры или позвонить
+          по телефону в квалифицированную техническую поддержку.
         </p>
 
         <div className="mb-8 flex gap-2.5">
-          <a href="#" className="flex h-[50px] w-[50px] items-center justify-center bg-blue-light">
-            <PhoneIcon />
+          <a href="#">
+            <SquareIcon className="fill-blue-light">
+              <PhoneIcon />
+            </SquareIcon>
           </a>
-          <a href="#" className="flex h-[50px] w-[50px] items-center justify-center bg-blue-light">
-            <TelegramIcon />
+          <a href="#">
+            <SquareIcon className="fill-blue-light">
+              <TelegramIcon />
+            </SquareIcon>
           </a>
-          <a href="#" className="flex h-[50px] w-[50px] items-center justify-center bg-blue-light">
-            <WhatsappIcon />
+          <a href="#">
+            <SquareIcon className="fill-blue-light">
+              <WhatsappIcon />
+            </SquareIcon>
           </a>
         </div>
 
@@ -476,7 +420,7 @@ let IndexPage = () => {
               <span className="text-blue-base">
                 <MailIcon />
               </span>
-              <Strong>408</Strong>
+              <Strong size="lg">408</Strong>
               <p className="text-center font-medium">обращений клиентов обработано</p>
             </div>
 
@@ -522,15 +466,7 @@ let IndexPage = () => {
               Реализовано доработок: 11 <br /> Исправлено ошибок: 2
             </p>
             <div className="flex items-center gap-1">
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="15" fill="none">
-                <path
-                  stroke="#0862EE"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="1.17"
-                  d="M10.5 7.82v3.5a1.17 1.17 0 0 1-1.17 1.17H2.92a1.17 1.17 0 0 1-1.17-1.17V4.9a1.17 1.17 0 0 1 1.17-1.16h3.5M8.75 1.99h3.5v3.5M5.83 8.4 12.25 2"
-                />
-              </svg>
+              <ExternalIcon className="text-blue-base" size={16} />
               <a href="#" className="text-blue-base">
                 Релиз 3.48.0.0
               </a>
@@ -542,15 +478,7 @@ let IndexPage = () => {
               Реализовано доработок: 11 <br /> Исправлено ошибок: 2
             </p>
             <div className="flex items-center gap-1">
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="15" fill="none">
-                <path
-                  stroke="#0862EE"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="1.17"
-                  d="M10.5 7.82v3.5a1.17 1.17 0 0 1-1.17 1.17H2.92a1.17 1.17 0 0 1-1.17-1.17V4.9a1.17 1.17 0 0 1 1.17-1.16h3.5M8.75 1.99h3.5v3.5M5.83 8.4 12.25 2"
-                />
-              </svg>
+              <ExternalIcon className="text-blue-base" size={16} />
               <a href="#" className="text-blue-base">
                 Релиз 3.48.0.0
               </a>
@@ -562,15 +490,7 @@ let IndexPage = () => {
               Реализовано доработок: 11 <br /> Исправлено ошибок: 2
             </p>
             <div className="flex items-center gap-1">
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="15" fill="none">
-                <path
-                  stroke="#0862EE"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="1.17"
-                  d="M10.5 7.82v3.5a1.17 1.17 0 0 1-1.17 1.17H2.92a1.17 1.17 0 0 1-1.17-1.17V4.9a1.17 1.17 0 0 1 1.17-1.16h3.5M8.75 1.99h3.5v3.5M5.83 8.4 12.25 2"
-                />
-              </svg>
+              <ExternalIcon className="text-blue-base" size={16} />
               <a href="#" className="text-blue-base">
                 Релиз 3.48.0.0
               </a>
@@ -579,37 +499,35 @@ let IndexPage = () => {
         </div>
       </section>
 
-      <section className={`bg-gray-light py-8 px-5 ${styles.section3}`}>
+      <section className={`bg-gray-light py-8 px-5 ${styles.section3}`} id="contact">
         <Title variant="decorated" size="2xl" className="mb-5">
           Открыты для общения
         </Title>
         <ul className="flex flex-col gap-4">
           <li className="flex gap-4">
-            <BackdropIcon className="text-blue-base" size={72}>
-              <PhoneIcon />
+            <BackdropIcon className="shrink-0 text-blue-base" size={72} iconSize={20}>
+              <PhoneIcon size={20} />
             </BackdropIcon>
             <div className="flex flex-col gap-2">
               <Title>Пишите нам</Title>
               <p className="font-normal text-gray-500">в мессенджеры на +7 (968) 096-59-40</p>
-              <div className="flex gap-2">
-                <a
-                  href="#"
-                  className="flex h-[50px] w-[50px] items-center justify-center bg-sky-500 text-white"
-                >
-                  <TelegramIcon />
+              <div className="flex gap-2 text-white">
+                <a href="#">
+                  <SquareIcon className="fill-telegram">
+                    <TelegramIcon />
+                  </SquareIcon>
                 </a>
-                <a
-                  href="#"
-                  className="flex h-[50px] w-[50px] items-center justify-center bg-green-500 text-white"
-                >
-                  <WhatsappIcon />
+                <a href="#">
+                  <SquareIcon className="fill-whatsapp">
+                    <WhatsappIcon />
+                  </SquareIcon>
                 </a>
               </div>
             </div>
           </li>
           <li className="flex gap-4">
-            <BackdropIcon className="text-blue-base" size={72}>
-              <PhoneIcon />
+            <BackdropIcon className="shrink-0 text-blue-base" size={72}>
+              <MessageIcon dots />
             </BackdropIcon>
             <div className="flex flex-col gap-2">
               <Title>Пишите нам</Title>
@@ -618,8 +536,8 @@ let IndexPage = () => {
             </div>
           </li>
           <li className="flex gap-4">
-            <BackdropIcon className="text-blue-base" size={72}>
-              <PhoneIcon />
+            <BackdropIcon className="shrink-0 text-blue-base" size={72}>
+              <LocationIcon />
             </BackdropIcon>
             <div className="flex flex-col gap-2">
               <Title>Приезжайте</Title>
