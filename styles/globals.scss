@@ -3,6 +3,13 @@
 @tailwind utilities;
 
 @layer base {
+  :root {
+    --violet: hsl(231, 100%, 90%);
+    --violet-light: hsl(231, 88%, 97%);
+    --blue-light: hsl(213, 100%, 91%);
+    --green-light: hsl(115, 81%, 94%);
+  }
+
   @font-face {
     font-family: 'Onest';
     src: url(/fonts/OnestMedium1602-hint.woff) format('woff');
@@ -85,6 +92,10 @@
       content: '';
       transform: rotate(-8deg);
     }
+  }
+
+  .link {
+    @apply text-blue-base;
   }
 }
 

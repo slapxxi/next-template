@@ -1,21 +1,30 @@
+import classNames from 'classnames';
 import { HTMLProps } from 'react';
 
 export type ButtonProps = {
   children?: React.ReactNode;
   className?: string;
-  variant?: 'outline' | 'fill';
-  radius?: 'md' | 'xl';
+  variant?: 'outline' | 'fill' | 'icon';
+  radius?: 'sm' | 'md' | 'lg' | 'xl';
   type?: 'button' | 'submit' | 'reset';
-} & HTMLProps<HTMLButtonElement>;
+  size?: 'sm' | 'md' | 'lg';
+} & Omit<HTMLProps<HTMLButtonElement>, 'size'>;
 
 export let Button = (props: ButtonProps) => {
-  let { children, className = '', variant = 'outline', type, radius = 'xl', ...rest } = props;
+  let { children, className = '', variant = 'outline', type, radius = 'xl', size = 'md', ...rest } = props;
   return (
     <button
-      className={`${className} border-2 border-current p-2 font-medium
-      ${variant === 'fill' ? 'border-blue bg-blue text-white' : ''}
-      ${`rounded-${radius}`}
-      `}
+      className={classNames(
+        className,
+        'inline-flex items-center gap-2.5 border-2 border-current',
+        `rounded-${radius}`,
+        variant === 'fill' && 'border-blue-base bg-blue-base text-white',
+        variant === 'outline' && '',
+        variant === 'icon' && '!p-[7px]',
+        size === 'sm' && 'px-3.5 py-[9px] text-sm font-bold',
+        size === 'md' && 'px-4 py-3 text-sm font-bold',
+        size === 'lg' && 'px-7 py-4 text-2xl font-bold',
+      )}
       type={type}
       {...rest}
     >

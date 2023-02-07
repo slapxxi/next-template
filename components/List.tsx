@@ -1,9 +1,10 @@
+import classNames from 'classnames';
 import styles from './List.module.scss';
 
 export type ListProps = {
   children?: React.ReactNode;
   className?: string;
-  variant?: 'disc' | 'empty';
+  variant?: 'disc' | 'empty' | 'list' | 'ordered';
   gap?: number;
 };
 
@@ -11,10 +12,14 @@ export let List = (props: ListProps) => {
   let { children, className = '', variant = 'empty', gap = variant === 'disc' ? 1.5 : 4, ...rest } = props;
   return (
     <ul
-      className={`${className} flex flex-col 
-      ${variant === 'disc' ? `${styles.disc}` : ''}
-      gap-${gap}
-    `}
+      className={classNames(
+        className,
+        'flex flex-col',
+        variant === 'disc' && styles.disc,
+        variant === 'list' && 'ml-5 list-disc',
+        variant === 'ordered' && 'ml-5 list-decimal',
+        `gap-${gap}`,
+      )}
       {...rest}
     >
       {children}

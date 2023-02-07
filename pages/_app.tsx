@@ -8,6 +8,7 @@ import { Title } from 'components/Title';
 import type { AppType } from 'next/dist/shared/lib/utils';
 import Head from 'next/head';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import { useState } from 'react';
 import 'styles/globals.scss';
 import { CloseIcon } from '../components/icons/CloseIcon';
@@ -18,6 +19,11 @@ import { useNoScroll } from '../lib/hooks/useNoScroll';
 let App: AppType = (props) => {
   let { Component, pageProps } = props;
   let [menuOpen, setMenuOpen] = useState(false);
+  let router = useRouter();
+
+  router.events?.on('routeChangeStart', () => {
+    setMenuOpen(false);
+  });
 
   useNoScroll(menuOpen);
 
@@ -47,24 +53,28 @@ let App: AppType = (props) => {
           <feBlend in="SourceGraphic" in2="effect1_dropShadow_587_4727" result="shape" />
         </filter>
       </svg>
+
       <Head>
         <meta name="viewport" content="initial-scale=1.0, minimum-scale=1.0, width=device-width" />
         <meta name="theme-color" content="#0b0b16" />
       </Head>
-      <header className="flex gap-3 px-5 py-3 text-blue">
-        <Button onClick={() => setMenuOpen((o) => !o)}>
+
+      <header className="flex items-center gap-2.5 px-5 py-3 text-blue">
+        <Button onClick={() => setMenuOpen((o) => !o)} variant="icon">
           <MenuIcon />
         </Button>
         <Link href="/" className="mr-auto flex">
           <Logo width={124} />
         </Link>
-        <Button>Демо</Button>
-        <Button>
+        <Button size="sm">Демо</Button>
+        <Button variant="icon">
           <PhoneIcon />
         </Button>
       </header>
+
       <Component {...pageProps} />
-      <footer className="flex flex-col bg-navy px-7 pb-12 pt-9 text-sm font-medium text-white">
+
+      <footer className="mt-24 flex flex-col bg-navy px-7 pb-12 pt-9 text-sm font-medium text-white">
         <Link href="/" className="mb-2">
           <Logo width={126} variant="mono" />
         </Link>
@@ -138,15 +148,15 @@ let App: AppType = (props) => {
 
       {menuOpen && (
         <div className="fixed inset-0 z-10 overflow-y-scroll bg-blue text-sm font-medium text-white">
-          <header className="flex gap-3 px-5 py-3 pb-8">
-            <Button onClick={() => setMenuOpen((o) => !o)}>
+          <header className="flex items-center gap-2.5 px-5 py-3 pb-8">
+            <Button onClick={() => setMenuOpen((o) => !o)} variant="icon">
               <CloseIcon />
             </Button>
             <Link href="/" className="mr-auto flex">
               <Logo width={124} variant="mono" />
             </Link>
-            <Button>Демо</Button>
-            <Button>
+            <Button size="sm">Демо</Button>
+            <Button variant="icon">
               <PhoneIcon />
             </Button>
           </header>
@@ -173,8 +183,12 @@ let App: AppType = (props) => {
                   <Link href="#">Документация</Link>
                 </ListItem>
               </List>
-              <Title className="mb-7 font-medium">Тарифы</Title>
-              <Title className="mb-8 font-medium">Контакты</Title>
+              <Link href="/prices">
+                <Title className="mb-7 font-medium">Тарифы</Title>
+              </Link>
+              <Link href="/contacts">
+                <Title className="mb-8 font-medium">Контакты</Title>
+              </Link>
 
               <a href="tel:+74956779551" className="mb-1 text-2xl font-bold">
                 +7 (495) 677-95-51
