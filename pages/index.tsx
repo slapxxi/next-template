@@ -380,7 +380,7 @@ let IndexPage = () => {
         </div>
         <div className="flex snap-x snap-mandatory gap-3 overflow-x-scroll px-7 pb-8">
           <CardContainer className="flex min-h-[280px] w-[234px] shrink-0 snap-center flex-col px-6 py-7">
-            <img src="leasing.jpg" alt="" width={140} className="self-center" />
+            <img src="image.png" alt="" width={140} className="self-center" />
             <p className="mb-2 font-normal">
               Полностью подходит под нашу специфику деятельности. Лучший продукт на рынке...
             </p>
@@ -390,7 +390,7 @@ let IndexPage = () => {
             <p className="mt-auto">Исполнительный директор Владимир Иванов</p>
           </CardContainer>
           <CardContainer className="flex min-h-[280px] w-[234px] shrink-0 snap-center flex-col px-6 py-7">
-            <img src="leasing.jpg" alt="" width={140} className="self-center" />
+            <img src="image.png" alt="" width={140} className="self-center" />
             <p className="mb-2 font-normal">
               Полностью подходит под нашу специфику деятельности. Лучший продукт на рынке...
             </p>
@@ -400,7 +400,7 @@ let IndexPage = () => {
             <p className="mt-auto">Исполнительный директор Владимир Иванов</p>
           </CardContainer>
           <CardContainer className="flex min-h-[280px] w-[234px] shrink-0 snap-center flex-col px-6 py-7">
-            <img src="leasing.jpg" alt="" width={140} className="self-center" />
+            <img src="image.png" alt="" width={140} className="self-center" />
             <p className="mb-2 font-normal">
               Полностью подходит под нашу специфику деятельности. Лучший продукт на рынке...
             </p>
