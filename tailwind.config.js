@@ -2,7 +2,7 @@ const plugin = require('tailwindcss/plugin');
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  safelist: ['text-lg', 'text-xl', 'text-2xl', 'rounded-xl', 'rounded-md'],
+  safelist: ['text-lg', 'text-xl', 'text-2xl', 'text-6xl', 'rounded-xl', 'rounded-md'],
   darkMode: 'class',
   content: [
     './app/**/*.{js,ts,jsx,tsx}',

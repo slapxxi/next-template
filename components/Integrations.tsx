@@ -1,7 +1,10 @@
 import { SVGProps, useId, useState } from 'react';
+import useMediaQuery from '../lib/hooks/useMediaQuery';
+import { mdQuery } from '../lib/styles/mq';
 import styles from './Integrations.module.scss';
 import { List, ListItem } from './List';
 import { Modal } from './Modal';
+import { Text as HTMLText } from './Text';
 import { Title } from './Title';
 
 export type IntegrationsProps = {
@@ -13,6 +16,8 @@ export let Integrations = (props: IntegrationsProps) => {
   let { children, className = '', ...rest } = props;
   let filterId = useId();
   let [open, setOpen] = useState(false);
+  let md = useMediaQuery(mdQuery);
+  let fontSize = md ? 8 : 10;
 
   function handleClick() {
     setOpen(true);
@@ -23,28 +28,32 @@ export let Integrations = (props: IntegrationsProps) => {
   }
 
   return (
-    <div className={`${className}`} {...rest}>
-      <Modal open={open} onClose={handleClose}>
-        <div className="px-6 text-sm">
-          <Title variant="decorated" className="mb-3">
-            Отраслевые решения
-          </Title>
-          <List variant="disc" className="ml-4" gap={3}>
-            <ListItem>
-              <h2>Base Docs</h2>
-              <p className="text-gray-500">{'Мониторинг состояния движимых залогов на предмет ДТП'}</p>
-            </ListItem>
-            <ListItem>
-              <h2>Циклотрон Модуль</h2>
-              <p className="text-gray-500">{'Мониторинг состояния движимых залогов на предмет ДТП'}</p>
-            </ListItem>
-            <ListItem>
-              <h2>Модуль Геовизор</h2>
-              <p className="text-gray-500">{'Построение рейтинга водителя по стилю езды и нарушений ПДД'}</p>
-            </ListItem>
-          </List>
-        </div>
-      </Modal>
+    <div className={`${className} items-center justify-between gap-2 font-normal md:flex`} {...rest}>
+      {!md && (
+        <Modal open={open} onClose={handleClose}>
+          <div className="px-6 text-sm">
+            <Title variant="decorated" className="mb-3" size={md ? '2xl' : 'base'}>
+              Отраслевые решения
+            </Title>
+            <List variant="disc" className="ml-4" gap={3}>
+              <ListItem>
+                <h2>Base Docs</h2>
+                <p className="text-gray-500">{'Мониторинг состояния движимых залогов на предмет ДТП'}</p>
+              </ListItem>
+              <ListItem>
+                <h2>Циклотрон Модуль</h2>
+                <p className="text-gray-500">{'Мониторинг состояния движимых залогов на предмет ДТП'}</p>
+              </ListItem>
+              <ListItem>
+                <h2>Модуль Геовизор</h2>
+                <p className="text-gray-500">
+                  {'Построение рейтинга водителя по стилю езды и нарушений ПДД'}
+                </p>
+              </ListItem>
+            </List>
+          </div>
+        </Modal>
+      )}
 
       <svg viewBox="0 0 309 183" fill="none" fontFamily="Onest">
         <path
@@ -76,7 +85,7 @@ export let Integrations = (props: IntegrationsProps) => {
           <Circle size={18} x={145} y={15}>
             3
           </Circle>
-          <Text fontSize={10}>
+          <Text fontSize={fontSize}>
             <tspan x={99.5} y={8.3}>
               {'IP-телефония'}
             </tspan>
@@ -87,7 +96,7 @@ export let Integrations = (props: IntegrationsProps) => {
           <Circle size={22} x={172} y={140}>
             4
           </Circle>
-          <Text fontSize={10}>
+          <Text fontSize={fontSize}>
             <tspan x={175.3} y={170.9}>
               {'Телематика'}
             </tspan>
@@ -98,7 +107,7 @@ export let Integrations = (props: IntegrationsProps) => {
           <Circle size={16} x={174} y={15}>
             2
           </Circle>
-          <Text fontSize={10}>
+          <Text fontSize={fontSize}>
             <tspan x={176.1} y={8.3}>
               {'Кассы'}
             </tspan>
@@ -109,7 +118,7 @@ export let Integrations = (props: IntegrationsProps) => {
           <Circle size={24} x={197} y={125}>
             5
           </Circle>
-          <Text fontSize={10}>
+          <Text fontSize={fontSize}>
             <tspan x={223} y={142.8}>
               {'GPS-маяки'}
             </tspan>
@@ -120,7 +129,7 @@ export let Integrations = (props: IntegrationsProps) => {
           <Circle size={18} x={145} y={142}>
             3
           </Circle>
-          <Text fontSize={10}>
+          <Text fontSize={fontSize}>
             <tspan x={13.2} y={171.3}>
               {'Государственные, надзорные'}
             </tspan>
@@ -134,7 +143,7 @@ export let Integrations = (props: IntegrationsProps) => {
           <Circle size={18} x={120} y={26}>
             3
           </Circle>
-          <Text fontSize={10}>
+          <Text fontSize={fontSize}>
             <tspan x={72.3} y={28.3}>
               {'Системы'}
             </tspan>
@@ -148,7 +157,7 @@ export let Integrations = (props: IntegrationsProps) => {
           <Circle size={30} x={197} y={19}>
             9
           </Circle>
-          <Text fontSize={10}>
+          <Text fontSize={fontSize}>
             <tspan x={226} y={24.7}>
               {'Сервисы'}
             </tspan>
@@ -162,7 +171,7 @@ export let Integrations = (props: IntegrationsProps) => {
           <Circle size={22} x={218} y={105}>
             5
           </Circle>
-          <Text fontSize={10}>
+          <Text fontSize={fontSize}>
             <tspan x={243.5} y={115.9}>
               {'Банки и'}
             </tspan>
@@ -176,7 +185,7 @@ export let Integrations = (props: IntegrationsProps) => {
           <Circle size={14} x={122} y={132}>
             1
           </Circle>
-          <Text fontSize={10}>
+          <Text fontSize={fontSize}>
             <tspan x={12.8} y={139.3}>
               {'Терминалы приёма и'}
             </tspan>
@@ -190,7 +199,7 @@ export let Integrations = (props: IntegrationsProps) => {
           <Circle size={16} x={103} y={51}>
             2
           </Circle>
-          <Text fontSize={10}>
+          <Text fontSize={fontSize}>
             <tspan x={5.8} y={57.3}>
               {'Системы сквозной'}
             </tspan>
@@ -204,7 +213,7 @@ export let Integrations = (props: IntegrationsProps) => {
           <Circle size={24} x={216} y={48}>
             6
           </Circle>
-          <Text fontSize={10}>
+          <Text fontSize={fontSize}>
             <tspan x={239.8} y={62.8}>
               {'SMS-сервисы'}
             </tspan>
@@ -215,7 +224,7 @@ export let Integrations = (props: IntegrationsProps) => {
           <Circle size={20} x={224} y={77}>
             3
           </Circle>
-          <Text fontSize={10}>
+          <Text fontSize={fontSize}>
             <tspan x={247} y={85.1}>
               {'Отраслевые'}
             </tspan>
@@ -229,7 +238,7 @@ export let Integrations = (props: IntegrationsProps) => {
           <Circle size={16} x={102} y={106}>
             2
           </Circle>
-          <Text fontSize={10}>
+          <Text fontSize={fontSize}>
             <tspan x={15.9} y={118.6}>
               {'Лидогенераторы'}
             </tspan>
@@ -240,7 +249,7 @@ export let Integrations = (props: IntegrationsProps) => {
           <Circle size={16} x={98} y={78}>
             2
           </Circle>
-          <Text fontSize={10}>
+          <Text fontSize={fontSize}>
             <tspan x={21.5} y={85.8}>
               {'Мессенджеры'}
             </tspan>
@@ -290,6 +299,16 @@ export let Integrations = (props: IntegrationsProps) => {
           </filter>
         </defs>
       </svg>
+
+      <div className="hidden max-w-[340px] md:block">
+        <Title variant="stroke" size="2xl" className="mb-5">
+          Интеграционные модули позволяют существенно оптимизировать ежедневную работу сотрудников
+        </Title>
+        <HTMLText subtle>
+          Выберите на схеме направление, в котором вас интересует интеграция, и мы покажем с какими системами
+          она доступна
+        </HTMLText>
+      </div>
     </div>
   );
 };

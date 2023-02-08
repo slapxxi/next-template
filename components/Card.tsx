@@ -12,7 +12,7 @@ export let Card = (props: CardProps) => {
   let { children, className = '', title, description, footer, ...rest } = props;
   return (
     <CardContainer {...rest}>
-      <div className="p-4">
+      <div className="p-4 md:pb-7">
         {title && <Title>{title}</Title>}
         {description && <p className="text-gray-500">{description}</p>}
       </div>
@@ -36,7 +36,7 @@ export type CardContainerProps = {
 export let CardContainer = (props: CardContainerProps) => {
   let { children, className = '', ...rest } = props;
   return (
-    <div className={`${className} big-shadow rounded-lg bg-white text-sm`} {...rest}>
+    <div className={`${className} big-shadow rounded-lg bg-white text-sm md:rounded-xl`} {...rest}>
       {children}
     </div>
   );

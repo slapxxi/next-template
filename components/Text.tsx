@@ -15,7 +15,7 @@ export let Text = (props: TextProps) => {
         className,
         size === 'xs' && 'text-xs',
         size === 'sm' && 'text-sm',
-        size === 'md' && 'text-md',
+        size === 'md' && 'text-base',
         size === 'lg' && 'text-lg',
         subtle && 'text-gray-500',
       )}

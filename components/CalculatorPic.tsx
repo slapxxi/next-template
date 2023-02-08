@@ -1,16 +1,17 @@
 export type CalculatorPicProps = {
   children?: React.ReactNode;
   className?: string;
+  offsetX?: number;
+  offsetY?: number;
 };
 
 export let CalculatorPic = (props: CalculatorPicProps) => {
-  let { children, className = '', ...rest } = props;
+  let { children, className = '', offsetX = 0, offsetY = 0, ...rest } = props;
   return (
     <svg
       className={`${className} overflow-visible`}
-      width="120"
       fill="none"
-      viewBox="20 15 127 157"
+      viewBox={`${offsetX} ${offsetY} 127 157`}
       preserveAspectRatio="xMidYMin"
       {...rest}
     >

@@ -4,10 +4,13 @@
 
 @layer base {
   :root {
+    --violet-100: hsl(231, 88%, 95%);
     --violet: hsl(231, 100%, 90%);
     --violet-light: hsl(231, 88%, 97%);
     --blue-light: hsl(213, 100%, 91%);
+    --blue-base-light: hsl(217, 88%, 56%);
     --green-light: hsl(115, 81%, 94%);
+    --green-medium: hsl(141, 60%, 78%);
   }
 
   @font-face {
@@ -34,8 +37,7 @@
     height: 100%;
     padding: 0;
     margin: 0;
-    font-family: Onest, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue,
-      sans-serif;
+    font-family: Onest, sans-serif;
   }
 
   a {
@@ -53,14 +55,19 @@
 }
 
 @layer components {
+  .cont {
+    @apply mx-auto box-content px-5;
+    max-width: 1200px;
+  }
+
   .decorate {
     @apply relative z-0;
 
     &::before {
       @apply absolute right-0 top-0 -z-10 translate-x-1 -translate-y-1 bg-violet-light;
       content: '';
-      width: 26px;
-      height: 50px;
+      width: 50%;
+      height: 100%;
     }
   }
 
@@ -103,17 +110,28 @@
   }
 
   .acc-trigger {
-    @apply z-10 ml-4 rounded border-2 border-blue-base bg-white px-4 py-3 text-left text-xs font-medium text-blue-base;
+    @apply z-10 ml-4 shrink-0 rounded border-2 border-blue-base bg-white px-4 py-3 text-left text-xs font-medium text-blue-base
+    md:ml-0 md:w-full;
+    transform-origin: left;
 
     &[data-state='open'] {
-      @apply border-navy bg-navy text-white;
+      @apply border-navy bg-navy text-white
+      md:w-[120%] md:pr-24;
     }
+  }
+
+  .acc-content {
+    @apply -mt-2 md:mt-0;
   }
 }
 
 @layer utilities {
   .big-shadow {
     box-shadow: 0px 9.34831px 15.8202px -3.59551px rgba(57, 81, 219, 0.27);
+  }
+
+  .mb-title {
+    @apply mb-2 md:mb-5;
   }
 }
 

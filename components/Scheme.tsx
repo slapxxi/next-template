@@ -1,4 +1,7 @@
+import classNames from 'classnames';
 import { useId, useState } from 'react';
+import useMediaQuery from '../lib/hooks/useMediaQuery';
+import { mdQuery } from '../lib/styles/mq';
 import { ChartIcon } from './icons/ChartIcon';
 import { CodeIcon } from './icons/CodeIcon';
 import { CogIcon } from './icons/CogIcon';
@@ -9,16 +12,22 @@ import { Title } from './Title';
 
 type Ids = 'functions' | 'tuning' | 'support' | 'expertise';
 
-export let Scheme = () => {
+type SchemeProps = {
+  className?: string;
+};
+
+export let Scheme = (props: SchemeProps) => {
+  let { className } = props;
   let [selectedId, setSelectedId] = useState<Ids>('functions');
   let filterId = useId();
+  let md = useMediaQuery(mdQuery);
 
   function handleClick(e: React.MouseEvent<SVGAElement | HTMLAnchorElement>) {
     setSelectedId(e.currentTarget.id as Ids);
   }
 
   return (
-    <div>
+    <div className={classNames(className, 'items-center md:flex')}>
       <svg
         fill="none"
         viewBox="0 0 320 337"
@@ -236,7 +245,10 @@ export let Scheme = () => {
         </defs>
       </svg>
 
-      <div className="relative z-0 -mt-8 mb-8 overflow-hidden rounded-lg bg-gray-light px-8 pt-12 pb-4 target:bg-blue-base">
+      <div
+        className="relative z-0 -mt-8 mb-8 overflow-hidden rounded-lg bg-gray-light 
+        px-8 pt-12 pb-4 target:bg-blue-base md:-ml-12 md:mt-0 md:py-16 md:pl-12"
+      >
         {selectedId === 'functions' && (
           <>
             <Title variant="decorated" size="xl" decorationColor="hsl(231,100%,90%)" className="mb-4">

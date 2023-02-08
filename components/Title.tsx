@@ -4,7 +4,7 @@ import styles from './Title.module.scss';
 export type TitleProps = {
   children?: React.ReactNode;
   className?: string;
-  size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl' | '4xl' | number;
+  size?: 'xs' | 'sm' | 'base' | 'lg' | 'xl' | '2xl' | '3xl' | '4xl' | '5xl' | '6xl' | number;
   as?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
   variant?: 'decorated' | 'normal' | 'stroke';
   decorationColor?: string;

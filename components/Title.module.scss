@@ -4,10 +4,10 @@
   &::before {
     @apply absolute -z-10;
     content: '';
-    top: 0;
-    left: -7.5px;
-    width: 30px;
-    height: 30px;
+    top: -0.3em;
+    left: -0.4em;
+    width: max(1.4em, 30px);
+    height: max(1.4em, 30px);
     background: var(--decoration-color, hsl(213, 100%, 91%));
   }
 }

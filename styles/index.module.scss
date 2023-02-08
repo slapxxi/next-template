@@ -7,9 +7,9 @@
 
 .section {
   background-image: url('/dots-mobile-2.svg'),
-    linear-gradient(to bottom, hsl(210, 75%, 97%), hsla(210, 75%, 97%, 0));
+    linear-gradient(to bottom, var(--violet-100), hsla(210, 75%, 97%));
   background-size: 90%, auto;
-  background-position: 10% 18px, 0 0;
+  background-position: 10% 18px, auto;
   background-repeat: no-repeat;
 }
 
@@ -25,4 +25,14 @@
   background-size: 80%;
   background-position: 50% 18px;
   background-repeat: no-repeat;
+}
+
+.cardContainer {
+  @apply h-full flex-col justify-between p-4 md:flex md:p-10;
+}
+
+@media screen {
+  .section {
+    background: linear-gradient(to bottom, var(--violet-100), hsla(210, 75%, 97%));
+  }
 }
