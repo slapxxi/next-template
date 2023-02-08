@@ -97,6 +97,18 @@
   .link {
     @apply text-blue-base;
   }
+
+  .acc-item {
+    @apply flex w-full flex-col;
+  }
+
+  .acc-trigger {
+    @apply z-10 ml-4 rounded border-2 border-blue-base bg-white px-4 py-3 text-left text-xs font-medium text-blue-base;
+
+    &[data-state='open'] {
+      @apply border-navy bg-navy text-white;
+    }
+  }
 }
 
 @layer utilities {

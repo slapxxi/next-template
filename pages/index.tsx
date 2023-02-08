@@ -1,3 +1,4 @@
+import * as Accordion from '@radix-ui/react-accordion';
 import styles from 'styles/index.module.scss';
 import { Button } from '../components/Button';
 import { CalculatorPic } from '../components/CalculatorPic';
@@ -37,7 +38,7 @@ let IndexPage = () => {
         <Button variant="fill" className="mb-2 px-3" radius="md">
           Хочу попробовать!
         </Button>
-        <p className="mb-2 text-xs text-gray-500">Подберем пакет документов и сделаем базовые настройки</p>
+        <p className="mb-2 text-xs text-gray-500">Подберем пакет документов и сделаем базовые настройки</p>
         <Scheme />
       </div>
 
@@ -91,102 +92,77 @@ let IndexPage = () => {
         </div>
       </div>
 
-      <section className="px-5">
+      <section className="my-12 px-5" id="features">
         <Title variant="decorated" size="2xl" className="mb-4">
           Возможности <em>XLombard BPM System</em>
         </Title>
-        <h2 className="relative z-10 ml-2 rounded-md bg-navy p-4 px-5 py-3 text-white">
-          Лидогенерация и обработка заявок
-        </h2>
-
-        <div className="-mt-2 rounded-md bg-gray-light px-2 pt-8 pb-7">
-          <ul className="flex flex-col gap-7">
-            <li className="flex gap-4">
-              <BackdropIcon className="shrink-0 text-blue" size={64}>
-                <MenuIcon />
-              </BackdropIcon>
-              <div>
-                <Title className="mb-3" variant="stroke">
-                  Агрегатор заявок
-                </Title>
-                <p className="font-normal">
-                  Агрегатор заявок на займ из различных источников (веб-сайтов, партнеров компании и т.д.),
-                  позволяет более качественно управлять входящими обращениями клиентов
-                </p>
-              </div>
-            </li>
-            <li className="flex gap-4">
-              <BackdropIcon className="shrink-0 text-blue" size={64}>
-                <SendIcon />
-              </BackdropIcon>
-              <div>
-                <Title className="mb-3" variant="stroke">
-                  Уведомления
-                </Title>
-                <p className="font-normal">
-                  Sms и Email-уведомления обо всех операциях в компании. Также используется для уведомлений
-                  клиентам компании о текущем состоянии договора, акциях и скидках
-                </p>
-              </div>
-            </li>
-            <li className="flex gap-4">
-              <BackdropIcon className="shrink-0 text-blue" size={64}>
-                <StopIcon />
-              </BackdropIcon>
-              <div>
-                <Title className="mb-3 leading-5" variant="stroke">
-                  Исключаем человеческий фактор
-                </Title>
-                <p className="font-normal">
-                  XLombard MOD - дополнительные модули позволяют существенно оптимизировать ежедневную работу
-                  сотрудников. XLombard делает невозможными ошибки, связанные с человеческим фактором при
-                  оформлении договоров.
-                </p>
-              </div>
-            </li>
-          </ul>
-        </div>
-      </section>
-
-      <section className="mb-8 px-7 text-xs">
-        <ul className="mt-2 mb-4 flex flex-col gap-1 text-blue">
-          <li>
-            <Button radius="md" className="w-full">
+        <Accordion.Root className="my-4 flex flex-col gap-1" type="single" defaultValue="item-1" collapsible>
+          <Accordion.Item className="acc-item" value="item-1">
+            <Accordion.AccordionTrigger className="acc-trigger">
+              Лидогенерация и обработка заявок
+            </Accordion.AccordionTrigger>
+            <Accordion.AccordionContent>
+              <FeatureList />
+            </Accordion.AccordionContent>
+          </Accordion.Item>
+          <Accordion.Item className="acc-item" value="item-2">
+            <Accordion.AccordionTrigger className="acc-trigger">
               Скоринг и комплексная проверка заёмщика
-            </Button>
-          </li>
-          <li>
-            <Button radius="md" className="w-full">
+            </Accordion.AccordionTrigger>
+            <Accordion.AccordionContent>
+              <FeatureList />
+            </Accordion.AccordionContent>
+          </Accordion.Item>
+          <Accordion.Item className="acc-item" value="item-3">
+            <Accordion.AccordionTrigger className="acc-trigger">
               Оформление договора и выдача ДС заёмщику
-            </Button>
-          </li>
-          <li>
-            <Button radius="md" className="w-full">
+            </Accordion.AccordionTrigger>
+            <Accordion.AccordionContent>
+              <FeatureList />
+            </Accordion.AccordionContent>
+          </Accordion.Item>
+          <Accordion.Item className="acc-item" value="item-4">
+            <Accordion.AccordionTrigger className="acc-trigger">
               Операционный учёт текущих договоров
-            </Button>
-          </li>
-          <li>
-            <Button radius="md" className="w-full">
-              Полный контроль общения с клиентом
-            </Button>
-          </li>
-          <li>
-            <Button radius="md" className="w-full">
+            </Accordion.AccordionTrigger>
+            <Accordion.AccordionContent>
+              <FeatureList />
+            </Accordion.AccordionContent>
+          </Accordion.Item>
+          <Accordion.Item className="acc-item" value="item-5">
+            <Accordion.AccordionTrigger className="acc-trigger">
+              Полный контроль общения с клиентом
+            </Accordion.AccordionTrigger>
+            <Accordion.AccordionContent>
+              <FeatureList />
+            </Accordion.AccordionContent>
+          </Accordion.Item>
+          <Accordion.Item className="acc-item" value="item-6">
+            <Accordion.AccordionTrigger className="acc-trigger">
               Управленческие отчёты, аналитика и виджеты
-            </Button>
-          </li>
-          <li>
-            <Button radius="md" className="w-full">
+            </Accordion.AccordionTrigger>
+            <Accordion.AccordionContent>
+              <FeatureList />
+            </Accordion.AccordionContent>
+          </Accordion.Item>
+          <Accordion.Item className="acc-item" value="item-7">
+            <Accordion.AccordionTrigger className="acc-trigger">
               Учёт всех расходов и доходов
-            </Button>
-          </li>
-          <li>
-            <Button radius="md" className="w-full">
+            </Accordion.AccordionTrigger>
+            <Accordion.AccordionContent>
+              <FeatureList />
+            </Accordion.AccordionContent>
+          </Accordion.Item>
+          <Accordion.Item className="acc-item" value="item-2">
+            <Accordion.AccordionTrigger className="acc-trigger">
               Реализация залогового имущества
-            </Button>
-          </li>
-        </ul>
-        <Button variant="fill" radius="md">
+            </Accordion.AccordionTrigger>
+            <Accordion.AccordionContent>
+              <FeatureList />
+            </Accordion.AccordionContent>
+          </Accordion.Item>
+        </Accordion.Root>
+        <Button variant="fill" radius="md" className="ml-4">
           Попробовать бесплатно
         </Button>
       </section>
@@ -569,6 +545,64 @@ let IndexPage = () => {
         </CardContainer>
       </section>
     </main>
+  );
+};
+
+export type FeatureListProps = {
+  children?: React.ReactNode;
+  className?: string;
+};
+
+export let FeatureList = (props: FeatureListProps) => {
+  let { children, className = '', ...rest } = props;
+  return (
+    <div className="-mt-2 rounded-md bg-gray-light px-2 pt-8 pb-7" {...rest}>
+      <ul className="flex flex-col gap-7">
+        <li className="flex gap-4">
+          <BackdropIcon className="shrink-0 text-blue" size={64}>
+            <MenuIcon />
+          </BackdropIcon>
+          <div>
+            <Title className="mb-3" variant="stroke">
+              Агрегатор заявок
+            </Title>
+            <p className="font-normal">
+              Агрегатор заявок на займ из различных источников (веб-сайтов, партнеров компании и т.д.),
+              позволяет более качественно управлять входящими обращениями клиентов
+            </p>
+          </div>
+        </li>
+        <li className="flex gap-4">
+          <BackdropIcon className="shrink-0 text-blue" size={64}>
+            <SendIcon />
+          </BackdropIcon>
+          <div>
+            <Title className="mb-3" variant="stroke">
+              Уведомления
+            </Title>
+            <p className="font-normal">
+              Sms и Email-уведомления обо всех операциях в компании. Также используется для уведомлений
+              клиентам компании о текущем состоянии договора, акциях и скидках
+            </p>
+          </div>
+        </li>
+        <li className="flex gap-4">
+          <BackdropIcon className="shrink-0 text-blue" size={64}>
+            <StopIcon />
+          </BackdropIcon>
+          <div>
+            <Title className="mb-3 leading-5" variant="stroke">
+              Исключаем человеческий фактор
+            </Title>
+            <p className="font-normal">
+              XLombard MOD - дополнительные модули позволяют существенно оптимизировать ежедневную работу
+              сотрудников. XLombard делает невозможными ошибки, связанные с человеческим фактором при
+              оформлении договоров.
+            </p>
+          </div>
+        </li>
+      </ul>
+    </div>
   );
 };
 
