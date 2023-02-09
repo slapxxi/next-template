@@ -3,14 +3,31 @@
   background-size: 90%;
   background-position: 10% 0;
   background-repeat: no-repeat;
+
+  @media screen and (min-width: 768px) {
+    & {
+      background-image: url('/dots-desktop-2.svg');
+      background-size: min(1288px, 100%);
+      background-position: 50% 0;
+    }
+  }
 }
 
 .section {
   background-image: url('/dots-mobile-2.svg'),
     linear-gradient(to bottom, var(--violet-100), hsla(210, 75%, 97%));
   background-size: 90%, auto;
-  background-position: 10% 18px, auto;
+  background-position: 10% 18px, 0 0;
   background-repeat: no-repeat;
+
+  @media screen and (min-width: 768px) {
+    & {
+      padding-top: 90px;
+      background-image: url('/dots-desktop-3.svg'), linear-gradient(180deg, #eff1fd 0%, #fafafc00 100%);
+      background-size: min(100%, 1288px), auto;
+      background-position: 50% 35px, 0 0;
+    }
+  }
 }
 
 .section2 {
@@ -27,12 +44,15 @@
   background-repeat: no-repeat;
 }
 
-.cardContainer {
-  @apply h-full flex-col justify-between p-4 md:flex md:p-10;
-}
+.dotsWithGradient {
+  background-image: url('/dots-desktop-4.svg'), linear-gradient(180deg, #eff1fd 0%, #fafafc00 100%);
+  background-size: min(100%, 639px), auto;
+  background-position: 15px 18px, 0 0;
+  background-repeat: no-repeat;
 
-@media screen {
-  .section {
-    background: linear-gradient(to bottom, var(--violet-100), hsla(210, 75%, 97%));
+  @media screen and (min-width: 768px) {
+    & {
+      background-position: 54px 33px, 0 0;
+    }
   }
 }

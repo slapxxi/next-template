@@ -5,7 +5,7 @@ export type ListProps = {
   children?: React.ReactNode;
   className?: string;
   variant?: 'disc' | 'empty' | 'list' | 'ordered';
-  gap?: number;
+  gap?: 3 | 6;
 };
 
 export let List = (props: ListProps) => {

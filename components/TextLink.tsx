@@ -9,7 +9,7 @@ export type TextLinkProps = {
 export let TextLink = (props: TextLinkProps) => {
   let { children, className = '', ...rest } = props;
   return (
-    <Link className={classNames(className, 'text-blue-base')} {...rest}>
+    <Link className={classNames(className, 'text-blue-base hover:underline')} {...rest}>
       {children}
     </Link>
   );

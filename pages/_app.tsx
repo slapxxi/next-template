@@ -1,10 +1,10 @@
+import classNames from 'classnames';
 import { Button } from 'components/Button';
 import { MenuIcon } from 'components/icons/MenuIcon';
 import { PhoneIcon } from 'components/icons/PhoneIcon';
 import { WhatsappIcon } from 'components/icons/WhatsappIcon';
 import { List, ListItem } from 'components/List';
 import { Logo } from 'components/Logo';
-import { Text, TextProps } from 'components/Text';
 import { Title } from 'components/Title';
 import type { AppType } from 'next/dist/shared/lib/utils';
 import Head from 'next/head';
@@ -14,6 +14,7 @@ import { useState } from 'react';
 import 'styles/globals.scss';
 import { CloseIcon } from '../components/icons/CloseIcon';
 import { TelegramIcon } from '../components/icons/TelegramIcon';
+import { ResponsiveText } from '../components/ResponsiveText';
 import { SquareIcon } from '../components/SquareIcon';
 import { Strong } from '../components/Strong';
 import useMediaQuery from '../lib/hooks/useMediaQuery';
@@ -25,7 +26,6 @@ let App: AppType = (props) => {
   let [menuOpen, setMenuOpen] = useState(false);
   let router = useRouter();
   let md = useMediaQuery(mdQuery);
-  let textSize: TextProps['size'] = md ? 'md' : 'sm';
 
   router.events?.on('routeChangeStart', () => {
     setMenuOpen(false);
@@ -40,28 +40,34 @@ let App: AppType = (props) => {
         <meta name="theme-color" content="#0b0b16" />
       </Head>
 
-      <header className="cont flex items-center gap-2.5 py-3 text-blue md:my-12 md:justify-between">
+      <header className="cont text-blue flex gap-2.5 py-3 md:my-12 md:items-center md:justify-between">
         <Button onClick={() => setMenuOpen((o) => !o)} variant="icon" className="md:hidden">
           <MenuIcon />
         </Button>
 
-        <Link href="/" className="mr-auto flex md:mr-0">
+        <Link href="/" className="mr-auto flex self-center md:mr-0">
           <Logo width={124} />
         </Link>
 
         <ul className="hidden gap-11 text-black md:flex">
           <li>
-            <Link href="#">О программе</Link>
+            <Link href="#" className="nav-link">
+              О программе
+            </Link>
           </li>
           <li>
-            <Link href="#">Тарифы и цены</Link>
+            <Link href="/prices" className="nav-link">
+              Тарифы и цены
+            </Link>
           </li>
           <li>
-            <Link href="/contacts">Контакты</Link>
+            <Link href="/contacts" className="nav-link">
+              Контакты
+            </Link>
           </li>
         </ul>
 
-        <div className="hidden gap-8 md:flex">
+        <div className="hidden items-center gap-8 md:flex">
           <Button className="hidden md:block">Попробовать бесплатно</Button>
           <div className="hidden flex-col items-center md:flex">
             <em className="text-xs">Заказать обратный звонок</em>
@@ -74,6 +80,7 @@ let App: AppType = (props) => {
         <Button size="sm" className="md:hidden">
           Демо
         </Button>
+
         <Button variant="icon" className="md:hidden">
           <PhoneIcon />
         </Button>
@@ -81,21 +88,23 @@ let App: AppType = (props) => {
 
       <Component {...pageProps} />
 
-      <footer className="bg-navy pb-12 pt-9 text-sm font-medium text-white">
-        <div className="cont flex flex-col bg-navy md:flex-row md:justify-between">
+      <footer className="dark bg-navy-dark pb-12 pt-9 text-sm font-medium text-white">
+        <div className="cont flex flex-col md:flex-row md:justify-between">
           <div className="flex-col justify-between md:flex">
             <div>
               <Link href="/" className="mb-4 block">
                 <Logo width={126} variant="mono" />
               </Link>
-              <Text size={textSize}>
+              <ResponsiveText>
                 Лучшая программа <br />
                 для автоматизации автоломбарда
-              </Text>
+              </ResponsiveText>
             </div>
             <div className="hidden md:block">
-              <small className="mb-3 block text-xs font-bold">&copy; 2023, XLombard</small>
-              <p className="text-xs font-normal">Конфиденциальность и обработка персональных данных</p>
+              <ResponsiveText className={classNames('mb-3 block')} weight={700} as="small">
+                &copy; 2023, XLombard
+              </ResponsiveText>
+              <ResponsiveText>Конфиденциальность и обработка персональных данных</ResponsiveText>
             </div>
           </div>
 
@@ -105,63 +114,93 @@ let App: AppType = (props) => {
 
           <div className="mb-14 flex justify-between md:mb-0 md:pt-4">
             <div>
-              <Title className="mb-4">О продукте</Title>
+              <Title className="mb-4" size={md ? 'xl' : 'lg'}>
+                О продукте
+              </Title>
               <List>
                 <ListItem>
-                  <Link href="#">Возможности</Link>
+                  <Link href="#">
+                    <ResponsiveText>Возможности</ResponsiveText>
+                  </Link>
                 </ListItem>
                 <ListItem>
-                  <Link href="#">Преимущества</Link>
+                  <Link href="#">
+                    <ResponsiveText>Преимущества</ResponsiveText>
+                  </Link>
                 </ListItem>
                 <ListItem>
-                  <Link href="#">Поддержка</Link>
+                  <Link href="#">
+                    <ResponsiveText>Поддержка</ResponsiveText>
+                  </Link>
                 </ListItem>
                 <ListItem>
-                  <Link href="#">Обновления</Link>
+                  <Link href="#">
+                    <ResponsiveText>Обновления</ResponsiveText>
+                  </Link>
                 </ListItem>
                 <ListItem>
-                  <Link href="#">Интеграции</Link>
+                  <Link href="#">
+                    <ResponsiveText>Интеграции</ResponsiveText>
+                  </Link>
                 </ListItem>
                 <ListItem>
-                  <Link href="#">Документация</Link>
+                  <Link href="#">
+                    <ResponsiveText>Документация</ResponsiveText>
+                  </Link>
                 </ListItem>
               </List>
             </div>
             <div className="md:hidden">
-              <Title className="mb-10">Тарифы и цены</Title>
-              <Title className="mb-4">О нас</Title>
+              <Title className="mb-10" size="lg">
+                Тарифы и цены
+              </Title>
+              <Title className="mb-4" size="lg">
+                О нас
+              </Title>
               <List>
                 <ListItem>
-                  <Link href="#">Константы</Link>
+                  <Link href="#">
+                    <ResponsiveText>Константы</ResponsiveText>
+                  </Link>
                 </ListItem>
                 <ListItem>
-                  <Link href="#">Экспертиза</Link>
+                  <Link href="#">
+                    <ResponsiveText>Экспертиза</ResponsiveText>
+                  </Link>
                 </ListItem>
               </List>
             </div>
           </div>
           <div className="hidden md:block md:pt-4">
-            <Title className="mb-10">Тарифы и цены</Title>
-            <Title className="mb-4">О нас</Title>
+            <Title className="mb-10" size="xl">
+              Тарифы и цены
+            </Title>
+            <Title className="mb-4" size="xl">
+              О нас
+            </Title>
             <List>
               <ListItem>
-                <Link href="#">Константы</Link>
+                <Link href="#">
+                  <ResponsiveText>Константы</ResponsiveText>
+                </Link>
               </ListItem>
               <ListItem>
-                <Link href="#">Экспертиза</Link>
+                <Link href="#">
+                  <ResponsiveText>Экспертиза</ResponsiveText>
+                </Link>
               </ListItem>
             </List>
           </div>
           <div className="mb-4 flex-col md:mb-0 md:flex">
-            <Button className="-ml-12 mb-12 hidden rounded-md font-bold hover:border-slate-500 hover:text-slate-400 md:block">
+            <Button className="-ml-12 mb-12 mt-2 hidden rounded-md font-bold md:block">
               Попробовать бесплатно
             </Button>
             <div>
               <a href="tel:+74956779551" className="mb-1 block text-2xl font-bold md:text-right">
-                +7 (495) 677-95-51
+                <Strong size="2xl">+7 (495) 677-95-51</Strong>
               </a>
               <button className="mb-5 w-full text-left font-normal md:text-right">
-                Заказать обратный звонок
+                <ResponsiveText>Заказать обратный звонок</ResponsiveText>
               </button>
               <div className="flex gap-2.5 md:justify-end">
                 <a href="">
@@ -186,8 +225,8 @@ let App: AppType = (props) => {
       </footer>
 
       {menuOpen && (
-        <div className="fixed inset-0 z-10 overflow-y-scroll bg-blue text-sm font-medium text-white md:hidden">
-          <header className="flex items-center gap-2.5 px-5 py-3 pb-8">
+        <div className="dark fixed inset-0 z-10 overflow-y-scroll bg-blue-base text-sm font-medium text-white md:hidden">
+          <header className="flex gap-2.5 px-5 py-3 pb-8">
             <Button onClick={() => setMenuOpen((o) => !o)} variant="icon">
               <CloseIcon />
             </Button>
