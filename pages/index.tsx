@@ -15,14 +15,13 @@ import { PhoneIcon } from 'components/icons/PhoneIcon';
 import { PuzzleIcon } from 'components/icons/PuzzleIcon';
 import { TelegramIcon } from 'components/icons/TelegramIcon';
 import { WhatsappIcon } from 'components/icons/WhatsappIcon';
-import { Input } from 'components/Input';
 import { Integrations } from 'components/Integrations';
 import { ResponsiveText } from 'components/ResponsiveText';
 import { Scheme } from 'components/Scheme';
 import { SectionTitle } from 'components/SectionTitle';
 import { SquareIcon } from 'components/SquareIcon';
 import { Strong } from 'components/Strong';
-import { Text, TextProps } from 'components/Text';
+import { Text } from 'components/Text';
 import { TextBadge } from 'components/TextBadge';
 import { TextLink } from 'components/TextLink';
 import { Title, TitleProps } from 'components/Title';
@@ -34,18 +33,18 @@ import { CheckmarkIcon } from '../components/icons/CheckmarkIcon';
 import { DocumentIcon } from '../components/icons/DocumentIcon';
 import { UserIcon } from '../components/icons/UserIcon';
 import { PageTitle } from '../components/PageTitle';
+import { RequestForm } from '../components/RequestForm';
 import { ResponsiveButton } from '../components/ResponsiveButton';
 
 let IndexPage = () => {
   let md = useMediaQuery(mdQuery);
   let titleSize: TitleProps['size'] = md ? '4xl' : '2xl';
-  let textSize: TextProps['size'] = md ? 'md' : 'sm';
 
   return (
     <main className={`mt-8 pt-2 md:pt-8 ${styles.main}`}>
       <section className="cont gap-2 md:mb-12 md:flex">
         <div className="md:flex-1">
-          <PageTitle className="mb-5 leading-snug">
+          <PageTitle className="mb-5">
             Лучшая программа для автоматизации <em>автоломбарда</em>
           </PageTitle>
 
@@ -90,8 +89,9 @@ let IndexPage = () => {
                   footerDescription: 'Займ + Залог',
                   Icon: AttachmentIcon,
                 },
-              ].map((item) => (
+              ].map((item, i) => (
                 <Card
+                  key={i}
                   title={item.title}
                   description={item.description}
                   footer={
@@ -298,8 +298,8 @@ let IndexPage = () => {
                 title: 'Электронный акт осмотра ТС',
                 description: 'Позволяет фиксировать все повреждения ТС в электронном виде на планшете',
               },
-            ].map((item) => (
-              <li>
+            ].map((item, i) => (
+              <li key={i}>
                 <CardContainer className={classNames('h-full flex-col justify-between p-4 md:flex md:p-10')}>
                   <Title variant="stroke" className="mb-title leading-5 md:mt-2" size={md ? '2xl' : 'md'}>
                     {item.title}
@@ -321,8 +321,8 @@ let IndexPage = () => {
             { count: 28, description: 'городов присутствия нашей программы' },
             { count: 6, description: 'новых модулей разработано' },
             { count: 9, description: 'новых интеграций добавлено' },
-          ].map((item) => (
-            <div className="items-center justify-center gap-4 md:flex md:w-min md:flex-1">
+          ].map((item, i) => (
+            <div className="items-center justify-center gap-4 md:flex md:w-min md:flex-1" key={i}>
               <div className="mb-3 md:mb-0">
                 <Strong className="decorate" size={md ? '7xl' : '3xl'}>
                   +{item.count}
@@ -348,8 +348,8 @@ let IndexPage = () => {
               Icon: MessageIcon,
             },
             { description: 'Исправлено недочетов в программе', count: 210, Icon: CheckmarkIcon },
-          ].map((item) => (
-            <div className="flex flex-col justify-between rounded-lg bg-violet-light p-5 text-xs">
+          ].map((item, i) => (
+            <div className="flex flex-col justify-between rounded-lg bg-violet-light p-5 text-xs" key={i}>
               <Text size={md ? 'md' : 'xs'} className="mb-2 md:mb-4" weight={500}>
                 {item.description}
               </Text>
@@ -378,8 +378,8 @@ let IndexPage = () => {
           <div className="flex snap-x snap-mandatory scroll-px-32 gap-3 overflow-x-scroll px-[max(calc((100%-1200px)/2-10px),20px)] pb-8">
             {new Array(10).fill(null).map((_item, i) => (
               <CardContainer
-                className="flex min-h-[280px] w-[234px] shrink-0 snap-center flex-col gap-2 px-6 py-7 md:w-[390px]"
                 key={i}
+                className="flex min-h-[280px] w-[234px] shrink-0 snap-center flex-col gap-2 px-6 py-7 md:w-[390px]"
               >
                 <img src="image.png" alt="" width={140} className="mb-2 self-center md:mb-10" />
                 <ResponsiveText className="mb-2">
@@ -421,6 +421,7 @@ let IndexPage = () => {
                 },
               ].map((item, i) => (
                 <div
+                  key={i}
                   className={classNames(
                     i === 0 ? 'card-fade-8' : '-card-fade-8',
                     'flex gap-2 rounded-lg bg-white p-3 text-xs font-medium text-black md:flex-1',
@@ -520,8 +521,9 @@ let IndexPage = () => {
         </div>
 
         <div className="mb-8 flex snap-x snap-mandatory gap-4 overflow-x-scroll px-[max(calc((100%-1200px)/2-10px),20px)]">
-          {new Array(10).fill(null).map(() => (
+          {new Array(10).fill(null).map((_, i) => (
             <div
+              key={i}
               className="flex shrink-0 snap-center flex-col justify-center gap-3 rounded-lg bg-gray-light px-5 py-7 
             md:rounded-xl md:p-10"
             >
@@ -592,23 +594,7 @@ let IndexPage = () => {
           </div>
 
           <div className="my-12 flex-1 px-5 md:my-20 md:max-w-xl md:px-0">
-            <CardContainer className="flex flex-col px-8 py-6 font-normal">
-              <Title size={md ? '2xl' : 'md'} className="mb-2.5">
-                Ответим на любые вопросы: <br /> <em>расскажем, покажем и дадим попробовать</em>
-              </Title>
-              <Text size={textSize} className="mb-2">
-                Проведём онлайн демонстрацию по Zoom!
-              </Text>
-              <div className="my-4 flex flex-col gap-2 md:gap-4">
-                <Input placeholder="Как к вам обращаться (ваше имя)" value="" />
-                <Input placeholder="Телефон, чтобы мы могли перезвонить" value="" />
-                <Input placeholder="Электронная почта для отправки ответа" value="" />
-                <textarea name="" id="" placeholder="Ваш вопрос" className="rounded-lg border p-2" />
-              </div>
-              <Button variant="fill" radius="md" className="mt-3" center>
-                Отправить сообщение
-              </Button>
-            </CardContainer>
+            <RequestForm />
           </div>
         </div>
       </section>

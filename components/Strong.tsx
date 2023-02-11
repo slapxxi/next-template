@@ -7,7 +7,7 @@ export type StrongProps = {
 };
 
 export let Strong = (props: StrongProps) => {
-  let { children, className = '', size = 'md', pre = false, ...rest } = props;
+  let { children, className = '', size = 'md', ...rest } = props;
   return (
     <strong
       className={classNames(

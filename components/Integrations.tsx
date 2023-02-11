@@ -416,8 +416,8 @@ export let Integrations = (props: IntegrationsProps) => {
             {data[selectedId].title}
           </Title>
           <List variant="disc" gap={6}>
-            {data[selectedId].points.map((p) => (
-              <ListItem>
+            {data[selectedId].points.map((p, i) => (
+              <ListItem key={i}>
                 <Title>{p.title}</Title>
                 <HTMLText subtle>{p.description}</HTMLText>
               </ListItem>

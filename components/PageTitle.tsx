@@ -1,7 +1,7 @@
 import classNames from 'classnames';
 import useMediaQuery from '../lib/hooks/useMediaQuery';
 import { mdQuery } from '../lib/styles/mq';
-import { Title, TitleProps } from './Title';
+import { Title } from './Title';
 
 export type PageTitleProps = {
   children?: React.ReactNode;
@@ -11,10 +11,15 @@ export type PageTitleProps = {
 export let PageTitle = (props: PageTitleProps) => {
   let { children, className = '', ...rest } = props;
   let md = useMediaQuery(mdQuery);
-  let titleSize: TitleProps['size'] = md ? 54 : '2xl';
 
   return (
-    <Title className={classNames(className)} variant="decorated" size={titleSize} {...rest}>
+    <Title
+      className={classNames(className, md && 'leading-tight')}
+      variant="decorated"
+      size={md ? '2xl' : undefined}
+      fontSize={md ? 54 : undefined}
+      {...rest}
+    >
       {children}
     </Title>
   );

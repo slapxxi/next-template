@@ -10,6 +10,7 @@ export type TitleProps = {
   variant?: 'decorated' | 'normal' | 'stroke';
   decorationColor?: 'blue-light' | 'violet' | 'green-light' | string;
   center?: boolean;
+  fontSize?: number;
 };
 
 export let Title = (props: TitleProps) => {
@@ -22,6 +23,7 @@ export let Title = (props: TitleProps) => {
     decorationColor = 'violet',
     center = false,
     weight = 700,
+    fontSize,
     ...rest
   } = props;
   let Element = as;
@@ -30,7 +32,7 @@ export let Title = (props: TitleProps) => {
       style={{
         // @ts-ignore
         '--decoration-color': `var(--${decorationColor},${decorationColor})`,
-        fontSize: typeof size === 'number' ? size : undefined,
+        fontSize: fontSize,
         fontWeight: weight,
       }}
       className={classNames(

@@ -94,8 +94,8 @@ let Prices = () => {
               description:
                 'Базовая лицензия распространяется на 1 филиал. Количество рабочих мест в филиале не ограничено. Филиалом считаем пункт обслуживания клиентов.',
             },
-          ].map((item) => (
-            <li>
+          ].map((item, i) => (
+            <li key={i}>
               <CardContainer
                 className={classNames(
                   'flex flex-col gap-2 p-5 md:flex-row md:items-center md:gap-7',
@@ -164,8 +164,8 @@ let Prices = () => {
               description:
                 'На вашем сайте размещается готовый модуль, который позволяет заемщикам просматривать текущие займы, оплачивать платежи online через эквайринг.',
             },
-          ].map((item) => (
-            <li>
+          ].map((item, i) => (
+            <li key={i}>
               <CardContainer
                 className={classNames(
                   'flex flex-col gap-2 p-5 md:flex-row md:items-center md:gap-7',

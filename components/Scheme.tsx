@@ -219,7 +219,7 @@ export let Scheme = (props: SchemeProps) => {
               height="98"
               fill="#fff"
               stroke="#0862EE"
-              stroke-width="2"
+              strokeWidth="2"
               rx="8"
               transform="rotate(45.02 -73.98 131.36)"
               className={`${styles.tile}`}
@@ -252,8 +252,8 @@ export let Scheme = (props: SchemeProps) => {
             />
           </g>
           <defs>
-            <filter id={filterId} color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse">
-              <feFlood flood-opacity="0" result="BackgroundImageFix" />
+            <filter id={filterId} colorInterpolationFilters="sRGB" filterUnits="userSpaceOnUse">
+              <feFlood floodOpacity="0" result="BackgroundImageFix" />
               <feColorMatrix
                 in="SourceAlpha"
                 result="hardAlpha"
@@ -278,13 +278,16 @@ export let Scheme = (props: SchemeProps) => {
         {(['tuning', 'functions', 'support', 'expertise'] as Ids[]).map(
           (id) =>
             selectedId === id && (
-              <div className="animate-slide-in relative z-0 bg-gray-light px-8 pt-12 pb-4 md:p-9 md:pl-10">
+              <div
+                className="animate-slide-in relative z-0 bg-gray-light px-8 pt-12 pb-4 md:p-9 md:pl-10"
+                key={id}
+              >
                 <Title variant="decorated" className="mb-4" size={titleSize}>
                   {data[id].title}
                 </Title>
                 <List className="ml-5 text-xs" variant="disc">
-                  {data[id].points.map((p) => (
-                    <ListItem>
+                  {data[id].points.map((p, i) => (
+                    <ListItem key={i}>
                       <ResponsiveText>{p}</ResponsiveText>
                     </ListItem>
                   ))}
