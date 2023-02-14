@@ -28,7 +28,7 @@ const App: AppType = (props) => {
       <Component {...pageProps} />
 
       <footer className="footer dark container flex flex-col bg-black py-9">
-        <Responsive component={Logo} width={240} />
+        <Logo width={240} />
 
         <Text className="footer__text footer__section pt-4">
           Товары для животных и груминг салон в Нижневартовске, бесплатная доставка при покупке от 2000₽
