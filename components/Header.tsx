@@ -25,7 +25,7 @@ export const Header = (props: HeaderProps) => {
     <header
       className={classNames(
         className,
-        'container flex items-center justify-between border-b border-lightBlue-200 bg-lightGray-300 py-4',
+        'border-lightBlue-100 container flex items-center justify-between border-b bg-lightGray-100 py-4',
       )}
       {...rest}
     >

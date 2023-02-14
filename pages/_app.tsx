@@ -1,8 +1,15 @@
 import { Header } from 'components/Header';
+import {
+  Heart as HeartIcon,
+  Search as SearchIcon,
+  ShoppingCart as ShoppingCartIcon,
+  User as UserIcon,
+} from 'lucide-react';
 import type { AppType } from 'next/dist/shared/lib/utils';
 import Head from 'next/head';
 import Link from 'next/link';
 import 'styles/globals.scss';
+import { Badge } from '../components/Badge';
 import { Button } from '../components/Button';
 import { Divider } from '../components/Divider';
 import { PinIcon } from '../components/icons/PinIcon';
@@ -141,7 +148,40 @@ const App: AppType = (props) => {
             </Responsive>
           </TextLink>
         </div>
+
+        <div className="h-[50px] md:hidden"></div>
       </footer>
+
+      <nav className="fixed bottom-0 flex w-full rounded-t-xl bg-white p-3 px-0 pt-4 md:hidden">
+        <Link href="#" className="flex flex-1 flex-col items-center justify-center gap-1">
+          <SearchIcon />
+          <Text className="text-darkGray-200" size="sm">
+            Поиск
+          </Text>
+        </Link>
+        <Link href="#" className="flex flex-1 flex-col items-center justify-center gap-1">
+          <UserIcon />
+          <Text className="text-darkGray-200" size="sm">
+            Войти
+          </Text>
+        </Link>
+        <Link href="#" className="flex flex-1 flex-col items-center justify-center gap-1">
+          <HeartIcon className="overflow-visible">
+            <Badge backgroundColor="var(--mediumBlue-500,dodgerblue)" r={20} fontWeight={700}>
+              10
+            </Badge>
+          </HeartIcon>
+          <Text className="text-darkGray-200" size="sm">
+            Избранное
+          </Text>
+        </Link>
+        <Link href="#" className="flex flex-1 flex-col items-center justify-center gap-1">
+          <ShoppingCartIcon />
+          <Text className="text-darkGray-200" size="sm">
+            Корзина
+          </Text>
+        </Link>
+      </nav>
     </>
   );
 };

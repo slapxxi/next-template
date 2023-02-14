@@ -3,10 +3,13 @@ const plugin = require('tailwindcss/plugin');
 const colors = {
   black: ['0', '0%', '16%'],
 
-  'lightGray-300': ['223', '47%', '97%'],
-  'lightGray-400': ['232', '19%', '78%'],
-  'lightGray-500': ['232', '17%', '75%'],
+  'lightGray-100': ['223', '47%', '97%'],
+  'lightGray-200': ['223', '47%', '97%'],
+  'lightGray-300': ['232', '17%', '78%'],
+  'lightGray-400': ['232', '17%', '75%'],
+  'lightGray-500': ['232', '1%', '66%'],
 
+  'lightBlue-100': ['223', '64%', '96%'],
   'lightBlue-200': ['223', '64%', '96%'],
   'lightBlue-300': ['223', '83%', '88%'],
   'lightBlue-400': ['223', '83%', '80%'],
@@ -23,7 +26,7 @@ const colors = {
 
   'mediumGreen-500': ['138', '46%', '47%'],
 
-  'darkGray-200': ['0', '0%', '65%'],
+  'darkGray-200': ['0', '0%', '66%'],
   'darkGray-300': ['0', '1%', '48%'],
   'darkGray-400': ['0', '1%', '18%'],
   'darkGray-500': ['0', '0%', '14%'],
@@ -53,7 +56,6 @@ module.exports = {
     container: {
       padding: {
         DEFAULT: '20px',
-        sm: '20px',
         md: '20px',
         lg: '20px',
       },

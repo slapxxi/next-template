@@ -6,6 +6,7 @@
   :root {
     --darkGray-400: hsl(0, 0%, 65%);
     --darkGray-600: hsl(0, 0%, 22%);
+    --mediumBlue-500: hsl(224, 81%, 50%);
   }
 
   @font-face {
@@ -86,4 +87,11 @@
 }
 
 @layer utilities {
+  .text-2xs {
+    font-size: 10px;
+  }
+
+  .text-med {
+    font-size: 15px;
+  }
 }

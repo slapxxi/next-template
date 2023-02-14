@@ -2,7 +2,7 @@ import classNames from 'classnames';
 import { pickValue } from '../lib/pickValue';
 
 export type TextProps = {
-  size?: 'xs' | 'sm' | 'md' | 'lg';
+  size?: '2xs' | 'xs' | 'sm' | 'md' | 'lg';
   children?: React.ReactNode;
   className?: string;
   as?: keyof JSX.IntrinsicElements;
@@ -15,7 +15,14 @@ export const Text = (props: TextProps) => {
     <Element
       className={classNames(
         className,
-        pickValue(size, ['xs', 'text-xs'], ['sm', 'text-sm'], ['md', 'text-[15px]'], ['lg', 'text-base']),
+        pickValue(
+          size,
+          ['2xs', 'text-2xs'],
+          ['xs', 'text-xs'],
+          ['sm', 'text-sm'],
+          ['md', 'text-med'],
+          ['lg', 'text-base'],
+        ),
       )}
       {...rest}
     >
