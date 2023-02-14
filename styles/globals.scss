@@ -3,14 +3,36 @@
 @tailwind utilities;
 
 @layer base {
+  :root {
+    --darkGray-400: hsl(0, 0%, 65%);
+    --darkGray-600: hsl(0, 0%, 22%);
+  }
+
+  @font-face {
+    font-family: RFTone;
+    src: url(/fonts/RFTone-Regular.woff2);
+    font-weight: 400;
+  }
+
+  @font-face {
+    font-family: RFTone;
+    src: url(/fonts/RFTone-SemiBold.woff2);
+    font-weight: 600;
+  }
+
+  @font-face {
+    font-family: RFTone;
+    src: url(/fonts/RFTone-Bold.woff2);
+    font-weight: 700;
+  }
+
   html,
   body,
   #__next {
     height: 100%;
     padding: 0;
     margin: 0;
-    font-family: Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue,
-      sans-serif;
+    font-family: RFTone, sans-serif;
   }
 
   a {
@@ -24,6 +46,43 @@
 }
 
 @layer components {
+  .list {
+    @apply flex flex-col gap-3;
+  }
+
+  .footer {
+    background-image: url(/paw.svg);
+    background-position: -10px 110px;
+    background-repeat: no-repeat;
+  }
+
+  .footer__title {
+    @apply text-white;
+  }
+
+  .footer__text {
+    @apply text-darkGray-200;
+  }
+
+  .footer__strong {
+    @apply text-white;
+  }
+
+  .footer__icon {
+    @apply text-white;
+  }
+
+  .footer__button {
+    @apply text-white;
+  }
+
+  .footer__section {
+    @apply my-4;
+
+    &_lg {
+      @apply my-12;
+    }
+  }
 }
 
 @layer utilities {

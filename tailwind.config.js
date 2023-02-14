@@ -1,5 +1,41 @@
 const plugin = require('tailwindcss/plugin');
 
+const colors = {
+  black: ['0', '0%', '16%'],
+
+  'lightGray-300': ['223', '47%', '97%'],
+  'lightGray-400': ['232', '19%', '78%'],
+  'lightGray-500': ['232', '17%', '75%'],
+
+  'lightBlue-200': ['223', '64%', '96%'],
+  'lightBlue-300': ['223', '83%', '88%'],
+  'lightBlue-400': ['223', '83%', '80%'],
+  'lightBlue-500': ['223', '83%', '76%'],
+
+  'mediumBlue-500': ['224', '81%', '50%'],
+
+  'mediumGray-300': ['224', '29%', '91%'],
+  'mediumGray-400': ['232', '19%', '78%'],
+  'mediumGray-500': ['224', '19%', '46%'],
+
+  'mediumOrange-400': ['27', '97%', '70%'],
+  'mediumOrange-500': ['27', '93%', '65%'],
+
+  'mediumGreen-500': ['138', '46%', '47%'],
+
+  'darkGray-200': ['0', '0%', '65%'],
+  'darkGray-300': ['0', '1%', '48%'],
+  'darkGray-400': ['0', '1%', '18%'],
+  'darkGray-500': ['0', '0%', '14%'],
+};
+
+const mappedColors = Object.fromEntries(
+  Object.entries(colors).map(([name, hsl]) => [
+    name,
+    `hsl(var(--${name}-hsl, ${hsl.join(' ')}) / <alpha-value>)`,
+  ]),
+);
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   darkMode: 'class',
@@ -16,20 +52,14 @@ module.exports = {
     },
     container: {
       padding: {
-        DEFAULT: '2rem',
-        sm: '2rem',
-        lg: '2rem',
-        xl: '2rem',
-        '2xl': '2rem',
+        DEFAULT: '20px',
+        sm: '20px',
+        md: '20px',
+        lg: '20px',
       },
     },
     extend: {
-      colors: {
-        primary: 'hsl(var(--primary, 0 0% 0%) / <alpha-value>)',
-        secondary: 'hsl(var(--secondary, 0 0% 100%) / <alpha-value>)',
-        bg: 'hsl(var(--bg, 0 0% 100%) / <alpha-value>)',
-        text: 'hsl(var(--text, 0 0% 0%) / <alpha-value>)',
-      },
+      colors: mappedColors,
     },
   },
   plugins: [

@@ -1,5 +1,5 @@
-let IndexPage = () => {
-  return <div className="">home</div>;
+const IndexPage = () => {
+  return <div className=""></div>;
 };
 
 export default IndexPage;
