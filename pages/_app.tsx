@@ -16,6 +16,8 @@ import { PinIcon } from '../components/icons/PinIcon';
 import { ViberIcon } from '../components/icons/ViberIcon';
 import { VkIcon } from '../components/icons/VkIcon';
 import { Logo } from '../components/Logo';
+import { Modal } from '../components/Modal';
+import { NavbarSpacer } from '../components/NavbarSpacer';
 import { Responsive } from '../components/Responsive';
 import { Strong } from '../components/Strong';
 import { Text } from '../components/Text';
@@ -34,8 +36,8 @@ const App: AppType = (props) => {
       <Header />
       <Component {...pageProps} />
 
-      <footer className="footer dark container flex flex-col bg-black py-9">
-        <Logo width={240} />
+      <footer className="footer container flex flex-col bg-black py-9">
+        <Logo width={240} variant="dark" />
 
         <Text className="footer__text footer__section pt-4">
           Товары для животных и груминг салон в Нижневартовске, бесплатная доставка при покупке от 2000₽
@@ -148,40 +150,41 @@ const App: AppType = (props) => {
             </Responsive>
           </TextLink>
         </div>
-
-        <div className="h-[50px] md:hidden"></div>
+        <NavbarSpacer />
       </footer>
 
-      <nav className="fixed bottom-0 flex w-full rounded-t-xl bg-white p-3 px-0 pt-4 md:hidden">
-        <Link href="#" className="flex flex-1 flex-col items-center justify-center gap-1">
-          <SearchIcon />
-          <Text className="text-darkGray-200" size="sm">
-            Поиск
-          </Text>
-        </Link>
-        <Link href="#" className="flex flex-1 flex-col items-center justify-center gap-1">
-          <UserIcon />
-          <Text className="text-darkGray-200" size="sm">
-            Войти
-          </Text>
-        </Link>
-        <Link href="#" className="flex flex-1 flex-col items-center justify-center gap-1">
-          <HeartIcon className="overflow-visible">
-            <Badge backgroundColor="var(--mediumBlue-500,dodgerblue)" r={20} fontWeight={700}>
-              10
-            </Badge>
-          </HeartIcon>
-          <Text className="text-darkGray-200" size="sm">
-            Избранное
-          </Text>
-        </Link>
-        <Link href="#" className="flex flex-1 flex-col items-center justify-center gap-1">
-          <ShoppingCartIcon />
-          <Text className="text-darkGray-200" size="sm">
-            Корзина
-          </Text>
-        </Link>
-      </nav>
+      <Modal open>
+        <nav className="fixed bottom-0 z-10 flex w-full rounded-t-xl bg-white p-3 px-0 pt-4 md:hidden">
+          <Link href="#" className="flex flex-1 flex-col items-center justify-center gap-1">
+            <SearchIcon />
+            <Text className="text-darkGray-200" size="sm">
+              Поиск
+            </Text>
+          </Link>
+          <Link href="#" className="flex flex-1 flex-col items-center justify-center gap-1">
+            <UserIcon />
+            <Text className="text-darkGray-200" size="sm">
+              Войти
+            </Text>
+          </Link>
+          <Link href="#" className="flex flex-1 flex-col items-center justify-center gap-1">
+            <HeartIcon className="overflow-visible">
+              <Badge backgroundColor="var(--mediumBlue-500,dodgerblue)" r={20} fontWeight={700}>
+                10
+              </Badge>
+            </HeartIcon>
+            <Text className="text-darkGray-200" size="sm">
+              Избранное
+            </Text>
+          </Link>
+          <Link href="#" className="flex flex-1 flex-col items-center justify-center gap-1">
+            <ShoppingCartIcon />
+            <Text className="text-darkGray-200" size="sm">
+              Корзина
+            </Text>
+          </Link>
+        </nav>
+      </Modal>
     </>
   );
 };

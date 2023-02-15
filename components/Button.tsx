@@ -5,12 +5,12 @@ import { pickValue } from '../lib/pickValue';
 export type ButtonProps = {
   children?: React.ReactNode;
   className?: string;
-  variant?: 'icon' | 'normal' | 'outline' | 'circle' | 'circle-outline';
+  variant?: 'icon' | 'normal' | 'outline' | 'circle' | 'circle-outline' | 'outline-bright' | 'circle-bright';
   center?: boolean;
 } & HTMLProps<HTMLButtonElement>;
 
 export const Button = (props: ButtonProps) => {
-  const { children, className = '', variant = 'normal', type, center = false, ...rest } = props;
+  const { children, className = '', variant = 'normal', type, center = false, size = 'sm', ...rest } = props;
   return (
     <button
       type={type as any}
@@ -19,10 +19,15 @@ export const Button = (props: ButtonProps) => {
         center && 'text-center',
         pickValue(
           variant,
-          ['normal', 'p-1'],
+          ['normal', 'p-0'],
           ['outline', 'rounded-full border border-mediumBlue-500 py-3 px-4'],
+          ['outline-bright', 'rounded-full border border-white py-3 px-4 text-white'],
           ['icon', 'rounded-lg bg-mediumBlue-500 p-1 text-white'],
-          ['circle', 'inline-flex items-center justify-center rounded-full p-1'],
+          ['circle', 'inline-flex items-center justify-center rounded-full bg-mediumBlue-500 p-1'],
+          [
+            'circle-bright',
+            'inline-flex items-center justify-center rounded-full bg-white/30 p-2 text-white',
+          ],
           [
             'circle-outline',
             'inline-flex items-center justify-center rounded-full border border-mediumBlue-500 p-1.5',

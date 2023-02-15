@@ -47,6 +47,16 @@
 }
 
 @layer components {
+  .menu {
+    background-image: url(/paw-2.svg);
+    background-position: center 70%;
+    background-repeat: no-repeat;
+  }
+
+  .menu__list-item {
+    @apply text-white;
+  }
+
   .list {
     @apply flex flex-col gap-3;
   }
