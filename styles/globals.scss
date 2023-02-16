@@ -2,6 +2,17 @@
 @tailwind components;
 @tailwind utilities;
 
+html.no-scroll {
+  overflow: hidden !important;
+  overflow-y: scroll !important;
+  height: 100% !important;
+
+  body {
+    overflow: hidden !important;
+    height: 100% !important;
+  }
+}
+
 @layer base {
   :root {
     --darkGray-400: hsl(0, 0%, 65%);
@@ -47,6 +58,10 @@
 }
 
 @layer components {
+  .cont {
+    @apply px-5;
+  }
+
   .menu {
     background-image: url(/paw-2.svg);
     background-position: center 70%;

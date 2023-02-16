@@ -36,7 +36,7 @@ const App: AppType = (props) => {
       <Header />
       <Component {...pageProps} />
 
-      <footer className="footer container flex flex-col bg-black py-9">
+      <footer className="footer cont flex flex-col bg-black py-9">
         <Logo width={240} variant="dark" />
 
         <Text className="footer__text footer__section pt-4">
