@@ -19,6 +19,6 @@ export const Responsive = <Component extends CompFn>(props: ResponsiveProps<Comp
     ...(breakpoints.md && md),
     ...(breakpoints.lg && lg),
   };
-
-  return component({ ...rest, ...responsiveParams });
+  const Component = component;
+  return <Component {...rest} {...responsiveParams} />;
 };

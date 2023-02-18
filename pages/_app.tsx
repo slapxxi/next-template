@@ -1,4 +1,3 @@
-import { Header } from 'components/Header';
 import {
   Heart as HeartIcon,
   Search as SearchIcon,
@@ -33,124 +32,117 @@ const App: AppType = (props) => {
         <meta name="viewport" content="initial-scale=1.0, minimum-scale=1.0, width=device-width" />
         <meta name="theme-color" content="#0b0b16" />
       </Head>
-      <Header />
+
       <Component {...pageProps} />
 
-      <footer className="footer cont flex flex-col bg-black py-9">
-        <Logo width={240} variant="dark" />
-
-        <Text className="footer__text footer__section pt-4">
-          Товары для животных и груминг салон в Нижневартовске, бесплатная доставка при покупке от 2000₽
-        </Text>
-
-        <div className="footer__section flex justify-between">
-          <div>
-            <Title className="footer__title my-4">Категории</Title>
-            <ul className="list footer__text">
-              <li>
-                <Link href="#">Для собак</Link>
-              </li>
-              <li>
-                <Link href="#">Для кошек</Link>
-              </li>
-              <li>
-                <Link href="#">Для птиц</Link>
-              </li>
-              <li>
-                <Link href="#">Для грызунов</Link>
-              </li>
-              <li>
-                <Link href="#">Для рыбок</Link>
-              </li>
-            </ul>
-          </div>
-          <div>
-            <Title className="footer__title my-4">Покупателям</Title>
-            <ul className="list footer__text">
-              <li>
-                <Link href="#">Акции</Link>
-              </li>
-              <li>
-                <Link href="#">Новинки</Link>
-              </li>
-              <li>
-                <Link href="#">Груминг</Link>
-              </li>
-              <li>
-                <Link href="#">Контакты</Link>
-              </li>
-              <li>
-                <Link href="#">Доставка</Link>
-              </li>
-              <li>
-                <Link href="#">Адреса магазинов</Link>
-              </li>
-            </ul>
-          </div>
-        </div>
-
-        <Divider height={1} color="darkGray-600" className="footer__section" />
-
-        <div className="footer__section">
-          <Title className="footer__title my-2.5">Контакты</Title>
-          <div className="flex items-center justify-between">
-            <Strong className="footer__strong">+7 (982) 537-81-27</Strong>
-            <div className="flex gap-2.5">
-              <Button variant="circle-outline">
-                <ViberIcon className="footer__icon" size={20} />
-              </Button>
-              <Button variant="circle-outline">
-                <VkIcon className="footer__icon" size={20} />
-              </Button>
+      <footer className="bg-black py-9">
+        <div className="cont footer__bg flex flex-col">
+          <Logo width={240} variant="dark" />
+          <Text className="footer__text footer__section pt-4">
+            Товары для животных и груминг салон в Нижневартовске, бесплатная доставка при покупке от 2000₽
+          </Text>
+          <div className="footer__section flex justify-between">
+            <div>
+              <Title className="footer__title my-4">Категории</Title>
+              <ul className="list footer__text">
+                <li>
+                  <Link href="#">Для собак</Link>
+                </li>
+                <li>
+                  <Link href="#">Для кошек</Link>
+                </li>
+                <li>
+                  <Link href="#">Для птиц</Link>
+                </li>
+                <li>
+                  <Link href="#">Для грызунов</Link>
+                </li>
+                <li>
+                  <Link href="#">Для рыбок</Link>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <Title className="footer__title my-4">Покупателям</Title>
+              <ul className="list footer__text">
+                <li>
+                  <Link href="#">Акции</Link>
+                </li>
+                <li>
+                  <Link href="#">Новинки</Link>
+                </li>
+                <li>
+                  <Link href="#">Груминг</Link>
+                </li>
+                <li>
+                  <Link href="#">Контакты</Link>
+                </li>
+                <li>
+                  <Link href="#">Доставка</Link>
+                </li>
+                <li>
+                  <Link href="#">Адреса магазинов</Link>
+                </li>
+              </ul>
             </div>
           </div>
-        </div>
-
-        <Button variant="outline" center className="footer__button footer__section">
-          Запись онлайн
-        </Button>
-
-        <ul className="footer__section flex flex-col gap-2.5">
-          {[
-            { address: 'Северная улица, 74А', phoneNumber: '27-85-27', workingHours: '9:00 - 21:00' },
-            { address: 'Омская улица, 12', phoneNumber: '27-85-27', workingHours: '10:00 - 21:00' },
-            { address: 'Профсоюзная улица, 7', phoneNumber: '27-85-27', workingHours: '10:00 - 21:00' },
-          ].map((item, i) => (
-            <li key={i} className="flex flex-col gap-1.5 rounded-2xl bg-darkGray-400 p-5">
-              <div className="flex items-center gap-1.5">
-                <PinIcon size={18} className="text-mediumBlue-500" />
-                <Responsive component={Text} className="text-white" size="xs" md={{ size: 'sm' }}>
-                  {item.address}
-                </Responsive>
+          <Divider height={1} color="darkGray-600" className="footer__section" />
+          <div className="footer__section">
+            <Title className="footer__title my-2.5">Контакты</Title>
+            <div className="flex items-center justify-between">
+              <Strong className="footer__strong">+7 (982) 537-81-27</Strong>
+              <div className="flex gap-2.5">
+                <Button variant="circle-outline">
+                  <ViberIcon className="footer__icon" size={20} />
+                </Button>
+                <Button variant="circle-outline">
+                  <VkIcon className="footer__icon" size={20} />
+                </Button>
               </div>
-              <div className="flex items-center gap-1.5">
-                <ViberIcon size={18} className="text-white" />
-                <Responsive component={Text} className="text-white" size="xs" md={{ size: 'sm' }}>
-                  {item.phoneNumber}
-                </Responsive>
-                <Responsive component={Text} className="text-darkGray-200" size="xs" md={{ size: 'sm' }}>
-                  {item.workingHours}
-                </Responsive>
-              </div>
-            </li>
-          ))}
-        </ul>
-
-        <SupportedPaymentMethods className="footer__section_lg" />
-
-        <Divider height={1} color="darkGray-600" className="footer__section" />
-
-        <div className="footer__section">
-          <Responsive component={Text} className="text-darkGray-300" size="xs" md={{ size: 'sm' }}>
-            &copy; ООО «Матроскин»
-          </Responsive>
-          <TextLink href="#" className="text-darkGray-300">
-            <Responsive component={Text} size="xs" md={{ size: 'sm' }}>
-              Политика конфиденциальности
+            </div>
+          </div>
+          <Button variant="outline" center className="footer__button footer__section">
+            Запись онлайн
+          </Button>
+          <ul className="footer__section flex flex-col gap-2.5">
+            {[
+              { address: 'Северная улица, 74А', phoneNumber: '27-85-27', workingHours: '9:00 - 21:00' },
+              { address: 'Омская улица, 12', phoneNumber: '27-85-27', workingHours: '10:00 - 21:00' },
+              { address: 'Профсоюзная улица, 7', phoneNumber: '27-85-27', workingHours: '10:00 - 21:00' },
+            ].map((item, i) => (
+              <li key={i} className="flex flex-col gap-1.5 rounded-2xl bg-darkGray-400 p-5">
+                <div className="flex items-center gap-1.5">
+                  <PinIcon size={18} className="text-mediumBlue-500" />
+                  <Responsive component={Text} className="text-white" size="xs" md={{ size: 'sm' }}>
+                    {item.address}
+                  </Responsive>
+                </div>
+                <div className="flex items-center gap-1.5">
+                  <ViberIcon size={18} className="text-white" />
+                  <Responsive component={Text} className="text-white" size="xs" md={{ size: 'sm' }}>
+                    {item.phoneNumber}
+                  </Responsive>
+                  <Responsive component={Text} className="text-darkGray-200" size="xs" md={{ size: 'sm' }}>
+                    {item.workingHours}
+                  </Responsive>
+                </div>
+              </li>
+            ))}
+          </ul>
+          <SupportedPaymentMethods className="footer__section_lg" />
+          <Divider height={1} color="darkGray-600" className="footer__section" />
+          <div className="footer__section">
+            <Responsive component={Text} className="text-darkGray-300" size="xs" md={{ size: 'sm' }}>
+              &copy; ООО «Матроскин»
             </Responsive>
-          </TextLink>
+            <TextLink href="#" className="text-darkGray-300">
+              <Responsive component={Text} size="xs" md={{ size: 'sm' }}>
+                Политика конфиденциальности
+              </Responsive>
+            </TextLink>
+          </div>
+          <NavbarSpacer />
         </div>
-        <NavbarSpacer />
       </footer>
 
       <Modal open>

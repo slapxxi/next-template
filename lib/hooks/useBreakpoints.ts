@@ -1,5 +1,5 @@
+import useMediaQuery from '@mui/material/useMediaQuery';
 import { lgQuery, mdQuery } from '../styles/mq';
-import useMediaQuery from './useMediaQuery';
 
 export function useBreakpoints() {
   let md = useMediaQuery(mdQuery);

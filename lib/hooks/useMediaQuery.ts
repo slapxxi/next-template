@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react';
+import { useMounted } from './useMounted';
 
 export function useMediaQuery(query: string): boolean {
   const [matches, setMatches] = useState<boolean>(getMatches(query));
+  const mounted = useMounted();
 
   function handleChange() {
     setMatches(getMatches(query));
@@ -26,7 +28,7 @@ export function useMediaQuery(query: string): boolean {
     };
   }, [query]);
 
-  return matches;
+  return mounted && matches;
 }
 
 function getMatches(query: string): boolean {

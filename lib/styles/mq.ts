@@ -1,9 +1,9 @@
 import type { CSSInterpolation } from '@emotion/serialize';
 
-export const smQuery = 'screen and (min-width: 320px)';
-export const mdQuery = 'screen and (min-width: 768px)';
-export const lgQuery = 'screen and (min-width: 1024px)';
-export const xlQuery = 'screen and (min-width: 1290px)';
+export const smQuery = '(min-width: 320px)';
+export const mdQuery = '(min-width: 768px)';
+export const lgQuery = '(min-width: 1024px)';
+export const xlQuery = '(min-width: 1290px)';
 export const reducedMotionQuery = '(prefers-reduced-motion)';
 
 const smMediaQuery = `@media ${smQuery}`;

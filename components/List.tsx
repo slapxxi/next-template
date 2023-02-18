@@ -2,7 +2,6 @@ import classNames from 'classnames';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { Children, createContext, useContext, useState } from 'react';
 import { isComponentType } from '../lib/isComponentType';
-import { Button } from './Button';
 
 export type ListProps = {
   children?: React.ReactNode;
@@ -26,12 +25,12 @@ export const List = (props: ListProps) => {
         className={classNames(className, 'transition-transform')}
       >
         {listContext && (
-          <Button
+          <button
             onClick={() => listContext.setActive(false)}
-            className="flex items-center py-2.5 text-mediumBlue-500"
+            className="flex w-full items-center py-2.5 text-mediumBlue-500"
           >
             <ChevronLeft size={18} /> Назад
-          </Button>
+          </button>
         )}
         <ListContext.Provider value={{ setActive, depth }}>{children}</ListContext.Provider>
       </div>
@@ -61,9 +60,9 @@ export const ListItem = (props: ListItemProps) => {
     <li className={classNames(className, 'flex items-center border-b py-3')} {...rest}>
       {mappedChildren}
       {containsSublist && (
-        <Button className="ml-auto" onClick={() => listContext?.setActive(true)}>
+        <button className="flex flex-1 justify-end" onClick={() => listContext?.setActive(true)}>
           <ChevronRight />
-        </Button>
+        </button>
       )}
     </li>
   );

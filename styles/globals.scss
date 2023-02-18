@@ -58,8 +58,54 @@ html.no-scroll {
 }
 
 @layer components {
+  .section_sm {
+    @apply my-4;
+  }
+
+  .section {
+    @apply my-8;
+  }
+
+  .section_lg {
+    @apply my-16;
+  }
+
+  .section_xl {
+    @apply my-28;
+  }
+
+  .hero {
+    @apply px-5 py-px;
+    padding-bottom: 290px;
+    background-image: url(/hero-mobile.svg);
+    background-position: center bottom;
+    background-repeat: no-repeat;
+  }
+
+  @screen md {
+    .hero {
+      @apply px-10 py-px pt-14;
+      padding-bottom: 350px;
+      background-image: url(/hero-tablet.svg);
+      background-position: center bottom;
+      background-repeat: no-repeat;
+    }
+  }
+
+  @screen lg {
+    .hero {
+      @apply mx-auto flex flex-col justify-center px-5 py-0;
+      min-height: 500px;
+      max-width: 1192px;
+      background-image: url(/hero-desktop.svg);
+      background-position: bottom right;
+      background-repeat: no-repeat;
+    }
+  }
+
   .cont {
-    @apply px-5;
+    @apply mx-auto px-5;
+    max-width: 1192px;
   }
 
   .menu {
@@ -76,9 +122,9 @@ html.no-scroll {
     @apply flex flex-col gap-3;
   }
 
-  .footer {
+  .footer__bg {
     background-image: url(/paw.svg);
-    background-position: -10px 110px;
+    background-position: 0px 110px;
     background-repeat: no-repeat;
   }
 
@@ -118,5 +164,9 @@ html.no-scroll {
 
   .text-med {
     font-size: 15px;
+  }
+
+  .bg-header {
+    background-color: var(--bg-header, theme('colors.lightBlue-600'));
   }
 }
