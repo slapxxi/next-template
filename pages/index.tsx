@@ -1,12 +1,11 @@
 import { Button } from 'components/Button';
-import { HeroTitle } from 'components/HeroTitle';
-import { ArrowRight, ChevronLeft, ChevronRight, MapPin } from 'lucide-react';
+import { ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
 import Link from 'next/link';
 import 'swiper/css';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { AnimalCard } from '../components/AnimalCard';
 import { Header } from '../components/Header';
-import { HeroText } from '../components/HeroText';
+import { PinIcon } from '../components/icons/PinIcon';
 import { ItemCard } from '../components/ItemCard';
 import { SectionTitle } from '../components/SectionTitle';
 import { SwiperNextButton } from '../components/SwiperNextButton';
@@ -25,8 +24,8 @@ const IndexPage = () => {
         <section className="bg-lightBlue-500 text-white">
           <div className="hero">
             <div className="lg:w-1/2">
-              <HeroTitle className="my-2.5">Всё для счастья ваших любимцев</HeroTitle>
-              <HeroText className="my-2.5">Новые скидки каждый день!</HeroText>
+              <h2 className="hero__title mb-2.5 md:mb-5">Всё для счастья ваших любимцев</h2>
+              <p className="hero__text mb-5 text-white md:mb-7">Новые скидки каждый день!</p>
               <Button variant="fill-bright" className="my-5">
                 В каталог
                 <ArrowRight />
@@ -63,60 +62,79 @@ const IndexPage = () => {
               <SectionTitle>Популярные товары</SectionTitle>
             </div>
 
-            <div className="cont my-4 flex gap-2.5 lg:my-5">
-              {[{ name: 'Корм', selected: true }, { name: 'Игрушки' }, { name: 'Лежанки' }].map((item, i) => (
-                <Tag key={i} selected={item.selected} name={item.name} />
-              ))}
-            </div>
-
-            <div
-              className="lg:cont flex snap-x snap-mandatory grid-cols-4 
-              gap-2.5 overflow-x-scroll px-2.5 md:px-5 lg:my-6 lg:grid lg:gap-5"
-            >
-              {[
-                {
-                  title: 'FLORIDA',
-                  description: 'Корм сухой корм для взрослых стерилизованных кошек с лососем и черникой',
-                  price: 3446,
-                  discount: 0.5,
-                  img: 'florida.png',
-                },
-                {
-                  title: 'ProBalance',
-                  description: 'Корм сухой корм для взрослых стерилизованных кошек с лососем и черникой',
-                  price: 3446,
-                  discount: 0.25,
-                  img: 'probalance.webp',
-                },
-                {
-                  title: 'FLORIDA',
-                  description: 'Корм сухой корм для взрослых стерилизованных кошек с лососем и черникой',
-                  price: 3446,
-                  discount: 0.15,
-                  img: 'florida.png',
-                },
-                {
-                  title: 'FLORIDA',
-                  description: 'Корм сухой корм для взрослых стерилизованных кошек с лососем и черникой',
-                  price: 3446,
-                  discount: 0.15,
-                  img: 'florida.png',
-                },
-              ].map((item, i) => (
-                <ItemCard {...item} key={i} className="w-[155px] shrink-0 snap-center md:w-1/3 lg:w-auto" />
-              ))}
+            <div className="cont">
+              <Swiper slidesPerView={bp.md ? (bp.lg ? 3 : 3) : 2} spaceBetween={10}>
+                <header slot="container-start" className="my-5 flex md:my-6">
+                  <div className="flex gap-2.5">
+                    {[{ name: 'Корм', selected: true }, { name: 'Игрушки' }, { name: 'Лежанки' }].map(
+                      (item, i) => (
+                        <Tag key={i} selected={item.selected} name={item.name} />
+                      ),
+                    )}
+                  </div>
+                  <div className="ml-auto flex">
+                    <SwiperPrevButton
+                      className="hidden items-center justify-center rounded-full
+                      border border-gray-300 p-1.5 text-gray-600 md:ml-auto md:flex md:p-3"
+                    >
+                      <ChevronLeft size={18} />
+                    </SwiperPrevButton>
+                    <SwiperNextButton
+                      className="hidden items-center justify-center rounded-full
+                      border border-gray-300 p-1.5 text-gray-600 md:ml-2 md:flex md:p-3"
+                    >
+                      <ChevronRight size={18} />
+                    </SwiperNextButton>
+                  </div>
+                </header>
+                {[
+                  {
+                    title: 'FLORIDA',
+                    description: 'Корм сухой корм для взрослых стерилизованных кошек с лососем и черникой',
+                    price: 3446,
+                    discount: 0.5,
+                    options: ['400г', '800г', '1200г', '3500г'],
+                    img: 'florida.png',
+                  },
+                  {
+                    title: 'ProBalance',
+                    description: 'Корм сухой корм для взрослых стерилизованных кошек с лососем и черникой',
+                    price: 3446,
+                    discount: 0.25,
+                    img: 'probalance.webp',
+                  },
+                  {
+                    title: 'FLORIDA',
+                    description: 'Корм сухой корм для взрослых стерилизованных кошек с лососем и черникой',
+                    price: 3446,
+                    discount: 0.15,
+                    img: 'florida.png',
+                  },
+                  {
+                    title: 'FLORIDA',
+                    description: 'Корм сухой корм для взрослых стерилизованных кошек с лососем и черникой',
+                    price: 3446,
+                    discount: 0.15,
+                    img: 'florida.png',
+                  },
+                ].map((item, i) => (
+                  <SwiperSlide key={i} className="!h-auto">
+                    <ItemCard {...item} className="h-full" />
+                  </SwiperSlide>
+                ))}
+              </Swiper>
             </div>
           </section>
         </div>
 
         <div className="bg-white pb-12">
-          <section className="my-12">
+          <section className="my-12 md:my-28">
             <img src="brands-animated.svg" />
           </section>
 
-          <section className="my-12 px-5">
-            <h2 className="text-2xl font-bold">Теперь ещё удобнее!</h2>
-            <p className="my-4 text-base text-slate-500">
+          <section className="my-12 px-5 md:my-28">
+            <h2 className="">Теперь ещё удобнее!</h2>
+            <p className="my-4 text-base text-slate-500 md:my-5">
               Заказывайте в магазине «Матроскин» не выходя из дома! Все товары лицензированы и проходят
               проверку оригинальности. Заказывайте в магазине «Матроскин» не выходя из дома!
             </p>
@@ -221,94 +239,95 @@ const IndexPage = () => {
                 },
               ].map((item, i) => (
                 <div
-                  className="flex aspect-square flex-col items-center justify-center gap-5 rounded-2xl bg-slate-100 p-2.5"
+                  className="flex aspect-square flex-col items-center justify-center gap-5 rounded-2xl
+                  bg-slate-100 p-2.5 md:aspect-auto md:flex-row md:justify-start md:px-6 md:py-5"
                   key={i}
                 >
                   {item.icon}
-                  <p className="text-center text-base font-medium">{item.text}</p>
+                  <p className="text-center text-base font-medium md:text-lg">{item.text}</p>
                 </div>
               ))}
             </div>
           </section>
 
-          <section className="my-12 px-5">
-            <div className="bg-curly md:bg-curly-md rounded-2xl bg-lightBlue-500 bg-no-repeat p-2.5">
-              <div>
-                <Swiper slidesPerView={bp.md ? (bp.lg ? 2 : 1) : 2} spaceBetween={10}>
-                  <header
-                    className="my-5 flex items-center justify-between md:justify-start"
-                    slot="container-start"
-                  >
-                    <SwiperPrevButton className="flex items-center justify-center rounded-full border p-1.5 text-white md:ml-auto md:p-3">
-                      <ChevronLeft size={18} />
-                    </SwiperPrevButton>
-                    <h2 className="text-2xl font-bold text-white md:-order-1">Акции</h2>
-                    <SwiperNextButton className="flex items-center justify-center rounded-full border p-1.5 text-white md:ml-2 md:p-3">
-                      <ChevronRight size={18} />
-                    </SwiperNextButton>
-                  </header>
-                  {[
-                    {
-                      title: 'FLORIDA',
-                      price: 3885,
-                      description: 'Корм сухой корм для взрослых стерилизованных кошек с лососем и черникой',
-                      img: 'florida.png',
-                      options: ['400г', '800г', '1200г', '3500г'],
-                    },
-                    {
-                      title: 'ProBalance',
-                      price: 310,
-                      discount: 0.897,
-                      previousPrice: 3000,
-                      description: 'Корм сухой корм для взрослых стерилизованных кошек с лососем и черникой',
-                      img: 'probalance.webp',
-                    },
-                    {
-                      title: 'FLORIDA',
-                      price: 4019,
-                      description: 'Корм сухой корм для взрослых стерилизованных кошек с лососем и черникой',
-                      img: 'florida.png',
-                    },
-                    {
-                      title: 'FLORIDA',
-                      price: 1_000_000,
-                      description: 'Корм сухой корм для взрослых стерилизованных кошек с лососем и черникой',
-                      img: 'florida.png',
-                    },
-                  ].map((item, i) => (
-                    <SwiperSlide key={i} className="!h-auto">
-                      <ItemCard {...item} horizontal={bp.md} className="h-full" />
-                    </SwiperSlide>
-                  ))}
-                </Swiper>
-              </div>
+          {/* special offers */}
+          <section className="my-12 px-5 md:my-28">
+            <div className="bg-curly md:bg-curly-md rounded-2xl bg-lightBlue-500 bg-no-repeat p-2.5 md:px-10 md:pt-6 md:pb-8">
+              <Swiper slidesPerView={bp.md ? (bp.lg ? 2 : 1) : 2} spaceBetween={10}>
+                <header
+                  className="my-5 flex items-center justify-between md:justify-start"
+                  slot="container-start"
+                >
+                  <SwiperPrevButton className="flex items-center justify-center rounded-full border p-1.5 text-white md:ml-auto md:p-3">
+                    <ChevronLeft size={18} />
+                  </SwiperPrevButton>
+                  <h2 className="section__title text-white md:-order-1">Акции</h2>
+                  <SwiperNextButton className="flex items-center justify-center rounded-full border p-1.5 text-white md:ml-2 md:p-3">
+                    <ChevronRight size={18} />
+                  </SwiperNextButton>
+                </header>
+                {[
+                  {
+                    title: 'FLORIDA',
+                    price: 3885,
+                    description: 'Корм сухой корм для взрослых стерилизованных кошек с лососем и черникой',
+                    img: 'florida.png',
+                    options: ['400г', '800г', '1200г', '3500г'],
+                  },
+                  {
+                    title: 'ProBalance',
+                    price: 310,
+                    discount: 0.897,
+                    previousPrice: 3000,
+                    description: 'Корм сухой корм для взрослых стерилизованных кошек с лососем и черникой',
+                    img: 'probalance.webp',
+                  },
+                  {
+                    title: 'FLORIDA',
+                    price: 4019,
+                    description: 'Корм сухой корм для взрослых стерилизованных кошек с лососем и черникой',
+                    img: 'florida.png',
+                  },
+                  {
+                    title: 'FLORIDA',
+                    price: 1_000_000,
+                    description: 'Корм сухой корм для взрослых стерилизованных кошек с лососем и черникой',
+                    img: 'florida.png',
+                  },
+                ].map((item, i) => (
+                  <SwiperSlide key={i} className="!h-auto">
+                    <ItemCard {...item} horizontal={bp.md} className="h-full" />
+                  </SwiperSlide>
+                ))}
+              </Swiper>
             </div>
           </section>
 
-          <section className="my-12 px-5">
-            <h2 className="text-2xl font-bold">Заходите в гости!</h2>
-            <p className="my-4 text-base text-gray-500">
+          {/* addresses section */}
+          <section className="my-12 px-5 md:my-28">
+            <h2 className="section__title md:text-center">Заходите в гости!</h2>
+            <p className="my-4 mx-auto max-w-prose text-base text-gray-500 md:my-8 md:text-center">
               Любите ходить по магазинам или хотите оформить самовывоз? Отлично! Мы работаем с 9 утра до 9
               вечера, наши магазины распологаютс по адресам:
             </p>
-            <ul className="flex flex-col gap-2.5">
+            <ul className="flex flex-col gap-2.5 md:flex-row md:justify-between">
               {['Северная улица, 74А', 'Омская улица, 12', 'Профсоюзная улица, 7'].map((addr, i) => (
                 <li className="flex items-center gap-2 text-base" key={i}>
-                  <MapPin className="text-mediumBlue-500" />
+                  <PinIcon className="text-mediumBlue-500" />
                   {addr}
                 </li>
               ))}
             </ul>
-
-            <div className="my-4">
-              <img src="/map.png" />
+            <div className="my-4 md:my-10">
+              <img src="/map.png" className="w-full" />
             </div>
           </section>
         </div>
 
+        {/* news section */}
         <section className="bg-slate-100 py-10">
           <div className="px-5">
-            <h2 className="section-title mb-4">Новости и полезные статьи</h2>
+            <h2 className="section__title mb-4">Новости и полезные статьи</h2>
           </div>
 
           <div className="mb-7 flex snap-x snap-mandatory gap-2.5 overflow-x-scroll px-5">
@@ -330,32 +349,35 @@ const IndexPage = () => {
               },
             ].map((item, i) => (
               <div
-                className="flex w-5/6 shrink-0 snap-center flex-col rounded-xl border border-slate-200 bg-white p-2.5"
+                className="flex w-5/6 shrink-0 snap-center flex-col rounded-xl border border-slate-200 bg-white p-2.5 md:w-5/12"
                 key={i}
               >
                 <img src={item.img} className="mb-4 aspect-square rounded-md object-cover" />
-                <h2 className="my-2 text-base font-bold">{item.title}</h2>
+                <h2 className="my-2 text-base font-bold md:text-lg">{item.title}</h2>
                 <p className="my-2 mt-auto text-sm text-slate-500">{item.text}</p>
               </div>
             ))}
           </div>
         </section>
 
-        <div className="bg-white py-16">
+        {/* grooming banner */}
+        <div className="bg-white py-16 md:px-5">
           <div
             className="bg-dog-wiggle flex flex-col rounded-3xl bg-orange-300 
-            bg-contain bg-no-repeat p-5 pb-[280px] [background-position:60px_330px,top]"
+            bg-contain bg-no-repeat p-5 pb-[280px] [background-position:60px_330px,top] md:p-10 md:[background-position:400px_30px,-100px_-80px]"
           >
-            <h2 className="text-2xl font-bold text-white">Записывемся на ноготочки!</h2>
-            <p className="my-6 text-base text-white">
-              Полный комплекс процедур для красоты и здоровья вашего питомца
-            </p>
-            <form action="#" className="flex flex-col gap-2.5">
-              <input type="text" className="w-full rounded-full p-5" placeholder="+7 ___ ___ - __ - __" />
-              <button className="rounded-full bg-green-500 p-5 text-white" type="submit">
-                Записаться на груминг
-              </button>
-            </form>
+            <div className="md:w-1/2">
+              <h2 className="section__title text-white">Записывемся на ноготочки!</h2>
+              <p className="my-6 text-base text-white">
+                Полный комплекс процедур для красоты и здоровья вашего питомца
+              </p>
+              <form action="#" className="flex flex-col gap-2.5">
+                <input type="text" className="w-full rounded-full p-5" placeholder="+7 ___ ___ - __ - __" />
+                <button className="rounded-full bg-green-500 p-5 text-white" type="submit">
+                  Записаться на груминг
+                </button>
+              </form>
+            </div>
           </div>
         </div>
       </main>

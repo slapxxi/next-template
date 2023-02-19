@@ -58,8 +58,8 @@ html.no-scroll {
 }
 
 @layer components {
-  .section-title {
-    @apply text-2xl font-bold;
+  .section__title {
+    @apply text-2xl font-bold md:text-3xl;
   }
 
   .section_sm {
@@ -88,7 +88,7 @@ html.no-scroll {
 
   @screen md {
     .hero {
-      @apply px-10 py-px pt-14;
+      @apply px-10 py-px pt-6;
       padding-bottom: 350px;
       background-image: url(/hero-tablet.svg);
       background-position: center bottom;
@@ -105,6 +105,14 @@ html.no-scroll {
       background-position: bottom right;
       background-repeat: no-repeat;
     }
+  }
+
+  .hero__title {
+    @apply text-3xl font-bold md:text-5xl;
+  }
+
+  .hero__text {
+    @apply text-base md:text-xl;
   }
 
   .cont {
@@ -133,7 +141,7 @@ html.no-scroll {
   }
 
   .footer__title {
-    @apply text-white;
+    @apply text-lg font-medium text-white;
   }
 
   .footer__text {
@@ -153,11 +161,7 @@ html.no-scroll {
   }
 
   .footer__section {
-    @apply my-4;
-
-    &_lg {
-      @apply my-12;
-    }
+    @apply my-4 md:my-0;
   }
 }
 

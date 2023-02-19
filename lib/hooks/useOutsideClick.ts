@@ -3,6 +3,7 @@ import { RefObject, useCallback, useEffect } from 'react';
 export default function useOutsideClick<T extends Element, E extends MouseEvent>(
   ref: RefObject<T>,
   fn: (e: E) => void,
+  deps: any[] = [],
 ) {
   let handleClick = useCallback(
     (e: MouseEvent) => {
@@ -15,5 +16,5 @@ export default function useOutsideClick<T extends Element, E extends MouseEvent>
   useEffect(() => {
     document.addEventListener('click', handleClick);
     return () => document.removeEventListener('click', handleClick);
-  }, []);
+  }, deps);
 }

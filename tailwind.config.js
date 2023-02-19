@@ -1,7 +1,7 @@
 const plugin = require('tailwindcss/plugin');
 
 const colors = {
-  black: ['0', '0%', '16%'],
+  black: ['0', '0%', '14%'],
 
   'lightGray-100': ['223', '47%', '97%'],
   'lightGray-200': ['223', '64%', '96%'],
@@ -12,7 +12,7 @@ const colors = {
   'lightBlue-100': ['223', '64%', '96%'],
   'lightBlue-200': ['223', '64%', '96%'],
   'lightBlue-300': ['223', '83%', '88%'],
-  'lightBlue-400': ['223', '83%', '80%'],
+  'lightBlue-400': ['223', '82%', '81%'],
   'lightBlue-500': ['222', '83%', '77%'],
   'lightBlue-600': ['223', '100%', '72%'],
 

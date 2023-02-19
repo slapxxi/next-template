@@ -111,7 +111,7 @@ export const ItemCard = (props: ItemCardProps) => {
         )}
 
         {/* buttons container */}
-        <div className="mt-auto flex flex-wrap items-center justify-between gap-2 md:justify-end md:gap-4">
+        <div className="mt-auto flex items-center justify-between gap-2 md:justify-end md:gap-4">
           {bp.md && <QuantityInput value={count} onChange={handleChange} className="lg:flex-none" />}
           <Responsive
             component={Button}
