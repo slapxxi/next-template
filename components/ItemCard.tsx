@@ -13,13 +13,24 @@ export type ItemCardProps = {
   className?: string;
   title: string;
   price: number;
+  previousPrice?: number;
   discount?: number;
   description: string;
   img?: string;
 };
 
 export const ItemCard = (props: ItemCardProps) => {
-  const { children, className = '', title, description, discount, img = '', price, ...rest } = props;
+  const {
+    children,
+    className = '',
+    title,
+    description,
+    discount,
+    img = '',
+    price,
+    previousPrice,
+    ...rest
+  } = props;
   const [count, setCount] = useState(0);
   let bp = useBreakpoints();
 
@@ -41,7 +52,7 @@ export const ItemCard = (props: ItemCardProps) => {
             {new Intl.NumberFormat('ru', { style: 'percent' }).format(-discount)}
           </div>
         )}
-        <Responsive component={FavButton} sm={{ size: 18 }} md={{ size: 24 }} />
+        <Responsive component={FavButton} sm={{ size: 18 }} md={{ size: 24 }} className="ml-auto" />
       </div>
 
       <img src={img} className="mb-2.5 aspect-square object-contain" />
@@ -54,13 +65,15 @@ export const ItemCard = (props: ItemCardProps) => {
             maximumFractionDigits: 0,
           }).format(price)}
         </h2>
-        <h2 className="text-xs font-bold text-slate-400 line-through md:text-sm">
-          {new Intl.NumberFormat('ru', {
-            currency: 'RUB',
-            style: 'currency',
-            maximumFractionDigits: 0,
-          }).format(price)}
-        </h2>
+        {previousPrice && (
+          <h2 className="text-xs font-bold text-slate-400 line-through md:text-sm">
+            {new Intl.NumberFormat('ru', {
+              currency: 'RUB',
+              style: 'currency',
+              maximumFractionDigits: 0,
+            }).format(previousPrice)}
+          </h2>
+        )}
       </div>
 
       <h2 className="mb-1.5 text-xs font-bold text-black md:text-sm">{title}</h2>
@@ -75,7 +88,8 @@ export const ItemCard = (props: ItemCardProps) => {
           md={{ size: 'md' }}
           className="flex-1 md:flex-none lg:flex-1"
         >
-          В корзину <ShoppingCart size={18} />
+          <span>В корзину </span>
+          <ShoppingCart size={14} />
         </Responsive>
       </div>
     </div>
