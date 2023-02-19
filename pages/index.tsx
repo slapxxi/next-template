@@ -12,8 +12,11 @@ import { SectionTitle } from '../components/SectionTitle';
 import { SwiperNextButton } from '../components/SwiperNextButton';
 import { SwiperPrevButton } from '../components/SwiperPrevButton';
 import { Tag } from '../components/Tag';
+import { useBreakpoints } from '../lib/hooks/useBreakpoints';
 
 const IndexPage = () => {
+  let bp = useBreakpoints();
+
   return (
     <>
       <Header variant="fill" />
@@ -229,15 +232,18 @@ const IndexPage = () => {
           </section>
 
           <section className="my-12 px-5">
-            <div className="bg-curly rounded-2xl bg-lightBlue-500 bg-no-repeat p-2.5">
+            <div className="bg-curly md:bg-curly-md rounded-2xl bg-lightBlue-500 bg-no-repeat p-2.5">
               <div>
-                <Swiper slidesPerView={2} spaceBetween={10}>
-                  <header className="my-5 flex items-center justify-between" slot="container-start">
-                    <SwiperPrevButton className="flex items-center justify-center rounded-full border p-1.5 text-white">
+                <Swiper slidesPerView={bp.md ? (bp.lg ? 2 : 1) : 2} spaceBetween={10}>
+                  <header
+                    className="my-5 flex items-center justify-between md:justify-start"
+                    slot="container-start"
+                  >
+                    <SwiperPrevButton className="flex items-center justify-center rounded-full border p-1.5 text-white md:ml-auto md:p-3">
                       <ChevronLeft size={18} />
                     </SwiperPrevButton>
-                    <h2 className="text-2xl font-bold text-white">Акции</h2>
-                    <SwiperNextButton className="flex items-center justify-center rounded-full border p-1.5 text-white">
+                    <h2 className="text-2xl font-bold text-white md:-order-1">Акции</h2>
+                    <SwiperNextButton className="flex items-center justify-center rounded-full border p-1.5 text-white md:ml-2 md:p-3">
                       <ChevronRight size={18} />
                     </SwiperNextButton>
                   </header>
@@ -247,6 +253,7 @@ const IndexPage = () => {
                       price: 3885,
                       description: 'Корм сухой корм для взрослых стерилизованных кошек с лососем и черникой',
                       img: 'florida.png',
+                      options: ['400г', '800г', '1200г', '3500г'],
                     },
                     {
                       title: 'ProBalance',
@@ -269,8 +276,8 @@ const IndexPage = () => {
                       img: 'florida.png',
                     },
                   ].map((item, i) => (
-                    <SwiperSlide key={i}>
-                      <ItemCard {...item} />
+                    <SwiperSlide key={i} className="!h-auto">
+                      <ItemCard {...item} horizontal={bp.md} className="h-full" />
                     </SwiperSlide>
                   ))}
                 </Swiper>
