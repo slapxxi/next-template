@@ -1,0 +1,34 @@
+@tailwind components;
+
+@layer components {
+  .cont {
+    @apply mx-auto px-5;
+    max-width: 1232px;
+  }
+
+  .cont_pad {
+  }
+
+  .section_title {
+    @apply text-2xl font-bold md:text-3xl lg:text-4xl;
+  }
+
+  .section_text {
+    @apply text-base text-slate-500;
+  }
+}
+
+@layer utilities {
+  .px-cont {
+    @apply px-5;
+  }
+
+  @screen lg {
+    .px-cont {
+      padding-left: max(((100% - 1232px) / 2 + 20px), theme('spacing.5'));
+      padding-right: max(((100% - 1232px) / 2 + 20px), theme('spacing.5'));
+    }
+  }
+}
+
+@tailwind utilities;

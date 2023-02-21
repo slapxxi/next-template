@@ -1,0 +1,56 @@
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .button {
+    @apply flex items-center justify-center gap-2.5 font-bold leading-none;
+  }
+
+  .button--var-fill {
+    @apply rounded-full bg-mediumBlue-500 py-2.5 px-5 text-white hover:bg-mediumBlue-400;
+  }
+
+  .button--var-fill_bright {
+    @apply rounded-full border border-white bg-white py-2.5 px-5 text-mediumBlue-500 hover:border-mediumBlue-500;
+  }
+
+  .button--var-outline {
+    @apply rounded-full border border-mediumBlue-500 py-3 px-4;
+  }
+
+  .button--var-outline_bright {
+    @apply rounded-full border border-white py-3 px-4 text-white hover:border-lightGray-400;
+  }
+
+  .button--var-icon {
+    @apply rounded-lg bg-mediumBlue-500 p-1 text-white hover:bg-mediumBlue-400;
+  }
+
+  .button--var-circle {
+    @apply inline-flex items-center justify-center rounded-full bg-mediumBlue-500 p-1;
+  }
+
+  .button--var-circle_bright {
+    @apply inline-flex items-center justify-center rounded-full bg-white/30 p-2 text-white hover:bg-mediumBlue-500;
+  }
+
+  .button--var-circle_outline {
+    @apply inline-flex items-center justify-center rounded-full border border-mediumBlue-500 p-1.5;
+  }
+
+  .button--size-xs {
+    @apply text-xs;
+  }
+
+  .button--size-sm {
+    @apply text-sm;
+  }
+
+  .button--size-md {
+    @apply text-med;
+  }
+
+  .button--center {
+    @apply text-center;
+  }
+}

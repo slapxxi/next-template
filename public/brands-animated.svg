@@ -3,14 +3,15 @@
 	<g clip-path="url(#a)" id="brands" transform="translate(0)">
 		<animateTransform type="translate" attributeName="transform" from="0" to="-732" dur="15s"
 			repeatCount="indefinite" />
-		<path fill="url(#b)" d="M112.74 0H0v70h112.74V0Z" opacity=".7" />
-		<path fill="url(#c)" d="M234.25 0h-111.5v70h111.5V0Z" opacity=".7" />
+		<path fill="url(#b)" d="M112.74 0H0v70h112.74V0Z" opacity="1" />
+		<path fill=" url(#c)" d="M234.25 0h-111.5v70h111.5V0Z" opacity=".7" />
 		<path fill="url(#d)" d="M357 0H244.24v70h112.74V0Z" opacity=".7" />
 		<path fill="url(#e)" d="M479.74 0H366.99v70h112.75V0Z" opacity=".7" />
 		<path fill="url(#f)" d="M602.48 0H489.74v70h112.74V0Z" opacity=".7" />
 		<path fill="url(#g)" d="M725.22 0H612.48v70h112.74V0Z" opacity=".7" />
 	</g>
 	<use href="#brands" x="732" />
+	<use href="#brands" x="-732" />
 	<defs>
 		<pattern id="b" width="1" height="1" patternContentUnits="objectBoundingBox">
 			<use xlink:href="#h" transform="matrix(.0038 0 0 .0061 .12 .08)" />

@@ -1,9 +1,9 @@
 import classNames from 'classnames';
-import { Menu } from 'lucide-react';
+import useOutsideClick from 'lib/hooks/useOutsideClick';
+import { Heart, Menu, ShoppingCart, User } from 'lucide-react';
 import Link from 'next/link';
 import { useRef, useState } from 'react';
-import useOutsideClick from '../lib/hooks/useOutsideClick';
-import styles from './Navbar.module.scss';
+import { Badge } from './Badge';
 
 export type NavbarProps = {
   className?: string;
@@ -33,14 +33,15 @@ export const Navbar = (props: NavbarProps) => {
       ref={ref}
       className={classNames(
         className,
-        'relative z-10 flex items-center rounded-full bg-white text-slate-700',
+        'relative z-10 flex items-center rounded-full bg-white pr-8 text-slate-700',
       )}
       {...rest}
     >
       <button
-        className="rounded-full bg-mediumBlue-500 p-3 text-white hover:bg-mediumBlue-400"
+        className="gap-6 rounded-full bg-mediumBlue-500 p-3 text-white hover:bg-mediumBlue-400 lg:flex lg:px-5"
         onClick={handleClick}
       >
+        <span className="hidden lg:block">Каталог</span>
         <Menu />
       </button>
       <ul className="flex gap-6 pl-5">
@@ -49,6 +50,22 @@ export const Navbar = (props: NavbarProps) => {
             <Link href="#">{link}</Link>
           </li>
         ))}
+      </ul>
+
+      <ul className="ml-auto hidden gap-8 lg:flex">
+        <li>
+          <Heart />
+        </li>
+        <li>
+          <User />
+        </li>
+        <li>
+          <ShoppingCart className="overflow-visible">
+            <Badge backgroundColor="blue" fontWeight={700} r={15} fontSize={10}>
+              10
+            </Badge>
+          </ShoppingCart>
+        </li>
       </ul>
 
       <div
@@ -62,10 +79,10 @@ export const Navbar = (props: NavbarProps) => {
           >
             Для собак
           </li>
-          <li className={classNames(styles.menu__li)}>Для кошек</li>
-          <li className={classNames(styles.menu__li)}>Для птиц</li>
-          <li className={classNames(styles.menu__li)}>Для грызунов</li>
-          <li className={classNames(styles.menu__li)}>Для рыбок</li>
+          <li className="navbar__menu-item">Для кошек</li>
+          <li className="navbar__menu-item">Для птиц</li>
+          <li className="navbar__menu-item">Для грызунов</li>
+          <li className="navbar__menu-item">Для рыбок</li>
         </ul>
         {submenuOpen && <Submenu />}
       </div>
@@ -73,25 +90,19 @@ export const Navbar = (props: NavbarProps) => {
   );
 };
 
-export type SubmenuProps = {
-  children?: React.ReactNode;
-  className?: string;
-};
-
-export const Submenu = (props: SubmenuProps) => {
-  const { children, className = '', ...rest } = props;
+export const Submenu = () => {
   return (
     <ul className="flex min-w-[235px] flex-col gap-5 border-l py-4 px-5">
-      <li className={classNames(styles.submenu__li)}>Ветаптека</li>
-      <li className={classNames(styles.submenu__li)}>Виды витаминов</li>
-      <li className={classNames(styles.submenu__li)}>Возраст</li>
-      <li className={classNames(styles.submenu__li)}>Гигиена</li>
-      <li className={classNames(styles.submenu__li)}>Материал товара</li>
-      <li className={classNames(styles.submenu__li)}>Наполнители вид</li>
-      <li className={classNames(styles.submenu__li)}>Порода/размер</li>
-      <li className={classNames(styles.submenu__li)}>Серии по уходу</li>
-      <li className={classNames(styles.submenu__li)}>Цвет товара</li>
-      <li className={classNames(styles.submenu__li)}>Шампуни, кондиционеры</li>
+      <li className="navbar__submenu-item">Ветаптека</li>
+      <li className="navbar__submenu-item">Виды витаминов</li>
+      <li className="navbar__submenu-item">Возраст</li>
+      <li className="navbar__submenu-item">Гигиена</li>
+      <li className="navbar__submenu-item">Материал товара</li>
+      <li className="navbar__submenu-item">Наполнители вид</li>
+      <li className="navbar__submenu-item">Порода/размер</li>
+      <li className="navbar__submenu-item">Серии по уходу</li>
+      <li className="navbar__submenu-item">Цвет товара</li>
+      <li className="navbar__submenu-item">Шампуни, кондиционеры</li>
     </ul>
   );
 };

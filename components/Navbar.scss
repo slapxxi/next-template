@@ -1,0 +1,12 @@
+@tailwind components;
+
+@layer components {
+  .navbar__menu-item {
+    @apply flex px-5 py-2 text-base font-semibold hover:bg-gray-100 hover:text-mediumBlue-500;
+    min-width: 235px;
+  }
+
+  .navbar__submenu-item {
+    @apply text-sm text-slate-500 hover:text-mediumBlue-500;
+  }
+}

@@ -30,7 +30,10 @@ export const QuantityInput = (props: QuantityInputProps) => {
 
   return (
     <div className={classNames(className, 'flex items-center gap-1')} {...rest}>
-      <button className="h-5 w-5 rounded-full border text-slate-500" onClick={handleClickMinus}>
+      <button
+        className="h-5 w-5 rounded-full border text-slate-500 hover:border-mediumBlue-500"
+        onClick={handleClickMinus}
+      >
         <Minus size={18} />
       </button>
       <span className="relative flex-1">
@@ -46,7 +49,10 @@ export const QuantityInput = (props: QuantityInputProps) => {
         />
         <span className="invisible text-lg lg:px-3">{value}</span>
       </span>
-      <button className="h-5 w-5 rounded-full border text-slate-500" onClick={handleClickPlus}>
+      <button
+        className="h-5 w-5 rounded-full border text-slate-500 hover:border-mediumBlue-500"
+        onClick={handleClickPlus}
+      >
         <Plus size={18} />
       </button>
     </div>

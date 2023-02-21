@@ -58,26 +58,6 @@ html.no-scroll {
 }
 
 @layer components {
-  .section__title {
-    @apply text-2xl font-bold md:text-3xl;
-  }
-
-  .section_sm {
-    @apply my-4;
-  }
-
-  .section {
-    @apply my-8;
-  }
-
-  .section_lg {
-    @apply my-16;
-  }
-
-  .section_xl {
-    @apply my-28;
-  }
-
   .hero {
     @apply px-5 py-px;
     padding-bottom: 290px;
@@ -113,11 +93,6 @@ html.no-scroll {
 
   .hero__text {
     @apply text-base md:text-xl;
-  }
-
-  .cont {
-    @apply mx-auto px-5;
-    max-width: 1192px;
   }
 
   .menu {

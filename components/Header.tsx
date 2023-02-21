@@ -1,9 +1,10 @@
 import classNames from 'classnames';
-import { Menu as MenuIcon, X } from 'lucide-react';
+import { Menu as MenuIcon, Search, X } from 'lucide-react';
 import { useState } from 'react';
 import { useNoScroll } from '../lib/hooks/useNoScroll';
 import { pickValue } from '../lib/pickValue';
 import { Button } from './Button';
+import { Divider } from './Divider';
 import { ViberIcon } from './icons/ViberIcon';
 import { VkIcon } from './icons/VkIcon';
 import { List, ListItem } from './List';
@@ -46,14 +47,18 @@ export const Header = (props: HeaderProps) => {
       <div className="cont flex items-center justify-between">
         <ResponsiveLogo variant={pickValue(variant, ['normal', 'normal'], ['fill', 'bright'])} />
 
-        <button className="text-med hidden items-center justify-center rounded-full border-2 border-white px-5 py-2.5 font-bold leading-none md:flex">
+        <Divider height={40} width={1} className="hidden text-lightBlue-400 lg:block" />
+
+        <p className="hidden text-xs lg:block">
+          Зоомагазин и груминг салон <br /> в Нижневартовске
+        </p>
+
+        <button className="button button--var-outline_bright border-2 px-5 py-2.5 text-med">
           Запись на груминг онлайн
         </button>
 
         <div className="flex items-center gap-2.5">
-          <Responsive component={Strong} md={{ weight: 400 }}>
-            <ResponsiveText>+7 (982) 537-81-27</ResponsiveText>
-          </Responsive>
+          <p className="text-sm font-semibold md:font-normal md:text-med lg:text-base">+7 (982) 537-81-27</p>
           <button className="hidden rounded-full bg-lightBlue-400 p-2 md:block">
             <ViberIcon />
           </button>
@@ -65,9 +70,21 @@ export const Header = (props: HeaderProps) => {
         <Button variant="icon" onClick={handleClickMenu} className="md:hidden">
           <MenuIcon />
         </Button>
+
+        <div className="relative hidden lg:flex">
+          <label htmlFor="search" className="absolute left-5 top-1/2 -translate-y-1/2">
+            <Search />
+          </label>
+          <input
+            type="text"
+            placeholder="Поиск по каталогу"
+            id="search"
+            className="rounded-full bg-lightBlue-400 py-2 pl-14 pr-5 text-base text-white placeholder:text-white"
+          />
+        </div>
       </div>
 
-      <div className="cont my-5 hidden md:block">
+      <div className="cont my-5 hidden md:block lg:mb-0">
         <Navbar />
       </div>
 
