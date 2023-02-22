@@ -29,6 +29,38 @@
       padding-right: max(((100% - 1232px) / 2 + 20px), theme('spacing.5'));
     }
   }
+
+  .bg-wiggle {
+    background-image: url('/wiggle.svg');
+  }
+
+  .bg-curly {
+    background-image: url('/curly.svg');
+  }
+
+  .bg-curly-md {
+    background-image: url('/curly-md.svg');
+  }
+
+  .bg-dog {
+    background-image: url('/dog-bg.webp');
+  }
+
+  .bg-dog-wiggle {
+    background-image: url('/dog-bg.webp'), url('/wiggle.svg');
+  }
+
+  .text-2xs {
+    font-size: 10px;
+  }
+
+  .text-med {
+    font-size: 15px;
+  }
+
+  .bg-header {
+    background-color: var(--bg-header, theme('colors.lightBlue-600'));
+  }
 }
 
 @tailwind utilities;

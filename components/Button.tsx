@@ -3,9 +3,10 @@ import React, { HTMLProps } from 'react';
 
 export type ButtonProps = Omit<HTMLProps<HTMLButtonElement>, 'size'> & {
   children?: React.ReactNode;
-  className?: string;
+  className?: 'button' | string;
   variant?:
     | 'icon'
+    | 'icon-bright'
     | 'normal'
     | 'fill'
     | 'outline'
@@ -32,6 +33,7 @@ export const Button = (props: ButtonProps) => {
         variant === 'outline' && 'button--var-outline',
         variant === 'outline-bright' && 'button--var-outline_bright',
         variant === 'icon' && 'button--var-icon',
+        variant === 'icon-bright' && 'button--var-icon_bright',
         variant === 'circle' && 'button--var-circle',
         variant === 'circle-outline' && 'button--var-circle_outline',
         size === 'xs' && 'button--size-xs',

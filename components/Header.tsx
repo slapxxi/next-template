@@ -1,5 +1,6 @@
 import classNames from 'classnames';
 import { Menu as MenuIcon, Search, X } from 'lucide-react';
+import Link from 'next/link';
 import { useState } from 'react';
 import { useNoScroll } from '../lib/hooks/useNoScroll';
 import { pickValue } from '../lib/pickValue';
@@ -45,24 +46,50 @@ export const Header = (props: HeaderProps) => {
       {...rest}
     >
       <div className="cont flex items-center justify-between">
-        <ResponsiveLogo variant={pickValue(variant, ['normal', 'normal'], ['fill', 'bright'])} />
+        <Link href="/">
+          <ResponsiveLogo variant={pickValue(variant, ['normal', 'normal'], ['fill', 'bright'])} />
+        </Link>
 
         <Divider height={40} width={1} className="hidden text-lightBlue-400 lg:block" />
 
-        <p className="hidden text-xs lg:block">
+        <p
+          className={classNames(
+            className,
+            'hidden text-xs lg:block',
+            variant === 'normal' && 'text-slate-500',
+            variant === 'fill' && 'text-white',
+          )}
+        >
           Зоомагазин и груминг салон <br /> в Нижневартовске
         </p>
 
-        <button className="button button--var-outline_bright border-2 px-5 py-2.5 text-med">
+        <Button
+          variant={pickValue(variant, ['fill', 'outline-bright'], ['normal', 'outline'])}
+          className="hidden border-2 px-5 py-2.5 text-med md:block"
+        >
           Запись на груминг онлайн
-        </button>
+        </Button>
 
         <div className="flex items-center gap-2.5">
           <p className="text-sm font-semibold md:font-normal md:text-med lg:text-base">+7 (982) 537-81-27</p>
-          <button className="hidden rounded-full bg-lightBlue-400 p-2 md:block">
+          <button
+            className={classNames(
+              className,
+              'hidden rounded-full p-2 md:block',
+              variant === 'normal' && 'bg-white text-mediumBlue-500',
+              variant === 'fill' && 'bg-lightBlue-400 text-white',
+            )}
+          >
             <ViberIcon />
           </button>
-          <button className="hidden rounded-full bg-lightBlue-400 p-2 md:block">
+          <button
+            className={classNames(
+              className,
+              'hidden rounded-full p-2 md:block',
+              variant === 'normal' && 'bg-white text-mediumBlue-500',
+              variant === 'fill' && 'bg-lightBlue-400 text-white',
+            )}
+          >
             <VkIcon />
           </button>
         </div>

@@ -15,7 +15,7 @@
   }
 
   .button--var-outline {
-    @apply rounded-full border border-mediumBlue-500 py-3 px-4;
+    @apply rounded-full border border-mediumBlue-500 py-3 px-4 text-mediumBlue-500;
   }
 
   .button--var-outline_bright {
@@ -24,6 +24,11 @@
 
   .button--var-icon {
     @apply rounded-lg bg-mediumBlue-500 p-1 text-white hover:bg-mediumBlue-400;
+  }
+
+  .button--var-icon_bright {
+    @apply rounded-lg bg-slate-100 p-2 text-mediumBlue-500 hover:bg-slate-200 hover:text-mediumBlue-600 
+    disabled:hover:bg-slate-100 disabled:hover:text-mediumBlue-500;
   }
 
   .button--var-circle {

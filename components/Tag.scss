@@ -1,0 +1,11 @@
+@tailwind components;
+
+@layer components {
+  .tag {
+    @apply cursor-pointer rounded-full bg-white px-3 py-2 text-sm text-slate-600 hover:bg-slate-100 md:text-base;
+  }
+
+  .tag--active {
+    @apply bg-slate-200 text-slate-700 hover:bg-slate-300;
+  }
+}

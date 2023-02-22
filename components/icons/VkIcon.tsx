@@ -12,7 +12,7 @@ export const VkIcon = (props: VkIconProps) => {
   return (
     <svg className={classNames(className)} width={size} height={size} viewBox="0 0 20 20" {...rest}>
       <path
-        fill="#fff"
+        fill="currentColor"
         fillRule="evenodd"
         clipRule="evenodd"
         transform="translate(0 4)"

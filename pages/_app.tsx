@@ -1,6 +1,21 @@
+import { Badge } from 'components/Badge';
 import 'components/Badge.scss';
+import 'components/Breadcrumbs.scss';
+import { Button } from 'components/Button';
 import 'components/Button.scss';
+import { Divider } from 'components/Divider';
+import { PinIcon } from 'components/icons/PinIcon';
+import { ViberIcon } from 'components/icons/ViberIcon';
+import { VkIcon } from 'components/icons/VkIcon';
+import { Logo } from 'components/Logo';
+import { Modal } from 'components/Modal';
 import 'components/Navbar.scss';
+import { NavbarSpacer } from 'components/NavbarSpacer';
+import { Responsive } from 'components/Responsive';
+import { Strong } from 'components/Strong';
+import 'components/Tag.scss';
+import { Text } from 'components/Text';
+import { TextLink } from 'components/TextLink';
 import {
   Heart as HeartIcon,
   Search as SearchIcon,
@@ -12,19 +27,6 @@ import Head from 'next/head';
 import Link from 'next/link';
 import 'styles/App.scss';
 import 'styles/globals.scss';
-import { Badge } from '../components/Badge';
-import { Button } from '../components/Button';
-import { Divider } from '../components/Divider';
-import { PinIcon } from '../components/icons/PinIcon';
-import { ViberIcon } from '../components/icons/ViberIcon';
-import { VkIcon } from '../components/icons/VkIcon';
-import { Logo } from '../components/Logo';
-import { Modal } from '../components/Modal';
-import { NavbarSpacer } from '../components/NavbarSpacer';
-import { Responsive } from '../components/Responsive';
-import { Strong } from '../components/Strong';
-import { Text } from '../components/Text';
-import { TextLink } from '../components/TextLink';
 
 const App: AppType = (props) => {
   const { Component, pageProps } = props;

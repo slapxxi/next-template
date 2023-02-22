@@ -14,7 +14,7 @@ import { Tag } from '../components/Tag';
 import { useBreakpoints } from '../lib/hooks/useBreakpoints';
 
 const IndexPage = () => {
-  let bp = useBreakpoints();
+  const bp = useBreakpoints();
 
   return (
     <>
@@ -26,10 +26,12 @@ const IndexPage = () => {
             <div className="lg:w-1/2">
               <h2 className="hero__title mb-2.5 md:mb-5">Всё для счастья ваших любимцев</h2>
               <p className="hero__text mb-5 text-white md:mb-7">Новые скидки каждый день!</p>
-              <Button variant="fill-bright" className="my-5">
-                <span>В каталог</span>
-                <ArrowRight />
-              </Button>
+              <Link href="/catalogue">
+                <Button variant="fill-bright" className="my-5">
+                  <span>В каталог</span>
+                  <ArrowRight />
+                </Button>
+              </Link>
             </div>
           </div>
         </section>

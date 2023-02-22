@@ -1,0 +1,11 @@
+@tailwind components;
+
+@layer components {
+  .breadcrumbs__link {
+    @apply text-sm text-slate-400 hover:text-mediumBlue-500;
+  }
+
+  .breadcrumbs__link--active {
+    @apply text-mediumBlue-500 hover:text-mediumBlue-700;
+  }
+}
