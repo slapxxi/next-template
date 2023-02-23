@@ -1,19 +1,23 @@
-import { Badge } from 'components/Badge';
+// css
+import 'styles/globals.scss';
+import 'styles/App.scss';
 import 'components/Badge.scss';
 import 'components/Breadcrumbs.scss';
-import { Button } from 'components/Button';
 import 'components/Button.scss';
+import 'components/Navbar.scss';
+import 'components/Tag.scss';
+// components
+import { Badge } from 'components/Badge';
+import { Button } from 'components/Button';
 import { Divider } from 'components/Divider';
 import { PinIcon } from 'components/icons/PinIcon';
 import { ViberIcon } from 'components/icons/ViberIcon';
 import { VkIcon } from 'components/icons/VkIcon';
 import { Logo } from 'components/Logo';
 import { Modal } from 'components/Modal';
-import 'components/Navbar.scss';
 import { NavbarSpacer } from 'components/NavbarSpacer';
 import { Responsive } from 'components/Responsive';
 import { Strong } from 'components/Strong';
-import 'components/Tag.scss';
 import { Text } from 'components/Text';
 import { TextLink } from 'components/TextLink';
 import {
@@ -25,8 +29,6 @@ import {
 import type { AppType } from 'next/dist/shared/lib/utils';
 import Head from 'next/head';
 import Link from 'next/link';
-import 'styles/App.scss';
-import 'styles/globals.scss';
 
 const App: AppType = (props) => {
   const { Component, pageProps } = props;

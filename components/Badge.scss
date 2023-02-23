@@ -1,7 +1,12 @@
-.badge {
-  --bg: theme('colors.red.600');
-}
+@tailwind components;
+@tailwind utilities;
 
-.badge--blue {
-  --bg: theme('colors.mediumBlue-500');
+@layer components {
+  .badge {
+    --bg: theme('colors.red.600');
+  }
+
+  .badge--blue {
+    --bg: theme('colors.mediumBlue-500');
+  }
 }

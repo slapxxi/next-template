@@ -50,7 +50,7 @@ export const Header = (props: HeaderProps) => {
           <ResponsiveLogo variant={pickValue(variant, ['normal', 'normal'], ['fill', 'bright'])} />
         </Link>
 
-        <Divider height={40} width={1} className="hidden text-lightBlue-400 lg:block" />
+        <Divider height={40} width={1} className="hidden text-slate-200 lg:block" />
 
         <p
           className={classNames(
@@ -99,14 +99,14 @@ export const Header = (props: HeaderProps) => {
         </Button>
 
         <div className="relative hidden lg:flex">
-          <label htmlFor="search" className="absolute left-5 top-1/2 -translate-y-1/2">
+          <label htmlFor="search" className="absolute left-5 top-1/2 -translate-y-1/2 text-mediumBlue-500">
             <Search />
           </label>
           <input
             type="text"
             placeholder="Поиск по каталогу"
             id="search"
-            className="rounded-full bg-lightBlue-400 py-2 pl-14 pr-5 text-base text-white placeholder:text-white"
+            className="rounded-full bg-white py-2 pl-14 pr-5 text-base text-white placeholder:text-gray-400"
           />
         </div>
       </div>

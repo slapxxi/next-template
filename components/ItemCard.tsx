@@ -72,7 +72,7 @@ export const ItemCard = (props: ItemCardProps) => {
       {/* content container */}
       <div className={classNames('flex flex-col', horizontal ? 'p-2.5' : 'flex-1')}>
         <div className="mb-1.5 flex gap-1.5">
-          <h2 className="text-med font-bold text-mediumBlue-500 md:text-lg">
+          <h2 className="font-bold text-mediumBlue-500 text-med md:text-lg">
             {new Intl.NumberFormat('ru', {
               currency: 'RUB',
               style: 'currency',

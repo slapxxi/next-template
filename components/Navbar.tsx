@@ -46,7 +46,7 @@ export const Navbar = (props: NavbarProps) => {
       </button>
       <ul className="flex gap-6 pl-5">
         {['Акции', 'Новинки', 'Груминг', 'Доставка', 'Адреса магазинов', 'Контакты'].map((link) => (
-          <li className="text-med leading-none" key={link}>
+          <li className="leading-none text-med" key={link}>
             <Link href="#">{link}</Link>
           </li>
         ))}
