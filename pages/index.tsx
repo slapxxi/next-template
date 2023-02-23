@@ -184,11 +184,11 @@ const IndexPage = () => {
                     className="my-5 flex items-center justify-between md:justify-start"
                     slot="container-start"
                   >
-                    <SwiperPrevButton className="flex items-center justify-center rounded-full border p-1.5 text-white md:ml-auto md:p-3">
+                    <SwiperPrevButton className="carousel__button--light carousel__button md:ml-auto">
                       <ChevronLeft size={18} />
                     </SwiperPrevButton>
                     <h2 className="section_title text-white md:-order-1">Акции</h2>
-                    <SwiperNextButton className="flex items-center justify-center rounded-full border p-1.5 text-white md:ml-2 md:p-3">
+                    <SwiperNextButton className="carousel__button--light carousel__button md:ml-2">
                       <ChevronRight size={18} />
                     </SwiperNextButton>
                   </header>

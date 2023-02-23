@@ -3,7 +3,7 @@
 
 @layer components {
   .tag {
-    @apply cursor-pointer rounded-full bg-white px-3 py-2 text-sm text-slate-600 hover:bg-slate-100 md:text-base;
+    @apply flex cursor-pointer items-center rounded-full bg-white px-3 py-2 text-sm leading-none text-slate-600 hover:bg-slate-100 md:text-base;
   }
 
   .tag--active {
@@ -11,6 +11,6 @@
   }
 
   .tag--size-lg {
-    @apply text-lg;
+    @apply text-lg leading-none;
   }
 }

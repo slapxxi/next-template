@@ -64,7 +64,7 @@ export const ItemCard = (props: ItemCardProps) => {
           )}
           <Responsive component={FavButton} sm={{ size: 18 }} md={{ size: 24 }} className="ml-auto" />
         </div>
-        <svg className="w-full max-w-xs" viewBox="0 0 100 100">
+        <svg className="mx-auto w-full max-w-xs" viewBox="0 0 100 100">
           <image href={img} width={100} height={100} />
         </svg>
       </div>

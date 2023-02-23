@@ -116,7 +116,11 @@
   }
 
   .carousel__button {
-    @apply flex items-center justify-center rounded-full border border-slate-300 p-2 text-slate-500 hover:border-mediumBlue-500;
+    @apply flex items-center justify-center rounded-full border border-slate-300 p-2 text-slate-500 hover:border-mediumBlue-500 hover:text-mediumBlue-500 md:p-3;
+  }
+
+  .carousel__button--light {
+    @apply border-slate-100 text-white hover:border-slate-300 hover:text-slate-100;
   }
 
   .sidebar__trigger {
