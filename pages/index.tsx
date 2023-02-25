@@ -13,6 +13,7 @@ import { SwiperPrevButton } from '../components/SwiperPrevButton';
 import { Tag } from '../components/Tag';
 import { useBreakpoints } from '../lib/hooks/useBreakpoints';
 import 'swiper/css';
+import { repeatItems } from '../lib/repeatItems';
 
 const IndexPage = () => {
   const bp = useBreakpoints();
@@ -260,28 +261,21 @@ const IndexPage = () => {
               <h2 className="section_title mb-4 md:mb-8">Новости и полезные статьи</h2>
             </div>
             <div className="px-cont flex snap-x snap-mandatory gap-2.5 overflow-x-scroll">
-              {[
-                {
-                  title: 'Не забывайте ухаживать за лапками в морозы',
-                  text: 'Перед прогулкой: нанесите защитный воск. После прогулки: вымойте лапки и насухо протрите. Нанесите специальный крем на подушечки',
-                  img: 'news-1.png',
-                },
-                {
-                  title: 'Знакомство с брендом Wanpy',
-                  text: 'Нежное пюре с лососем и тунцом или с треской и тунцом для кошек - ни с чем несравнимое удовольствие для мурлык Лакомство, которое можно каждый день',
-                  img: 'news-2.png',
-                },
-                {
-                  title: 'Не забывайте ухаживать за лапками в морозы',
-                  text: 'Перед прогулкой: нанесите защитный воск. После прогулки: вымойте лапки и насухо протрите. Нанесите специальный крем на подушечки',
-                  img: 'news-1.png',
-                },
-                {
-                  title: 'Знакомство с брендом Wanpy',
-                  text: 'Нежное пюре с лососем и тунцом или с треской и тунцом для кошек - ни с чем несравнимое удовольствие для мурлык Лакомство, которое можно каждый день',
-                  img: 'news-2.png',
-                },
-              ].map((item, i) => (
+              {repeatItems(
+                [
+                  {
+                    title: 'Не забывайте ухаживать за лапками в морозы',
+                    text: 'Перед прогулкой: нанесите защитный воск. После прогулки: вымойте лапки и насухо протрите. Нанесите специальный крем на подушечки',
+                    img: 'news-1.png',
+                  },
+                  {
+                    title: 'Знакомство с брендом Wanpy',
+                    text: 'Нежное пюре с лососем и тунцом или с треской и тунцом для кошек - ни с чем несравнимое удовольствие для мурлык Лакомство, которое можно каждый день',
+                    img: 'news-2.png',
+                  },
+                ],
+                3,
+              ).map((item, i) => (
                 <div
                   className="flex w-5/6 shrink-0 snap-center flex-col rounded-xl border border-slate-200 bg-white p-2.5 md:w-5/12"
                   key={i}
@@ -296,7 +290,7 @@ const IndexPage = () => {
         </div>
 
         {/* grooming banner */}
-        <div className="lg:cont bg-white py-16 md:px-5">
+        <div className="lg:cont bg-white py-16 md:px-5 lg:bg-transparent">
           <GroomingBanner />
         </div>
       </main>

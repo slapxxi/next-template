@@ -16,7 +16,7 @@ export const Sidebar = (props: SidebarProps) => {
 
   return (
     <aside className={classNames(className)} {...rest}>
-      <Accordion.Root className="w-full" type="single" defaultValue="brand" collapsible>
+      <Accordion.Root className="w-full" type="multiple" defaultValue={['brand', 'price-range']}>
         <Accordion.Item value="brand" className="group">
           <Accordion.Trigger className="sidebar__trigger">
             <span>Бренд</span>
@@ -37,7 +37,7 @@ export const Sidebar = (props: SidebarProps) => {
             </div>
             <ul className="my-5 flex flex-col">
               {['Brit', 'Advance', 'ProPlan', 'Farmina', 'Royal Canin', 'Happy'].map((brand) => (
-                <li className="flex select-none items-center gap-2.5 leading-none">
+                <li className="flex select-none items-center gap-2.5 leading-none" key={brand}>
                   <Checkbox id={brand.toLowerCase()} />
                   <label htmlFor={brand.toLowerCase()} className="py-2">
                     {brand}
@@ -88,10 +88,10 @@ export const Sidebar = (props: SidebarProps) => {
           </Accordion.Trigger>
           <Accordion.Content className="sidebar__content">
             <ul className="my-5 flex flex-col gap-3">
-              {['Курица', 'Индейка', 'Рыба', 'Говядина', 'Свинина', 'Злаки'].map((brand) => (
-                <li className="flex items-center gap-2.5 leading-none">
-                  <Checkbox id={brand.toLowerCase()} />
-                  <label htmlFor={brand.toLowerCase()}>{brand}</label>
+              {['Курица', 'Индейка', 'Рыба', 'Говядина', 'Свинина', 'Злаки'].map((flavor) => (
+                <li className="flex items-center gap-2.5 leading-none" key={flavor}>
+                  <Checkbox id={flavor.toLowerCase()} />
+                  <label htmlFor={flavor.toLowerCase()}>{flavor}</label>
                 </li>
               ))}
             </ul>

@@ -5,11 +5,12 @@ export type QuantityInputProps = {
   children?: React.ReactNode;
   className?: string;
   value?: number;
+  defaultValue?: number;
   onChange?: (value: number) => void;
 };
 
 export const QuantityInput = (props: QuantityInputProps) => {
-  const { children, className = '', value, onChange, ...rest } = props;
+  const { children, className = '', value, onChange, defaultValue, ...rest } = props;
 
   function handleClickMinus() {
     onChange?.((value ?? 0) - 1);
@@ -41,6 +42,7 @@ export const QuantityInput = (props: QuantityInputProps) => {
           type="number"
           className="absolute w-full appearance-none text-center text-lg"
           value={value}
+          defaultValue={defaultValue}
           onChange={handleChange}
           min="0"
           inputMode="numeric"

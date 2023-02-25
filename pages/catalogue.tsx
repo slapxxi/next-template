@@ -40,7 +40,7 @@ const CataloguePage = () => {
   });
   const [filterMenuOpen, setFilterMenuOpen] = useState(false);
 
-  useNoScroll(filterMenuOpen);
+  useNoScroll(filterMenuOpen && !bp.md);
 
   function handleClickFilter() {
     setFilterMenuOpen(true);
@@ -61,7 +61,7 @@ const CataloguePage = () => {
       <Header />
 
       <div className="lg:px-cont bg-lightGray-100 lg:grid lg:grid-cols-[256px_1fr] lg:gap-12 lg:py-10">
-        <Modal open={filterMenuOpen}>
+        <Modal open={!bp.md && filterMenuOpen}>
           <div className="fixed inset-0 z-10 overflow-y-scroll bg-slate-800/50" onClick={handleClickBackdrop}>
             <div className="absolute top-8 left-1 right-1 mb-8 overflow-y-scroll rounded-2xl bg-white px-4 py-8 shadow">
               <div className="mb-8 flex items-center justify-between">
@@ -150,9 +150,9 @@ const CataloguePage = () => {
             {/* filter */}
             <nav className="mb-6 mt-4 flex items-center justify-between rounded-xl bg-white p-2.5">
               <button className="flex items-center gap-1.5" onClick={handleClickFilter}>
-                <button className="button button--var-icon_bright">
+                <span className="button button--var-icon_bright">
                   <Filter fill="currentColor" />
-                </button>
+                </span>
                 <span className="text-sm text-gray-500">Фильтр</span>
               </button>
               {/* number per page */}
@@ -281,11 +281,11 @@ const CataloguePage = () => {
       </div>
 
       {/* previously browsed section */}
-      <section className="cont my-12">
+      <section className="my-12">
         <Swiper
           slidesPerView={bp.md ? (bp.lg ? 4 : 3) : 2}
           spaceBetween={10}
-          wrapperClass="my-4 isolate py-px"
+          wrapperClass="px-cont my-4 isolate py-px"
         >
           <div className="cont isolate mt-12 flex justify-between" slot="container-start">
             <h2 className="section_title md:section_title--decorated-right">
@@ -328,7 +328,7 @@ const CataloguePage = () => {
             ],
             3,
           ).map((item, i) => (
-            <SwiperSlide>
+            <SwiperSlide key={i}>
               <ItemCard {...item} key={i} />
             </SwiperSlide>
           ))}

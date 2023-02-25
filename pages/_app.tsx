@@ -2,6 +2,7 @@
 import 'styles/globals.scss';
 import 'styles/App.scss';
 import 'components/Badge.scss';
+import 'components/KeyValueTable.scss';
 import 'components/Breadcrumbs.scss';
 import 'components/Button.scss';
 import 'components/Navbar.scss';
@@ -56,7 +57,7 @@ const App: AppType = (props) => {
               <div className="footer__section flex justify-between md:flex-1 md:justify-around">
                 <div>
                   <h2 className="footer__title my-4 md:mt-0">Категории</h2>
-                  <ul className="list footer__text">
+                  <ul className="footer__list footer__text">
                     <li>
                       <Link href="#">Для собак</Link>
                     </li>
@@ -76,7 +77,7 @@ const App: AppType = (props) => {
                 </div>
                 <div>
                   <h2 className="footer__title my-4 md:mt-0">Покупателям</h2>
-                  <ul className="list footer__text">
+                  <ul className="footer__list footer__text">
                     <li>
                       <Link href="#">Акции</Link>
                     </li>

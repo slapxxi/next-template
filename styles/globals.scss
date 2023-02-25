@@ -41,6 +41,7 @@ html.no-scroll {
   html,
   body,
   #__next {
+    @apply bg-lightGray-100;
     height: 100%;
     padding: 0;
     margin: 0;

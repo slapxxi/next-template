@@ -1,6 +1,7 @@
 import classNames from 'classnames';
 import { clamp } from 'lodash';
 import { ShoppingCart } from 'lucide-react';
+import Link from 'next/link';
 import { useState } from 'react';
 import { useBreakpoints } from '../lib/hooks/useBreakpoints';
 import { Button } from './Button';
@@ -43,36 +44,28 @@ export const ItemCard = (props: ItemCardProps) => {
   }
 
   return (
-    <div
-      className={classNames(
-        className,
-        'flex rounded-2xl bg-white p-2.5 shadow-sm',
-        horizontal ? 'flex-row gap-2.5' : 'flex-col',
-      )}
-      {...rest}
-    >
+    <div className={classNames(className, 'item', horizontal && 'item--horizontal')} {...rest}>
       {/* image container */}
       <div className="relative mb-2.5">
         <div className="absolute left-0 right-0 top-0 flex items-center justify-between">
           {discount && (
-            <div
-              className="text-2xs top-2.5 left-2.5 flex items-center rounded-full 
-            bg-orange-400 p-1 px-2 font-semibold leading-none text-white md:text-xs"
-            >
+            <div className="item__discount">
               {new Intl.NumberFormat('ru', { style: 'percent' }).format(-discount)}
             </div>
           )}
           <Responsive component={FavButton} sm={{ size: 18 }} md={{ size: 24 }} className="ml-auto" />
         </div>
-        <svg className="mx-auto w-full max-w-xs" viewBox="0 0 100 100">
-          <image href={img} width={100} height={100} />
-        </svg>
+        <Link href="/catalogue/example">
+          <svg className="mx-auto w-full max-w-xs" viewBox="0 0 100 100">
+            <image href={img} width={100} height={100} />
+          </svg>
+        </Link>
       </div>
 
       {/* content container */}
       <div className={classNames('flex flex-col', horizontal ? 'p-2.5' : 'flex-1')}>
         <div className="mb-1.5 flex gap-1.5">
-          <h2 className="font-bold text-mediumBlue-500 text-med md:text-lg">
+          <h2 className="item__price">
             {new Intl.NumberFormat('ru', {
               currency: 'RUB',
               style: 'currency',
@@ -80,7 +73,7 @@ export const ItemCard = (props: ItemCardProps) => {
             }).format(price)}
           </h2>
           {previousPrice && (
-            <h2 className="text-xs font-bold text-slate-400 line-through md:text-sm">
+            <h2 className="item__prev_price">
               {new Intl.NumberFormat('ru', {
                 currency: 'RUB',
                 style: 'currency',
@@ -97,13 +90,7 @@ export const ItemCard = (props: ItemCardProps) => {
         {options && (
           <div className="mb-6 flex flex-wrap gap-1">
             {options?.map((o, i) => (
-              <span
-                className={classNames(
-                  'flex items-center justify-center rounded-md border border-slate-300 py-1 px-1.5 text-xs leading-none',
-                  i === 0 ? 'bg-slate-300 text-white' : 'bg-white text-slate-500',
-                )}
-                key={o}
-              >
+              <span className={classNames('option', i === 0 && 'option--active')} key={o}>
                 {o}
               </span>
             ))}

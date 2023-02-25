@@ -3,6 +3,26 @@
 @tailwind utilities;
 
 @layer components {
+  .item {
+    @apply flex flex-col rounded-2xl bg-white p-2.5 shadow-sm lg:p-4;
+  }
+
+  .item--horizontal {
+    @apply flex-row gap-2.5 p-2.5;
+  }
+
+  .item__price {
+    @apply font-bold text-mediumBlue-500 text-med md:text-lg;
+  }
+
+  .item__prev_price {
+    @apply text-xs font-bold text-slate-400 line-through md:text-sm;
+  }
+
+  .item__discount {
+    @apply text-2xs top-2.5 left-2.5 flex items-center rounded-full bg-orange-400 p-1 px-2 font-semibold leading-none text-white md:text-xs;
+  }
+
   .cont {
     @apply mx-auto px-5;
     max-width: 1232px;
@@ -73,7 +93,7 @@
     @apply text-white;
   }
 
-  .list {
+  .footer__list {
     @apply flex flex-col gap-3;
   }
 
@@ -153,6 +173,61 @@
 
   .search_input__input {
     @apply rounded-md border p-2 pl-10 placeholder:text-gray-500;
+  }
+
+  .option {
+    @apply flex items-center justify-center rounded-md border border-slate-300 
+    bg-transparent py-1 px-1.5 text-xs leading-none text-slate-500;
+  }
+
+  .option--active {
+    @apply bg-slate-300 text-white;
+  }
+
+  .tabs__list {
+    @apply flex justify-between gap-2 border-b md:justify-start md:gap-12;
+  }
+
+  .tabs__trigger {
+    @apply p-2.5 text-lg text-slate-500 hover:text-black md:text-2xl;
+  }
+
+  .tabs__trigger[data-state='active'] {
+    @apply relative text-mediumBlue-500;
+
+    &::after {
+      @apply absolute bottom-0 left-0 h-1 w-full rounded-full bg-mediumBlue-500;
+      content: '';
+    }
+  }
+
+  .tabs__content {
+    @apply py-5;
+  }
+
+  .list {
+    @apply ml-5 flex list-disc flex-col gap-2;
+  }
+
+  .list__item {
+    @apply relative;
+
+    &::before {
+      @apply absolute right-full top-0 h-2 w-2 translate-y-2 -translate-x-2.5 rounded-full bg-blue-500;
+      content: '';
+    }
+  }
+
+  .content__title {
+    @apply text-lg font-bold md:text-xl;
+  }
+
+  .content__text {
+    @apply text-base text-black md:text-lg;
+  }
+
+  .content__em {
+    @apply text-base not-italic text-slate-500 md:text-lg;
   }
 }
 
