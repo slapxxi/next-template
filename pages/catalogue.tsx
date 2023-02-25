@@ -8,16 +8,15 @@ import {
   ChevronDownIcon,
   ChevronLeft,
   ChevronRight,
-  ChevronUp,
   ChevronUpIcon,
   Filter,
   LayoutDashboard,
   LayoutGrid,
   LayoutList,
-  Search,
+  X,
 } from 'lucide-react';
 import Link from 'next/link';
-import React from 'react';
+import React, { useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Breadcrumbs } from '../components/Breadcrumbs';
 import { GroomingBanner } from '../components/GroomingBanner';
@@ -28,123 +27,84 @@ import { Button } from '../components/Button';
 import { Divider } from '../components/Divider';
 import { SwiperNextButton } from '../components/SwiperNextButton';
 import { SwiperPrevButton } from '../components/SwiperPrevButton';
-import * as Accordion from '@radix-ui/react-accordion';
 import { useBreakpoints } from '../lib/hooks/useBreakpoints';
-import { Checkbox } from '../components/Checkbox';
-import { Slider } from '../components/Slider';
+import { Sidebar } from '../components/Sidebar';
+import { Modal } from '../components/Modal';
+import { useNoScroll } from '../lib/hooks/useNoScroll';
 
 const CataloguePage = () => {
-  const bp = useBreakpoints();
+  const bp = useBreakpoints((bp) => {
+    if (bp.md) {
+      setFilterMenuOpen(false);
+    }
+  });
+  const [filterMenuOpen, setFilterMenuOpen] = useState(false);
+
+  useNoScroll(filterMenuOpen);
+
+  function handleClickFilter() {
+    setFilterMenuOpen(true);
+  }
+
+  function handleClickBackdrop(e: React.MouseEvent<HTMLDivElement>) {
+    if (e.currentTarget === e.target) {
+      setFilterMenuOpen(false);
+    }
+  }
+
+  function handleClickClose() {
+    setFilterMenuOpen(false);
+  }
 
   return (
     <>
       <Header />
-      <div className="px-cont bg-lightGray-100 py-10 lg:grid lg:grid-cols-[256px_1fr] lg:gap-12">
-        <aside className="hidden lg:flex">
-          <Accordion.Root className="w-full" type="single" defaultValue="brand" collapsible>
-            <Accordion.Item value="brand" className="group">
-              <Accordion.Trigger className="sidebar__trigger">
-                <span>Бренд</span>
-                <ChevronUp size={16} className="sidebar__chevron sidebar__chevron--up" />
-                <ChevronDown size={16} className="sidebar__chevron sidebar__chevron--down" />
-              </Accordion.Trigger>
-              <Accordion.Content className="sidebar__content">
-                <div className="search_input">
-                  <label htmlFor="search" className="search_input__label">
-                    <Search />
-                  </label>
-                  <input
-                    id="search"
-                    type="text"
-                    className="search_input__input"
-                    placeholder="Поиск по брендам"
-                  />
+
+      <div className="lg:px-cont bg-lightGray-100 lg:grid lg:grid-cols-[256px_1fr] lg:gap-12 lg:py-10">
+        <Modal open={filterMenuOpen}>
+          <div className="fixed inset-0 z-10 overflow-y-scroll bg-slate-800/50" onClick={handleClickBackdrop}>
+            <div className="absolute top-8 left-1 right-1 mb-8 overflow-y-scroll rounded-2xl bg-white px-4 py-8 shadow">
+              <div className="mb-8 flex items-center justify-between">
+                <h2 className="text-2xl font-bold">Настройка поиска</h2>
+                <button className="text-slate-300" onClick={handleClickClose}>
+                  <X />
+                </button>
+              </div>
+              {/* number per page */}
+              <div className="my-4 flex items-center gap-4">
+                <span>Показывать по:</span>
+                <Breadcrumbs
+                  className="flex-1 justify-between text-slate-300"
+                  separator={<Divider width={1} height={14} />}
+                >
+                  <a className="filter__link">9</a>
+                  <a className="filter__link--active">12</a>
+                  <a className="filter__link">18</a>
+                  <a className="filter__link">24</a>
+                </Breadcrumbs>
+              </div>
+              {/* layout type */}
+              <div className="my-4 flex items-center gap-2">
+                <span>Вид:</span>
+                <div className="flex gap-2">
+                  <button className="text-slate-400 hover:text-mediumBlue-500">
+                    <LayoutList size={18} />
+                  </button>
+                  <button className="text-mediumBlue-500 hover:text-mediumBlue-500">
+                    <LayoutGrid size={18} />
+                  </button>
+                  <button className="text-slate-400 hover:text-mediumBlue-500">
+                    <LayoutDashboard size={18} />
+                  </button>
                 </div>
-                <ul className="my-5 flex flex-col">
-                  {['Brit', 'Advance', 'ProPlan', 'Farmina', 'Royal Canin', 'Happy'].map((brand) => (
-                    <li className="flex select-none items-center gap-2.5 leading-none">
-                      <Checkbox id={brand.toLowerCase()} />
-                      <label htmlFor={brand.toLowerCase()} className="py-2">
-                        {brand}
-                      </label>
-                    </li>
-                  ))}
-                </ul>
-              </Accordion.Content>
-            </Accordion.Item>
-            <Accordion.Item value="price-range" className="group">
-              <Accordion.Trigger className="sidebar__trigger">
-                <span>Ценовой диапазон</span>
-                <ChevronUp size={16} className="sidebar__chevron sidebar__chevron--up" />
-                <ChevronDown size={16} className="sidebar__chevron sidebar__chevron--down" />
-              </Accordion.Trigger>
-              <Accordion.Content className="sidebar__content">
-                <Slider defaultValue={[0, 100]} />
-                <div className="my-4 flex items-center gap-2">
-                  <input
-                    type="number"
-                    min={0}
-                    className="w-4 flex-1 rounded-md border p-1.5 text-center"
-                    placeholder={new Intl.NumberFormat('ru', {
-                      currency: 'RUB',
-                      style: 'currency',
-                      maximumFractionDigits: 0,
-                    }).format(100)}
-                  />
-                  <Divider height={2} width={10} className="shrink-0 text-slate-300" />
-                  <input
-                    type="number"
-                    min={0}
-                    className="w-4 flex-1 rounded-md border p-1.5 text-center"
-                    placeholder={new Intl.NumberFormat('ru', {
-                      currency: 'RUB',
-                      style: 'currency',
-                      maximumFractionDigits: 0,
-                    }).format(100)}
-                  />
-                </div>
-              </Accordion.Content>
-            </Accordion.Item>
-            <Accordion.Item value="flavor" className="group">
-              <Accordion.Trigger className="sidebar__trigger">
-                <span>Вкус</span>
-                <ChevronUp size={16} className="sidebar__chevron sidebar__chevron--up" />
-                <ChevronDown size={16} className="sidebar__chevron sidebar__chevron--down" />
-              </Accordion.Trigger>
-              <Accordion.Content className="sidebar__content">
-                <ul className="my-5 flex flex-col gap-3">
-                  {['Курица', 'Индейка', 'Рыба', 'Говядина', 'Свинина', 'Злаки'].map((brand) => (
-                    <li className="flex items-center gap-2.5 leading-none">
-                      <Checkbox id={brand.toLowerCase()} />
-                      <label htmlFor={brand.toLowerCase()}>{brand}</label>
-                    </li>
-                  ))}
-                </ul>
-              </Accordion.Content>
-            </Accordion.Item>
-            <Accordion.Item value="recommendations" className="group">
-              <Accordion.Trigger className="sidebar__trigger">
-                <span>Показания</span>
-                <ChevronUp size={16} className="sidebar__chevron sidebar__chevron--up" />
-                <ChevronDown size={16} className="sidebar__chevron sidebar__chevron--down" />
-              </Accordion.Trigger>
-            </Accordion.Item>
-            <Accordion.Item value="age" className="group">
-              <Accordion.Trigger className="sidebar__trigger">
-                <span>Возраст</span>
-                <ChevronUp size={16} className="sidebar__chevron sidebar__chevron--up" />
-                <ChevronDown size={16} className="sidebar__chevron sidebar__chevron--down" />
-              </Accordion.Trigger>
-            </Accordion.Item>
-            <Accordion.Item value="class" className="group">
-              <Accordion.Trigger className="sidebar__trigger">
-                <span>Класс корма</span>
-                <ChevronUp size={16} className="sidebar__chevron sidebar__chevron--up" />
-                <ChevronDown size={16} className="sidebar__chevron sidebar__chevron--down" />
-              </Accordion.Trigger>
-            </Accordion.Item>
-          </Accordion.Root>
-        </aside>
+              </div>
+
+              <Sidebar />
+            </div>
+          </div>
+        </Modal>
+
+        <Sidebar className="hidden lg:flex" />
 
         <main className="bg-lightGray-100 py-px lg:px-0">
           <div className="cont my-5 md:my-0 lg:mx-0 lg:px-0">
@@ -189,12 +149,12 @@ const CataloguePage = () => {
             </div>
             {/* filter */}
             <nav className="mb-6 mt-4 flex items-center justify-between rounded-xl bg-white p-2.5">
-              <div className="flex items-center gap-1.5">
-                <button className="button button--var-icon_bright" disabled>
+              <button className="flex items-center gap-1.5" onClick={handleClickFilter}>
+                <button className="button button--var-icon_bright">
                   <Filter fill="currentColor" />
                 </button>
                 <span className="text-sm text-gray-500">Фильтр</span>
-              </div>
+              </button>
               {/* number per page */}
               <div className="hidden md:flex md:gap-2">
                 <span>Показывать по:</span>

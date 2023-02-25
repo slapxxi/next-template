@@ -10,9 +10,9 @@ export type ButtonProps = Omit<HTMLProps<HTMLButtonElement>, 'size'> & {
     | 'normal'
     | 'fill'
     | 'outline'
+    | 'outline-bright'
     | 'circle'
     | 'circle-outline'
-    | 'outline-bright'
     | 'circle-bright'
     | 'fill-bright';
   size?: 'xs' | 'sm' | 'md';
@@ -36,6 +36,7 @@ export const Button = (props: ButtonProps) => {
         variant === 'icon-bright' && 'button--var-icon_bright',
         variant === 'circle' && 'button--var-circle',
         variant === 'circle-outline' && 'button--var-circle_outline',
+        variant === 'circle-bright' && 'button--var-circle_bright',
         size === 'xs' && 'button--size-xs',
         size === 'sm' && 'button--size-sm',
         size === 'md' && 'button--size-md',

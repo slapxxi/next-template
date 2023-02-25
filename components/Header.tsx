@@ -2,6 +2,7 @@ import classNames from 'classnames';
 import { Menu as MenuIcon, Search, X } from 'lucide-react';
 import Link from 'next/link';
 import { useState } from 'react';
+import { useBreakpoints } from '../lib/hooks/useBreakpoints';
 import { useNoScroll } from '../lib/hooks/useNoScroll';
 import { pickValue } from '../lib/pickValue';
 import { Button } from './Button';
@@ -28,6 +29,12 @@ export type HeaderProps = {
 export const Header = (props: HeaderProps) => {
   const { children, className = '', variant = 'normal', ...rest } = props;
   const [menuOpen, setMenuOpen] = useState(false);
+
+  useBreakpoints((bp) => {
+    if (bp.md) {
+      setMenuOpen(false);
+    }
+  });
 
   useNoScroll(menuOpen);
 
@@ -178,10 +185,10 @@ export const Header = (props: HeaderProps) => {
               <Text className="text-white" size="md">
                 +7 (982) 537-81-27
               </Text>
-              <Button variant="circle-bright">
+              <Button variant="circle-bright" className="bg-white/30">
                 <ViberIcon size={20} />
               </Button>
-              <Button variant="circle-bright">
+              <Button variant="circle-bright" className="bg-white/30">
                 <VkIcon size={20} />
               </Button>
             </div>
