@@ -43,7 +43,7 @@ export const DeliveryVis = (props: DeliveryVisProps) => {
         <WorldMap width={1000} height={1000 * 0.506} />
         <Circles x={baseCoords[0]} y={baseCoords[1]} count={4} r={20} animated />
         <circle cx={baseCoords[0]} cy={baseCoords[1]} r="3" fill="#fff9" />
-        <path d={routePath} stroke="white" strokeDasharray="4" id="route" />
+        <path d={routePath} stroke="white" strokeDasharray="8" id="route" className="animate-dashoffset" />
         <text
           className="fill-white font-bold uppercase"
           x={baseCoords[0]}
@@ -55,14 +55,7 @@ export const DeliveryVis = (props: DeliveryVisProps) => {
         <g transform="scale(1 -1) translate(-20-10)">
           <Plane size={30} />
           {activeLocation && (
-            <animateMotion
-              dur="4s"
-              repeatCount="indefinite"
-              path={routePath}
-              rotate="auto"
-              keyTimes="0;1"
-              keyPoints="1;0"
-            />
+            <animateMotion dur="4s" repeatCount="indefinite" path={routePath} rotate="auto" />
           )}
         </g>
         {locations.map((item) => (

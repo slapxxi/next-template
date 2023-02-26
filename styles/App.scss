@@ -106,3 +106,15 @@
     @apply font-semibold not-italic text-white;
   }
 }
+
+@layer utilities {
+  .animate-dashoffset {
+    animation: dashoffset 2s linear infinite reverse;
+  }
+
+  @keyframes dashoffset {
+    100% {
+      stroke-dashoffset: 80px;
+    }
+  }
+}
