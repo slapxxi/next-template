@@ -5,12 +5,12 @@ import { Ecuador } from '../components/Ecuador';
 import { DeliveryVis } from '../components/DeliveryVis';
 import * as RadioGroup from '@radix-ui/react-radio-group';
 import { Check, ChevronDown, ChevronUp, MapPin } from 'lucide-react';
-import 'swiper/css';
 import { Checkbox } from '../components/Checkbox';
+import 'swiper/css';
 
 const IndexPage = () => {
   return (
-    <div className="">
+    <div>
       <section className="hero px-4 py-8">
         <h2 className="hero__subtitle">Flower Fracht Karaganda </h2>
         <h2 className="hero__title">Авиаперевозка цветов</h2>
@@ -227,7 +227,7 @@ const IndexPage = () => {
 
       {/* locations */}
       <section className="section--2">
-        <div className="section__header">
+        <div className="section__header px-4">
           <h2 className="section__subtitle mb-2.5">Flower Fracht Karaganda </h2>
           <h2 className="section__title">Откуда мы везем наши цветы?</h2>
         </div>
