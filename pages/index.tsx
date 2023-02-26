@@ -226,7 +226,7 @@ const IndexPage = () => {
       </section>
 
       {/* locations */}
-      <section className="section--2">
+      <section className="section--2 pb-0">
         <div className="section__header px-4">
           <h2 className="section__subtitle mb-2.5">Flower Fracht Karaganda </h2>
           <h2 className="section__title">Откуда мы везем наши цветы?</h2>

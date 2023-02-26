@@ -101,4 +101,8 @@
   .input {
     @apply border-b border-white/30 bg-transparent py-3 px-2 text-sm text-white placeholder:text-gray-500 focus:border-white;
   }
+
+  .em {
+    @apply font-semibold not-italic text-white;
+  }
 }

@@ -14,7 +14,7 @@ const locations = [
   { name: 'Kenya', id: 'ke', coords: [255, 320] },
   { name: 'Columbia', id: 'co', coords: [282, 394] },
   { name: 'Chile', id: 'cl', coords: [500, 150] },
-  { name: 'Holland', id: 'holl', coords: [575, 223] },
+  { name: 'Holland', id: 'hol', coords: [575, 223] },
   { name: 'Israel', id: 'isr', coords: [581, 313] },
 ];
 
@@ -33,92 +33,89 @@ export const DeliveryVis = (props: DeliveryVisProps) => {
   }
 
   return (
-    <svg fill="none" viewBox="220 0 420 600" className={classNames(className, 'overflow-visible')} {...rest}>
-      <WorldMap width={1000} height={1000 * 0.506} />
-      <Circles x={baseCoords[0]} y={baseCoords[1]} count={4} r={20} animated />
-      <circle cx={baseCoords[0]} cy={baseCoords[1]} r="3" fill="#fff9" />
-      <path d={routePath} stroke="white" strokeDasharray="4" id="route" />
-      <text
-        className="fill-white font-bold uppercase"
-        x={baseCoords[0]}
-        y={baseCoords[1] - 10}
-        textAnchor="end"
+    <div>
+      <svg
+        fill="none"
+        viewBox="220 0 420 600"
+        className={classNames(className, 'overflow-visible')}
+        {...rest}
       >
-        Karaganda
-      </text>
-      <g transform="scale(1 -1) translate(-20-10)">
-        <Plane size={30} />
-        {activeLocation && (
-          <animateMotion
-            dur="4s"
-            repeatCount="indefinite"
-            path={routePath}
-            rotate="auto"
-            keyTimes="0;1"
-            keyPoints="1;0"
-          />
-        )}
-      </g>
-      {locations.map((item) => (
-        <g onClick={() => handleClick(item.id)} key={item.id}>
-          <Circles x={item.coords[0]} y={item.coords[1]} count={3} r={20} opacity={0.4} />
-          <Pin
-            x={item.coords[0]}
-            y={item.coords[1]}
-            size={item.id === activeLocation ? 30 : 16}
-            active={item.id === activeLocation}
-          />
-          {activeLocation === item.id && (
-            <text
-              className="fill-white font-bold uppercase"
-              x={item.coords[0] + 20}
-              y={item.coords[1] - 10}
-              textAnchor="start"
-            >
-              {item.name}
-            </text>
+        <WorldMap width={1000} height={1000 * 0.506} />
+        <Circles x={baseCoords[0]} y={baseCoords[1]} count={4} r={20} animated />
+        <circle cx={baseCoords[0]} cy={baseCoords[1]} r="3" fill="#fff9" />
+        <path d={routePath} stroke="white" strokeDasharray="4" id="route" />
+        <text
+          className="fill-white font-bold uppercase"
+          x={baseCoords[0]}
+          y={baseCoords[1] - 10}
+          textAnchor="end"
+        >
+          Karaganda
+        </text>
+        <g transform="scale(1 -1) translate(-20-10)">
+          <Plane size={30} />
+          {activeLocation && (
+            <animateMotion
+              dur="4s"
+              repeatCount="indefinite"
+              path={routePath}
+              rotate="auto"
+              keyTimes="0;1"
+              keyPoints="1;0"
+            />
           )}
         </g>
-      ))}
-
-      <g transform="translate(0-93)">
-        <text y="100%" x="50%" fill="white" textAnchor="middle" className="translate-x-1/2">
-          Доставка в Караганду занимает от <tspan className="font-bold">1</tspan> до{' '}
-          <tspan className="font-bold">2</tspan> дней
-        </text>
-
-        <svg x="220" y="100%" width="100%" height={140}>
-          <rect width="100%" height="100%" fill="#0002" />
-          {locations.map((l, i) => (
-            <g key={l.id} onClick={() => handleClick(l.id)}>
+        {locations.map((item) => (
+          <g onClick={() => handleClick(item.id)} key={item.id}>
+            <Circles x={item.coords[0]} y={item.coords[1]} count={3} r={20} opacity={0.4} />
+            <Pin
+              x={item.coords[0]}
+              y={item.coords[1]}
+              size={item.id === activeLocation ? 30 : 16}
+              active={item.id === activeLocation}
+            />
+            {activeLocation === item.id && (
               <text
-                x={`${(i / locations.length) * 100 + 10}%`}
-                y={activeLocation === l.id ? 30 : 40}
-                fill="#fff"
-                textAnchor="middle"
+                className="fill-white font-bold uppercase"
+                x={item.coords[0] + 20}
+                y={item.coords[1] - 10}
+                textAnchor="start"
+              >
+                {item.name}
+              </text>
+            )}
+          </g>
+        ))}
+      </svg>
+
+      <h2 className="mb-3 text-center text-xs font-semibold text-slate-500">
+        Доставка в Караганду занимает от <em className="em">1</em> до <em className="em">2</em> дней
+      </h2>
+      <ul className="flex justify-around bg-black/10 pt-9">
+        {locations.map((l) => (
+          <li
+            key={l.id}
+            className={classNames(
+              l.id === activeLocation ? 'text-blue-500' : 'text-slate-500',
+              'flex flex-col items-center justify-between gap-4',
+            )}
+            onClick={() => handleClick(l.id)}
+          >
+            <span className="font-bold writing-v-rl">{l.id}</span>
+            <div className="flex h-24 flex-col">
+              <svg
                 className={classNames(
-                  'translate-x-px font-bold uppercase writing-v-rl',
-                  activeLocation === l.id ? 'fill-blue-500' : 'fill-slate-400',
+                  l.id === activeLocation ? 'h-20' : 'h-10',
+                  'mt-auto w-0.5 fill-current transition-all',
                 )}
               >
-                {l.id}
-              </text>
-              <line
-                key={l.id}
-                x1={`${(i / locations.length) * 100 + 10}%`}
-                y1={activeLocation === l.id ? 45 : 70}
-                x2={`${(i / locations.length) * 100 + 10}%`}
-                y2="100%"
-                className={classNames(
-                  'stroke-2',
-                  activeLocation === l.id ? 'stroke-blue-500' : 'stroke-slate-700',
-                )}
-              />
-            </g>
-          ))}
-        </svg>
-      </g>
-    </svg>
+                <rect width="100%" height="100%" />
+              </svg>
+            </div>
+          </li>
+        ))}
+      </ul>
+    </div>
   );
 };
 
