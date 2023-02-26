@@ -1,4 +1,4 @@
-let IndexPage = () => {
+const IndexPage = () => {
   return <div className="">home</div>;
 };
 

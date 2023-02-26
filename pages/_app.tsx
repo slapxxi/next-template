@@ -5,11 +5,12 @@
 import type { AppType } from 'next/dist/shared/lib/utils';
 import Head from 'next/head';
 import 'styles/globals.scss';
+import 'styles/App.scss';
 
-// let client = new QueryClient();
+// const client = new QueryClient();
 
-let App: AppType = (props) => {
-  let { Component, pageProps } = props;
+const App: AppType = (props) => {
+  const { Component, pageProps } = props;
 
   return (
     <>

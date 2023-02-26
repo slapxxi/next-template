@@ -1,5 +1,25 @@
 const plugin = require('tailwindcss/plugin');
 
+const colors = {
+  primary: ['0', '0%', '0%'],
+  secondary: ['0', '0%', '100%'],
+  bg: ['0', '0%', '100%'],
+  text: ['0', '0%', '0%'],
+  black: ['0', '0%', '14%'],
+  'lightGray-500': ['232', '1%', '66%'],
+  'lightBlue-500': ['222', '83%', '77%'],
+  'mediumBlue-500': ['224', '81%', '50%'],
+  'mediumGray-500': ['232', '12%', '64%'],
+  'darkGray-500': ['0', '0%', '14%'],
+};
+
+const mappedColors = Object.fromEntries(
+  Object.entries(colors).map(([name, hsl]) => [
+    name,
+    `hsl(var(--${name}-hsl, ${hsl.join(' ')}) / <alpha-value>)`,
+  ]),
+);
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   darkMode: 'class',
@@ -25,10 +45,7 @@ module.exports = {
     },
     extend: {
       colors: {
-        primary: 'hsl(var(--primary, 0 0% 0%) / <alpha-value>)',
-        secondary: 'hsl(var(--secondary, 0 0% 100%) / <alpha-value>)',
-        bg: 'hsl(var(--bg, 0 0% 100%) / <alpha-value>)',
-        text: 'hsl(var(--text, 0 0% 0%) / <alpha-value>)',
+        ...mappedColors,
       },
     },
   },
