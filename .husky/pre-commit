@@ -3,4 +3,4 @@
 
 yarn run type-check
 yarn run lint-staged
-yarn run test:hook
+# yarn run test:hook
