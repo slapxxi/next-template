@@ -2,4 +2,103 @@
 @tailwind utilities;
 
 @layer components {
+  .link {
+    @apply hover:underline;
+  }
+
+  .link--active {
+    @apply underline;
+  }
+
+  .hero {
+    background-image: linear-gradient(to bottom, #0008, #0009), url('/stripes-light.svg'),
+      url('/airplane-window.jpeg');
+    background-size: auto, auto, cover;
+    background-repeat: auto, repeat-y, no-repeat;
+    background-position: 50%, 50%, 50%;
+  }
+
+  .hero__subtitle {
+    @apply text-2xs font-medium uppercase text-white;
+  }
+
+  .hero__title {
+    @apply text-4xl font-semibold text-white;
+  }
+
+  .hero__text {
+    @apply my-5 text-xs leading-5 text-white;
+  }
+
+  .navText {
+    @apply text-sm font-medium uppercase text-navy-400;
+  }
+
+  .section--1 {
+    @apply bg-navy-900 pt-16 pb-8;
+    background-image: linear-gradient(to bottom, theme('colors.navy-900/0'), theme('colors.navy-800/0.3')),
+      url('/continent-tl.svg'), url('/stripes.svg'), url('/continent-br.svg');
+    background-position: 50%, 0px 0px, center, 100% 100%;
+    background-repeat: no-repeat, no-repeat, repeat-y, no-repeat;
+  }
+
+  .section--2 {
+    @apply bg-navyDark-500 py-10;
+    background-image: url('/continent-tl.svg'), url('/stripes.svg'), url('/continent-br.svg');
+    background-position: 0px 0px, center, 100% 100%;
+    background-repeat: no-repeat, repeat-y, no-repeat;
+  }
+
+  .section__header {
+    @apply flex flex-col items-center text-center;
+  }
+
+  .section__title {
+    @apply text-3xl font-semibold text-white;
+  }
+
+  .section__subtitle {
+    @apply text-2xs font-medium uppercase text-navy-200;
+  }
+
+  .square {
+    @apply flex items-center justify-center border border-gray-700 p-2 text-xs font-medium text-navy-200;
+  }
+
+  .radio__item {
+    @apply relative rounded-full border border-blue-500 p-2;
+  }
+
+  .radio__indicator {
+    @apply absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-blue-500 p-1;
+  }
+
+  .card {
+    @apply relative border border-navy-700 bg-navy-800 p-6;
+
+    &::before {
+      @apply absolute left-0 top-1/2 h-1/2 -translate-y-1/2 border-l border-navy-200;
+      content: '';
+    }
+  }
+
+  .card__title {
+    @apply text-2xl font-semibold text-navy-200;
+  }
+
+  .card__subtitle {
+    @apply text-base text-slate-300;
+  }
+
+  .card__description {
+    @apply text-sm text-slate-400;
+  }
+
+  .card__icon {
+    @apply w-12;
+  }
+
+  .input {
+    @apply border-b border-white/30 bg-transparent py-3 px-2 text-sm text-white placeholder:text-gray-500 focus:border-white;
+  }
 }
