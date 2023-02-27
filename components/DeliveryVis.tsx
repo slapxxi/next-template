@@ -1,6 +1,7 @@
 import classNames from 'classnames';
 import { SVGProps, useState } from 'react';
 import { WorldMap } from './WorldMap';
+import { useDrag } from '@use-gesture/react';
 
 export type DeliveryVisProps = {
   children?: React.ReactNode;
@@ -27,6 +28,21 @@ export const DeliveryVis = (props: DeliveryVisProps) => {
         location.coords[0] - baseCoords[0]
       } ${location.coords[1] - baseCoords[1]}`
     : '';
+  const bindDrag = useDrag<React.MouseEvent<SVGSVGElement>>(
+    (gesture) => {
+      let ct = gesture.event.currentTarget;
+      requestAnimationFrame(() => {
+        ct.setAttribute('viewBox', `${220 - gesture.offset[0]} 0 420 600`);
+      });
+    },
+    {
+      axis: 'x',
+      bounds: { left: -360, right: 220 },
+      threshold: 3,
+      preventScrollAxis: 'y',
+      preventScroll: 200,
+    },
+  );
 
   function handleClick(id: string) {
     setActiveLocation(id);
@@ -37,7 +53,8 @@ export const DeliveryVis = (props: DeliveryVisProps) => {
       <svg
         fill="none"
         viewBox="220 0 420 600"
-        className={classNames(className, 'overflow-visible')}
+        className={classNames(className, 'touch-pan-y')}
+        {...bindDrag()}
         {...rest}
       >
         <WorldMap width={1000} height={1000 * 0.506} />
