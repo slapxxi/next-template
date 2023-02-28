@@ -475,6 +475,13 @@ const IndexPage = () => {
           />
         </svg>
       </section>
+
+      <div className="flex">
+        <img src="/flower-1.jpg" alt="" className="h-10 flex-1 object-cover align-top" />
+        <img src="/flower-2.jpg" alt="" className="h-10 flex-1 object-cover align-top" />
+        <img src="/flower-3.jpg" alt="" className="h-10 flex-1 object-cover align-top" />
+        <img src="/flower-4.jpg" alt="" className="h-10 flex-1 object-cover align-top" />
+      </div>
     </div>
   );
 };

@@ -24,20 +24,22 @@ const bounds = { min: -400, max: 280 };
 export const DeliveryVis = (props: DeliveryVisProps) => {
   const { children, className = '', ...rest } = props;
   const [activeLocation, setActiveLocation] = useState<string | null>(null);
-  const offsetRef = useRef(0);
-  const [spring, animate] = useSpring({ offset: offsetRef.current }, []);
+  // const offsetRef = useRef(0);
+  const [spring, animate] = useSpring({ offset: 0 }, []);
   const bindDrag = useDrag<React.MouseEvent<SVGSVGElement>>(
     (gesture) => {
       if (gesture.pressed) {
-        animate.set({ offset: clamp(offsetRef.current + gesture.movement[0], bounds.min, bounds.max) });
+        animate.set({ offset: gesture.offset[0] });
       } else {
         const boost = gesture.velocity[0] * gesture.direction[0] * 80;
         const offset = clamp(spring.offset.get() + boost, bounds.min, bounds.max);
         animate.start({ offset });
-        offsetRef.current = offset;
       }
     },
     {
+      from: () => [spring.offset.get(), 0],
+      rubberband: true,
+      bounds: { left: bounds.min, right: bounds.max },
       axis: 'x',
       threshold: 3,
       preventScrollAxis: 'y',
