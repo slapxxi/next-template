@@ -23,18 +23,20 @@ const IndexPage = () => {
         </p>
         <Button className="my-7 w-full">связаться с нами</Button>
 
-        <Swiper slidesPerView={1.1} spaceBetween={10}>
+        <Swiper slidesPerView={1.15} spaceBetween={10}>
           {[
             { img: '/flower-1.jpeg', title: 'ec' },
             { img: '/flower-2.jpeg', title: 'ke' },
           ].map((item, i) => (
             <SwiperSlide key={i}>
-              <div className="flex items-center gap-8">
-                <div className="flex flex-col items-center gap-2">
-                  <img src={item.img} width={90} height={140} className="flex-1 basis-[140px] object-cover" />
+              <div className="flex items-center gap-2">
+                <div className="flex basis-1/2 flex-col items-center gap-2.5">
+                  <svg viewBox="0 0 90 140">
+                    <image href={item.img} className="h-full w-full" preserveAspectRatio="xMidYMid slice" />
+                  </svg>
                   <h2 className="text-xs font-semibold uppercase text-navy-400">{item.title}</h2>
                 </div>
-                <div className="flex-1">
+                <div className="basis-1/2">
                   <Ecuador />
                 </div>
               </div>

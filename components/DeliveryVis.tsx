@@ -9,14 +9,13 @@ export type DeliveryVisProps = {
 };
 
 const baseCoords = [610, 120];
-
 const locations = [
-  { name: 'Ecuador', id: 'ec', coords: [270, 290] },
-  { name: 'Kenya', id: 'ke', coords: [255, 320] },
-  { name: 'Columbia', id: 'co', coords: [282, 394] },
-  { name: 'Chile', id: 'cl', coords: [500, 150] },
-  { name: 'Holland', id: 'hol', coords: [575, 223] },
-  { name: 'Israel', id: 'isr', coords: [581, 313] },
+  { name: 'Colombia', id: 'co', coords: [269, 308] },
+  { name: 'Ecuador', id: 'ec', coords: [255, 325] },
+  { name: 'Holland', id: 'hl', coords: [489, 149] },
+  { name: 'Kenya', id: 'ke', coords: [578, 319] },
+  { name: 'Israel', id: 'il', coords: [575, 223] },
+  { name: 'Chile', id: 'cl', coords: [282, 394] },
 ];
 
 export const DeliveryVis = (props: DeliveryVisProps) => {
@@ -57,7 +56,7 @@ export const DeliveryVis = (props: DeliveryVisProps) => {
         {...bindDrag()}
         {...rest}
       >
-        <WorldMap width={1000} height={1000 * 0.506} />
+        <WorldMap width={1000} height={1000 * 0.506} highlight={(activeLocation as any) ?? undefined} />
         <Circles x={baseCoords[0]} y={baseCoords[1]} count={4} r={20} animated />
         <circle cx={baseCoords[0]} cy={baseCoords[1]} r="3" fill="#fff9" />
         <path d={routePath} stroke="white" strokeDasharray="8" id="route" className="animate-dashoffset" />
@@ -76,7 +75,11 @@ export const DeliveryVis = (props: DeliveryVisProps) => {
           )}
         </g>
         {locations.map((item) => (
-          <g onClick={() => handleClick(item.id)} key={item.id}>
+          <g
+            onClick={() => handleClick(item.id)}
+            key={item.id}
+            style={{ pointerEvents: item.id === activeLocation ? 'none' : 'auto' }}
+          >
             <Circles x={item.coords[0]} y={item.coords[1]} count={3} r={20} opacity={0.4} />
             <Pin
               x={item.coords[0]}
@@ -98,33 +101,35 @@ export const DeliveryVis = (props: DeliveryVisProps) => {
         ))}
       </svg>
 
-      <h2 className="mb-3 text-center text-xs font-semibold text-slate-500">
-        Доставка в Караганду занимает от <em className="em">1</em> до <em className="em">2</em> дней
-      </h2>
-      <ul className="flex justify-around bg-black/10 pt-9">
-        {locations.map((l) => (
-          <li
-            key={l.id}
-            className={classNames(
-              l.id === activeLocation ? 'text-blue-500' : 'text-slate-500',
-              'flex flex-col items-center justify-between gap-4',
-            )}
-            onClick={() => handleClick(l.id)}
-          >
-            <span className="font-bold writing-v-rl">{l.id}</span>
-            <div className="flex h-24 flex-col">
-              <svg
-                className={classNames(
-                  l.id === activeLocation ? 'h-20' : 'h-10',
-                  'mt-auto w-0.5 fill-current transition-all',
-                )}
-              >
-                <rect width="100%" height="100%" />
-              </svg>
-            </div>
-          </li>
-        ))}
-      </ul>
+      <div className="-mt-24">
+        <h2 className="mb-3 text-center text-xs font-semibold text-slate-500">
+          Доставка в Караганду занимает от <em className="em">1</em> до <em className="em">2</em> дней
+        </h2>
+        <ul className="flex justify-around bg-black/10 pt-9">
+          {locations.map((l) => (
+            <li
+              key={l.id}
+              className={classNames(
+                l.id === activeLocation ? 'text-blue-500' : 'text-slate-500',
+                'flex flex-col items-center justify-between gap-4',
+              )}
+              onClick={() => handleClick(l.id)}
+            >
+              <span className="font-bold writing-v-rl">{l.id}</span>
+              <div className="flex h-24 flex-col">
+                <svg
+                  className={classNames(
+                    l.id === activeLocation ? 'h-20' : 'h-10',
+                    'mt-auto w-0.5 fill-current transition-all',
+                  )}
+                >
+                  <rect width="100%" height="100%" />
+                </svg>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </div>
     </div>
   );
 };
