@@ -398,8 +398,8 @@ const IndexPage = () => {
               </div>
               <p className="card__description w-full flex-1">Доставка заказа осуществляется до двери</p>
             </li>
-            <li className="flex min-h-[183px] items-center justify-center bg-[url(/airplane-backdrop.jpg)] bg-cover">
-              <Button>Скачать прайс</Button>
+            <li className="flex h-[183px] flex-col items-center justify-center bg-[url(/airplane-backdrop-sm.jpg)] bg-cover bg-bottom px-6">
+              <Button className="w-full">Скачать прайс</Button>
             </li>
             <li className="card flex flex-col gap-4">
               <div className="flex gap-5">

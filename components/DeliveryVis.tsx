@@ -1,7 +1,9 @@
 import classNames from 'classnames';
-import { SVGProps, useState } from 'react';
+import { animated, useSpring } from '@react-spring/web';
+import { SVGProps, useRef, useState } from 'react';
 import { WorldMap } from './WorldMap';
 import { useDrag } from '@use-gesture/react';
+import { clamp } from 'lodash';
 
 export type DeliveryVisProps = {
   children?: React.ReactNode;
@@ -27,16 +29,21 @@ export const DeliveryVis = (props: DeliveryVisProps) => {
         location.coords[0] - baseCoords[0]
       } ${location.coords[1] - baseCoords[1]}`
     : '';
+  const offsetRef = useRef(0);
+  const [spring, animate] = useSpring({ offset: offsetRef.current }, []);
   const bindDrag = useDrag<React.MouseEvent<SVGSVGElement>>(
     (gesture) => {
-      let ct = gesture.event.currentTarget;
-      requestAnimationFrame(() => {
-        ct.setAttribute('viewBox', `${220 - gesture.offset[0]} 0 420 600`);
-      });
+      if (gesture.pressed) {
+        animate.set({ offset: offsetRef.current + gesture.movement[0] });
+      } else {
+        let boost = gesture.velocity[0] * gesture.direction[0] * 80;
+        let offset = spring.offset.get() + boost;
+        animate.start({ offset });
+        offsetRef.current = offset;
+      }
     },
     {
       axis: 'x',
-      bounds: { left: -360, right: 220 },
       threshold: 3,
       preventScrollAxis: 'y',
       preventScroll: 200,
@@ -49,9 +56,9 @@ export const DeliveryVis = (props: DeliveryVisProps) => {
 
   return (
     <div>
-      <svg
+      <animated.svg
         fill="none"
-        viewBox="220 0 420 600"
+        viewBox={spring.offset.to((o) => `${220 - o} 0 420 600`)}
         className={classNames(className, 'touch-pan-y')}
         {...bindDrag()}
         {...rest}
@@ -61,7 +68,7 @@ export const DeliveryVis = (props: DeliveryVisProps) => {
         <circle cx={baseCoords[0]} cy={baseCoords[1]} r="3" fill="#fff9" />
         <path d={routePath} stroke="white" strokeDasharray="8" id="route" className="animate-dashoffset" />
         <text
-          className="fill-white font-bold uppercase"
+          className="fill-white/80 text-xs font-bold uppercase"
           x={baseCoords[0]}
           y={baseCoords[1] - 10}
           textAnchor="end"
@@ -99,9 +106,9 @@ export const DeliveryVis = (props: DeliveryVisProps) => {
             )}
           </g>
         ))}
-      </svg>
+      </animated.svg>
 
-      <div className="-mt-24">
+      <div className="-mt-20">
         <h2 className="mb-3 text-center text-xs font-semibold text-slate-500">
           Доставка в Караганду занимает от <em className="em">1</em> до <em className="em">2</em> дней
         </h2>
