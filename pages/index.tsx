@@ -1,4 +1,5 @@
 import { Swiper, SwiperSlide } from 'swiper/react';
+import Image from 'next/image';
 import { Button } from 'components/Button';
 import * as Select from '@radix-ui/react-select';
 import { Ecuador } from '../components/Ecuador';
@@ -23,14 +24,14 @@ const IndexPage = () => {
         </p>
         <Button className="my-7 w-full">связаться с нами</Button>
 
-        <Swiper slidesPerView={1.15} spaceBetween={10}>
+        <Swiper slidesPerView={1.15} spaceBetween={20}>
           {[
-            { img: '/flower-1.jpeg', title: 'ec' },
-            { img: '/flower-2.jpeg', title: 'ke' },
+            { img: '/flower-1.jpg', title: 'ec' },
+            { img: '/flower-2.jpg', title: 'ke' },
           ].map((item, i) => (
             <SwiperSlide key={i}>
-              <div className="flex items-center gap-2">
-                <div className="flex basis-1/2 flex-col items-center gap-2.5">
+              <div className="flex items-start gap-7">
+                <div className="flex basis-[32%] flex-col items-center gap-2.5">
                   <svg viewBox="0 0 90 140">
                     <image href={item.img} className="h-full w-full" preserveAspectRatio="xMidYMid slice" />
                   </svg>
@@ -46,7 +47,7 @@ const IndexPage = () => {
       </section>
 
       {/* about us */}
-      <section className="section--1 px-4">
+      <section className="section px-4">
         <div className="section__header">
           <h2 className="section__subtitle mb-2.5">Flower Fracht Karaganda </h2>
           <h2 className="section__title">О нас в цифрах</h2>
@@ -228,7 +229,7 @@ const IndexPage = () => {
       </section>
 
       {/* locations */}
-      <section className="section--2 pb-0">
+      <section className="section2 pb-0">
         <div className="section__header px-4">
           <h2 className="section__subtitle mb-2.5">Flower Fracht Karaganda </h2>
           <h2 className="section__title">Откуда мы везем наши цветы?</h2>
@@ -253,7 +254,7 @@ const IndexPage = () => {
         <DeliveryVis className="mt-12" />
       </section>
 
-      <section className="section--1">
+      <section className="section">
         <header className="section__header">
           <h2 className="section__subtitle mb-2.5">Flower Fracht Karaganda</h2>
           <h2 className="section__title">Калькулятор доставки</h2>
@@ -356,7 +357,7 @@ const IndexPage = () => {
       </section>
 
       {/* tariffs */}
-      <section className="section--1">
+      <section className="section">
         <div className="section__header px-4">
           <h2 className="section__subtitle mb-2">Flower Fracht Karaganda </h2>
           <h2 className="section__title">Основные тарифы</h2>
@@ -397,7 +398,7 @@ const IndexPage = () => {
               </div>
               <p className="card__description w-full flex-1">Доставка заказа осуществляется до двери</p>
             </li>
-            <li className="flex min-h-[183px] items-center justify-center bg-[url(/airplane-backdrop.jpeg)] bg-cover">
+            <li className="flex min-h-[183px] items-center justify-center bg-[url(/airplane-backdrop.jpg)] bg-cover">
               <Button>Скачать прайс</Button>
             </li>
             <li className="card flex flex-col gap-4">
@@ -437,7 +438,8 @@ const IndexPage = () => {
         </div>
       </section>
 
-      <section className="hero py-16 px-4">
+      {/* callback */}
+      <section className="hero2 py-16 px-4">
         <div className="text-center">
           <h2 className="hero__subtitle">Flower Fracht Karaganda</h2>
           <h2 className="hero__title">Заказать звонок</h2>
@@ -459,6 +461,19 @@ const IndexPage = () => {
             Заказать звонок
           </Button>
         </form>
+      </section>
+
+      <section>
+        <svg viewBox="0 0 320 190" className="-mb-px" /* safari rendering issue */>
+          <image href="/flower-4.jpg" width={136} height={190} preserveAspectRatio="xMidYMid slice" />
+          <image
+            href="/flower-3.jpg"
+            width={184}
+            x={136}
+            height="100%"
+            preserveAspectRatio="xMidYMid slice"
+          />
+        </svg>
       </section>
     </div>
   );

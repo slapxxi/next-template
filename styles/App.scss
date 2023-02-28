@@ -12,10 +12,18 @@
 
   .hero {
     background-image: linear-gradient(to bottom, #0008, #0009), url('/stripes-light.svg'),
-      url('/airplane-window.jpeg');
+      url('/airplane-window.jpg');
     background-size: auto, auto, cover;
     background-repeat: auto, repeat-y, no-repeat;
     background-position: 50%, 50%, 50%;
+  }
+
+  .hero2 {
+    background-image: linear-gradient(to bottom, #ffffff15, #ffffff1a), url('/stripes-light.svg'),
+      url('/airplane-window-2.jpg');
+    background-size: auto, auto, auto 150%;
+    background-repeat: no-repeat, repeat-y, no-repeat;
+    background-position: 50%, 50%, 46% 10%;
   }
 
   .hero__subtitle {
@@ -34,7 +42,7 @@
     @apply text-sm font-medium uppercase text-navy-400;
   }
 
-  .section--1 {
+  .section {
     @apply bg-navy-900 pt-16 pb-8;
     background-image: linear-gradient(to bottom, theme('colors.navy-900/0'), theme('colors.navy-800/0.3')),
       url('/continent-tl.svg'), url('/stripes.svg'), url('/continent-br.svg');
@@ -42,7 +50,7 @@
     background-repeat: no-repeat, no-repeat, repeat-y, no-repeat;
   }
 
-  .section--2 {
+  .section2 {
     @apply bg-navyDark-500 py-10;
     background-image: url('/continent-tl.svg'), url('/stripes.svg'), url('/continent-br.svg');
     background-position: 0px 0px, center, 100% 100%;
@@ -99,7 +107,7 @@
   }
 
   .input {
-    @apply border-b border-white/30 bg-transparent py-3 px-2 text-sm text-white placeholder:text-gray-500 focus:border-white;
+    @apply border-b border-white/30 bg-transparent py-3 px-2 text-sm text-white placeholder:text-gray-300/70 focus:border-white;
   }
 
   .em {
