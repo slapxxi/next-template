@@ -8,7 +8,6 @@ import 'styles/App.scss';
 import 'components/Header.scss';
 import 'components/Button.scss';
 import { Header } from 'components/Header';
-import { Montserrat } from 'next/font/google';
 
 const App: AppType = (props) => {
   const { Component, pageProps } = props;

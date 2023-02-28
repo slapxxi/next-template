@@ -1,8 +1,8 @@
 import classNames from 'classnames';
 import { animated, useSpring } from '@react-spring/web';
 import { SVGProps, useRef, useState } from 'react';
-import { WorldMap } from './WorldMap';
 import { useDrag } from '@use-gesture/react';
+import { WorldMap } from 'components/WorldMap';
 import { clamp } from 'lodash';
 
 export type DeliveryVisProps = {
@@ -12,32 +12,27 @@ export type DeliveryVisProps = {
 
 const baseCoords = [610, 120];
 const locations = [
+  { name: 'Chile', id: 'cl', coords: [282, 394] },
   { name: 'Colombia', id: 'co', coords: [269, 308] },
   { name: 'Ecuador', id: 'ec', coords: [255, 325] },
   { name: 'Holland', id: 'hl', coords: [489, 149] },
-  { name: 'Kenya', id: 'ke', coords: [578, 319] },
   { name: 'Israel', id: 'il', coords: [575, 223] },
-  { name: 'Chile', id: 'cl', coords: [282, 394] },
+  { name: 'Kenya', id: 'ke', coords: [578, 319] },
 ];
+const bounds = { min: -400, max: 280 };
 
 export const DeliveryVis = (props: DeliveryVisProps) => {
   const { children, className = '', ...rest } = props;
   const [activeLocation, setActiveLocation] = useState<string | null>(null);
-  const location = activeLocation !== null && locations.find((l) => l.id === activeLocation);
-  const routePath = location
-    ? `M${baseCoords[0]} ${baseCoords[1]}q${(location.coords[0] - baseCoords[0]) / 2} ${-20} ${
-        location.coords[0] - baseCoords[0]
-      } ${location.coords[1] - baseCoords[1]}`
-    : '';
   const offsetRef = useRef(0);
   const [spring, animate] = useSpring({ offset: offsetRef.current }, []);
   const bindDrag = useDrag<React.MouseEvent<SVGSVGElement>>(
     (gesture) => {
       if (gesture.pressed) {
-        animate.set({ offset: offsetRef.current + gesture.movement[0] });
+        animate.set({ offset: clamp(offsetRef.current + gesture.movement[0], bounds.min, bounds.max) });
       } else {
-        let boost = gesture.velocity[0] * gesture.direction[0] * 80;
-        let offset = spring.offset.get() + boost;
+        const boost = gesture.velocity[0] * gesture.direction[0] * 80;
+        const offset = clamp(spring.offset.get() + boost, bounds.min, bounds.max);
         animate.start({ offset });
         offsetRef.current = offset;
       }
@@ -49,6 +44,12 @@ export const DeliveryVis = (props: DeliveryVisProps) => {
       preventScroll: 200,
     },
   );
+  const location = activeLocation !== null && locations.find((l) => l.id === activeLocation);
+  const routePath = location
+    ? `M${baseCoords[0]} ${baseCoords[1]}q${(location.coords[0] - baseCoords[0]) / 2} ${-20} ${
+        location.coords[0] - baseCoords[0]
+      } ${location.coords[1] - baseCoords[1]}`
+    : '';
 
   function handleClick(id: string) {
     setActiveLocation(id);
@@ -76,9 +77,11 @@ export const DeliveryVis = (props: DeliveryVisProps) => {
           Karaganda
         </text>
         <g transform="scale(1 -1) translate(-20-10)">
-          <Plane size={30} />
           {activeLocation && (
-            <animateMotion dur="4s" repeatCount="indefinite" path={routePath} rotate="auto" />
+            <>
+              <Plane size={30} />
+              <animateMotion dur="4s" repeatCount="indefinite" path={routePath} rotate="auto" />
+            </>
           )}
         </g>
         {locations.map((item) => (
