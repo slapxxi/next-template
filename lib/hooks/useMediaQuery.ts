@@ -1,14 +1,14 @@
 import { useEffect, useState } from 'react';
 
 export function useMediaQuery(query: string): boolean {
-  const [matches, setMatches] = useState<boolean>(getMatches(query));
+  let [matches, setMatches] = useState<boolean>(getMatches(query));
 
   function handleChange() {
     setMatches(getMatches(query));
   }
 
   useEffect(() => {
-    const matchMedia = window.matchMedia(query);
+    let matchMedia = window.matchMedia(query);
     handleChange();
 
     if (matchMedia.addListener) {

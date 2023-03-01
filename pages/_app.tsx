@@ -7,10 +7,10 @@ import Head from 'next/head';
 import 'styles/globals.scss';
 import 'styles/App.scss';
 
-// const client = new QueryClient();
+// let client = new QueryClient();
 
-const App: AppType = (props) => {
-  const { Component, pageProps } = props;
+let App: AppType = (props) => {
+  let { Component, pageProps } = props;
 
   return (
     <>

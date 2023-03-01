@@ -1,6 +1,6 @@
 const plugin = require('tailwindcss/plugin');
 
-const colors = {
+let colors = {
   primary: ['0', '0%', '0%'],
   secondary: ['0', '0%', '100%'],
   bg: ['0', '0%', '100%'],
@@ -13,7 +13,7 @@ const colors = {
   'darkGray-500': ['0', '0%', '14%'],
 };
 
-const mappedColors = Object.fromEntries(
+let mappedColors = Object.fromEntries(
   Object.entries(colors).map(([name, hsl]) => [
     name,
     `hsl(var(--${name}-hsl, ${hsl.join(' ')}) / <alpha-value>)`,
