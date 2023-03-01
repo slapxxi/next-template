@@ -1,12 +1,13 @@
 import { Swiper, SwiperSlide } from 'swiper/react';
-import Image from 'next/image';
-import { Button } from 'components/Button';
-import * as Select from '@radix-ui/react-select';
-import { Ecuador } from '../components/Ecuador';
-import { DeliveryVis } from '../components/DeliveryVis';
-import * as RadioGroup from '@radix-ui/react-radio-group';
 import { Check, ChevronDown, ChevronUp, MapPin } from 'lucide-react';
-import { Checkbox } from '../components/Checkbox';
+import * as Select from '@radix-ui/react-select';
+import * as RadioGroup from '@radix-ui/react-radio-group';
+
+import { Button } from 'components/Button';
+import { Ecuador } from 'components/Ecuador';
+import { DeliveryVis } from 'components/DeliveryVis';
+import { Checkbox } from 'components/Checkbox';
+
 import 'swiper/css';
 
 const IndexPage = () => {
@@ -463,6 +464,7 @@ const IndexPage = () => {
         </form>
       </section>
 
+      {/* images */}
       <section>
         <svg viewBox="0 0 320 190" className="-mb-px" /* safari rendering issue */>
           <image href="/flower-4.jpg" width={136} height={190} preserveAspectRatio="xMidYMid slice" />
@@ -475,13 +477,6 @@ const IndexPage = () => {
           />
         </svg>
       </section>
-
-      <div className="flex">
-        <img src="/flower-1.jpg" alt="" className="h-10 flex-1 object-cover align-top" />
-        <img src="/flower-2.jpg" alt="" className="h-10 flex-1 object-cover align-top" />
-        <img src="/flower-3.jpg" alt="" className="h-10 flex-1 object-cover align-top" />
-        <img src="/flower-4.jpg" alt="" className="h-10 flex-1 object-cover align-top" />
-      </div>
     </div>
   );
 };

@@ -1,13 +1,15 @@
 import type { AppType } from 'next/dist/shared/lib/utils';
 import Head from 'next/head';
-import { Logo } from 'components/Logo';
-import { Mail, Phone } from 'lucide-react';
 import Link from 'next/link';
+import { Mail, Phone } from 'lucide-react';
+
+import { Logo } from 'components/Logo';
+import { Header } from 'components/Header';
+
 import 'styles/globals.scss';
 import 'styles/App.scss';
 import 'components/Header.scss';
 import 'components/Button.scss';
-import { Header } from 'components/Header';
 
 const App: AppType = (props) => {
   const { Component, pageProps } = props;

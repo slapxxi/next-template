@@ -21,3 +21,7 @@ declare module '@react-spring/web' {
 declare global {
   var mongo: any;
 }
+
+declare module 'console' {
+  export = typeof import('console');
+}
