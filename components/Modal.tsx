@@ -1,24 +1,18 @@
-import classNames from 'classnames';
 import { createPortal } from 'react-dom';
 import { useMounted } from 'lib/hooks/useMounted';
 
 export type ModalProps = {
+  open?: boolean;
   children?: React.ReactNode;
   className?: string;
-  open?: boolean;
 };
 
 export const Modal = (props: ModalProps) => {
-  const { children, className = '', open = false, ...rest } = props;
+  const { children, open = false } = props;
   let mounted = useMounted();
 
   if (mounted && open) {
-    return createPortal(
-      <div className={classNames(className)} {...rest}>
-        {children}
-      </div>,
-      document.getElementById('__next')!,
-    );
+    return createPortal(children, document.getElementById('__next')!);
   }
 
   return null;
