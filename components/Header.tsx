@@ -1,11 +1,11 @@
 import classNames from 'classnames';
 import * as Select from '@radix-ui/react-select';
-import { Logo } from 'components/Logo';
 import { ChevronDown, ChevronUp, Check, Phone, Mail } from 'lucide-react';
 import { useState } from 'react';
-import { Modal } from './Modal';
-import { useNoScroll } from '../lib/hooks/useNoScroll';
 import Link from 'next/link';
+import { Logo } from 'components/Logo';
+import { Modal } from 'components/Modal';
+import { useNoScroll } from 'lib/hooks/useNoScroll';
 
 export type HeaderProps = {
   children?: React.ReactNode;

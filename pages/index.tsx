@@ -25,26 +25,28 @@ const IndexPage = () => {
         </p>
         <Button className="my-7 w-full">связаться с нами</Button>
 
-        <Swiper slidesPerView={1.15} spaceBetween={20}>
-          {[
-            { img: '/flower-1.jpg', title: 'ec' },
-            { img: '/flower-2.jpg', title: 'ke' },
-          ].map((item, i) => (
-            <SwiperSlide key={i}>
-              <div className="flex items-start gap-7">
-                <div className="flex basis-[32%] flex-col items-center gap-2.5">
-                  <svg viewBox="0 0 90 140">
-                    <image href={item.img} className="h-full w-full" preserveAspectRatio="xMidYMid slice" />
-                  </svg>
-                  <h2 className="text-xs font-semibold uppercase text-navy-400">{item.title}</h2>
+        <div className="max-w-[328px] touch-none overflow-hidden">
+          <Swiper slidesPerView={1.15} spaceBetween={20}>
+            {[
+              { img: '/flower-1.jpg', title: 'ec' },
+              { img: '/flower-2.jpg', title: 'ke' },
+            ].map((item, i) => (
+              <SwiperSlide key={i}>
+                <div className="flex items-start gap-7">
+                  <div className="flex basis-[32%] flex-col items-center gap-2.5">
+                    <svg viewBox="0 0 90 140">
+                      <image href={item.img} className="h-full w-full" preserveAspectRatio="xMidYMid slice" />
+                    </svg>
+                    <h2 className="text-xs font-semibold uppercase text-navy-400">{item.title}</h2>
+                  </div>
+                  <div className="basis-1/2">
+                    <Ecuador />
+                  </div>
                 </div>
-                <div className="basis-1/2">
-                  <Ecuador />
-                </div>
-              </div>
-            </SwiperSlide>
-          ))}
-        </Swiper>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </div>
       </section>
 
       {/* about us */}

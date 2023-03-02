@@ -1,13 +1,13 @@
 import { useEffect } from 'react';
+import { disableBodyScroll, enableBodyScroll, clearAllBodyScrollLocks } from 'body-scroll-lock';
 
 export function useNoScroll(flag: boolean) {
   useEffect(() => {
     if (flag) {
-      document.documentElement.classList.add('no-scroll');
-      document.body.classList.add('no-scroll');
+      disableBodyScroll(document.getElementById('__next')!);
     } else {
-      document.documentElement.classList.remove('no-scroll');
-      document.body.classList.remove('no-scroll');
+      enableBodyScroll(document.getElementById('__next')!);
     }
+    return () => clearAllBodyScrollLocks();
   }, [flag]);
 }
