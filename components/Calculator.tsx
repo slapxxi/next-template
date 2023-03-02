@@ -1,7 +1,6 @@
 import { animated, Interpolation, SpringValue, useSpring } from '@react-spring/web';
 import classNames from 'classnames';
 import { useRef, useState } from 'react';
-import { Vec2 } from 'lib/vec';
 
 type Data = {
   date: Date;
@@ -161,10 +160,10 @@ function generateDates(numberOfDates: number = 35): Data[] {
   return dates;
 }
 
-function transform(svg: SVGSVGElement, vec: Vec2) {
-  let point = svg.createSVGPoint();
-  point.x = vec[0];
-  point.y = vec[1];
-  point = point.matrixTransform(svg.getScreenCTM()!.inverse());
-  return [point.x, point.y];
-}
+// function transform(svg: SVGSVGElement, vec: Vec2) {
+//   let point = svg.createSVGPoint();
+//   point.x = vec[0];
+//   point.y = vec[1];
+//   point = point.matrixTransform(svg.getScreenCTM()!.inverse());
+//   return [point.x, point.y];
+// }
