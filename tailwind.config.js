@@ -55,12 +55,20 @@ module.exports = {
       fontSize: {
         '2xs': '0.5rem',
       },
+      transitionDelay: {
+        '2s': '-2s',
+        '4s': '-4s',
+        '6s': '-6s',
+      },
     },
   },
   plugins: [
     require('@tailwindcss/container-queries'),
     plugin(({ addUtilities }) => {
       addUtilities({
+        '.area-full': {
+          'grid-area': '1 / 1',
+        },
         '.no-scroll': {
           overflow: 'hidden',
         },
@@ -96,15 +104,15 @@ module.exports = {
         },
       });
     }),
-    // plugin(({ matchUtilities, theme }) => {
-    //   matchUtilities(
-    //     {
-    //       tab: (value) => ({
-    //         tabSize: value,
-    //       }),
-    //     },
-    //     { values: theme('tabSize') },
-    //   );
-    // }),
+    plugin(({ matchUtilities, theme }) => {
+      matchUtilities(
+        {
+          'anim-delay': (value) => ({
+            'animation-delay': value,
+          }),
+        },
+        { values: theme('transitionDelay') },
+      );
+    }),
   ],
 };
