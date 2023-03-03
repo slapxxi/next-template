@@ -2,15 +2,13 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Check, ChevronDown, ChevronUp, MapPin } from 'lucide-react';
 import * as Select from '@radix-ui/react-select';
 import * as RadioGroup from '@radix-ui/react-radio-group';
-
 import { Button } from 'components/Button';
 import { Ecuador } from 'components/Ecuador';
 import { DeliveryVis } from 'components/DeliveryVis';
 import { Checkbox } from 'components/Checkbox';
-
 import 'swiper/css';
 
-const IndexPage = () => {
+let IndexPage = () => {
   return (
     <div>
       <section className="hero px-4 py-8">
@@ -28,8 +26,10 @@ const IndexPage = () => {
         <div className="max-w-[328px] touch-none overflow-hidden">
           <Swiper slidesPerView={1.15} spaceBetween={20}>
             {[
-              { img: '/flower-1.jpg', title: 'ec' },
-              { img: '/flower-2.jpg', title: 'ke' },
+              { img: '/flower-1.jpg', title: 'Ecuador' },
+              { img: '/flower-2.jpg', title: 'Kenya' },
+              { img: '/flower-3.jpg', title: 'Holland' },
+              { img: '/flower-4.jpg', title: 'Israel' },
             ].map((item, i) => (
               <SwiperSlide key={i}>
                 <div className="flex items-start gap-7">

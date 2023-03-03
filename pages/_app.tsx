@@ -11,8 +11,8 @@ import 'styles/App.scss';
 import 'components/Header.scss';
 import 'components/Button.scss';
 
-const App: AppType = (props) => {
-  const { Component, pageProps } = props;
+let App: AppType = (props) => {
+  let { Component, pageProps } = props;
 
   return (
     <>
