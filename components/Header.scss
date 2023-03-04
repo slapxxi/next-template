@@ -3,7 +3,7 @@
 
 @layer components {
   .header {
-    @apply isolate flex items-center gap-8 bg-navy-900 py-3 px-4 md:gap-2 md:px-7;
+    @apply isolate flex items-center gap-8 bg-navy-900 py-3 px-4 md:gap-2 md:px-7 lg:gap-8 lg:px-wrap xl:py-5;
   }
 
   .header__navLink {

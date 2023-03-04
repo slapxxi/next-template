@@ -1,6 +1,7 @@
 import { animated, Interpolation, SpringValue, useSpring } from '@react-spring/web';
 import classNames from 'classnames';
 import { useRef, useState } from 'react';
+import { useBreakpoints } from '../lib/hooks/useBreakpoints';
 
 type Data = {
   date: Date;
@@ -13,21 +14,23 @@ export type CalculatorProps = {
   children?: React.ReactNode;
   className?: string;
   width: number;
+  height: number;
 };
 
 const dates = generateDates(45);
 const weekdayFormatter = new Intl.DateTimeFormat('ru', { weekday: 'short' });
 const fulldateFormatter = new Intl.DateTimeFormat('ru', { dateStyle: 'long' });
-const SCALE_FACTOR = 23;
 
 export const Calculator = (props: CalculatorProps) => {
-  const { children, className = '', width, ...rest } = props;
+  const { children, className = '', width, height, ...rest } = props;
   const svgRef = useRef<SVGSVGElement>(null);
   const [selected, setSelected] = useState<Data | null>(null);
   const [packingDate, deliveryDate] = getEstimateDates(selected);
+  let bp = useBreakpoints();
+  const DISTANCE_BETWEEN = bp.md ? 42 : 23;
   const spring = useSpring({
-    packingOffset: packingDate ? (packingDate.index - selected!.index) * SCALE_FACTOR : -100,
-    deliveryOffset: deliveryDate ? (deliveryDate.index - selected!.index) * SCALE_FACTOR : -100,
+    packingOffset: packingDate ? (packingDate.index - selected!.index) * DISTANCE_BETWEEN : -100,
+    deliveryOffset: deliveryDate ? (deliveryDate.index - selected!.index) * DISTANCE_BETWEEN : -100,
   });
 
   function handleClick(e: React.MouseEvent<HTMLLIElement>, data: Data) {
@@ -41,7 +44,7 @@ export const Calculator = (props: CalculatorProps) => {
 
   return (
     <div className={classNames(className)} style={{ width }} {...rest}>
-      <svg viewBox={`0 0 ${width} 250`} ref={svgRef}>
+      <svg viewBox={`0 0 ${width} ${height}`} ref={svgRef}>
         <line
           x1="0"
           y1="100%"
@@ -101,7 +104,7 @@ export const Calculator = (props: CalculatorProps) => {
           <li
             key={i}
             className={classNames(
-              'flex h-4 w-4 shrink-0 items-center justify-center rounded-full text-2xs leading-none',
+              'flex h-4 w-4 shrink-0 items-center justify-center rounded-full text-2xs leading-none lg:h-8 lg:w-8 lg:text-sm',
               selected !== null && selected.index === i && 'bg-rose-500 font-semibold',
               d.selectable ? 'text-slate-200' : 'text-slate-600',
             )}

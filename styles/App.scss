@@ -17,46 +17,60 @@
     background-position: 50%, 50%, bottom;
   }
 
-  @screen md {
+  @screen lg {
     .hero {
       background-image: url('/circles.svg'), url('/line.svg'), url('/stripes-light-md.svg'),
         url('/hero-md.jpg');
-      background-size: auto, auto, auto, cover;
-      background-repeat: no-repeat, no-repeat, repeat-y, no-repeat;
-      background-position: 136px calc(50% - 50px), 50%, 50%, 127px bottom;
+      background-size: auto, auto, 100%, cover;
+      background-repeat: no-repeat, repeat-x, repeat-y, no-repeat;
+      background-position: 136px calc(50% - 50px), 50%, 100%, 127px bottom;
+    }
+  }
+
+  @screen xl {
+    .hero {
+      background-position: 404px calc(50% - 50px), 50%, 50%, 383px bottom;
     }
   }
 
   .hero2 {
     background-image: url('/stripes-light.svg'), url('/hero2-sm.jpg');
-    background-size: auto, cover;
+    background-size: fixed, cover;
     background-repeat: repeat-y, no-repeat;
     background-position: 50%, 50%, center;
   }
 
-  @screen md {
+  @screen lg {
     .hero2 {
-      background-image: url('/stripes-light-md.svg'), url('/hero2-sm.jpg');
-      background-size: auto, cover;
-      background-repeat: repeat-y, no-repeat;
-      background-position: 50%, 50%, center;
+      background-image: url('/stripes-light-md.svg'), url('/hero-2-md.jpg');
+      background-size: 100%, cover;
+    }
+  }
+
+  @screen xl {
+    .hero2 {
+      background-attachment: fixed, scroll;
     }
   }
 
   .hero__subtitle {
-    @apply text-2xs font-medium uppercase text-white;
+    @apply text-2xs font-medium uppercase text-white xl:text-sm xl:text-gray-400/80;
   }
 
   .hero__title {
-    @apply text-4xl font-semibold text-white;
+    @apply text-4xl font-semibold text-white xl:text-7xl;
   }
 
   .hero__text {
-    @apply my-5 text-xs leading-5 text-white;
+    @apply my-5 text-xs leading-5 text-white xl:text-base;
   }
 
   .navText {
     @apply text-sm font-medium uppercase text-navy-400;
+  }
+
+  .navLink {
+    @apply text-sm font-medium uppercase tracking-wider text-navy-400 hover:text-blue-500;
   }
 
   .section {
@@ -67,13 +81,15 @@
     background-repeat: no-repeat, no-repeat, repeat-y, no-repeat;
   }
 
-  @screen md {
+  @screen lg {
     .section {
       @apply bg-navy-900 pt-16 pb-8;
       background-image: linear-gradient(to bottom, theme('colors.navy-900/0'), theme('colors.navy-800/0.3')),
-        url('/continent-tl.svg'), url('/stripes-md.svg'), url('/continent-br.svg');
-      background-position: 50%, 0px 0px, center, 100% 100%;
-      background-repeat: no-repeat, no-repeat, repeat-y, no-repeat;
+        url('/continent-tl.svg'), url('/stripes-md.svg'), url('/continent-br.svg'),
+        url('/clouds-backdrop-md.jpg');
+      background-size: auto, auto, 100%, auto, auto;
+      background-position: 50%, 0px 0px, center, 100% 100%, bottom;
+      background-repeat: no-repeat, no-repeat, repeat-y, no-repeat, no-repeat;
     }
   }
 
@@ -84,14 +100,32 @@
     background-repeat: no-repeat, repeat-y, no-repeat;
   }
 
-  @screen md {
+  @screen lg {
     .section2 {
       @apply bg-navyDark-500 py-10;
       background-image: url('/continent-tl.svg'), url('/stripes-md.svg'), url('/continent-br.svg'),
         url('/plane-backdrop-md.jpg');
       background-position: 0px 0px, center, 100% 100%, bottom;
       background-repeat: no-repeat, repeat-y, no-repeat, no-repeat;
-      background-size: auto, auto, auto, cover;
+      background-size: auto, 100%, auto, cover;
+    }
+  }
+
+  .section3 {
+    @apply bg-navyDark-500 py-10;
+    background-image: url('/continent-tl.svg'), url('/stripes.svg'), url('/continent-br.svg');
+    background-position: 0px 0px, center, 100% 100%;
+    background-repeat: no-repeat, repeat-y, no-repeat;
+  }
+
+  @screen lg {
+    .section3 {
+      @apply bg-navyDark-500 py-10;
+      background-image: url('/continent-tl.svg'), url('/stripes-md.svg'), url('/continent-br.svg'),
+        url('/plane-backdrop-2-md.jpg');
+      background-position: 0px 0px, center, 100% 100%, bottom;
+      background-repeat: no-repeat, repeat-y, no-repeat, no-repeat;
+      background-size: auto, 100%, auto, cover;
     }
   }
 
@@ -100,15 +134,19 @@
   }
 
   .section__title {
-    @apply text-3xl font-semibold text-white;
+    @apply text-3xl font-semibold text-white xl:text-5xl;
   }
 
   .section__subtitle {
-    @apply text-2xs font-medium uppercase text-navy-200;
+    @apply text-2xs font-medium uppercase text-navy-200 xl:text-xs;
+  }
+
+  .section__text {
+    @apply my-5 text-sm text-slate-300 xl:my-7 xl:text-base;
   }
 
   .square {
-    @apply flex items-center justify-center border border-gray-700 p-2 text-xs font-medium text-navy-200;
+    @apply flex items-center justify-center border border-gray-700 p-2 text-xs font-medium text-navy-200 xl:text-base;
   }
 
   .radio__item {
@@ -117,6 +155,20 @@
 
   .radio__indicator {
     @apply absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-blue-500 p-1;
+
+    &[data-state='checked'] {
+      animation: scale 0.15s linear forwards;
+    }
+  }
+
+  @keyframes scale {
+    0% {
+      transform: translate(-50%, -50%) scale(0);
+    }
+
+    100% {
+      transform: translate(-50%, -50%) scale(1);
+    }
   }
 
   .card {

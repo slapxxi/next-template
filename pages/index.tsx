@@ -47,19 +47,21 @@ let IndexPage = () => {
         </filter>
       </svg>
 
-      <section className="hero relative px-4 py-8 md:py-0 md:pr-7 md:pl-0">
+      {/* hero */}
+      <section className="hero relative px-4 py-8 lg:py-px lg:pr-7 lg:pl-0">
         {transition((style, item) => (
           <animated.img
             src={item}
-            className="absolute top-0 -z-10 hidden h-full w-32 object-cover [filter:url(#dim)] md:block"
+            className="absolute top-0 -z-10 hidden h-full w-32 object-cover [filter:url(#dim)] lg:block xl:w-96"
             style={style}
           />
         ))}
 
-        <div className="isolate md:flex md:justify-between md:gap-2 md:pl-36 md:pt-14">
-          <div className="md:max-w-lg md:pl-8">
+        {/* summary container */}
+        <div className="isolate lg:flex lg:justify-between lg:gap-2 lg:pl-36 lg:pt-14 xl:pl-[414px] xl:pr-wrap">
+          <div className="lg:max-w-lg lg:pl-8">
             <h2 className="hero__subtitle">Flower Fracht Karaganda </h2>
-            <h2 className="hero__title">Авиаперевозка цветов</h2>
+            <h2 className="hero__title xl:mb-10">Авиаперевозка цветов</h2>
             <p className="hero__text">
               Занимаемся только АВИА перевозкой свеже срезанных цветов и растений из{' '}
               <strong>Эквадора, Кении, Колумбии, Чили, Голландии, Израиля</strong> до конечного заказчика.
@@ -68,8 +70,9 @@ let IndexPage = () => {
               <strong>Максимальный срок доставки товара – 7 дней от заказа.</strong>
             </p>
           </div>
-          <div className="md:shrink-0">
-            <ul className="hidden flex-col gap-2 border-l pl-3.5 md:flex">
+          {/* contact */}
+          <div className="w-64 shrink-0">
+            <ul className="hidden flex-col gap-2 border-l pl-3.5 lg:flex">
               <li className="flex items-center gap-4 text-xs text-white">
                 <Phone size={10} />
                 <span>+7 (495) 737 8585</span>
@@ -83,20 +86,22 @@ let IndexPage = () => {
           </div>
         </div>
 
-        <div className="hidden md:flex md:items-center md:gap-8">
+        <div className="hidden lg:my-10 lg:flex lg:pl-7 xl:items-center xl:gap-8 xl:px-wrap">
           <Swiper onSlideChange={handleSlideChange} spaceBetween={16} slideToClickedSlide slidesPerView={5}>
             {data.map((item, i) => (
               <SwiperSlide key={i}>
-                <div className="flex shrink-0 flex-col items-center gap-5" onClick={() => handleClick(i)}>
-                  <img src={item.img} className="h-32  w-20 object-cover" />
-                  <h2
-                    className={classNames(
-                      'text-xs font-medium uppercase',
-                      activeIndex === i ? 'text-white' : 'text-gray-500',
-                    )}
-                  >
-                    {item.title}
-                  </h2>
+                <div className="flex" onClick={() => handleClick(i)}>
+                  <div className="flex shrink-0 flex-col items-center gap-5">
+                    <img src={item.img} className="h-32 w-20 object-cover xl:h-48 xl:w-32" />
+                    <h2
+                      className={classNames(
+                        'text-xs font-medium uppercase',
+                        activeIndex === i ? 'text-white' : 'text-gray-500',
+                      )}
+                    >
+                      {item.title}
+                    </h2>
+                  </div>
                 </div>
               </SwiperSlide>
             ))}
@@ -104,7 +109,7 @@ let IndexPage = () => {
           <Ecuador width={200} className="shrink-0" />
         </div>
 
-        <div className="max-w-[328px] touch-none overflow-hidden md:hidden">
+        <div className="max-w-sm touch-none overflow-hidden lg:hidden">
           <Swiper slidesPerView={1.15} spaceBetween={20}>
             {data.map((item, i) => (
               <SwiperSlide key={i}>
@@ -126,13 +131,13 @@ let IndexPage = () => {
       </section>
 
       {/* about us */}
-      <section className="section px-4 md:px-7">
-        <div className="section__header">
+      <section className="section px-4 lg:px-7 xl:px-wrap">
+        <div className="section__header xl:mb-14">
           <h2 className="section__subtitle mb-2.5">Flower Fracht Karaganda </h2>
           <h2 className="section__title">О нас в цифрах</h2>
         </div>
 
-        <ul className="my-7 flex flex-col gap-4 md:grid md:grid-cols-3 md:grid-rows-2">
+        <ul className="my-7 flex flex-col gap-4 lg:grid lg:grid-cols-3 lg:grid-rows-2">
           {[
             {
               title: '7 лет',
@@ -308,21 +313,21 @@ let IndexPage = () => {
       </section>
 
       {/* locations */}
-      <section className="section2 pb-0 md:flex md:px-7 md:pt-0">
-        <div className="md:pt-20">
-          <div className="section__header px-4">
+      <section className="section2 pb-0 lg:flex lg:px-7 lg:pt-0 xl:px-wrap">
+        <div className="lg:pt-20">
+          <div className="section__header px-4 xl:mb-14">
             <h2 className="section__subtitle mb-2.5 self-start">Flower Fracht Karaganda </h2>
             <h2 className="section__title self-start text-left">Откуда мы везем наши цветы?</h2>
           </div>
-          <div className="my-7 space-y-4 px-4">
-            <p className="text-sm font-semibold text-white">
+          <div className="my-7 space-y-4 px-4 xl:mb-20">
+            <p className="section__text font-semibold text-white">
               По своей сути рыбатекст является альтернативой традиционному lorem ipsum
             </p>
-            <p className="text-sm text-slate-300">
+            <p className="section__text">
               Сайт рыбатекст поможет дизайнеру, верстальщику, вебмастеру сгенерировать несколько абзацев более
               менее осмысленного текста рыбы на русском языке.
             </p>
-            <p className="text-sm text-slate-300">
+            <p className="section__text">
               Мы привозим цветы и растения в горшках из{' '}
               <strong className="text-white">Эквадора, Кении, Колумбии, Чили, Голландии, Израиля</strong> и
               доставляем их свежими во все регионы СНГ.
@@ -333,29 +338,33 @@ let IndexPage = () => {
           </div>
         </div>
 
-        <DeliveryVis className="mt-12 md:mt-0 md:shrink-0 md:basis-7/12" />
+        <DeliveryVis className="mt-12 lg:mt-0 lg:shrink-0 lg:basis-7/12" />
       </section>
 
-      <section className="section md:flex md:gap-7 md:px-7">
-        <div className="relative hidden self-start border border-navy-700/30 bg-navy-800/50 p-5 pt-7 md:block">
+      {/* calculator */}
+      <section className="section lg:flex lg:justify-between lg:gap-7 lg:px-7 xl:gap-20 xl:px-wrap">
+        <div className="relative hidden self-start border border-navy-700/30 bg-navy-800/50 p-5 pt-7 lg:block xl:pt-20">
           <div className="absolute right-5 top-6 flex items-center gap-3.5">
             <MapPin className="text-white" size={14} />
             <span className="text-sm uppercase text-white">Ecuador</span>
           </div>
-          <Calculator width={400} />
+          <div className="xl:hidden">
+            <Calculator width={400} height={250} />
+          </div>
+          <div className="hidden xl:block">
+            <Calculator width={650} height={300} />
+          </div>
         </div>
         <div>
-          <header className="section__header">
+          <header className="section__header xl:mb-14">
             <h2 className="section__subtitle mb-2.5 self-start">Flower Fracht Karaganda</h2>
             <h2 className="section__title self-start">Калькулятор доставки</h2>
           </header>
           <ol className="my-7">
-            <li className="border-b border-slate-700/80 px-4 pb-8 md:px-0">
+            <li className="border-b border-slate-700/80 px-4 pb-8 lg:px-0">
               <div className="mb-6 flex items-center gap-3">
                 <span className="square h-10 w-10 shrink-0 animate-pulse">01</span>
-                <h2 className="text-sm text-slate-300">
-                  Выберите страну по которой хотите узнать время доставки
-                </h2>
+                <h2 className="section__text">Выберите страну по которой хотите узнать время доставки</h2>
               </div>
               <form>
                 <RadioGroup.Root
@@ -376,7 +385,7 @@ let IndexPage = () => {
                       <RadioGroup.Item className="radio__item" value={country.id} id={country.id}>
                         <RadioGroup.Indicator className="radio__indicator" />
                       </RadioGroup.Item>
-                      <label className="text-xs text-white" htmlFor={country.id}>
+                      <label className="text-xs text-white xl:text-sm" htmlFor={country.id}>
                         {country.name}
                       </label>
                     </div>
@@ -384,10 +393,10 @@ let IndexPage = () => {
                 </RadioGroup.Root>
               </form>
             </li>
-            <li className="px-4 pb-0 pt-8 md:px-0">
+            <li className="px-4 pb-0 pt-8 lg:px-0">
               <div className="mb-6 flex items-center gap-3">
                 <span className="square h-10 w-10 shrink-0 animate-pulse">02</span>
-                <h2 className="text-sm text-slate-300">
+                <h2 className="section__text">
                   Что бы рассчитать дату доставки выберите день когда планируете сделать заказ
                 </h2>
               </div>
@@ -397,8 +406,8 @@ let IndexPage = () => {
                   <h2 className="text-sm font-medium uppercase">Ecuador</h2>
                 </div>
                 <div className="grid grid-cols-[1fr_auto] gap-6">
-                  <div className="text-sm font-medium text-white">День заказа</div>
-                  <div className="text-xs text-slate-400">
+                  <div className="text-sm font-medium text-white xl:text-base">День заказа</div>
+                  <div className="text-xs text-slate-400 xl:text-base">
                     <Select.Root>
                       <Select.Trigger className="flex w-full justify-between" aria-label="language">
                         <div className="text-white">
@@ -437,12 +446,12 @@ let IndexPage = () => {
                       </Select.Portal>
                     </Select.Root>
                   </div>
-                  <div className="text-sm font-medium text-white">Конец сбора заказов</div>
-                  <div className="text-xs text-slate-400">27 июля до 16:00</div>
-                  <div className="text-sm font-medium text-white">Доставка</div>
-                  <div className="text-xs text-slate-400">7 дней</div>
-                  <div className="text-sm font-medium text-white">День поставки</div>
-                  <div className="text-xs text-slate-400">3 августа</div>
+                  <div className="text-sm font-medium text-white xl:text-base">Конец сбора заказов</div>
+                  <div className="text-xs text-slate-400 xl:text-base">27 июля до 16:00</div>
+                  <div className="text-sm font-medium text-white xl:text-base">Доставка</div>
+                  <div className="text-xs text-slate-400 xl:text-base">7 дней</div>
+                  <div className="text-sm font-medium text-white xl:text-base">День поставки</div>
+                  <div className="text-xs text-slate-400 xl:text-base">3 августа</div>
                 </div>
               </div>
             </li>
@@ -451,15 +460,15 @@ let IndexPage = () => {
       </section>
 
       {/* tariffs */}
-      <section className="section">
-        <div className="section__header px-4">
+      <section className="section3 xl:px-wrap">
+        <div className="section__header px-4 xl:mb-14">
           <h2 className="section__subtitle mb-2">Flower Fracht Karaganda </h2>
           <h2 className="section__title">Основные тарифы</h2>
         </div>
 
-        <div className="my-8 px-4">
-          <ul className="flex flex-col gap-4 md:flex-row">
-            <li className="card flex flex-col gap-4 md:flex-1">
+        <div className="my-8 px-4 xl:px-0">
+          <ul className="flex flex-col gap-4 lg:flex-row">
+            <li className="card flex flex-col gap-4 lg:flex-1">
               <div className="flex gap-5">
                 <div className="card__icon">
                   <svg fill="none" viewBox="0 0 46 64">
@@ -494,11 +503,11 @@ let IndexPage = () => {
             </li>
             <li
               className="flex h-[183px] flex-col items-center justify-center bg-[url(/airplane-backdrop-sm.jpg)] 
-              bg-cover bg-bottom px-6 md:h-auto md:flex-1"
+              bg-cover bg-bottom px-6 lg:h-auto lg:flex-1"
             >
               <Button className="w-full">Скачать прайс</Button>
             </li>
-            <li className="card flex flex-col gap-4 md:flex-1">
+            <li className="card flex flex-col gap-4 lg:flex-1">
               <div className="flex gap-5">
                 <div className="card__icon">
                   <svg fill="none" viewBox="0 0 46 64">
@@ -535,35 +544,41 @@ let IndexPage = () => {
         </div>
       </section>
 
-      <div className="md:flex">
+      <div className="lg:flex">
         {/* callback */}
-        <section className="hero2 flex-1 py-16 px-4">
-          <div className="mx-auto text-center md:max-w-md">
-            <h2 className="hero__subtitle">Flower Fracht Karaganda</h2>
-            <h2 className="hero__title">Заказать звонок</h2>
-            <p className="hero__text mx-auto md:max-w-xs">
-              Закажите звонок и наш менеджер свяжется с вами в ближайшее время
-            </p>
-          </div>
-          <form action="" className="mx-auto flex flex-col gap-8 md:max-w-sm">
-            <input type="text" className="input w-full" placeholder="Имя" />
-            <input type="text" className="input w-full" placeholder="Номер телефона" />
-            <div className="flex items-center gap-4">
-              <Checkbox id="agreement" />
-              <label htmlFor="agreement" className="hero__text">
-                Даю свое согласия на обработку{' '}
-                <a href="#" className="link link--active">
-                  персональных данных
-                </a>
-              </label>
+        <section className="hero2 flex-1 py-16 px-4 xl:py-10 xl:px-0 xl:pr-20 xl:pl-wrap">
+          <div className="mx-auto xl:mx-0 xl:flex xl:h-full xl:flex-col xl:justify-center">
+            <div className="mx-auto text-center lg:max-w-md xl:mx-0 xl:mb-14 xl:flex xl:max-w-none xl:flex-col xl:text-left">
+              <h2 className="hero__subtitle xl:mb-5">Flower Fracht Karaganda</h2>
+              <h2 className="hero__title text-4xl xl:mb-7 xl:text-5xl">Заказать звонок</h2>
+              <p className="hero__text mx-auto lg:max-w-xs xl:mx-0 xl:max-w-none">
+                Закажите звонок и наш менеджер свяжется с вами в ближайшее время
+              </p>
             </div>
-            <Button type="submit" className="mt-4 md:self-center md:px-10">
-              Заказать звонок
-            </Button>
-          </form>
+            <form action="" className="mx-auto flex flex-col gap-8 lg:max-w-sm xl:max-w-none xl:gap-10">
+              <div className="flex flex-col gap-8 xl:flex-row xl:gap-4">
+                <input type="text" className="input w-full" placeholder="Имя" />
+                <input type="text" className="input w-full" placeholder="Номер телефона" />
+              </div>
+              <div className="flex flex-col xl:flex-row xl:gap-4">
+                <div className="flex items-center gap-4 xl:w-1/2">
+                  <Checkbox id="agreement" />
+                  <label htmlFor="agreement" className="text-xs text-white xl:text-sm">
+                    Даю свое согласия на обработку{' '}
+                    <a href="#" className="link link--active">
+                      персональных данных
+                    </a>
+                  </label>
+                </div>
+                <Button type="submit" className="mt-4 lg:self-center lg:px-10 xl:mt-0 xl:w-1/2">
+                  Заказать звонок
+                </Button>
+              </div>
+            </form>
+          </div>
         </section>
         {/* images */}
-        <div className="flex max-h-48 md:max-h-none md:w-1/2">
+        <div className="flex max-h-48 bg-rose-300 lg:max-h-none lg:w-1/2">
           <div className="basis-[42.5%]">
             <img src="/flower-4.jpg" className="h-full w-full object-cover" />
           </div>

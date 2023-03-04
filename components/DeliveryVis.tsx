@@ -50,11 +50,11 @@ export const DeliveryVis = (props: DeliveryVisProps) => {
       preventScroll: 200,
     },
   );
-  const location = activeLocation !== null && locations.find((l) => l.id === activeLocation);
-  const routePath = location
-    ? `M${baseCoords[0]} ${baseCoords[1]}q${(location.coords[0] - baseCoords[0]) / 2} ${-20} ${
-        location.coords[0] - baseCoords[0]
-      } ${location.coords[1] - baseCoords[1]}`
+  let location = activeLocation !== null && locations.find((l) => l.id === activeLocation);
+  let routePath = location
+    ? `M${location.coords[0]} ${location.coords[1]}q${(baseCoords[0] - location.coords[0]) / 2} ${
+        baseCoords[1] - location.coords[1]
+      } ${baseCoords[0] - location.coords[0]} ${baseCoords[1] - location.coords[1]}`
     : '';
 
   function handleClick(id: string) {
@@ -112,7 +112,7 @@ export const DeliveryVis = (props: DeliveryVisProps) => {
         >
           Karaganda
         </text>
-        <g transform="scale(1 -1) translate(-20-10)">
+        <g transform="translate(-20-10)">
           {activeLocation && (
             <>
               <PlaneIcon size={30} />

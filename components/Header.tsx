@@ -29,9 +29,8 @@ export const Header = (props: HeaderProps) => {
 
   return (
     <header className={classNames(className, 'header')} {...rest}>
-      <Logo className="header__logo md:mr-auto" />
-
-      <nav className="hidden md:block">
+      <Logo className="header__logo lg:mr-auto xl:mr-0" />
+      <nav className="hidden lg:block xl:ml-auto">
         <ul className="flex justify-between gap-8">
           <li>
             <Link href="/" className="header__navLink header__navLink--active">
@@ -55,9 +54,8 @@ export const Header = (props: HeaderProps) => {
           </li>
         </ul>
       </nav>
-
       <Select.Root>
-        <Select.Trigger className="ml-auto flex items-center gap-3" aria-label="language">
+        <Select.Trigger className="ml-auto flex items-center gap-3 xl:ml-0" aria-label="language">
           <div className="square h-8 w-8 text-2xs font-bold text-white">
             <Select.Value placeholder="RU" />
           </div>
@@ -93,8 +91,7 @@ export const Header = (props: HeaderProps) => {
           </Select.Content>
         </Select.Portal>
       </Select.Root>
-
-      <button className="text-white md:hidden" onClick={handleClickMenu}>
+      <button className="text-white lg:hidden" onClick={handleClickMenu}>
         <svg width={26} fill="none" viewBox="0 0 26 23">
           <path
             d="M0 0H26V1H0Z"
@@ -112,7 +109,6 @@ export const Header = (props: HeaderProps) => {
           />
         </svg>
       </button>
-
       <Modal open>
         <RemoveScroll enabled={menuOpen}>
           <nav
