@@ -1,9 +1,10 @@
 import classNames from 'classnames';
+import { SVGProps } from 'react';
 
 export type EcuadorProps = {
   children?: React.ReactNode;
   className?: string;
-};
+} & SVGProps<SVGSVGElement>;
 
 export const Ecuador = (props: EcuadorProps) => {
   const { children, className = '', ...rest } = props;

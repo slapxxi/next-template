@@ -17,11 +17,30 @@
     background-position: 50%, 50%, bottom;
   }
 
+  @screen md {
+    .hero {
+      background-image: url('/circles.svg'), url('/line.svg'), url('/stripes-light-md.svg'),
+        url('/hero-md.jpg');
+      background-size: auto, auto, auto, cover;
+      background-repeat: no-repeat, no-repeat, repeat-y, no-repeat;
+      background-position: 136px calc(50% - 50px), 50%, 50%, 127px bottom;
+    }
+  }
+
   .hero2 {
     background-image: url('/stripes-light.svg'), url('/hero2-sm.jpg');
     background-size: auto, cover;
     background-repeat: repeat-y, no-repeat;
     background-position: 50%, 50%, center;
+  }
+
+  @screen md {
+    .hero2 {
+      background-image: url('/stripes-light-md.svg'), url('/hero2-sm.jpg');
+      background-size: auto, cover;
+      background-repeat: repeat-y, no-repeat;
+      background-position: 50%, 50%, center;
+    }
   }
 
   .hero__subtitle {
@@ -48,11 +67,32 @@
     background-repeat: no-repeat, no-repeat, repeat-y, no-repeat;
   }
 
+  @screen md {
+    .section {
+      @apply bg-navy-900 pt-16 pb-8;
+      background-image: linear-gradient(to bottom, theme('colors.navy-900/0'), theme('colors.navy-800/0.3')),
+        url('/continent-tl.svg'), url('/stripes-md.svg'), url('/continent-br.svg');
+      background-position: 50%, 0px 0px, center, 100% 100%;
+      background-repeat: no-repeat, no-repeat, repeat-y, no-repeat;
+    }
+  }
+
   .section2 {
     @apply bg-navyDark-500 py-10;
     background-image: url('/continent-tl.svg'), url('/stripes.svg'), url('/continent-br.svg');
     background-position: 0px 0px, center, 100% 100%;
     background-repeat: no-repeat, repeat-y, no-repeat;
+  }
+
+  @screen md {
+    .section2 {
+      @apply bg-navyDark-500 py-10;
+      background-image: url('/continent-tl.svg'), url('/stripes-md.svg'), url('/continent-br.svg'),
+        url('/plane-backdrop-md.jpg');
+      background-position: 0px 0px, center, 100% 100%, bottom;
+      background-repeat: no-repeat, repeat-y, no-repeat, no-repeat;
+      background-size: auto, auto, auto, cover;
+    }
   }
 
   .section__header {

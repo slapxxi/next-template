@@ -5,6 +5,7 @@ import { useDrag } from '@use-gesture/react';
 import { clamp } from 'lodash';
 import { WorldMap } from 'components/WorldMap';
 import { PlaneIcon } from 'components/icons/PlaneIcon';
+import { useBreakpoints } from '../lib/hooks/useBreakpoints';
 
 export type DeliveryVisProps = {
   children?: React.ReactNode;
@@ -20,13 +21,15 @@ const locations = [
   { name: 'Israel', id: 'il', coords: [575, 223] },
   { name: 'Kenya', id: 'ke', coords: [578, 319] },
 ];
-const bounds = { min: -400, max: 280 };
 
 export const DeliveryVis = (props: DeliveryVisProps) => {
   const { children, className = '', ...rest } = props;
   const [activeLocation, setActiveLocation] = useState<string | null>(null);
-  // const offsetRef = useRef(0);
   const [spring, animate] = useSpring({ offset: 0 }, []);
+  let bp = useBreakpoints();
+  let width = bp.md ? 1000 : 440;
+  let bounds = bp.md ? { min: 0, max: 0 } : { min: -360, max: 220 };
+  let startingOffset = bp.md ? 0 : width / 2;
   const bindDrag = useDrag<React.MouseEvent<SVGSVGElement>>(
     (gesture) => {
       if (gesture.pressed) {
@@ -59,11 +62,41 @@ export const DeliveryVis = (props: DeliveryVisProps) => {
   }
 
   return (
-    <div>
+    <div className={classNames(className, 'touch-pan-y')}>
+      <div className="hidden flex-col gap-8 md:mb-8 md:flex md:items-end">
+        <ul className="flex w-full max-w-sm justify-around">
+          {locations.map((l) => (
+            <li
+              key={l.id}
+              className={classNames(
+                l.id === activeLocation ? 'text-blue-500' : 'text-slate-500',
+                'flex flex-col items-center justify-between gap-4',
+              )}
+              onClick={() => handleClick(l.id)}
+            >
+              <div className="flex h-28 flex-col items-center">
+                <svg
+                  className={classNames(
+                    l.id === activeLocation ? 'h-20' : 'h-10',
+                    'mb-auto w-0.5 fill-current transition-all',
+                  )}
+                >
+                  <rect width="100%" height="100%" />
+                </svg>
+                <span className="font-bold writing-v-rl">{l.id}</span>
+              </div>
+            </li>
+          ))}
+        </ul>
+        <h2 className="mb-3 text-center text-xs font-semibold text-slate-500">
+          Доставка в Караганду занимает от <em className="em">1</em> до <em className="em">2</em> дней
+        </h2>
+      </div>
+
       <animated.svg
         fill="none"
-        viewBox={spring.offset.to((o) => `${220 - o} 0 420 600`)}
-        className={classNames(className, 'touch-pan-y')}
+        viewBox={spring.offset.to((o) => `${startingOffset - o} 0 ${width} 600`)}
+        className="touch-pan-y"
         {...bindDrag()}
         {...rest}
       >
@@ -114,7 +147,7 @@ export const DeliveryVis = (props: DeliveryVisProps) => {
         ))}
       </animated.svg>
 
-      <div className="-mt-20">
+      <div className="-mt-20 md:hidden">
         <h2 className="mb-3 text-center text-xs font-semibold text-slate-500">
           Доставка в Караганду занимает от <em className="em">1</em> до <em className="em">2</em> дней
         </h2>

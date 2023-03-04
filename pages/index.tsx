@@ -1,5 +1,5 @@
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Check, ChevronDown, ChevronUp, MapPin } from 'lucide-react';
+import { Check, ChevronDown, ChevronUp, Mail, MapPin, Phone } from 'lucide-react';
 import * as Select from '@radix-ui/react-select';
 import * as RadioGroup from '@radix-ui/react-radio-group';
 import { Button } from 'components/Button';
@@ -7,37 +7,113 @@ import { Ecuador } from 'components/Ecuador';
 import { DeliveryVis } from 'components/DeliveryVis';
 import { Checkbox } from 'components/Checkbox';
 import 'swiper/css';
+import type { Swiper as TSwiper } from 'swiper';
+import { useState } from 'react';
+import { animated, useTransition } from '@react-spring/web';
+import classNames from 'classnames';
+import { Calculator } from '../components/Calculator';
+
+let data = [
+  { img: '/flower-1.jpg', title: 'Ecuador' },
+  { img: '/flower-2.jpg', title: 'Kenya' },
+  { img: '/flower-3.jpg', title: 'Holland' },
+  { img: '/flower-4.jpg', title: 'Israel' },
+  { img: '/flower-5.jpg', title: 'Colombia' },
+  { img: '/flower-6.jpg', title: 'Chile' },
+];
 
 let IndexPage = () => {
+  let [activeIndex, setActiveIndex] = useState(0);
+  let transition = useTransition([data[activeIndex].img], {
+    from: { opacity: 0 },
+    enter: { opacity: 1 },
+    leave: { opacity: 0 },
+  });
+
+  function handleSlideChange(swiper: TSwiper) {
+    setActiveIndex(swiper.activeIndex);
+  }
+
+  function handleClick(index: number) {
+    setActiveIndex(index);
+  }
+
   return (
     <div>
-      <section className="hero px-4 py-8">
-        <h2 className="hero__subtitle">Flower Fracht Karaganda </h2>
-        <h2 className="hero__title">Авиаперевозка цветов</h2>
-        <p className="hero__text">
-          Занимаемся только АВИА перевозкой свеже срезанных цветов и растений из{' '}
-          <strong>Эквадора, Кении, Колумбии, Чили, Голландии, Израиля</strong> до конечного заказчика.
-        </p>
-        <p className="hero__text">
-          <strong>Максимальный срок доставки товара – 7 дней от заказа.</strong>
-        </p>
-        <Button className="my-7 w-full">связаться с нами</Button>
+      <svg className="absolute h-0 w-0" aria-hidden>
+        <filter id="dim" x={0} y={0} width={1} height={1}>
+          <feFlood floodColor="#6663" />
+          <feComposite in2="SourceGraphic" />
+        </filter>
+      </svg>
 
-        <div className="max-w-[328px] touch-none overflow-hidden">
+      <section className="hero relative px-4 py-8 md:py-0 md:pr-7 md:pl-0">
+        {transition((style, item) => (
+          <animated.img
+            src={item}
+            className="absolute top-0 -z-10 hidden h-full w-32 object-cover [filter:url(#dim)] md:block"
+            style={style}
+          />
+        ))}
+
+        <div className="isolate md:flex md:justify-between md:gap-2 md:pl-36 md:pt-14">
+          <div className="md:max-w-lg md:pl-8">
+            <h2 className="hero__subtitle">Flower Fracht Karaganda </h2>
+            <h2 className="hero__title">Авиаперевозка цветов</h2>
+            <p className="hero__text">
+              Занимаемся только АВИА перевозкой свеже срезанных цветов и растений из{' '}
+              <strong>Эквадора, Кении, Колумбии, Чили, Голландии, Израиля</strong> до конечного заказчика.
+            </p>
+            <p className="hero__text">
+              <strong>Максимальный срок доставки товара – 7 дней от заказа.</strong>
+            </p>
+          </div>
+          <div className="md:shrink-0">
+            <ul className="hidden flex-col gap-2 border-l pl-3.5 md:flex">
+              <li className="flex items-center gap-4 text-xs text-white">
+                <Phone size={10} />
+                <span>+7 (495) 737 8585</span>
+              </li>
+              <li className="flex items-center gap-4 text-xs text-white">
+                <Mail size={10} />
+                <a href="mailto:ffkaragandainfo@info.ru">ffkaragandainfo@info.ru</a>
+              </li>
+            </ul>
+            <Button className="my-7 w-full">связаться с нами</Button>
+          </div>
+        </div>
+
+        <div className="hidden md:flex md:items-center md:gap-8">
+          <Swiper onSlideChange={handleSlideChange} spaceBetween={16} slideToClickedSlide slidesPerView={5}>
+            {data.map((item, i) => (
+              <SwiperSlide key={i}>
+                <div className="flex shrink-0 flex-col items-center gap-5" onClick={() => handleClick(i)}>
+                  <img src={item.img} className="h-32  w-20 object-cover" />
+                  <h2
+                    className={classNames(
+                      'text-xs font-medium uppercase',
+                      activeIndex === i ? 'text-white' : 'text-gray-500',
+                    )}
+                  >
+                    {item.title}
+                  </h2>
+                </div>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+          <Ecuador width={200} className="shrink-0" />
+        </div>
+
+        <div className="max-w-[328px] touch-none overflow-hidden md:hidden">
           <Swiper slidesPerView={1.15} spaceBetween={20}>
-            {[
-              { img: '/flower-1.jpg', title: 'Ecuador' },
-              { img: '/flower-2.jpg', title: 'Kenya' },
-              { img: '/flower-3.jpg', title: 'Holland' },
-              { img: '/flower-4.jpg', title: 'Israel' },
-            ].map((item, i) => (
+            {data.map((item, i) => (
               <SwiperSlide key={i}>
                 <div className="flex items-start gap-7">
                   <div className="flex basis-[32%] flex-col items-center gap-2.5">
                     <svg viewBox="0 0 90 140">
                       <image href={item.img} className="h-full w-full" preserveAspectRatio="xMidYMid slice" />
                     </svg>
-                    <h2 className="text-xs font-semibold uppercase text-navy-400">{item.title}</h2>
+                    <h2 className="text-2xs font-semibold uppercase text-navy-400">{item.title}</h2>
                   </div>
                   <div className="basis-1/2">
                     <Ecuador />
@@ -50,13 +126,13 @@ let IndexPage = () => {
       </section>
 
       {/* about us */}
-      <section className="section px-4">
+      <section className="section px-4 md:px-7">
         <div className="section__header">
           <h2 className="section__subtitle mb-2.5">Flower Fracht Karaganda </h2>
           <h2 className="section__title">О нас в цифрах</h2>
         </div>
 
-        <ul className="my-7 flex flex-col gap-4">
+        <ul className="my-7 flex flex-col gap-4 md:grid md:grid-cols-3 md:grid-rows-2">
           {[
             {
               title: '7 лет',
@@ -232,131 +308,146 @@ let IndexPage = () => {
       </section>
 
       {/* locations */}
-      <section className="section2 pb-0">
-        <div className="section__header px-4">
-          <h2 className="section__subtitle mb-2.5">Flower Fracht Karaganda </h2>
-          <h2 className="section__title">Откуда мы везем наши цветы?</h2>
+      <section className="section2 pb-0 md:flex md:px-7 md:pt-0">
+        <div className="md:pt-20">
+          <div className="section__header px-4">
+            <h2 className="section__subtitle mb-2.5 self-start">Flower Fracht Karaganda </h2>
+            <h2 className="section__title self-start text-left">Откуда мы везем наши цветы?</h2>
+          </div>
+          <div className="my-7 space-y-4 px-4">
+            <p className="text-sm font-semibold text-white">
+              По своей сути рыбатекст является альтернативой традиционному lorem ipsum
+            </p>
+            <p className="text-sm text-slate-300">
+              Сайт рыбатекст поможет дизайнеру, верстальщику, вебмастеру сгенерировать несколько абзацев более
+              менее осмысленного текста рыбы на русском языке.
+            </p>
+            <p className="text-sm text-slate-300">
+              Мы привозим цветы и растения в горшках из{' '}
+              <strong className="text-white">Эквадора, Кении, Колумбии, Чили, Голландии, Израиля</strong> и
+              доставляем их свежими во все регионы СНГ.
+            </p>
+          </div>
+          <div className="px-4">
+            <Button className="w-full">связаться с нами</Button>
+          </div>
         </div>
-        <div className="my-7 space-y-4 px-4">
-          <p className="text-sm font-semibold text-white">
-            По своей сути рыбатекст является альтернативой традиционному lorem ipsum
-          </p>
-          <p className="text-sm text-slate-300">
-            Сайт рыбатекст поможет дизайнеру, верстальщику, вебмастеру сгенерировать несколько абзацев более
-            менее осмысленного текста рыбы на русском языке.
-          </p>
-          <p className="text-sm text-slate-300">
-            Мы привозим цветы и растения в горшках из{' '}
-            <strong className="text-white">Эквадора, Кении, Колумбии, Чили, Голландии, Израиля</strong> и
-            доставляем их свежими во все регионы СНГ.
-          </p>
-        </div>
-        <div className="px-4">
-          <Button className="w-full">связаться с нами</Button>
-        </div>
-        <DeliveryVis className="mt-12" />
+
+        <DeliveryVis className="mt-12 md:mt-0 md:shrink-0 md:basis-7/12" />
       </section>
 
-      <section className="section">
-        <header className="section__header">
-          <h2 className="section__subtitle mb-2.5">Flower Fracht Karaganda</h2>
-          <h2 className="section__title">Калькулятор доставки</h2>
-        </header>
-        <ol className="my-7">
-          <li className="border-b border-slate-700/80 px-4 pb-8">
-            <div className="mb-6 flex gap-3">
-              <span className="square h-10 w-10 shrink-0 animate-pulse">01</span>
-              <h2 className="text-sm text-slate-300">
-                Выберите страну по которой хотите узнать время доставки
-              </h2>
-            </div>
-            <form>
-              <RadioGroup.Root className="grid grid-cols-2 gap-5" defaultValue="default" aria-label="country">
-                {[
-                  { name: 'Эквадор', id: 'ecuador' },
-                  { name: 'Кения', id: 'kenya' },
-                  { name: 'Колумбия', id: 'columbia' },
-                  { name: 'Чили', id: 'chile' },
-                  { name: 'Израиль', id: 'israel' },
-                  { name: 'Голландия', id: 'holland' },
-                  { name: 'Испания', id: 'spain' },
-                ].map((country) => (
-                  <div className="flex items-center gap-3" key={country.id}>
-                    <RadioGroup.Item className="radio__item" value={country.id} id={country.id}>
-                      <RadioGroup.Indicator className="radio__indicator" />
-                    </RadioGroup.Item>
-                    <label className="text-xs text-white" htmlFor={country.id}>
-                      {country.name}
-                    </label>
-                  </div>
-                ))}
-              </RadioGroup.Root>
-            </form>
-          </li>
-          <li className="px-4 pb-0 pt-8">
-            <div className="mb-6 flex gap-3">
-              <span className="square h-10 w-10 shrink-0 animate-pulse">02</span>
-              <h2 className="text-sm text-slate-300">
-                Выберите страну по которой хотите узнать время доставки
-              </h2>
-            </div>
-            <div>
-              <div className="mb-6 flex gap-2.5 text-white">
-                <MapPin />
-                <h2 className="text-sm font-medium uppercase">Ecuador</h2>
+      <section className="section md:flex md:gap-7 md:px-7">
+        <div className="relative hidden self-start border border-navy-700/30 bg-navy-800/50 p-5 pt-7 md:block">
+          <div className="absolute right-5 top-6 flex items-center gap-3.5">
+            <MapPin className="text-white" size={14} />
+            <span className="text-sm uppercase text-white">Ecuador</span>
+          </div>
+          <Calculator width={400} />
+        </div>
+        <div>
+          <header className="section__header">
+            <h2 className="section__subtitle mb-2.5 self-start">Flower Fracht Karaganda</h2>
+            <h2 className="section__title self-start">Калькулятор доставки</h2>
+          </header>
+          <ol className="my-7">
+            <li className="border-b border-slate-700/80 px-4 pb-8 md:px-0">
+              <div className="mb-6 flex items-center gap-3">
+                <span className="square h-10 w-10 shrink-0 animate-pulse">01</span>
+                <h2 className="text-sm text-slate-300">
+                  Выберите страну по которой хотите узнать время доставки
+                </h2>
               </div>
-
-              <div className="grid grid-cols-[1fr_auto] gap-6">
-                <div className="text-sm font-medium text-white">День заказа</div>
-                <div className="text-xs text-slate-400">
-                  <Select.Root>
-                    <Select.Trigger className="flex w-full justify-between" aria-label="language">
-                      <div className="text-white">
-                        <Select.Value placeholder="Дата" />
-                      </div>
-                      <Select.Icon className="text-blue-500">
-                        <ChevronDown size={10} />
-                      </Select.Icon>
-                    </Select.Trigger>
-                    <Select.Portal>
-                      <Select.Content className="bg-navy-800 p-2 text-xs text-white shadow">
-                        <Select.ScrollUpButton className="">
-                          <ChevronUp />
-                        </Select.ScrollUpButton>
-                        <Select.Viewport>
-                          <Select.Group>
-                            <Select.Label className="font-semibold">Language</Select.Label>
-                            <Select.Item value="july-24" className="flex items-center justify-between">
-                              <Select.ItemText>24 июля</Select.ItemText>
-                              <Select.ItemIndicator className="">
-                                <Check size={10} />
-                              </Select.ItemIndicator>
-                            </Select.Item>
-                            <Select.Item value="july-27" className="flex items-center justify-between">
-                              <Select.ItemText>27 июля</Select.ItemText>
-                              <Select.ItemIndicator className="">
-                                <Check size={10} />
-                              </Select.ItemIndicator>
-                            </Select.Item>
-                          </Select.Group>
-                        </Select.Viewport>
-                        <Select.ScrollDownButton className="">
-                          <ChevronDown />
-                        </Select.ScrollDownButton>
-                      </Select.Content>
-                    </Select.Portal>
-                  </Select.Root>
+              <form>
+                <RadioGroup.Root
+                  className="grid grid-cols-2 gap-5"
+                  defaultValue="default"
+                  aria-label="country"
+                >
+                  {[
+                    { name: 'Эквадор', id: 'ecuador' },
+                    { name: 'Кения', id: 'kenya' },
+                    { name: 'Колумбия', id: 'columbia' },
+                    { name: 'Чили', id: 'chile' },
+                    { name: 'Израиль', id: 'israel' },
+                    { name: 'Голландия', id: 'holland' },
+                    { name: 'Испания', id: 'spain' },
+                  ].map((country) => (
+                    <div className="flex items-center gap-3" key={country.id}>
+                      <RadioGroup.Item className="radio__item" value={country.id} id={country.id}>
+                        <RadioGroup.Indicator className="radio__indicator" />
+                      </RadioGroup.Item>
+                      <label className="text-xs text-white" htmlFor={country.id}>
+                        {country.name}
+                      </label>
+                    </div>
+                  ))}
+                </RadioGroup.Root>
+              </form>
+            </li>
+            <li className="px-4 pb-0 pt-8 md:px-0">
+              <div className="mb-6 flex items-center gap-3">
+                <span className="square h-10 w-10 shrink-0 animate-pulse">02</span>
+                <h2 className="text-sm text-slate-300">
+                  Что бы рассчитать дату доставки выберите день когда планируете сделать заказ
+                </h2>
+              </div>
+              <div>
+                <div className="mb-6 flex gap-2.5 text-white">
+                  <MapPin />
+                  <h2 className="text-sm font-medium uppercase">Ecuador</h2>
                 </div>
-                <div className="text-sm font-medium text-white">Конец сбора заказов</div>
-                <div className="text-xs text-slate-400">27 июля до 16:00</div>
-                <div className="text-sm font-medium text-white">Доставка</div>
-                <div className="text-xs text-slate-400">7 дней</div>
-                <div className="text-sm font-medium text-white">День поставки</div>
-                <div className="text-xs text-slate-400">3 августа</div>
+                <div className="grid grid-cols-[1fr_auto] gap-6">
+                  <div className="text-sm font-medium text-white">День заказа</div>
+                  <div className="text-xs text-slate-400">
+                    <Select.Root>
+                      <Select.Trigger className="flex w-full justify-between" aria-label="language">
+                        <div className="text-white">
+                          <Select.Value placeholder="Дата" />
+                        </div>
+                        <Select.Icon className="text-blue-500">
+                          <ChevronDown size={10} />
+                        </Select.Icon>
+                      </Select.Trigger>
+                      <Select.Portal>
+                        <Select.Content className="bg-navy-800 p-2 text-xs text-white shadow">
+                          <Select.ScrollUpButton className="">
+                            <ChevronUp />
+                          </Select.ScrollUpButton>
+                          <Select.Viewport>
+                            <Select.Group>
+                              <Select.Label className="font-semibold">Language</Select.Label>
+                              <Select.Item value="july-24" className="flex items-center justify-between">
+                                <Select.ItemText>24 июля</Select.ItemText>
+                                <Select.ItemIndicator className="">
+                                  <Check size={10} />
+                                </Select.ItemIndicator>
+                              </Select.Item>
+                              <Select.Item value="july-27" className="flex items-center justify-between">
+                                <Select.ItemText>27 июля</Select.ItemText>
+                                <Select.ItemIndicator className="">
+                                  <Check size={10} />
+                                </Select.ItemIndicator>
+                              </Select.Item>
+                            </Select.Group>
+                          </Select.Viewport>
+                          <Select.ScrollDownButton className="">
+                            <ChevronDown />
+                          </Select.ScrollDownButton>
+                        </Select.Content>
+                      </Select.Portal>
+                    </Select.Root>
+                  </div>
+                  <div className="text-sm font-medium text-white">Конец сбора заказов</div>
+                  <div className="text-xs text-slate-400">27 июля до 16:00</div>
+                  <div className="text-sm font-medium text-white">Доставка</div>
+                  <div className="text-xs text-slate-400">7 дней</div>
+                  <div className="text-sm font-medium text-white">День поставки</div>
+                  <div className="text-xs text-slate-400">3 августа</div>
+                </div>
               </div>
-            </div>
-          </li>
-        </ol>
+            </li>
+          </ol>
+        </div>
       </section>
 
       {/* tariffs */}
@@ -367,8 +458,8 @@ let IndexPage = () => {
         </div>
 
         <div className="my-8 px-4">
-          <ul className="flex flex-col gap-4">
-            <li className="card flex flex-col gap-4">
+          <ul className="flex flex-col gap-4 md:flex-row">
+            <li className="card flex flex-col gap-4 md:flex-1">
               <div className="flex gap-5">
                 <div className="card__icon">
                   <svg fill="none" viewBox="0 0 46 64">
@@ -401,10 +492,13 @@ let IndexPage = () => {
               </div>
               <p className="card__description w-full flex-1">Доставка заказа осуществляется до двери</p>
             </li>
-            <li className="flex h-[183px] flex-col items-center justify-center bg-[url(/airplane-backdrop-sm.jpg)] bg-cover bg-bottom px-6">
+            <li
+              className="flex h-[183px] flex-col items-center justify-center bg-[url(/airplane-backdrop-sm.jpg)] 
+              bg-cover bg-bottom px-6 md:h-auto md:flex-1"
+            >
               <Button className="w-full">Скачать прайс</Button>
             </li>
-            <li className="card flex flex-col gap-4">
+            <li className="card flex flex-col gap-4 md:flex-1">
               <div className="flex gap-5">
                 <div className="card__icon">
                   <svg fill="none" viewBox="0 0 46 64">
@@ -441,44 +535,43 @@ let IndexPage = () => {
         </div>
       </section>
 
-      {/* callback */}
-      <section className="hero2 py-16 px-4">
-        <div className="text-center">
-          <h2 className="hero__subtitle">Flower Fracht Karaganda</h2>
-          <h2 className="hero__title">Заказать звонок</h2>
-          <p className="hero__text">Закажите звонок и наш менеджер свяжется с вами в ближайшее время</p>
-        </div>
-        <form action="" className="flex flex-col gap-8">
-          <input type="text" className="input w-full" placeholder="Имя" />
-          <input type="text" className="input w-full" placeholder="Номер телефона" />
-          <div className="flex items-center gap-4">
-            <Checkbox id="agreement" />
-            <label htmlFor="agreement" className="hero__text">
-              Даю свое согласия на обработку{' '}
-              <a href="#" className="link link--active">
-                персональных данных
-              </a>
-            </label>
+      <div className="md:flex">
+        {/* callback */}
+        <section className="hero2 flex-1 py-16 px-4">
+          <div className="mx-auto text-center md:max-w-md">
+            <h2 className="hero__subtitle">Flower Fracht Karaganda</h2>
+            <h2 className="hero__title">Заказать звонок</h2>
+            <p className="hero__text mx-auto md:max-w-xs">
+              Закажите звонок и наш менеджер свяжется с вами в ближайшее время
+            </p>
           </div>
-          <Button type="submit" className="mt-4">
-            Заказать звонок
-          </Button>
-        </form>
-      </section>
-
-      {/* images */}
-      <section>
-        <svg viewBox="0 0 320 190" className="-mb-px" /* safari rendering issue */>
-          <image href="/flower-4.jpg" width={136} height={190} preserveAspectRatio="xMidYMid slice" />
-          <image
-            href="/flower-3.jpg"
-            width={184}
-            x={136}
-            height="100%"
-            preserveAspectRatio="xMidYMid slice"
-          />
-        </svg>
-      </section>
+          <form action="" className="mx-auto flex flex-col gap-8 md:max-w-sm">
+            <input type="text" className="input w-full" placeholder="Имя" />
+            <input type="text" className="input w-full" placeholder="Номер телефона" />
+            <div className="flex items-center gap-4">
+              <Checkbox id="agreement" />
+              <label htmlFor="agreement" className="hero__text">
+                Даю свое согласия на обработку{' '}
+                <a href="#" className="link link--active">
+                  персональных данных
+                </a>
+              </label>
+            </div>
+            <Button type="submit" className="mt-4 md:self-center md:px-10">
+              Заказать звонок
+            </Button>
+          </form>
+        </section>
+        {/* images */}
+        <div className="flex max-h-48 md:max-h-none md:w-1/2">
+          <div className="basis-[42.5%]">
+            <img src="/flower-4.jpg" className="h-full w-full object-cover" />
+          </div>
+          <div className="basis-[57.5%]">
+            <img src="/flower-3.jpg" className="h-full w-full object-cover" />
+          </div>
+        </div>
+      </div>
     </div>
   );
 };

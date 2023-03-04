@@ -6,6 +6,7 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { Logo } from 'components/Logo';
 import { Modal } from 'components/Modal';
+import { useBreakpoints } from '../lib/hooks/useBreakpoints';
 
 export type HeaderProps = {
   children?: React.ReactNode;
@@ -13,10 +14,14 @@ export type HeaderProps = {
 };
 
 export const Header = (props: HeaderProps) => {
-  const { children, className = '', ...rest } = props;
-  const [menuOpen, setMenuOpen] = useState(false);
+  let { children, className = '', ...rest } = props;
+  let [menuOpen, setMenuOpen] = useState(false);
 
-  // useNoScroll(menuOpen);
+  useBreakpoints((bp) => {
+    if (bp.md) {
+      setMenuOpen(false);
+    }
+  });
 
   function handleClickMenu() {
     setMenuOpen((o) => !o);
@@ -24,7 +29,32 @@ export const Header = (props: HeaderProps) => {
 
   return (
     <header className={classNames(className, 'header')} {...rest}>
-      <Logo className="header__logo" />
+      <Logo className="header__logo md:mr-auto" />
+
+      <nav className="hidden md:block">
+        <ul className="flex justify-between gap-8">
+          <li>
+            <Link href="/" className="header__navLink header__navLink--active">
+              Главная
+            </Link>
+          </li>
+          <li>
+            <Link href="/" className="header__navLink">
+              Наши склады
+            </Link>
+          </li>
+          <li>
+            <Link href="/" className="header__navLink">
+              Брокерам
+            </Link>
+          </li>
+          <li>
+            <Link href="/" className="header__navLink">
+              Контакты
+            </Link>
+          </li>
+        </ul>
+      </nav>
 
       <Select.Root>
         <Select.Trigger className="ml-auto flex items-center gap-3" aria-label="language">
@@ -64,7 +94,7 @@ export const Header = (props: HeaderProps) => {
         </Select.Portal>
       </Select.Root>
 
-      <button className="text-white" onClick={handleClickMenu}>
+      <button className="text-white md:hidden" onClick={handleClickMenu}>
         <svg width={26} fill="none" viewBox="0 0 26 23">
           <path
             d="M0 0H26V1H0Z"

@@ -3,11 +3,24 @@
 
 @layer components {
   .header {
-    @apply isolate flex items-center gap-8 bg-navy-900 py-3 px-4;
+    @apply isolate flex items-center gap-8 bg-navy-900 py-3 px-4 md:gap-2 md:px-7;
+  }
+
+  .header__navLink {
+    @apply block py-2 text-xs font-medium uppercase text-white hover:text-slate-400;
+  }
+
+  .header__navLink--active {
+    @apply relative text-blue-500 hover:text-blue-500;
+
+    &::after {
+      @apply absolute left-1/2 top-full h-3 w-px bg-blue-500;
+      content: '';
+    }
   }
 
   .header__logo {
-    @apply w-20;
+    @apply w-20 md:w-[127px];
   }
 
   .menu__buttonTop {

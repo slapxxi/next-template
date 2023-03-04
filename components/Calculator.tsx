@@ -12,6 +12,7 @@ type Data = {
 export type CalculatorProps = {
   children?: React.ReactNode;
   className?: string;
+  width: number;
 };
 
 const dates = generateDates(45);
@@ -20,7 +21,7 @@ const fulldateFormatter = new Intl.DateTimeFormat('ru', { dateStyle: 'long' });
 const SCALE_FACTOR = 23;
 
 export const Calculator = (props: CalculatorProps) => {
-  const { children, className = '', ...rest } = props;
+  const { children, className = '', width, ...rest } = props;
   const svgRef = useRef<SVGSVGElement>(null);
   const [selected, setSelected] = useState<Data | null>(null);
   const [packingDate, deliveryDate] = getEstimateDates(selected);
@@ -32,14 +33,15 @@ export const Calculator = (props: CalculatorProps) => {
   function handleClick(e: React.MouseEvent<HTMLLIElement>, data: Data) {
     const elem = e.currentTarget;
     const container = elem.parentElement!;
+    let containerRect = container.getBoundingClientRect();
     const rect = elem.getBoundingClientRect();
-    container.scrollTo({ left: container.scrollLeft + rect.x, behavior: 'smooth' });
+    container.scrollTo({ left: container.scrollLeft + rect.x - containerRect.x, behavior: 'smooth' });
     setSelected(data);
   }
 
   return (
-    <div className={classNames(className, 'section2')} {...rest}>
-      <svg viewBox="0 0 360 250" ref={svgRef}>
+    <div className={classNames(className)} style={{ width }} {...rest}>
+      <svg viewBox={`0 0 ${width} 250`} ref={svgRef}>
         <line
           x1="0"
           y1="100%"
@@ -103,7 +105,7 @@ export const Calculator = (props: CalculatorProps) => {
               selected !== null && selected.index === i && 'bg-rose-500 font-semibold',
               d.selectable ? 'text-slate-200' : 'text-slate-600',
             )}
-            onClick={d.active ? (e) => handleClick(e, d) : undefined}
+            onClick={d.selectable && d.active ? (e) => handleClick(e, d) : undefined}
           >
             <span className="-translate-y-px">{weekdayFormatter.format(d.date)}</span>
           </li>
