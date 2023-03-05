@@ -1,4 +1,4 @@
-import { ChevronDown, MapPin } from 'lucide-react';
+import { ChevronDown, ChevronUp, MapPin } from 'lucide-react';
 import * as Accordion from '@radix-ui/react-accordion';
 
 let WarehousesPage = () => {
@@ -36,12 +36,19 @@ let WarehousesPage = () => {
               className="flex flex-col xl:data-[state='open']:flex-1"
             >
               <Accordion.Trigger
-                className="listItem flex items-center justify-center 
+                className="listItem group flex items-center justify-center 
 								gap-2 text-sm text-white lg:justify-start lg:gap-4 lg:p-10"
               >
                 <MapPin />
                 <span>{item}</span>
-                <ChevronDown className="ml-auto hidden text-blue-500 lg:block" size={12} />
+                <ChevronDown
+                  className="ml-auto hidden text-blue-500 group-data-[state='open']:hidden lg:block"
+                  size={12}
+                />
+                <ChevronUp
+                  className="ml-auto hidden text-blue-500 group-data-[state='closed']:hidden lg:block"
+                  size={12}
+                />
               </Accordion.Trigger>
               <Accordion.Content className="flex-1 bg-navy-900 p-4 text-white data-[state='open']:animate-slideLeft lg:p-10">
                 Yes. It adheres to the WAI-ARIA design pattern.

@@ -3,7 +3,7 @@
 
 @layer components {
   .listItem {
-    @apply border-b border-navy-700 bg-navy-800 p-5 last:border-none;
+    @apply border-b border-navy-700 bg-navy-800 p-5 last:border-none hover:bg-navy-700/80;
   }
 
   .pageName {
@@ -16,12 +16,22 @@
     min-height: 405px;
   }
 
+  .pageName--1 {
+    background-image: url('/stripes-light.svg'), linear-gradient(to bottom, #222a, #222a),
+      linear-gradient(to bottom, #0006, #0006), url('/flower-3.jpg');
+  }
+
   @screen lg {
     .pageName {
       background-image: linear-gradient(to bottom, #2226, #2226), linear-gradient(to bottom, #0006, #0006),
         url('/flower-2.jpg');
       background-size: auto, auto, cover;
       background-blend-mode: normal, saturation, normal;
+    }
+
+    .pageName--1 {
+      background-image: linear-gradient(to bottom, #2226, #2226), linear-gradient(to bottom, #0006, #0006),
+        url('/flower-3.jpg');
     }
   }
 
@@ -217,8 +227,19 @@
 
   .card--decor {
     &::before {
-      @apply absolute left-0 top-1/2 h-1/2 -translate-y-1/2 border-l border-navy-200;
+      @apply absolute left-0 top-1/2 h-1/2 -translate-y-1/2 border-l border-navy-200 lg:-translate-y-2;
       content: '';
+    }
+  }
+
+  .card--count {
+    @apply relative;
+    counter-increment: section;
+
+    &::after {
+      @apply absolute right-4 top-1/2 -translate-y-1/2 text-4xl font-semibold 
+      uppercase text-navy-700/80 lg:top-2 lg:translate-y-0 lg:text-5xl;
+      content: '0' counter(section);
     }
   }
 
