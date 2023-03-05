@@ -2,6 +2,44 @@
 @tailwind utilities;
 
 @layer components {
+  .listItem {
+    @apply border-b border-navy-700 bg-navy-800 p-5 last:border-none;
+  }
+
+  .pageName {
+    @apply flex items-center justify-center;
+    background-image: url('/stripes-light.svg'), linear-gradient(to bottom, #222a, #222a),
+      linear-gradient(to bottom, #0006, #0006), url('/flower-2.jpg');
+    background-size: auto, auto, auto, cover;
+    background-position: 50%;
+    background-blend-mode: normal, normal, saturation, normal;
+    min-height: 405px;
+  }
+
+  @screen lg {
+    .pageName {
+      background-image: linear-gradient(to bottom, #2226, #2226), linear-gradient(to bottom, #0006, #0006),
+        url('/flower-2.jpg');
+      background-size: auto, auto, cover;
+      background-blend-mode: normal, saturation, normal;
+    }
+  }
+
+  .pageName__header {
+    @apply text-center;
+  }
+
+  .title--underline {
+    @apply relative;
+
+    &::after {
+      @apply absolute top-full left-1/2 -translate-x-1/2 translate-y-2.5 bg-white;
+      content: '';
+      width: 60px;
+      height: 1px;
+    }
+  }
+
   .link {
     @apply hover:underline;
   }
@@ -54,7 +92,7 @@
   }
 
   .hero__subtitle {
-    @apply text-2xs font-medium uppercase text-white xl:text-sm xl:text-gray-400/80;
+    @apply text-2xs font-medium uppercase tracking-wider text-white xl:text-sm xl:text-gray-400/80;
   }
 
   .hero__title {
@@ -75,21 +113,19 @@
 
   .section {
     @apply bg-navy-900 pt-16 pb-8;
-    background-image: linear-gradient(to bottom, theme('colors.navy-900/0'), theme('colors.navy-800/0.3')),
-      url('/continent-tl.svg'), url('/stripes.svg'), url('/continent-br.svg');
-    background-position: 50%, 0px 0px, center, 100% 100%;
-    background-repeat: no-repeat, no-repeat, repeat-y, no-repeat;
+    background-image: url('/continent-tl.svg'), url('/stripes.svg'), url('/continent-br.svg');
+    background-position: 0px 0px, center, 100% 100%;
+    background-repeat: no-repeat, repeat-y, no-repeat;
   }
 
   @screen lg {
     .section {
       @apply bg-navy-900 pt-16 pb-8;
-      background-image: linear-gradient(to bottom, theme('colors.navy-900/0'), theme('colors.navy-800/0.3')),
-        url('/continent-tl.svg'), url('/stripes-md.svg'), url('/continent-br.svg'),
+      background-image: url('/continent-tl.svg'), url('/stripes-md.svg'), url('/continent-br.svg'),
         url('/clouds-backdrop-md.jpg');
-      background-size: auto, auto, 100%, auto, auto;
-      background-position: 50%, 0px 0px, center, 100% 100%, bottom;
-      background-repeat: no-repeat, no-repeat, repeat-y, no-repeat, no-repeat;
+      background-size: auto, 100%, auto, auto;
+      background-position: 0px 0px, center, 100% 100%, bottom;
+      background-repeat: no-repeat, repeat-y, no-repeat, no-repeat;
     }
   }
 
@@ -138,7 +174,7 @@
   }
 
   .section__subtitle {
-    @apply text-2xs font-medium uppercase text-navy-200 xl:text-xs;
+    @apply text-2xs font-medium uppercase tracking-wider text-navy-200 xl:text-xs;
   }
 
   .section__text {
@@ -173,7 +209,13 @@
 
   .card {
     @apply relative border border-navy-700 bg-navy-800 p-6;
+  }
 
+  .card--hover {
+    @apply hover:border-white;
+  }
+
+  .card--decor {
     &::before {
       @apply absolute left-0 top-1/2 h-1/2 -translate-y-1/2 border-l border-navy-200;
       content: '';

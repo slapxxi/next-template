@@ -71,7 +71,7 @@ let IndexPage = () => {
             </p>
           </div>
           {/* contact */}
-          <div className="w-64 shrink-0">
+          <div className="shrink-0 lg:w-64">
             <ul className="hidden flex-col gap-2 border-l pl-3.5 lg:flex">
               <li className="flex items-center gap-4 text-xs text-white">
                 <Phone size={10} />
@@ -357,7 +357,7 @@ let IndexPage = () => {
         </div>
         <div>
           <header className="section__header xl:mb-14">
-            <h2 className="section__subtitle mb-2.5 self-start">Flower Fracht Karaganda</h2>
+            <h2 className="section__subtitle mb-2.5 lg:self-start">Flower Fracht Karaganda</h2>
             <h2 className="section__title self-start">Калькулятор доставки</h2>
           </header>
           <ol className="my-7">

@@ -2,11 +2,12 @@ import classNames from 'classnames';
 import { RemoveScroll } from 'react-remove-scroll';
 import * as Select from '@radix-ui/react-select';
 import { ChevronDown, ChevronUp, Check, Phone, Mail } from 'lucide-react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { Logo } from 'components/Logo';
 import { Modal } from 'components/Modal';
 import { useBreakpoints } from '../lib/hooks/useBreakpoints';
+import { useRouter } from 'next/router';
 
 export type HeaderProps = {
   children?: React.ReactNode;
@@ -16,6 +17,16 @@ export type HeaderProps = {
 export const Header = (props: HeaderProps) => {
   let { children, className = '', ...rest } = props;
   let [menuOpen, setMenuOpen] = useState(false);
+  let router = useRouter();
+  console.log(router.pathname);
+
+  useEffect(() => {
+    function handler() {
+      setMenuOpen(false);
+    }
+    router.events.on('routeChangeComplete', handler);
+    return () => router.events.off('routeChangeComplete', handler);
+  });
 
   useBreakpoints((bp) => {
     if (bp.md) {
@@ -33,22 +44,43 @@ export const Header = (props: HeaderProps) => {
       <nav className="hidden lg:block xl:ml-auto">
         <ul className="flex justify-between gap-8">
           <li>
-            <Link href="/" className="header__navLink header__navLink--active">
+            <Link
+              href="/"
+              className={classNames('header__navLink', router.pathname === '/' && 'header__navLink--active')}
+            >
               Главная
             </Link>
           </li>
           <li>
-            <Link href="/" className="header__navLink">
+            <Link
+              href="/warehouses"
+              className={classNames(
+                'header__navLink',
+                router.pathname === '/warehouses' && 'header__navLink--active',
+              )}
+            >
               Наши склады
             </Link>
           </li>
           <li>
-            <Link href="/" className="header__navLink">
+            <Link
+              href="/brokers"
+              className={classNames(
+                'header__navLink',
+                router.pathname === '/brokers' && 'header__navLink--active',
+              )}
+            >
               Брокерам
             </Link>
           </li>
           <li>
-            <Link href="/" className="header__navLink">
+            <Link
+              href="/contact"
+              className={classNames(
+                'header__navLink',
+                router.pathname === '/contact' && 'header__navLink--active',
+              )}
+            >
               Контакты
             </Link>
           </li>
@@ -119,13 +151,6 @@ export const Header = (props: HeaderProps) => {
           >
             <header className="header">
               <Logo className="header__logo" />
-              {/* <button className="ml-auto text-white" onClick={handleClickMenu}>
-                <svg width={26} fill="none" viewBox="0 0 26 23">
-                  <path d="M0 0H26V1H0Z" className="menu__buttonTop" />
-                  <path d="M3 11H26V12H3Z" className="menu__buttonCenter" />
-                  <path d="M0 22H26V23H0Z" className="menu__buttonBottom" />
-                </svg>
-              </button> */}
               <button className="ml-auto text-white" onClick={handleClickMenu}>
                 <svg width={26} fill="none" viewBox="0 0 26 23">
                   <path
@@ -161,17 +186,17 @@ export const Header = (props: HeaderProps) => {
                   </Link>
                 </li>
                 <li>
-                  <Link href="/" className="navText">
+                  <Link href="/warehouses" className="navText">
                     Наши склады
                   </Link>
                 </li>
                 <li>
-                  <Link href="/" className="navText">
+                  <Link href="/brokers" className="navText">
                     Брокерам
                   </Link>
                 </li>
                 <li>
-                  <Link href="/" className="navText">
+                  <Link href="/contact" className="navText">
                     Контакты
                   </Link>
                 </li>

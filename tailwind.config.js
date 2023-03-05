@@ -45,6 +45,15 @@ module.exports = {
       },
     },
     extend: {
+      keyframes: {
+        slideLeft: {
+          from: { transform: 'translateX(30%)' },
+          to: { transform: 'none' },
+        },
+      },
+      animation: {
+        slideLeft: 'slideLeft 150ms ease-out',
+      },
       colors: {
         ...mappedColors,
       },
