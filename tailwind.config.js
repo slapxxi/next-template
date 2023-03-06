@@ -1,16 +1,15 @@
 const plugin = require('tailwindcss/plugin');
 
 let colors = {
-  primary: ['0', '0%', '0%'],
-  secondary: ['0', '0%', '100%'],
-  bg: ['0', '0%', '100%'],
-  text: ['0', '0%', '0%'],
-  black: ['0', '0%', '14%'],
-  'lightGray-500': ['232', '1%', '66%'],
-  'lightBlue-500': ['222', '83%', '77%'],
-  'mediumBlue-500': ['224', '81%', '50%'],
-  'mediumGray-500': ['232', '12%', '64%'],
-  'darkGray-500': ['0', '0%', '14%'],
+  'navy-100': ['211', '33%', '94%'],
+  'navy-200': ['211', '100%', '81%'],
+  'navy-300': ['211', '17%', '76%'],
+  'navy-400': ['211', '17%', '66%'],
+  'navy-500': ['211', '17%', '56%'],
+  'navy-600': ['211', '17%', '44%'],
+  'navy-700': ['211', '31%', '28%'],
+  'navy-800': ['211', '29%', '19%'],
+  'navy-900': ['211', '32%', '15%'],
 };
 
 let mappedColors = Object.fromEntries(
@@ -47,14 +46,37 @@ module.exports = {
       colors: {
         ...mappedColors,
       },
+      keyframes: {
+        slideLeft: {
+          from: { transform: 'translateX(30%)' },
+          to: { transform: 'none' },
+        },
+      },
+      animation: {
+        slideLeft: 'slideLeft 150ms ease-out',
+      },
+      fontFamily: {
+        sans: ['Montserrat', 'sans-serif'],
+        serif: ['Merriweather', 'serif'],
+      },
+      fontSize: {
+        '2xs': '0.5rem',
+      },
     },
   },
   plugins: [
     require('@tailwindcss/container-queries'),
     plugin(({ addUtilities }) => {
       addUtilities({
-        '.no-scroll': {
-          overflow: 'hidden',
+        '.px-wrap': {
+          'padding-left': 'max(calc((100% - 1536px) / 2), 28px)',
+          'padding-right': 'max(calc((100% - 1536px) / 2), 28px)',
+        },
+        '.pl-wrap': {
+          'padding-left': 'max(calc((100% - 1536px) / 2), 28px)',
+        },
+        '.pr-wrap': {
+          'padding-right': 'max(calc((100% - 1536px) / 2), 28px)',
         },
         '.writing-v-rl': {
           writingMode: 'vertical-rl',
@@ -88,15 +110,15 @@ module.exports = {
         },
       });
     }),
-    // plugin(({ matchUtilities, theme }) => {
-    //   matchUtilities(
-    //     {
-    //       tab: (value) => ({
-    //         tabSize: value,
-    //       }),
-    //     },
-    //     { values: theme('tabSize') },
-    //   );
-    // }),
+    plugin(({ matchUtilities, theme }) => {
+      matchUtilities(
+        {
+          'anim-delay': (value) => ({
+            'animation-delay': value,
+          }),
+        },
+        { values: theme('transitionDelay') },
+      );
+    }),
   ],
 };
