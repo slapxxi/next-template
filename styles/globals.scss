@@ -2,17 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-html.no-scroll {
-  overflow: hidden !important;
-  overflow-y: scroll !important;
-  height: 100% !important;
-
-  body {
-    overflow: hidden !important;
-    height: 100% !important;
-  }
-}
-
 @layer base {
   html,
   body,
