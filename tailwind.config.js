@@ -25,6 +25,8 @@ module.exports = {
     },
     extend: {
       colors: {
+        primary: 'var(--primary,hsl(0 0% 0% / <alpha-value>))',
+        secondary: 'var(--secondary,hsl(0 0% 100% / <alpha-value>))',
         navy: {
           100: 'hsl(211 25% 96%)',
           200: 'hsl(211 25% 86%)',
