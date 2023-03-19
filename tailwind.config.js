@@ -1,24 +1,5 @@
 const plugin = require('tailwindcss/plugin');
 
-let colors = {
-  'navy-100': ['211', '33%', '94%'],
-  'navy-200': ['211', '100%', '81%'],
-  'navy-300': ['211', '17%', '76%'],
-  'navy-400': ['211', '17%', '66%'],
-  'navy-500': ['211', '17%', '56%'],
-  'navy-600': ['211', '17%', '44%'],
-  'navy-700': ['211', '31%', '28%'],
-  'navy-800': ['211', '29%', '19%'],
-  'navy-900': ['211', '32%', '15%'],
-};
-
-let mappedColors = Object.fromEntries(
-  Object.entries(colors).map(([name, hsl]) => [
-    name,
-    `hsl(var(--${name}-hsl, ${hsl.join(' ')}) / <alpha-value>)`,
-  ]),
-);
-
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   darkMode: 'class',
@@ -44,7 +25,18 @@ module.exports = {
     },
     extend: {
       colors: {
-        ...mappedColors,
+        navy: {
+          100: 'hsl(211 25% 96%)',
+          200: 'hsl(211 25% 86%)',
+          300: 'hsl(211 25% 76%)',
+          400: 'hsl(211 25% 66%)',
+          500: 'hsl(211 25% 56%)',
+          600: 'hsl(211 25% 46%)',
+          700: 'hsl(211 25% 36%)',
+          800: 'hsl(211 25% 26%)',
+          900: 'hsl(211 25% 16%)',
+          1000: 'hsl(211 25% 6%)',
+        },
       },
       keyframes: {
         slideLeft: {
