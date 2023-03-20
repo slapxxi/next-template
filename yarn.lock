@@ -2407,10 +2407,10 @@
   resolved "https://registry.yarnpkg.com/@tanstack/query-core/-/query-core-4.27.0.tgz#96bcef499008ea080b66611d029655e3ffdf8bea"
   integrity sha512-sm+QncWaPmM73IPwFlmWSKPqjdTXZeFf/7aEmWh00z7yl2FjqophPt0dE1EHW9P1giMC5rMviv7OUbSDmWzXXA==
 
-"@tanstack/react-query@^4.27.0":
-  version "4.27.0"
-  resolved "https://registry.yarnpkg.com/@tanstack/react-query/-/react-query-4.27.0.tgz#624da94e2e44e08f846f8caf91320bf93bd72ac7"
-  integrity sha512-9S49LTFenWbxVHx0iR6qUXP+MKL5kwz/mV9pzfNXvdIM1R0vT+hiecCCL+ox/tD2glAQ51JHHMffQaRuH7wYRA==
+"@tanstack/react-query@^4.28.0":
+  version "4.28.0"
+  resolved "https://registry.yarnpkg.com/@tanstack/react-query/-/react-query-4.28.0.tgz#01cb9969b15cbcbd5dcfcd4b264dc18ef0a35f86"
+  integrity sha512-8cGBV5300RHlvYdS4ea+G1JcZIt5CIuprXYFnsWggkmGoC0b5JaqG0fIX3qwDL9PTNkKvG76NGThIWbpXivMrQ==
   dependencies:
     "@tanstack/query-core" "4.27.0"
     use-sync-external-store "^1.2.0"
@@ -5985,10 +5985,10 @@ lru-cache@^6.0.0:
   dependencies:
     yallist "^4.0.0"
 
-lucide-react@^0.125.0:
-  version "0.125.0"
-  resolved "https://registry.yarnpkg.com/lucide-react/-/lucide-react-0.125.0.tgz#6ba26efe49d36c15d76cbfc2d11bb5a9218aacd2"
-  integrity sha512-tadphtB6TPytEitR9vX75hqu9PQT/uz5RcvXMq976nC190eukAM9+cHMgBxfvfEGDXwIhIT9aFxTUGdAjxw9uQ==
+lucide-react@^0.126.0:
+  version "0.126.0"
+  resolved "https://registry.yarnpkg.com/lucide-react/-/lucide-react-0.126.0.tgz#f8a8a49337e0142c20b7ed745d74b4a018dac877"
+  integrity sha512-ZAbdahh5/gGFCYRS41f0/Ww5KhKwpJHjcrM71gpQ/x/G8Zu+Q9L3mkVv5XpDBlZfga4skNueatfnlSkn3mtc1Q==
 
 lz-string@^1.4.4:
   version "1.4.4"
@@ -6769,10 +6769,10 @@ prettier-plugin-tailwindcss@^0.2.5:
   resolved "https://registry.yarnpkg.com/prettier-plugin-tailwindcss/-/prettier-plugin-tailwindcss-0.2.5.tgz#fb9f07f22d0658fdedbf4d83254bf907656f7500"
   integrity sha512-vZ/iKieyCx0WTxHbkf5E1rBlv/ybFk8WTT4hL5W2jlVxum2Zbe0jMUpuQdDrpa4z2vnPiJ5KIWCqL/kd16fKYg==
 
-prettier@^2.8.4:
-  version "2.8.4"
-  resolved "https://registry.yarnpkg.com/prettier/-/prettier-2.8.4.tgz#34dd2595629bfbb79d344ac4a91ff948694463c3"
-  integrity sha512-vIS4Rlc2FNh0BySk3Wkd6xmwxB0FpOndW5fisM5H8hsZSxU2VWVB5CWIkIjWvrHjIhxk2g3bfMKM87zNTrZddw==
+prettier@^2.8.5:
+  version "2.8.5"
+  resolved "https://registry.yarnpkg.com/prettier/-/prettier-2.8.5.tgz#3dd8ae1ebddc4f6aa419c9b64d8c8319a7e0d982"
+  integrity sha512-3gzuxrHbKUePRBB4ZeU08VNkUcqEHaUaouNt0m7LGP4Hti/NuB07C7PPTM/LkWqXoJYJn2McEo5+kxPNrtQkLQ==
 
 pretty-format@^26.0.0, pretty-format@^26.6.2:
   version "26.6.2"
