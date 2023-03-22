@@ -25,19 +25,13 @@ module.exports = {
     },
     extend: {
       colors: {
-        primary: 'var(--primary,hsl(0 0% 0% / <alpha-value>))',
-        secondary: 'var(--secondary,hsl(0 0% 100% / <alpha-value>))',
-        navy: {
-          100: 'hsl(211 25% 96%)',
-          200: 'hsl(211 25% 86%)',
-          300: 'hsl(211 25% 76%)',
-          400: 'hsl(211 25% 66%)',
-          500: 'hsl(211 25% 56%)',
-          600: 'hsl(211 25% 46%)',
-          700: 'hsl(211 25% 36%)',
-          800: 'hsl(211 25% 26%)',
-          900: 'hsl(211 25% 16%)',
-          1000: 'hsl(211 25% 6%)',
+        primary: 'var(--primary, hsl(0 0% 0% / <alpha-value>))',
+        secondary: 'var(--secondary, hsl(0 0% 20% / <alpha-value>))',
+        em: 'var(--em, hsl(84 87% 41% / <alpha-value>))',
+        salad: {
+          600: 'hsl(84 87% 41%)',
+          700: 'hsl(130 100% 38%)',
+          900: 'hsl(119 94% 14%)',
         },
       },
       keyframes: {
@@ -50,11 +44,15 @@ module.exports = {
         slideLeft: 'slideLeft 150ms ease-out',
       },
       fontFamily: {
-        sans: ['Montserrat', 'sans-serif'],
-        serif: ['Merriweather', 'serif'],
+        sans: ['Roboto Slab', 'sans-serif'],
+        cursive: ['Caveat', 'serif'],
       },
       fontSize: {
         '2xs': '0.5rem',
+      },
+      borderRadius: {
+        30: '30px',
+        50: '50px',
       },
     },
   },

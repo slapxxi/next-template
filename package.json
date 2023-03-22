@@ -85,6 +85,7 @@
     "react-three-fiber": "^6.0.13",
     "react-transition-group": "^4.4.5",
     "sass": "^1.59.3",
+    "swiper": "^9.1.1",
     "tailwindcss": "^3.2.7",
     "ts-node": "^10.9.1",
     "twin.macro": "^3.1.0",

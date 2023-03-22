@@ -2,4 +2,71 @@
 @tailwind utilities;
 
 @layer components {
+  .footer {
+    background: url('/footer-bg.jpg') top / cover no-repeat;
+  }
+
+  .hero {
+    padding-top: 80px;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.6)),
+      url('/hero-bg.jpg') 50% / cover no-repeat;
+  }
+
+  .section {
+    background: url('/section-bg.jpg') center / cover no-repeat;
+  }
+
+  .title {
+    @apply font-sans font-bold uppercase;
+  }
+
+  .button {
+    @apply flex items-center justify-center rounded-full bg-salad-600 py-2 px-3 pb-2.5 leading-none;
+  }
+
+  .text {
+    @apply text-secondary;
+  }
+
+  .olist {
+    @apply flex flex-col gap-7;
+  }
+
+  .olist__li {
+    @apply flex gap-4;
+    counter-increment: olist;
+
+    &::before {
+      @apply flex h-14 w-14 shrink-0 items-center justify-center self-start rounded-full border border-salad-600 text-3xl font-bold leading-none text-salad-600;
+      content: counter(olist);
+      border-width: 4px;
+    }
+  }
+}
+
+@layer utilities {
+  .bg-fresh {
+    background: url('/section2-bg.jpg') center / cover no-repeat;
+  }
+
+  .bg-grass {
+    background: url('/grass.webp') left -180px top / 230px no-repeat;
+  }
+
+  .bg-glass {
+    background: url('/glass-bg.jpg') top / cover no-repeat;
+  }
+
+  .bg-greens {
+    background: url('/greens-bg.jpg') top / cover no-repeat;
+  }
+
+  .hit {
+    @apply relative overflow-hidden;
+
+    &::after {
+      @apply absolute top-0 right-0 flex w-1/2 items-center justify-center bg-yellow-400 p-2 font-bold text-black;
+      content: 'хит';
+    }
+  }
 }
