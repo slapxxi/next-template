@@ -61,14 +61,14 @@ module.exports = {
     plugin(({ addUtilities }) => {
       addUtilities({
         '.px-wrap': {
-          'padding-left': 'max(calc((100% - 1536px) / 2), 28px)',
-          'padding-right': 'max(calc((100% - 1536px) / 2), 28px)',
+          'padding-left': 'max(calc((100% - 1200px) / 2), 40px)',
+          'padding-right': 'max(calc((100% - 1200px) / 2), 40px)',
         },
         '.pl-wrap': {
-          'padding-left': 'max(calc((100% - 1536px) / 2), 28px)',
+          'padding-left': 'max(calc((100% - 1200px) / 2), 40px)',
         },
         '.pr-wrap': {
-          'padding-right': 'max(calc((100% - 1536px) / 2), 28px)',
+          'padding-right': 'max(calc((100% - 1200px) / 2), 40px)',
         },
         '.writing-v-rl': {
           writingMode: 'vertical-rl',

@@ -6,14 +6,32 @@
     background: url('/footer-bg.jpg') top / cover no-repeat;
   }
 
+  @screen lg {
+    .footer {
+      background: url('/footer-bg-lg.jpg') top left / cover no-repeat, #000;
+    }
+  }
+
   .hero {
     padding-top: 80px;
     background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.6)),
       url('/hero-bg.jpg') 50% / cover no-repeat;
   }
 
+  @screen lg {
+    .hero {
+      background: url('/hero-bg-lg.jpg') center / cover no-repeat;
+    }
+  }
+
   .section {
     background: url('/section-bg.jpg') center / cover no-repeat;
+  }
+
+  @screen lg {
+    .section {
+      background: url('/section-bg-lg.jpg') center / cover no-repeat;
+    }
   }
 
   .title {
@@ -21,7 +39,7 @@
   }
 
   .button {
-    @apply flex items-center justify-center rounded-full bg-salad-600 py-2 px-3 pb-2.5 leading-none;
+    @apply flex items-center justify-center rounded-full bg-salad-600 py-2 px-3 pb-2.5 leading-none hover:bg-salad-700;
   }
 
   .text {
@@ -42,23 +60,69 @@
       border-width: 4px;
     }
   }
+
+  .arrow {
+    @apply relative;
+
+    &::after {
+      @apply absolute bottom-full translate-x-1/3 translate-y-4;
+      content: url('/arrow.svg');
+    }
+  }
+
+  .arrow--green {
+    &::after {
+      content: url('/arrow-green.svg');
+    }
+  }
 }
 
 @layer utilities {
+  .bg-spoon {
+    background: url('/spoon.jpg') left top / 500px no-repeat;
+  }
+
   .bg-fresh {
     background: url('/section2-bg.jpg') center / cover no-repeat;
   }
 
-  .bg-grass {
-    background: url('/grass.webp') left -180px top / 230px no-repeat;
+  @screen lg {
+    .bg-fresh {
+      background: url('/section2-bg-lg.jpg') center / cover no-repeat;
+    }
   }
 
   .bg-glass {
     background: url('/glass-bg.jpg') top / cover no-repeat;
   }
 
+  @screen lg {
+    .bg-glass {
+      background: url('/glass-bg-lg.jpg') top / cover no-repeat;
+    }
+  }
+
   .bg-greens {
     background: url('/greens-bg.jpg') top / cover no-repeat;
+  }
+
+  .bg-splash {
+    background: url('/splash.webp') top right / 260px no-repeat, theme('colors.neutral.200');
+  }
+
+  .bg-grass {
+    --bg-1: url('/grass.webp') left -180px top / 230px no-repeat;
+    background: var(--bg-1, none), var(--bg-2, none), var(--bg-3, none);
+  }
+
+  .bg-grass-n-glass {
+    --bg-2: url('/grass-n-glass.webp') right -150px top / 500px no-repeat;
+    background: var(--bg-1, none), var(--bg-2, none), var(--bg-3, none);
+  }
+
+  .bg-grass-h {
+    --bg-1: url('/grass-h.webp') left -420px top 30px / 500px no-repeat;
+    background: var(--bg-1, none), var(--bg-2, none), var(--bg-3, none);
   }
 
   .hit {
