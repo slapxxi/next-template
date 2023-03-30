@@ -62,6 +62,10 @@ module.exports = {
     require('@tailwindcss/container-queries'),
     plugin(({ addUtilities }) => {
       addUtilities({
+        '.span-full': {
+          gridRow: '1 / -1',
+          gridColumn: '1 / -1',
+        },
         '.px-wrap': {
           'padding-left': 'max(calc((100% - 1536px) / 2), 28px)',
           'padding-right': 'max(calc((100% - 1536px) / 2), 28px)',
