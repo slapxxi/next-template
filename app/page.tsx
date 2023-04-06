@@ -1,5 +1,5 @@
 let IndexPage = () => {
-  return <div className="">home</div>;
+  return <div>index</div>;
 };
 
 export default IndexPage;
