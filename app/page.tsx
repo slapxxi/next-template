@@ -1,7 +1,7 @@
 import 'app/index.scss';
 
 let IndexPage = () => {
-  return <div className="main">index</div>;
+  return <div>index</div>;
 };
 
 export default IndexPage;
