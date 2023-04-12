@@ -2655,10 +2655,10 @@
     "@types/scheduler" "*"
     csstype "^3.0.2"
 
-"@types/react@^18.0.34":
-  version "18.0.34"
-  resolved "https://registry.yarnpkg.com/@types/react/-/react-18.0.34.tgz#e553444a578f023e6e1ac499514688fb80b0a984"
-  integrity sha512-NO1UO8941541CJl1BeOXi8a9dNKFK09Gnru5ZJqkm4Q3/WoQJtHvmwt0VX0SB9YCEwe7TfSSxDuaNmx6H2BAIQ==
+"@types/react@^18.0.35":
+  version "18.0.35"
+  resolved "https://registry.yarnpkg.com/@types/react/-/react-18.0.35.tgz#192061cb1044fe01f2d3a94272cd35dd50502741"
+  integrity sha512-6Laome31HpetaIUGFWl1VQ3mdSImwxtFZ39rh059a1MNnKGqBpC88J6NJ8n/Is3Qx7CefDGLgf/KhN/sYCf7ag==
   dependencies:
     "@types/prop-types" "*"
     "@types/scheduler" "*"
@@ -5684,10 +5684,10 @@ lru-cache@^6.0.0:
   dependencies:
     yallist "^4.0.0"
 
-lucide-react@^0.139.0:
-  version "0.139.0"
-  resolved "https://registry.yarnpkg.com/lucide-react/-/lucide-react-0.139.0.tgz#99ea9847101bc8b4567bff5bf1867c809ffce958"
-  integrity sha512-QVCqbEEEnlfX/wUjvXY5K9PMpDiFWfAQskUgSM9pATi326zSs2I0UzX4VIlFtRhRNn/aB6q+4gho7XsHg1J69A==
+lucide-react@^0.143.0:
+  version "0.143.0"
+  resolved "https://registry.yarnpkg.com/lucide-react/-/lucide-react-0.143.0.tgz#f6b7997eebe98c3bc4804044802b488156a9fcc2"
+  integrity sha512-FHF7iumkYzpqnaU5j3xqUL+6BCh6r/iKDzAQGK/q+8k4RC9+LTh9HrEpFLh2EpNXKaevqoBxNkIM59LwPeiFuA==
 
 lz-string@^1.4.4:
   version "1.4.4"
@@ -6911,10 +6911,10 @@ saslprep@^1.0.0, saslprep@^1.0.3:
   dependencies:
     sparse-bitfield "^3.0.3"
 
-sass@^1.61.0:
-  version "1.61.0"
-  resolved "https://registry.yarnpkg.com/sass/-/sass-1.61.0.tgz#d1f6761bb833887b8fdab32a24e052c40531d02b"
-  integrity sha512-PDsN7BrVkNZK2+dj/dpKQAWZavbAQ87IXqVvw2+oEYI+GwlTWkvbQtL7F2cCNbMqJEYKPh1EcjSxsnqIb/kyaQ==
+sass@^1.62.0:
+  version "1.62.0"
+  resolved "https://registry.yarnpkg.com/sass/-/sass-1.62.0.tgz#3686b2195b93295d20765135e562366b33ece37d"
+  integrity sha512-Q4USplo4pLYgCi+XlipZCWUQz5pkg/ruSSgJ0WRDSb/+3z9tXUOkQ7QPYn4XrhZKYAK4HlpaQecRwKLJX6+DBg==
   dependencies:
     chokidar ">=3.0.0 <4.0.0"
     immutable "^4.0.0"
