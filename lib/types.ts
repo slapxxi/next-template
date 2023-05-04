@@ -9,4 +9,8 @@ export type ClassNameProps = {
   className?: string;
 };
 
+export type LayoutProps = {
+  children: React.ReactNode;
+};
+
 export type Theme = typeof defaultTheme & { data?: any };
