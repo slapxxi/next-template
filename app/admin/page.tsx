@@ -1,5 +1,7 @@
-export let metadata = {
-  title: 'Main | Admin | NextJS Project',
+import type { Metadata } from 'next';
+
+export let metadata: Metadata = {
+  title: 'Admin | NextJS Project',
 };
 
 let AdminIndexPage = () => {
