@@ -10,7 +10,7 @@ const darkModeScript = /* javascript */ `
   }
 `;
 
-let AppLayout = (props: LayoutProps) => {
+let AppLayout = (props: LayoutProps & {}) => {
   let { children } = props;
 
   return (

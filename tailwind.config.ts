@@ -33,12 +33,17 @@ export default {
       },
       keyframes: {
         slideLeft: {
-          from: { transform: 'translateX(30%)' },
-          to: { transform: 'none' },
+          from: { transform: 'translateX(30%)', opacity: '0' },
+          to: { transform: 'none', opacity: '1' },
+        },
+        slideDown: {
+          from: { transform: 'translateY(-100%)', opacity: '0' },
+          to: { transform: 'none', opacity: '1' },
         },
       },
       animation: {
-        slideLeft: 'slideLeft 150ms ease-out',
+        slideLeft: 'slideLeft 250ms ease-out',
+        slideDown: 'slideDown 150ms ease-in',
       },
       fontFamily: {
         sans: ['Montserrat', 'sans-serif'],
