@@ -7,6 +7,7 @@ import Head from 'next/head';
 
 import 'styles/globals.scss';
 import 'styles/App.scss';
+import Script from 'next/script';
 
 // let client = new QueryClient();
 
@@ -27,6 +28,7 @@ let App: AppType = (props) => {
       {/* </ThemeProvider> */}
       {/* </SessionProvider> */}
       {/* </QueryClientProvider> */}
+      <Script src="scripts/darkMode.js" strategy="beforeInteractive" />
     </>
   );
 };
