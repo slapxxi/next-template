@@ -4,10 +4,9 @@
 // import { defaultTheme } from 'lib/styles/theme';
 import { AppType } from 'next/app';
 import Head from 'next/head';
-
+import Script from 'next/script';
 import 'styles/globals.scss';
 import 'styles/App.scss';
-import Script from 'next/script';
 
 // let client = new QueryClient();
 

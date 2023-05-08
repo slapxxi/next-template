@@ -1,10 +1,19 @@
+import type { Config } from 'jest';
+import nextJest from 'next/jest';
+
+const createJestConfig = nextJest({
+  // Provide the path to your Next.js app to load next.config.js and .env files in your test environment
+  dir: './',
+});
+
 /*
  * For a detailed explanation regarding each configuration property and type check, visit:
  * https://jestjs.io/docs/en/configuration.html
  */
-export default {
+const customJestConfig: Config = {
   // All imported modules in your tests should be mocked automatically
   // automock: false,
+  // setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
 
   // Stop running tests after `n` failures
   // bail: 0,
@@ -65,9 +74,7 @@ export default {
   // maxWorkers: "50%",
 
   // An array of directory names to be searched recursively up from the requiring module's location
-  // moduleDirectories: [
-  //   "node_modules"
-  // ],
+  // moduleDirectories: ['node_modules'],
 
   // An array of file extensions your modules use
   // moduleFileExtensions: [
@@ -133,7 +140,7 @@ export default {
   // slowTestThreshold: 5,
 
   // A list of paths to snapshot serializer modules Jest should use for snapshot testing
-  snapshotSerializers: ['@emotion/jest/serializer'],
+  // snapshotSerializers: ['@emotion/jest/serializer'],
 
   // The test environment that will be used for testing
   testEnvironment: 'jest-environment-jsdom',
@@ -190,3 +197,6 @@ export default {
   // watchman: true,
   watchPlugins: ['jest-watch-typeahead/filename', 'jest-watch-typeahead/testname'],
 };
+
+// createJestConfig is exported this way to ensure that next/jest can load the Next.js config which is async
+module.exports = createJestConfig(customJestConfig);
